@@ -921,4 +921,6 @@ define("_ACCEPT_STATUTE","Akceptuję regulamin");
 define("_MANDATORY_STATUTE","Musisz zaakceptować regulamin");
 define("_Accept_statute","Rejestrując się w portalu musisz zaakceptować regulamin");
 
+define("_SHOW_NEWS","Pokazuj aktualności");
+
 ?>
