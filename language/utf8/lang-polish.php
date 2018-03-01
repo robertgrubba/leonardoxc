@@ -912,6 +912,7 @@ define("_Compare_Favorite_Tracks","Porównaj ulubione loty");
 define("_Remove_all_favorites","Usuń wszystkie ulubione"); 
 define("_Find_and_Compare_Flights","Znajdź i porównaj loty"); 
 define("_Compare_Selected_Flights","Porównaj wybrane loty"); 
+define("_Compare_Flights","Porównywarka lotów");
 define("_More","Więcej"); 
 define("_Close","Zamknij"); 
 
