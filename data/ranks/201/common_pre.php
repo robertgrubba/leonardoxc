@@ -19,6 +19,8 @@
 	}
 	$nacid=0; # force DHV
 	$nacclubid=0;
+//define url of ranking rules
+	define('RULESURL', 'http://pgxc.pl/');
 
     // OLC km's must be > 15
 //	if ($season==2006)

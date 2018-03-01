@@ -250,8 +250,14 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
    } else {   
        $legend.=" (".$dateLegend.")";
    }
+
+//adding link to ranking counting rules if is defined in constant RULESURL
+
+   if (defined('RULESURL')){
+	$rules='<a href="'.RULESURL.'" target="_blank">'._PROJECT_RULES.'</a>';
+   }
    echo "<table class='listTable listTableTabber' cellpadding='2' cellspacing='0'>
-   			<tr><td class='tableTitleExtra' colspan='".($countHowMany+4)."'>$legend</td></tr>";
+   			<tr><td class='tableTitleExtra' colspan='".($countHowMany+4)."'>$legend  $rules</td></tr>";
    
    ?>
    <tr>
