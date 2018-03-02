@@ -392,10 +392,13 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
 <li><a href="#"><?=_MENU_FLIGHTS." ".$arrDownImg?></a>
 	<ul>
 		<li><a href="<?=getLeonardoLink(array('op'=>'list_flights') )?>"><?=_MENU_FLIGHTS ?></a></li> 
-        
+       <? if ($CONF['menu']['googleearth'] ) { ?> 
 		<li><a href="<?=getLeonardoLink(array('op'=>'explore_ge') )?>"><?=leoHtml::img("icon_star.png",0,0,'absmiddle','','icons1','',0)?> <?=_Navigate_with_Google_Earth?></a></li>       
-        
+        <? } ?>
+	
+       <? if ($CONF['menu']['googlemaps'] ) { ?> 
 		<li><a href="<?=getLeonardoLink(array('op'=>'browser') )?>"><?=_MENU_BROWSER?></a></li>       
+        <? } ?>
 		<li><a href="<?=getLeonardoLink(array('op'=>'list_flights','sortOrder'=>'dateAdded','takeoffID'=>'0','country'=>'0','year'=>'0','month'=>'0','season'=>'0','pilotID'=>'0')) ?>"><?=_MENU_SHOW_LAST_ADDED ?></a></li>
 		<li><a href="<?=getLeonardoLink(array('op'=>'filter') )?>"><?=_MENU_FILTER ?></a></li>
 		<li class='li_space'></li>

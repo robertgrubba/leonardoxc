@@ -238,8 +238,8 @@ function setCIVL_ID() {
 	var dayName = {<?=$calLang?> : new Array(<? foreach ($weekdaysList as $m) echo "'$m',";?>'') };
 
 </script>
-<script language="javascript" src='<?=getRelMainDir()?>js/civl_search.js'></script>
-<script language='javascript' src='<?=getRelMainDir()?>js/cal/popcalendar.js'></script>
+<script language="javascript" src='https://leonardo.pgxc.pl/js/civl_search.js'></script>
+<script language='javascript' src='https://leonardo.pgxc.pl/js/cal/popcalendar.js'></script>
 
 <table width='500' cellspacing='2' cellpadding='2' align='center'>
   <tr>
