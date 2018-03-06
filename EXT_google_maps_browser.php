@@ -39,8 +39,8 @@
 	$min_lon=21;
 	$max_lon=22;
 		
-	$lat=40.5;
-	$lon=22.8;
+	$lat=54;
+	$lon=18;
 
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
@@ -648,7 +648,7 @@ function drawTakeoffs(results){
 
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------
-	var radiusKm=25;
+	var radiusKm=525;
 	<? if ($PREFS->metricSystem==2) echo "metric = false; \n"; ?>
 
 	//$.getJSON('EXT_takeoff.php?op=get_nearest&lat='+lat+'&lon='+lon+'&distance='+radiusKm,null,drawTakeoffs);
