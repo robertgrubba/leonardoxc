@@ -227,10 +227,10 @@ QueryControl.prototype.render = function() {
     this._queriesDiv.childNodes[i].innerHTML = geoQuery.getHTML();
   }
   if (this._timeout == null) {
-    this._timeout = setTimeout(myQueryControl.query, 1000);
+    this._timeout = setTimeout(myQueryControl.query, 10000);
   } else {
     clearTimeout(this._timeout);
-    this._timeout = setTimeout(myQueryControl.query, 1000);
+    this._timeout = setTimeout(myQueryControl.query, 10000);
   }
 }
 

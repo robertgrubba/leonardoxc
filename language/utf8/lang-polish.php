@@ -877,7 +877,7 @@ define("_FLIGHT_BROSWER","Przeszukaj loty i startowiska z Google Maps");//Search
 define("_Load_Thermals","Załaduj kominy"); //Load Thermals"); 
 define("_Loading_thermals","Ładowanie kominów"); //Loading Thermals"); 
 define("_Layers","Warstwy");//Layers"); 
-define("_Select_Area","Wybierz pole");//Select Area"); 
+define("_Select_Area","Wybierz region");//Select Area"); 
 define("_Leave_a_comment","Skomentuj");//Leave a comment"); 
 define("_Reply","Odpowiedz"); //Reply"); 
 define("_Translate","Przetłumacz"); //Translate"); 

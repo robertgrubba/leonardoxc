@@ -39,8 +39,8 @@
 	$min_lon=21;
 	$max_lon=22;
 		
-	$lat=40.5;
-	$lon=22.8;
+	$lat=54;
+	$lon=18;
 
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
@@ -190,7 +190,7 @@ fieldset.legendBoxHidden {
 </style>
 
 </head>
-<body  onUnload="GUnload()">
+<body  onUnload="GUnload()" onLoad="toggleTakeoffs()">
 <div class="gmap" id="gmap"></div>
 
 
@@ -218,7 +218,7 @@ fieldset.legendBoxHidden {
         <form name="formFilter" id="formFilter">
 		<fieldset id='layersBox' class="legendBox legendBoxHidden"><legend><?=_Layers?></legend>
 		<span class='inner_legendBox'>
-		<label><input type="checkbox" value="1" id='takeoffsShow' onClick="toggleTakeoffs()"><?=_MENU_TAKEOFFS?></label><hr>
+		<label><input type="checkbox" value="1" id='takeoffsShow' onClick="toggleTakeoffs()" checked><?=_MENU_TAKEOFFS?></label><hr>
 		
 		<? if ($CONF_airspaceChecks && L_auth::isAdmin($userID) ) { ?>
         	<label><input type="checkbox" value="1" id='airspaceShow' onClick="toggleAirspace('airspaceShow',true)"><?=_Show_Airspace			?></label><hr>
@@ -648,7 +648,7 @@ function drawTakeoffs(results){
 
 //----------------------------------------------------------------------
 //----------------------------------------------------------------------
-	var radiusKm=25;
+	var radiusKm=525;
 	<? if ($PREFS->metricSystem==2) echo "metric = false; \n"; ?>
 
 	//$.getJSON('EXT_takeoff.php?op=get_nearest&lat='+lat+'&lon='+lon+'&distance='+radiusKm,null,drawTakeoffs);
