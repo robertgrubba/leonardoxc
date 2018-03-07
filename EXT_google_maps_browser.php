@@ -190,7 +190,7 @@ fieldset.legendBoxHidden {
 </style>
 
 </head>
-<body  onUnload="GUnload()">
+<body  onUnload="GUnload()" onLoad="toggleTakeoffs()">
 <div class="gmap" id="gmap"></div>
 
 
@@ -218,7 +218,7 @@ fieldset.legendBoxHidden {
         <form name="formFilter" id="formFilter">
 		<fieldset id='layersBox' class="legendBox legendBoxHidden"><legend><?=_Layers?></legend>
 		<span class='inner_legendBox'>
-		<label><input type="checkbox" value="1" id='takeoffsShow' onClick="toggleTakeoffs()"><?=_MENU_TAKEOFFS?></label><hr>
+		<label><input type="checkbox" value="1" id='takeoffsShow' onClick="toggleTakeoffs()" checked><?=_MENU_TAKEOFFS?></label><hr>
 		
 		<? if ($CONF_airspaceChecks && L_auth::isAdmin($userID) ) { ?>
         	<label><input type="checkbox" value="1" id='airspaceShow' onClick="toggleAirspace('airspaceShow',true)"><?=_Show_Airspace			?></label><hr>
