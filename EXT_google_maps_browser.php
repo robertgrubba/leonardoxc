@@ -251,13 +251,14 @@ fieldset.legendBoxHidden {
 		
 		// echo "$year $month, $day ####";exit;
  ?>
- 
+<? if ($CONF['takeoffmap']['dateselect']) { ?> 
 			&nbsp; &nbsp; <input id="dateSelect" name="dateSelect" type="text" size="10" maxlength="10" value="<?=$dateSelect ?>" />
                 <a href="javascript:showCalendar(document.formFilter.cal_button, document.formFilter.dateSelect, 'dd.mm.yyyy','<? echo $calLang ?>',0,-1,-1)"> <img src="<? echo $moduleRelPath ?>/img/cal.gif" width="16" height="16" border="0" id="cal_button" name='cal_button'  /></a> 
               <span id='dateSelectShow'><a href='javascript:nop()'><< <?=_SHOW?></a></span>
                      
        
 	       &nbsp;&nbsp;
+<? } ?>
 		<fieldset id='areaSelect' class="legendBox legendBoxHidden"><legend><?=_Select_Area?></legend>
          <span class='inner_legendBox'>
          <? 
