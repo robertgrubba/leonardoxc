@@ -5,4 +5,5 @@ config.php
 google3cae73301fac75eb.html
 templates/basic/tpl/overall_header.html
 templates/wide/tpl/overall_header.html
+.htaccess
 sitemap.xml
