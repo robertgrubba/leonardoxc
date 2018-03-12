@@ -52,12 +52,19 @@
 		$base_name=md5(basename($flight->getIGCRelPath()));
 		$_SESSION['di'.$base_name]=1;
 		// echo 'downloadigc'+$base_name;
-		$igcLink="<a href='".$flight->getIGCRelPath()."' >IGC</a>";
+		$igcLink="<a href='http://leonardo.pgxc.pl".$flight->getIGCRelPath()."' >IGC</a>";
 	} else {
 		$directIGCLink=0;
 		$igcLink=" <a href='javascript:nop()' onClick='toggleIgcDownload();return false;' id='IgcDownloadPos'>IGC</a>";
 	}	
 
+	if ( $flight->belongsToUser($userID) || L_auth::isModerator($userID) || L_auth::canDownloadIGC($clientIP) ) {
+		$directIGCLink=1;
+		$base_name=md5(basename($flight->getIGCRelPath()));
+		$_SESSION['di'.$base_name]=1;
+		// echo 'downloadigc'+$base_name;
+		$visuGpsLink="<a href='http://www.victorb.fr/visugps/visugps.html?track=".$flight->getIGCRelPath()."' >VisuGPS</a>";
+	} 
      
 			  
 //experiment with google static maps
@@ -814,6 +821,7 @@ $Ltemplate->assign_vars(array(
 	'gliderCat'=>$gliderCat,
 	'igcPath'=> $flight->getIGCRelPath(),
 	'igcLink'=> $igcLink,
+	'visuGpsLink'=> $visuGpsLink,
 	'flightID'=>$flight->flightID,
 	
 
