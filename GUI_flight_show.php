@@ -63,7 +63,7 @@
 		$base_name=md5(basename($flight->getIGCRelPath()));
 		$_SESSION['di'.$base_name]=1;
 		// echo 'downloadigc'+$base_name;
-		$visuGpsLink="<a href='http://www.victorb.fr/visugps/visugps.html?track=".$flight->getIGCRelPath()."' >VisuGPS</a>";
+		$visuGpsLink="<a href='http://www.victorb.fr/visugps/visugps.html?track=https://leonardo.pgxc.pl".$flight->getIGCRelPath()."' >VisuGPS</a>";
 	} 
      
 			  
