@@ -76,7 +76,7 @@ define("_MIN_ALTITUDE","Wysokość min (n.p.m.)");
 define("_ALTITUDE_GAIN","Przewyższenie");
 define("_FLIGHT_FILE","Plik lotu");
 define("_COMMENTS","Komentarz");
-define("_RELEVANT_PAGE","Strona www");
+define("_RELEVANT_PAGE","Powiązane strony");
 define("_GLIDER","Skrzydło");
 define("_PHOTOS","Zdjęcia");
 define("_MORE_INFO","Dodatkowe informacje");
