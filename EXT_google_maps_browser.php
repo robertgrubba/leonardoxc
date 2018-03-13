@@ -11,7 +11,6 @@
 // $Id: EXT_google_maps_browser.php,v 1.12 2010/04/22 09:57:17 manolis Exp $                                                                 
 //
 //************************************************************************
-
  	require_once dirname(__FILE__)."/EXT_config_pre.php";
 	require_once dirname(__FILE__)."/config.php";
 	$CONF_use_utf=1;
@@ -48,7 +47,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=<?=$lang_enc?>">
 <title>Leonardo XC flights browser</title>
 <link rel='stylesheet' type='text/css' href='<?=$themeRelPath?>/css/google_maps.css' />
-<script src="<?=$CONF['protocol'] ?>://maps.google.com/maps?file=api&v=2.x&key=<?=$CONF_google_maps_api_key ?>" type="text/javascript"></script>
+<script src="<?=$CONF['protocol']?>://maps.google.com/maps?file=api&v=2.x&key=<?=$CONF_google_maps_api_key ?>" type="text/javascript"></script>
 <script src="<?=$moduleRelPath?>/js/DHTML_functions.js" type="text/javascript"></script>
 <script src="<?=$moduleRelPath?>/js/AJAX_functions.js" type="text/javascript"></script>
 <script src="<?=$moduleRelPath?>/js/google_maps/gmaps.js" type="text/javascript"></script>
@@ -72,9 +71,9 @@
 <script src='js/chartFX/canvaschartpainter.js'></script>
 <link rel="stylesheet" type="text/css" href="js/chartFX/canvaschart.css">
 
-<script src="<?=$CONF['protocol'] ?>://www.google.com/uds/api?file=uds.js&amp;v=1.0&key=ABQIAAAAxe4iZkOij75xEW-P40HsMRTNwwIDB3X2PJ0_br5ee44ut2pm8RRiA2ku6cwsTFtWlCY7kcRdnEPIDA" type="text/javascript"></script>
+<script src="<?=$CONF['protocol']?>://www.google.com/uds/api?file=uds.js&amp;v=1.0&key=ABQIAAAAxe4iZkOij75xEW-P40HsMRTNwwIDB3X2PJ0_br5ee44ut2pm8RRiA2ku6cwsTFtWlCY7kcRdnEPIDA" type="text/javascript"></script>
 
-<script src="<?=$CONF['protocol'] ?>://www.google.com/uds/solutions/localsearch/gmlocalsearch.js" type="text/javascript"></script>
+<script src="<?=$CONF['protocol']?>://www.google.com/uds/solutions/localsearch/gmlocalsearch.js" type="text/javascript"></script>
 
 <script type="text/javascript" language="JavaScript">
 
@@ -416,7 +415,7 @@ var queryString='&date=<?=gmdate("d.m.Y");?>';
 // Dynamic load of flight tracks
 //----------------------------------------------------------------------
 	
-var flightLinkTemplate="<a href='<?=htmlspecialchars ($CONF['protocol']"://".$_SERVER['SERVER_NAME'].
+var flightLinkTemplate="<a href='<?=htmlspecialchars ($CONF['protocol']."://".$_SERVER['SERVER_NAME'].
 		getLeonardoLink(array('op'=>'show_flight','flightID'=>'xxx')) );?>' target='_top'><?=_See_more_details?></a>";
 function createFlightMarker(point, id , pilotName) {
 	var marker = new GMarker(point,flightTakeoffIcon);
