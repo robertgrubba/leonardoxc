@@ -171,7 +171,7 @@ define("_MENU_MY_PROFILE","Mój profil");
 define("_MENU_MY_STATS","Moje statystyki"); 
 define("_MENU_MY_SETTINGS","Moje ustawienia"); 
 define("_MENU_SUBMIT_FLIGHT","Dodaj lot");
-define("_MENU_SUBMIT_FROM_ZIP","Dodaj lot z pliku zip");
+define("_MENU_SUBMIT_FROM_ZIP","Dodaj loty z pliku zip");
 define("_MENU_SHOW_PILOTS","Piloci");
 define("_MENU_SHOW_LAST_ADDED","Pokaż ostatnio dodane");
 define("_FLIGHTS_STATS","Statystyki lotów");
