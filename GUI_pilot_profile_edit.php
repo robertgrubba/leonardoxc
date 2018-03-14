@@ -349,9 +349,9 @@
 				$firstNameReadOnly='';
 				if (  strlen( str_replace(".","",trim($pilot['FirstName']) ) ) >= 2 &&
 					  !L_auth::isAdmin($userID) && !L_auth::isModerator($userID)					 
-				) $firstNameReadOnly='readonly="readonly"';
+				) $firstNameReadOnly='';
 				if ( in_array('FirstName', $readonly_fields) && 
-					!L_auth::isAdmin($userID) && !L_auth::isModerator($userID)	) $firstNameReadOnly='readonly="readonly"';
+					!L_auth::isAdmin($userID) && !L_auth::isModerator($userID)	) $firstNameReadOnly='';
 			?> 
 			<input name="FirstName" type="text" value="<? echo $pilot['FirstName'] ?>" size="25" maxlength="120" <?=$firstNameReadOnly ?> >
 	  </td>
@@ -491,9 +491,9 @@
 				$lastNameReadOnly='';
 				if (  strlen( str_replace(".","",trim($pilot['LastName']) ) ) >= 2  &&
 					  !L_auth::isAdmin($userID) && !L_auth::isModerator($userID) 
-				) $lastNameReadOnly='readonly="readonly"';
+				) $lastNameReadOnly='';
 				if ( in_array('LastName', $readonly_fields) && 
-					!L_auth::isAdmin($userID) && !L_auth::isModerator($userID) ) $lastNameReadOnly='readonly="readonly"';
+					!L_auth::isAdmin($userID) && !L_auth::isModerator($userID) ) $lastNameReadOnly='';
 			?>
 			<input name="LastName" type="text" value="<? echo $pilot['LastName'] ?>" size="25" maxlength="120" <?=$lastNameReadOnly?> >
 		</td>
@@ -554,7 +554,7 @@
       <td valign="top" bgcolor="#E9EDF5"> <div align="right"> <? echo _Birthdate ?><br>
           (<? echo _dd_mm_yy ?>) </div></td>
       <td valign="top">
-    	  <input name="Birthdate" type="text" size="10" maxlength="10" value="<? echo $pilot['Birthdate'] ?>"  readonly>
+    	  <input name="Birthdate" type="text" size="10" maxlength="10" value="<? echo $pilot['Birthdate'] ?>"  >
 		  <? if ( !in_array('Birthdate', $readonly_fields) ) { ?>
           <a href="javascript:showCalendar(document.pilotProfile.cal_from_button, document.pilotProfile.Birthdate, 'dd.mm.yyyy','<? echo $calLang ?>',0,-1,-1)">
           <img name='cal_from_button' src="<? echo $moduleRelPath ?>/img/cal.gif" width="16" height="16" border="0"></a>
