@@ -360,6 +360,11 @@ if ($op=="list_areas") $page_title = 'lista rejonów do latania paralotnią';
 if ($op=="list_takeoffs") $page_title = 'lista startowisk paralotniowych';
 if ($op=="list_flights") $page_title = 'lista zgłoszonych lotów';
 if ($op=="pilot_profile_stats") $page_title = 'statystyki pilota';
+if ($op=="show_waypoint"){
+	 $wpInfo =new waypoint($waypointIDview );
+	 $wpInfo->getFromDB();
+         $page_title = selectWaypointName($wpInfo->name,$wpInfo->intName,$wpInfo->countryCode).' - opis startowiska paralotniowego';
+}
 if ($op=="pilot_profile"){
 	$page_title = 'profil pilota paralotni - '.getPilotRealName($pilotIDview,0,0);
 }
