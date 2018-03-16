@@ -39,7 +39,7 @@
   <head>
     <title>Google Maps</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<script src="http://maps.google.com/maps?file=api&v=2&key=<?=$CONF_google_maps_api_key ?>" type="text/javascript"></script>
+	<script src="<?=$CONF['protocol'] ?>://maps.google.com/maps?file=api&v=2&key=<?=$CONF_google_maps_api_key ?>" type="text/javascript"></script>
 	<script src="<?=$moduleRelPath?>/js/AJAX_functions.js" type="text/javascript"></script>
     <script src="<?=$moduleRelPath?>/js/jquery.js" type="text/javascript"></script>
     <script src="<?=$moduleRelPath?>/js/google_maps/polyline.js" type="text/javascript"></script>
