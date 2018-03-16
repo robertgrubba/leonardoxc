@@ -178,8 +178,8 @@
 	var takeoffPoint= new GLatLng(lat, lon) ;
 	map.setCenter(takeoffPoint , 8, <?=$GMapType?>);
 
-	var iconUrl		= "http://maps.google.com/mapfiles/kml/pal2/icon5.png";
-	var shadowUrl	= "http://maps.google.com/mapfiles/kml/pal2/icon5s.png";	
+	var iconUrl		= "<?=$CONF['protocol'] ?>://maps.google.com/mapfiles/kml/pal2/icon5.png";
+	var shadowUrl	= "<?=$CONF['protocol'] ?>://maps.google.com/mapfiles/kml/pal2/icon5s.png";	
 			
 	//	var takeoffMarker= createMarker(takeoffPoint,"<?= $wpName ?>",iconUrl,shadowUrl);
 	//	map.addOverlay(takeoffMarker);
@@ -193,14 +193,14 @@
 			var takeoffPoint= new GLatLng(results.waypoints[i].lat, results.waypoints[i].lon) ;
 			
 			if (results.waypoints[i].id ==wpID ) {
-				var iconUrl		= "http://maps.google.com/mapfiles/kml/pal2/icon5.png";
-				var shadowUrl	= "http://maps.google.com/mapfiles/kml/pal2/icon5s.png";
+				var iconUrl		= "<?=$CONF['protocol'] ?>://maps.google.com/mapfiles/kml/pal2/icon5.png";
+				var shadowUrl	= "<?=$CONF['protocol'] ?>://maps.google.com/mapfiles/kml/pal2/icon5s.png";
 			} else if (results.waypoints[i].type<1000) {
-				var iconUrl		= "http://maps.google.com/mapfiles/kml/pal3/icon21.png";
-				var shadowUrl	= "http://maps.google.com/mapfiles/kml/pal3/icon21s.png";
+				var iconUrl		= "<?=$CONF['protocol'] ?>://maps.google.com/mapfiles/kml/pal3/icon21.png";
+				var shadowUrl	= "<?=$CONF['protocol'] ?>://maps.google.com/mapfiles/kml/pal3/icon21s.png";
 			} else {
-				var iconUrl		= "http://maps.google.com/mapfiles/kml/pal2/icon13.png";
-				var shadowUrl	= "http://maps.google.com/mapfiles/kml/pal2/icon13s.png";		
+				var iconUrl		= "<?=$CONF['protocol'] ?>://maps.google.com/mapfiles/kml/pal2/icon13.png";
+				var shadowUrl	= "<?=$CONF['protocol'] ?>://maps.google.com/mapfiles/kml/pal2/icon13s.png";		
 			}
 			
 			var takeoffMarker= createMarker(takeoffPoint,results.waypoints[i].id, results.waypoints[i].name,iconUrl,shadowUrl);
@@ -216,8 +216,8 @@
 		// document.writeln(results.flights.length);
 		for(i=0;i<results.flights.length;i++) {	
 			var takeoffPoint= new GLatLng(results.flights[i].firstLat, results.flights[i].firstLon) ;						
-			var iconUrl		= "http://maps.google.com/mapfiles/kml/pal4/icon19.png";
-			var shadowUrl	= "http://maps.google.com/mapfiles/kml/pal4/icon19s.png";
+			var iconUrl		= "<?=$CONF['protocol'] ?>://maps.google.com/mapfiles/kml/pal4/icon19.png";
+			var shadowUrl	= "<?=$CONF['protocol'] ?>://maps.google.com/mapfiles/kml/pal4/icon19s.png";
 			
 			var flightMarker= createFlightMarker(takeoffPoint,results.flights[i].flightID, results.flights[i].pilotName,iconUrl,shadowUrl);
 			flightMarkers[results.flights[i].flightID] = flightMarker;
