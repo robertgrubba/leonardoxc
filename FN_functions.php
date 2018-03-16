@@ -1274,7 +1274,7 @@ function getDownloadLink($argArray) {
 			if ($argName!='type')
 				$args.='&'.$argName.'='.($argValue!='skipValue'?$argValue:'');
 		}	
-		return getRelMainDir().'download.php?type='.$argArray['type'].$args;
+		return $CONF['protocol'].'://'.$_SERVER['SERVER_NAME'].getRelMainDir().'download.php?type='.$argArray['type'].$args;
 		
 	} else 	if ($CONF['links']['type']==3) {
 
