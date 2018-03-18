@@ -32,7 +32,7 @@
 		." $where_clause ";
 
 
-	$query = 'select ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE from '.$flightsTable.' where FLIGHT_KM in (select max(FLIGHT_KM) as userRecord from (SELECT '.$flightsTable.'.ID, userID, takeoffID , userServerID, gliderBrandID, '.$flightsTable.'.glider as glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE FROM '.$flightsTable.','.$pilotsTable.' WHERE (userID!=0 AND private=0) AND takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) AND '.$flightsTable.'.userID='.$pilotsTable.'.pilotID  AND category=2  AND (cat=1) AND validated=1) z group by userID, takeoffID) order by takeoffID ';
+	$query = 'select ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE from '.$flightsTable.' where FLIGHT_KM in (select max(FLIGHT_KM) as userRecord from (SELECT '.$flightsTable.'.ID, userID, takeoffID , userServerID, gliderBrandID, '.$flightsTable.'.glider as glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE FROM '.$flightsTable.','.$pilotsTable.' WHERE (userID!=0 AND private=0) AND takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) AND '.$flightsTable.'.userID='.$pilotsTable.'.pilotID  AND (cat=1) AND validated=1) z group by userID, takeoffID) order by takeoffID ';
 
 
 //var_dump($query);
