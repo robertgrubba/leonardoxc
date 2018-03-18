@@ -48,7 +48,7 @@ while ($row = $db->sql_fetchrow($res)) {
 	 $pilots[$uID]['flights'][$flightID]['type']=$row["BEST_FLIGHT_TYPE"];
 	 $pilots[$uID]['flights'][$flightID]['country']=$countryCode;
 	 $pilots[$uID]['flights'][$flightID]['continent']=$continentCode;
-	 $pilots[$uID]['flights'][$flightID]['score']=$row["FLIGHT_POINTS"];
+	 $pilots[$uID]['flights'][$flightID]['score']=$row["FLIGHT_KM"]/1000;
      $i++;
 }
 

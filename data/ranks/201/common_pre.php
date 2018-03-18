@@ -40,4 +40,7 @@
 	//}
 	//$where_clause.=" GROUP BY userID,takeoffID ";
 
+
+$customRankHeader="Suma km OLC";
+
 ?>
