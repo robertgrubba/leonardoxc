@@ -923,5 +923,6 @@ define("_Accept_statute","Rejestrując się w portalu musisz zaakceptować regul
 
 define("_SHOW_NEWS","Pokazuj aktualności");
 define("_TIME_TO_DELETE_PASSED","Nie możesz usunąć tego lotu. W przypadku wątpliwości skontaktuj się z administratorem pod adresem root@leonardo.pgxc.pl");
+define("_Start_type","Start");
 
 ?>
