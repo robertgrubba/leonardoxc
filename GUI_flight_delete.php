@@ -18,12 +18,16 @@
   $flight=new flight();
   $flight->getFlightFromDB($flightID);
 
-  if ($confirmed && ( $flight->belongsToUser($userID) || L_auth::isAdmin($userID) )  ) {
+$tz  = new DateTimeZone('Europe/Warsaw');
+$flightAge = DateTime::createFromFormat('Y-m-d G:i:s', $flight->dateAdded, $tz)->diff(new DateTime('now', $tz))->days;
+
+  if ($confirmed && ( ($flight->belongsToUser($userID) && $flightAge>$CONF['timeToDelete']) || L_auth::isAdmin($userID) )  ) {
 
 	$flight->deleteFlight();
 	echo "<br><span class='ok'>"._THE_FLIGHT_HAS_BEEN_DELETED."</span><br><br>";
 	echo "<a href='".getLeonardoLink(array('op'=>'list_flights'))."'>"._RETURN."</a><br></div>";
   } else {
+	if ($flightAge<=$CONF['timeToDelete']){
 	  $location=formatLocation(getWaypointName($flight->takeoffID),$flight->takeoffVinicity,$takeoffRadious);
 	
 	  openMain(_CAUTION_THE_FLIGHT_WILL_BE_DELETED,0,"delete_icon.png");
@@ -31,6 +35,10 @@
 	  echo "<br><br><a href='".getLeonardoLink(array('op'=>'delete_flight','flightID'=>$flightID,'confirmed'=>'1'))."'>"._YES."</a> | <a href='javascript:history.go(-1)'>"._NO."</a>";
 	  echo "<br></div>";
 	  closeMain();
+	}else{
+		echo "<div align=center><br><b>"._TIME_TO_DELETE_PASSED."</b></div>";
+	}
+	
   }
   
 ?>

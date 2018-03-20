@@ -267,10 +267,14 @@ $(document).ready(function(){
 		if ( $flight->belongsToUser($userID) || L_auth::isModerator($userID) ) {
 			$legendRight.="<div id='setBoundsPos'></div><a href='javascript:set_flight_bounds($flightID)'><img src='".$moduleRelPath."/img/icon_clock.png' title='Set Start-Stop Time for flight' border=0 align=bottom></a> ";
 		}
-
-		if ( $flight->belongsToUser($userID) || L_auth::isModerator($userID) ) {
-			$legendRight.="<a href='".getLeonardoLink(array('op'=>'delete_flight','flightID'=>$flightID))."'><img src='".$moduleRelPath."/img/x_icon.gif' border=0 align=bottom></a>
-					   <a href='".getLeonardoLink(array('op'=>'edit_flight','flightID'=>$flightID))."'><img src='".$moduleRelPath."/img/change_icon.png' border=0 align=bottom></a>"; 
+//rgrubba estimate flight age and remove delete link if olther than timeToDelete variable
+$tz  = new DateTimeZone('Europe/Warsaw');
+$flightAge = DateTime::createFromFormat('Y-m-d G:i:s', $flight->dateAdded, $tz)->diff(new DateTime('now', $tz))->days;
+		if ( ($flight->belongsToUser($userID) && $flightAge<=$CONF['timeToDelete']) || L_auth::isModerator($userID) ) {
+			$legendRight.="<a href='".getLeonardoLink(array('op'=>'delete_flight','flightID'=>$flightID))."'><img src='".$moduleRelPath."/img/x_icon.gif' border=0 align=bottom></a>";
+}
+		if ($flight->belongsToUser($userID) || L_auth::isModerator($userID) ) {
+			$legendRight.=" <a href='".getLeonardoLink(array('op'=>'edit_flight','flightID'=>$flightID))."'><img src='".$moduleRelPath."/img/change_icon.png' border=0 align=bottom></a>"; 
 		}
 	}
 
