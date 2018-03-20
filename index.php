@@ -686,7 +686,12 @@ function exitPage($exitNow=1){
    echo "<br>";
    if (!$noFooterMenu ) {
    	 if ($RUN['view']!='print') {
-	 	echo "<br><div class='main_text' align=center><a href='#top_of_page'>"._RETURN_TO_TOP."</a></div>";
+		if(date("Y")==2018){
+			$dateto="";
+		}else{
+			$dateto=date("Y")." - ";
+		}
+	 	echo "<br><center><font size='1'>Copyright © 2018 - ".$dateto." leonardo.pgxc.pl - <a target='_blank' href='regulamin.pdf'>regulamin</a></font></center>";
    	 }
    }
    echo "</div>";
