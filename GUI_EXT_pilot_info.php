@@ -171,9 +171,10 @@
 	  	if ($pilot['PilotPhoto']>0) {
                         if (file_exists(getPilotPhotoRelFilename($serverIDview,$pilotIDview))){
                                 $cdnURL='';
+				$CONF['cdnURL']='';
                         }
 
-			echo "<div align='center'><a href='".$cdnURL.getPilotPhotoRelFilename($serverID,$pilotIDview)."' target='_blank'><img src='".$cdnURL.getPilotPhotoRelFilename($serverID,$pilotIDview,1)."' border=0></a></div>";
+			echo "<div align='center'><a href='".$CONF['cdnURL'].getPilotPhotoRelFilename($serverID,$pilotIDview)."' target='_blank'><img src='".$CONF['cdnURL'].getPilotPhotoRelFilename($serverID,$pilotIDview,1)."' border=0></a></div>";
 		}
 	  ?></td>
   </tr>

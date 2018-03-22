@@ -147,12 +147,13 @@ function getPilotInfo(serverID,pilotID,update) {
           <?
 			if (file_exists(getPilotPhotoRelFilename($serverIDview,$pilotIDview))){
 				$cdnURL='';
+				$CONF['cdnURL']='';
 			}
-			$imgBigRel=$cdnURL.getPilotPhotoRelFilename($serverIDview,$pilotIDview);	
-			$imgBig=$cdnURL.getPilotPhotoFilename($serverIDview,$pilotIDview);	
+			$imgBigRel=$CONF['cdnURL'].getPilotPhotoRelFilename($serverIDview,$pilotIDview);	
+			$imgBig=$CONF['cdnURL'].getPilotPhotoFilename($serverIDview,$pilotIDview);	
 			list($width, $height, $type, $attr) = getimagesize($imgBig);
 			list($width, $height)=CLimage::getJPG_NewSize($CONF['photos']['mid']['max_width'], $CONF['photos']['mid']['max_height'], $width, $height);
-			echo "<a href='$imgBigRel' target='_blank'><img src='".$cdnURL.getPilotPhotoRelFilename($serverIDview,$pilotIDview,1)."'
+			echo "<a href='$imgBigRel' target='_blank'><img src='".$CONF['cdnURL'].getPilotPhotoRelFilename($serverIDview,$pilotIDview,1)."'
 			onmouseover=\"trailOn('$imgBigRel','','','','','','1','$width','$height','','.');\" onmouseout=\"hidetrail();\" 
 			 border=0></a>";					
 		?>
