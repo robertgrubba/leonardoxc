@@ -661,11 +661,11 @@ if ($flight->hasPhotos) {
 		if ($photoInfo['name']) {
 			$imgIconRel=$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg";
 			if(!is_file($imgIconRel)){
-				$imgIconRel=$cdnURL.$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg";
+				$imgIconRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg";
 			}
 			$imgBigRel=$flightPhotos->getPhotoRelPath($photoNum);
 			if(!is_file($imgBigRel)){
-				$imgBigRel=$cdnURL.$flightPhotos->getPhotoRelPath($photoNum);
+				$imgBigRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum);
 			}
 	
 			$imgIcon=$flightPhotos->getPhotoAbsPath($photoNum).".icon.jpg";
@@ -766,35 +766,34 @@ $mapImg0.='</ul>';
 
 
 
-//20180215
-//if ($flight->is3D() &&  is_file($flight->getChartfilename("alt",$PREFS->metricSystem))){ 
-//	$chart1= "<br><br><img src='".$flight->getChartRelPath("alt",$PREFS->metricSystem)."'>";
-//}
-//
-//if ( is_file($flight->getChartfilename("takeoff_distance",$PREFS->metricSystem)) ){
-//	$chart2="<br><br><img src='".$flight->getChartRelPath("takeoff_distance",$PREFS->metricSystem)."'>";
-//}
-//
-//if ( is_file($flight->getChartfilename("speed",$PREFS->metricSystem)) ){
-//	$chart3="<br><br><img src='".$flight->getChartRelPath("speed",$PREFS->metricSystem)."'>";
-//}
-//
-//if ($flight->is3D() &&  is_file($flight->getChartfilename("vario",$PREFS->metricSystem))){
-//	$chart4="<br><br><img src='".$flight->getChartRelPath("vario",$PREFS->metricSystem)."'>";
-//}
-// dodaje cdn
-
-if ($flight->is3D()){ 
-	$chart1= "<br><br><img src='$cdnURL".$flight->getChartRelPath("alt",$PREFS->metricSystem)."'>";
+	
+//20180322 cdn for stats display
+if ($flight->is3D() &&  (is_file('./'.$flight->getChartfilename("alt",$PREFS->metricSystem)))){ 
+	$chart1= "<br><br><img src='".$flight->getChartRelPath("alt",$PREFS->metricSystem)."'>";
+}
+if ($flight->is3D() &&  (!is_file('./'.$flight->getChartfilename("alt",$PREFS->metricSystem)))){ 
+	$chart1= "<br><br><img src='".$CONF['cdnURL'].$flight->getChartRelPath("alt",$PREFS->metricSystem)."'>";
 }
 
-	$chart2="<br><br><img src='$cdnURL".$flight->getChartRelPath("takeoff_distance",$PREFS->metricSystem)."'>";
+if ( is_file('./'.$flight->getChartfilename("takeoff_distance",$PREFS->metricSystem)) ){
+	$chart2="<br><br><img src='".$flight->getChartRelPath("takeoff_distance",$PREFS->metricSystem)."'>";
+}else{
+	$chart2="<br><br><img src='".$CONF['cdnURL'].$flight->getChartRelPath("takeoff_distance",$PREFS->metricSystem)."'>";
+}	
 
-	$chart3="<br><br><img src='$cdnURL".$flight->getChartRelPath("speed",$PREFS->metricSystem)."'>";
-
-if ($flight->is3D()){
-	$chart4="<br><br><img src='$cdnURL".$flight->getChartRelPath("vario",$PREFS->metricSystem)."'>";
+if ( is_file('./'.$flight->getChartfilename("speed",$PREFS->metricSystem)) ){
+	$chart3="<br><br><img src='".$flight->getChartRelPath("speed",$PREFS->metricSystem)."'>";
+}else{
+	$chart3="<br><br><img src='".$CONF['cdnURL'].$flight->getChartRelPath("speed",$PREFS->metricSystem)."'>";
 }
+
+if ($flight->is3D() &&  (is_file('./'.$flight->getChartfilename("vario",$PREFS->metricSystem)))){
+	$chart4="<br><br><img src='".$flight->getChartRelPath("vario",$PREFS->metricSystem)."'>";
+}
+if ($flight->is3D() &&  (!is_file('./'.$flight->getChartfilename("vario",$PREFS->metricSystem)))){
+	$chart4="<br><br><img src='".$CONF['cdnURL'].$flight->getChartRelPath("vario",$PREFS->metricSystem)."'>";
+}
+
 
 
 $extLinkLanguageStr="";
