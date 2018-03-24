@@ -367,6 +367,7 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
   		<? if (is_user($user) || $userID>0)  { ?>
 		<li><a href="<?=getLeonardoLink(array('op'=>'add_flight')) ?>"><?=_MENU_SUBMIT_FLIGHT ?></a></li>
 		<li><a href="<?=getLeonardoLink(array('op'=>'add_from_zip')) ?>"><?=_MENU_SUBMIT_FROM_ZIP ?></a></li>
+		<li><a href="http://pgxc.pl/2018/03/integracja-leonardo-z-flyme/" target="_blank"><?=_MENU_SUBMIT_FLYME?></a></li>
 		<li class='li_space'></li>
 		<li><a href="<?=getLeonardoLink(array('op'=>'list_flights','pilotID'=>'0_'.$userID,'takeoffID'=>'0','country'=>'0','year'=>'0','month'=>'0','season'=>'0')) ?>"><?=_MENU_MY_FLIGHTS ?></a></li>
 		<li><a href="<?=getLeonardoLink(array('op'=>'pilot_profile','pilotIDview'=>'0_'.$userID)) ?>"><?=_MENU_MY_PROFILE ?></a></li>
