@@ -1,5 +1,7 @@
 User-agent: *
 Disallow: /data/pdf/
+Disallow: /js/
+Disallow: /data/*
 Disallow: *.pdf
 Disallow: *.igc
 Disallow: *.kml
