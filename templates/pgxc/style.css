@@ -54,7 +54,10 @@ sory.title {
 	line-height:110%;
 }
 
-.main_text { color: #003366; }
+.main_text { 
+	color: #003366; 
+	width: 100%;
+}
 .main_text a:link, a:active, a:visited , a:hover {
  text-decoration:underline;
  font-weight:normal;
@@ -184,7 +187,7 @@ html>body .tableTitle {
 .tableInfo{
 	background-color:#C7DFC4;
 	height:auto;
-	width:750px;
+	width:100%;
 	padding:5px;
 }
 
@@ -868,4 +871,79 @@ a.greenButtonLink:link, a.greenButtonLink:active, a.greenButtonLink:visited, a.g
 	color:#ffffff;
 	font-weight:bold;
 	text-decoration:none;	
+}
+
+#headerLogo {
+	align: left;
+}
+
+#headerRight {
+	clear: none;
+	padding-top:5px;
+	padding-right:5px;
+	font-family:Georgia,'Times New Roman', Times, serifl;
+	font-size: 18px;
+	font-weight: bold;
+	color: #555555;
+	align: right;
+}
+
+#headerLeft {
+	float: left;
+	clear: none;
+	position: relative;
+	left: 0px;
+	top: 29px;
+	width: 400px;
+	align: left;
+	text-align: center;
+	padding: 5px;
+	font-family: Vendana, Arial;
+	text-align: center;
+	border-top: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffff;
+	background-color: #E9CF73;
+}
+
+#headerIndex {
+	align: right;
+	margin-top: 20px;
+	padding-right: 7px;
+	clear: none;
+	float: right;
+}
+
+table#mainBodyTable {
+	width: 95%;
+	height: 100%;
+	margin-left:auto;
+	margin-right: auto;
+	border: 0;
+	border-spacing: 0px;
+	padding: 4px;
+}
+table#headerTable {
+	margin-bottom: 5px;
+	margin-top: 0px;
+	width: 100%;
+	height: 105px;
+	border: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	border-spacing: 0px;
+	padding: 0px;
+}
+	
+table#tableBlocks {
+	border-spacing:0px;
+	padding: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 0px;
+	width: 100%;
 }

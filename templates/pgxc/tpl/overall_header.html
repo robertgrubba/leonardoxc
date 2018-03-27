@@ -62,33 +62,22 @@ window.cookieconsent.initialise({
 </head>
 <body topmargin="0"  bottommargin="0" bgcolor="#a1a1a1" text="{T_BODY_TEXT}" link="{T_BODY_LINK}" vlink="{T_BODY_VLINK}">
 <a name="top"></a>
-<table width="760" height="100%" cellspacing="0" cellpadding="4" border=0 align="center" class='mainBodyTable' > 
+<table id="mainBodyTable" class='mainBodyTable' > 
 	<tr> 
 		<td class="bodyline" align="left" valign="top">
 		<!-- BEGIN show_header -->
 		
-			  <table style="margin-bottom:5px; margin-top:0px;" width="760" height="105" border="0" align="center" cellpadding="0" cellspacing="0" background="{T_PATH}back.jpg">
+			  <table id="headerTable" background="{T_PATH}back.jpg">
 				  <tr>
 					  <td width="130" align="center" valign="middle">
-					    <div align="left" ><img src="{T_PATH}leonardo_logo.gif" width="126" height="100"></div></td>
+					    <div id="headerLogo" ><img src="{T_PATH}leonardo_logo.gif" width="126" height="100"></div></td>
 			          <td width="572"  align="center" valign="top">
-					  <div align="right" style="clear:none;
-					  padding-top:5px; padding-right:5px; 
-					  font-family:Georgia, 'Times New Roman', Times, serifl;
-					  font-size:18px; font-weight:bold; color:#555555;"><img src="{T_PATH}motto.gif" width="345" height="37"></div>
+					  <div id="headerRight"><img src="{T_PATH}motto.gif" width="345" height="37"></div>
 					    
-  					  <div align="left" 
-					  style="float:left;clear:none;position:relative; left:0px; top:29px;  width:400px; display:{TOP_CUSTOM_LOGO_DISPLAY};
-					  text-align:center;  padding:5px; font-family:Vendana, Arial ; text-align:center; 
-border-top:1px solid #ffffff;
-border-left:1px solid #ffffff;
-
-border-right:1px solid #ffffff;
-border-bottom:1px solid #ffffff;
-
-					  font-size:18px; font-weight:bold; color:#ffffff; background-color:#E9CF73;">{TOP_CUSTOM_LOGO}</div>
+  					  <div id="headerLeft"  
+					  style=" display:{TOP_CUSTOM_LOGO_DISPLAY};">{TOP_CUSTOM_LOGO}</div>
 					  
-		              <div align="right" style="margin-top:20px; padding-right:7px; clear:none; float:right;"><a href="{U_INDEX}"><img src="{T_PATH}p19_logo.gif" border="0" title="{L_INDEX}" vspace="1"/></a></div>
+		              <div id="headerIndex" ><a href="{U_INDEX}"><img src="{T_PATH}p19_logo.gif" border="0" title="{L_INDEX}" vspace="1"/></a></div>
 					  </td>
 			    </tr>
 		      </table>

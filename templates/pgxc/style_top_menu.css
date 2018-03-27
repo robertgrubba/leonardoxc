@@ -3,7 +3,7 @@
 #nav, #nav ul {
 	font-weight:normal;
 	float: left;
-	width: 760px;
+	width: 100%;
 	clear:both;
 
 	list-style: none;
