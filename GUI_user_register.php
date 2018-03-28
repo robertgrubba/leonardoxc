@@ -64,7 +64,7 @@ if( isset($_GET['rkey']) && !($_POST) ){
 ?>
 
 <br>
-<table align="center" width="500">
+<table align="center" width="98%">
   <tr>
     <td><br>
       <center>
@@ -241,7 +241,7 @@ function setCIVL_ID() {
 <script language="javascript" src='https://leonardo.pgxc.pl/js/civl_search.js'></script>
 <script language='javascript' src='https://leonardo.pgxc.pl/js/cal/popcalendar.js'></script>
 
-<table width='500' cellspacing='2' cellpadding='2' align='center'>
+<table width='98%' cellspacing='2' cellpadding='2' align='center'>
   <tr>
     <td align='left'>
       <ul>
@@ -288,7 +288,7 @@ function setCIVL_ID() {
   <tr>
     <td align="center"><form name='registrationForm' method="post" action="">
         <input name="registerForm" type="hidden" value="1">
-        <table width="600" cellspacing='2' cellpadding='4'  >
+        <table width="98%" cellspacing='2' cellpadding='4'  >
           <tr>
             <td align="right" bgcolor="#FCFCF2"><a href="#" onclick="setCIVL_ID();return false;">
               <?=_MENU_SEARCH_PILOTS;?>

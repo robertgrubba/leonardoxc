@@ -170,7 +170,7 @@ hs=function(w,t,c){return w.each(function(){var s=this._jqm;$(t).each(function()
         // TODO consider whether using .html() in the wrapping process could lead to loosing predefined events...
         this.each(function (i) {
             var $marquee = $(this),
-                width = $marquee.attr('width') || $marquee.width(),
+                width = $marquee.attr($(document).width()) || $marquee.width(),
                 height = $marquee.attr('height') || $marquee.height(),
                 $marqueeRedux = $marquee.after('<div ' + (klass ? 'class="' + klass + '" ' : '') + 'style="display: block-inline; width: ' + width + 'px; height: ' + height + 'px; overflow: hidden;"><div style="float: left; white-space: nowrap;">' + $marquee.html() + '</div></div>').next(),
                 marqueeRedux = $marqueeRedux.get(0),

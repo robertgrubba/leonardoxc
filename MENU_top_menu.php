@@ -79,7 +79,7 @@ sfHover = function() {
 
 <?  if ($PREFS->showNews && $CONF['news']['config']['newsActive'] ) {?>
 <div id="ticker01" class="tickercontainer">
-<marquee id="tickerMarquee" behavior="scroll" scrollamount="2" direction="left" width="750"></marquee>
+<marquee id="tickerMarquee" behavior="scroll" scrollamount="2" direction="left" width="98%"></marquee>
 </div> 
 <? } ?>
 <script type="text/javascript"><!--//--><![CDATA[//><!--
