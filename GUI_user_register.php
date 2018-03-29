@@ -241,7 +241,7 @@ function setCIVL_ID() {
 <script language="javascript" src='https://leonardo.pgxc.pl/js/civl_search.js'></script>
 <script language='javascript' src='https://leonardo.pgxc.pl/js/cal/popcalendar.js'></script>
 
-<table width='98%' cellspacing='2' cellpadding='2' align='center'>
+<table id="registerTable">
   <tr>
     <td align='left'>
       <ul>

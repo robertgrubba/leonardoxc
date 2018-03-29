@@ -3,6 +3,6 @@
 .listTable			{ width: 100%; }
 .mainBox 			{ width: 100%; }
 
-html>body .tableTitle { width: 98%; }
+html>body .tableTitle { width: 100%; }
 html>body .mainBox	{ width: 98%; }
 .tableInfo			{ width:97%; }
