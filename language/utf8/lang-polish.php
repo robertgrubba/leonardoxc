@@ -925,5 +925,13 @@ define("_SHOW_NEWS","Pokazuj aktualności");
 define("_TIME_TO_DELETE_PASSED","Nie możesz usunąć tego lotu. W przypadku wątpliwości skontaktuj się z administratorem pod adresem root@leonardo.pgxc.pl");
 define("_Start_type","Start");
 define("_MENU_SUBMIT_FLYME","Dodawaj bezpośrednio z FlyMe");
+define("_SUBMITTED_FLIGHTS","Liczba wgranych lotów");
+define("_MONTH","Miesiąc");
+define("_FLIGHTS_SUBMITTED","Przesłanych lotów");
+define("_FLIGHTS_TOTAL","Liczba wszystkich lotów");
+define("_BRAND","Marka");
+define("_STATS_LEGEND","Ze wszystkich lotów przy których wgraniu uzupełniono markę skrzydła");
+define("_PER_MONTH","Na miesiac");
+
 
 ?>

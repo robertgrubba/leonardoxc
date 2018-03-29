@@ -880,7 +880,8 @@ a.greenButtonLink:link, a.greenButtonLink:active, a.greenButtonLink:visited, a.g
 }
 #headerLogo img{
 	width:90%;
-	height: 100px;
+	max-width:126px;
+	height: auto;
 }
 #headerLeftLogo{
 	width:30%;
@@ -899,11 +900,14 @@ a.greenButtonLink:link, a.greenButtonLink:active, a.greenButtonLink:visited, a.g
 }
 #headerRight img{
 	width:90%;
-	height: 37px;
+	max-width: 345px;
+	height: auto;
+	float:right;
 }
 
 
 
+/* the flight database */
 #headerRight {
 	clear: none;
 	padding-top:5px;
@@ -912,7 +916,7 @@ a.greenButtonLink:link, a.greenButtonLink:active, a.greenButtonLink:visited, a.g
 	font-size: 18px;
 	font-weight: bold;
 	color: #555555;
-	align: right;
+	display: none;
 }
 
 #headerLeft {
@@ -939,14 +943,16 @@ a.greenButtonLink:link, a.greenButtonLink:active, a.greenButtonLink:visited, a.g
 
 #headerIndex {
 	align: right;
-	margin-top: 20px;
+	margin-top: 50px;
 	padding-right: 7px;
 	clear: none;
 	float: right;
+	vertical-align: bottom;
 }
 
 table#mainBodyTable {
 	width: 95%;
+	max-width: 1300px;
 	height: 100%;
 	margin-left:auto;
 	margin-right: auto;
@@ -981,4 +987,8 @@ table#registerTable{
 	margin-right: auto;
 	padding: 2em;
 	border-spacing: 2em;
+}
+img#stats{
+	width:100%;
+	height:auto;
 }

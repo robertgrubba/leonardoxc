@@ -1000,6 +1000,12 @@ define("_MANDATORY_STATUTE","You need to accept privacy policy");
 define("_Accept_statute","I'm accepting privacy policy");
 define("_TIME_TO_DELETE_PASSED","You are not allowed to delete this flight. In case of doubts feel free to contact site administrator at root@leonardo.pgxc.pl");
 define("_MENU_SUBMIT_FLYME","Upload directly from FlyMe");
+define("_SUBMITTED_FLIGHTS","Number of submitted flights");
+define("_MONTH","Month");
+define("_FLIGHTS_SUBMITTED","Flights submitted");
+define("_FLIGHTS_TOTAL","Flights total");
+define("_BRAND","Brand");
+define("_STATS_LEGEND","Out of the flights that had the glider brand filled in");
 
 
 

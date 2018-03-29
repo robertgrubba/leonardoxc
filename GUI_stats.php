@@ -78,12 +78,13 @@
 	require_once dirname(__FILE__)."/lib/graph/jpgraph_line.php";
 	require_once dirname(__FILE__)."/lib/graph/jpgraph_bar.php";
 
-	$graph = new Graph(600,300,"auto");
+	$graph = new Graph(1200,600,"auto");
 	$graph->SetScale("textlin");
 
-	//$graph->title->SetFont(FF_ARIAL,FS_NORMAL,10);
-	//$graph->legend->SetFont(FF_ARIAL,FS_NORMAL,8);
-	//$graph->xaxis->SetFont(FF_ARIAL,FS_NORMAL,8);
+	$graph->title->SetFont(FF_ARIAL,FS_NORMAL,20);
+	$graph->legend->SetFont(FF_ARIAL,FS_NORMAL,16);
+	$graph->xaxis->SetFont(FF_ARIAL,FS_NORMAL,16);
+	$graph->yaxis->SetFont(FF_ARIAL,FS_NORMAL,16);
 	$graph->SetMarginColor("#C8C8D4");
 	$graph->img->SetMargin(40,20,20,70);
 	$graph->title->Set($title);
@@ -99,11 +100,11 @@
 
 	$graph->legend->SetLayout(LEGEND_HOR);
 	$graph->legend->Pos(0.5,0.03,"center","top");
-	$graph->img->SetMargin(50,20,50,70);
+	$graph->img->SetMargin(50,20,50,100);
 
 	$lineplot=new LinePlot($yvalues);
 	$lineplot->SetFillColor("green");
-	$lineplot->SetLegend("Total");
+	$lineplot->SetLegend( _TOTAL );
   //  $lineplot->value->Show();
 
 //	$lineplot=new  BarPlot($yvalues);
@@ -111,19 +112,23 @@
 
 	$bplot = new BarPlot($flightsArray);
 	$bplot->SetFillColor("orange");
-	$bplot->SetLegend("Per month");
+	$bplot->SetLegend( _PER_MONTH );
 
 	$graph->Add($bplot);
 	$graph->Stroke(dirname(__FILE__)."/stats.png");
 
 
 // now the brands
-	$graph = new Graph(600,300,"auto");
+	$graph = new Graph(1200,600,"auto");
 	$graph->SetScale("textlin");
 
 	//$graph->title->SetFont(FF_ARIAL,FS_NORMAL,10);
 	//$graph->legend->SetFont(FF_ARIAL,FS_NORMAL,8);
 	//$graph->xaxis->SetFont(FF_ARIAL,FS_NORMAL,8);
+	$graph->title->SetFont(FF_ARIAL,FS_NORMAL,20);
+	$graph->legend->SetFont(FF_ARIAL,FS_NORMAL,16);
+	$graph->xaxis->SetFont(FF_ARIAL,FS_NORMAL,16);
+	$graph->yaxis->SetFont(FF_ARIAL,FS_NORMAL,16);
 	$graph->SetMarginColor("#C8C8D4");
 	$graph->img->SetMargin(40,20,20,70);
 	$graph->title->Set($title);
@@ -139,11 +144,12 @@
 
 	//$graph->legend->SetLayout(LEGEND_HOR);
 	//$graph->legend->Pos(0.5,0.03,"center","top");
-	$graph->img->SetMargin(50,20,10,70);
+	//$graph->img->SetMargin(50,20,10,70);
+	$graph->img->SetMargin(50,40,40,140);
 
 	$lineplot=new LinePlot($yvalues);
 	$lineplot->SetFillColor("green");
-	$lineplot->SetLegend("Total");
+	$lineplot->SetLegend( _TOTAL );
   //  $lineplot->value->Show();
 
 //	$lineplot=new  BarPlot($yvalues);
@@ -173,20 +179,19 @@
 
 
 
-		<table width=610  bgcolor="0060C1" class="main_text" border="0" align="center" cellpadding="2" cellspacing="1">
+		<table id="tableBlocks"  bgcolor="0060C1" class="main_text" border="0" align="center" cellpadding="2" cellspacing="1">
 			<tr bgcolor="#0060C1">
-				<td colspan=3 style="font-size:14px; font-weight:bold; color:white; text-align:center;"> #
-				  submitted flights</td>
+				<td colspan=3 style="font-size:14px; font-weight:bold; color:white; text-align:center;"><?= _SUBMITTED_FLIGHTS ?></td>
 			</tr>
 			<tr bgcolor="#0060C1">
-				<td colspan=3><img src="<? echo $moduleRelPath ?>/stats.png"></td>
+				<td colspan=3><img id="stats" src="<? echo $moduleRelPath ?>/stats.png"></td>
 			</tr>
 <td bgcolor="#CCCCCC">
 <table width=300  bgcolor="0060C1" class="main_text" border="0" align="center" cellpadding="2" cellspacing="1">
 			<tr bgcolor="#0060C1">
-				<td class="he">Month</td>
-				<td class="he">Flights submitted</td>
-				<td class="he">Flights total</td>
+				<td class="he"><?= _MONTH ?></td>
+				<td class="he"><?= _FLIGHTS_SUBMITTED ?></td>
+				<td class="he"><?= _FLIGHTS_TOTAL ?></td>
 			</tr>
 
 <?
@@ -210,19 +215,18 @@
 </table>
 
 
-		<table width=610  bgcolor="0060C1" class="main_text" border="0" align="center" cellpadding="2" cellspacing="1">
+		<table id="tableBlocks"  bgcolor="0060C1" class="main_text" border="0" align="center" cellpadding="2" cellspacing="1">
 			<tr bgcolor="#0060C1">
-				<td colspan=2 style="font-size:14px; font-weight:bold; color:white; text-align:center;"> #
-				  submitted flights / Brand * (Total : <?=$brandsTotCount ?>) </td>
+				<td colspan=2 style="font-size:14px; font-weight:bold; color:white; text-align:center;"> <?= _SUBMITTED_FLIGHTS ?> / <?= _BRAND ?><sup>*</sup> (<?= _FLIGHTS_TOTAL ?> : <?=$brandsTotCount ?>) </td>
 			</tr>
 			<tr bgcolor="#0060C1">
-				<td colspan=3><img src="<? echo $moduleRelPath ?>/stats_brands.png"></td>
+				<td colspan=3><img id="stats" src="<? echo $moduleRelPath ?>/stats_brands.png"></td>
 			</tr>
 <td bgcolor="#CCCCCC">
 <table width=300  bgcolor="0060C1" class="main_text" border="0" align="center" cellpadding="2" cellspacing="1">
 			<tr bgcolor="#0060C1">
-				<td class="he">Brand</td>
-				<td class="he">Flights Number</td>
+				<td class="he"><?= _BRAND ?></td>
+				<td class="he"><?= _FLIGHTS_SUBMITTED ?></td>
 			</tr>
 
 <?
@@ -243,4 +247,4 @@
 	</table></td>
 </tr>
 </table>
-        <p align="center">* Out of the flights that had the glider brand filled in </p>
+        <p align="center"><sup>*</sup><?= _STATS_LEGEND ?> </p>
