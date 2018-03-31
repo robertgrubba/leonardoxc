@@ -25,7 +25,7 @@
       <td width="259"><? echo _ANDREADAKIS_MANOLIS ?> </td>
       <td width="257" rowspan="10" valign="top"><div align="left">
       
-        <p align="left"><strong>Leonardo Installations </strong></p>
+        <p align="left"><strong><? echo _LEONARDO_INSTALLATIONS ?></strong></p>
         <ul>
         
           <li><a href="http://www.paraglidingforum.com/leonardo" target="_blank">International XC database</a></li>
@@ -65,7 +65,7 @@
       <td><? echo "$CONF_version (released $CONF_releaseDate)"; ?> </td>
     </tr>
     <tr> 
-      <td><div align="right">Licence: </div></td>
+      <td><div align="right"><? echo _LICENCE ?>: </div></td>
       <td>GPL</td>
     </tr>
     <tr> 
@@ -73,11 +73,11 @@
       <td><a href="http://www.leonardoxc.net" target="_blank">http://www.leonardoxc.net</a></td>
     </tr>
     <tr>
-      <td><div align="right">Scoring Optimization</div></td>
+      <td><div align="right"><? echo _SCORING_OPTIMIZATION ?></div></td>
       <td><a href="http://freenet-homepage.de/streckenflug/optigc.html" target="_blank">Thomas Kuhlmann</a></td>
     </tr>
     <tr>
-      <td><div align="right">GE extended Info Module </div></td>
+      <td><div align="right"><? echo _GE_EXTENDED_INFO_MODULE ?> </div></td>
       <td><a href="http://www.parawing.net" target="_blank">Emmanuel Chabani aka Man's</a></td>
     </tr>
     <tr>
@@ -85,17 +85,17 @@
       <td><a href="http://wiki.github.com/twpayne/igc2kmz/" target="_blank">Tom Payne's igc2kmz</a></td>
     </tr>
     <tr>
-      <td><div align="right">Airspace Checking </div></td>
-      <td>Some code adapted from <a href="http://xcsoar.sourceforge.net/" target="_blank">xcsoar</a> project </td>
+      <td><div align="right"><? echo _AIRSPACE_CHECKING ?> </div></td>
+      <td><? echo _SOME_CODE_ADAPTED_FROM ?> <a href="http://xcsoar.sourceforge.net/" target="_blank">xcsoar</a> project </td>
     </tr>
     <tr>
-      <td><div align="right">Skyways Layer </div></td>
-      <td>Big thanks to Michael Vonkaenel  and his project 
+      <td><div align="right"><? echo _SKYWAYS_LAYER ?> </div></td>
+      <td><? echo _BIG_THANKS_TO ?> Michael Vonkaenel <? echo  _AND_HIS_PROJECT ?> 
       <a  target="_blank" href='http://thermal.kk7.ch'>Paragliding Thermal Maps</a>
       </td>
     </tr>
     <tr>
-      <td><div align="right">Js Libraries</div></td>
+      <td><div align="right"><? echo _JS_LIBRARIES ?></div></td>
       <td>
       <ul>
       	 <li><a href="http://www.jquery.com" target="_blank">jQuery (jQuery the +8m/ec equivelant of the web :-)</a>
@@ -107,7 +107,7 @@
     </tr>
 
     <tr>
-      <td><div align="right">Design:</div></td>
+      <td><div align="right"><? echo _DESIGN ?>:</div></td>
       <td>Alexander Caravitis,<br />
       <? echo _ANDREADAKIS_MANOLIS ?></td>
     </tr>

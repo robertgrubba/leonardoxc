@@ -1006,7 +1006,17 @@ define("_FLIGHTS_SUBMITTED","Flights submitted");
 define("_FLIGHTS_TOTAL","Flights total");
 define("_BRAND","Brand");
 define("_STATS_LEGEND","Out of the flights that had the glider brand filled in");
-
+define("_LEONARDO_INSTALLATIONS","Leonardo Installations");
+define("_LICENCE","Licence");
+define("_SCORING_OPTIMIZATION","Scoring Optimization");
+define("_GE_EXTENDED_INFO_MODULE","GE extended Info Module");
+define("_AIRSPACE_CHECKING","Airspace Checking");
+define("_SOME_CODE_ADAPTED_FROM","Some code adapted from");
+define("_SKYWAYS_LAYER","Skyways Layer");
+define("_BIG_THANKS_TO","Big thanks to");
+define("_AND_HIS_PROJECT","and his project");
+define("_JS_LIBRARIES","Js Libraries");
+define("_DESIGN","Design");
 
 
 ?>

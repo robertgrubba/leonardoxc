@@ -932,6 +932,15 @@ define("_FLIGHTS_TOTAL","Liczba wszystkich lotów");
 define("_BRAND","Marka");
 define("_STATS_LEGEND","Ze wszystkich lotów przy których wgraniu uzupełniono markę skrzydła");
 define("_PER_MONTH","Na miesiac");
-
-
+define("_LEONARDO_INSTALLATIONS","Instancje LeonardoXC");
+define("_LICENCE","Licencja"); 
+define("_SCORING_OPTIMIZATION","Optymalizacja punktacji"); 
+define("_GE_EXTENDED_INFO_MODULE","Moduł rozszerzonych informacji GE"); 
+define("_AIRSPACE_CHECKING","Weryfikacja stref"); 
+define("_SOME_CODE_ADAPTED_FROM","Część kodu zaadoptowana z");
+define("_SKYWAYS_LAYER","Warstwa Skyways"); 
+define("_BIG_THANKS_TO","Ogromne podziękowania dla"); 
+define("_AND_HIS_PROJECT","i jego projektu"); 
+define("_JS_LIBRARIES","Biblioteki JavaScript"); 
+define("_DESIGN","Projekt"); 
 ?>
