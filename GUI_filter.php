@@ -294,9 +294,8 @@ function setClass(classID,val) {
 <script language='javascript' src='<? echo $moduleRelPath ?>/js/cal/popcalendar.js'></script>
 
 <form name="formFilter"  id="formFilter" method="post" action="" onsubmit="activateFilter(); return false;">
-  <table class=main_text width="750"  border="0" align="center" cellpadding="3" cellspacing="3">
-    <tr>
-      <td colspan="2" ><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <table id="tableBlocks" class=main_text cellpadding="3" cellspacing="3">
+	<table id="filter" width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td width="50%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="6">
                 <tr>
@@ -343,7 +342,6 @@ function setClass(classID,val) {
                       <? echo _MONTH ?>
                       <select name="FILTER_MONTH_YEAR_select_MONTH">
                         <? $i=1;
-
 			 foreach ($monthList as $monthName)  {
 			 $sel=($i==$FILTER_MONTH_YEAR_select_MONTH+0)?"selected":"";
 			 	$k=sprintf("%02s",$i);
@@ -392,10 +390,9 @@ function setClass(classID,val) {
 					
 					</td>
                 </tr>
-            </table></td>
-            <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="6">                       
-                <tr>
-                  <td width="130" class="main_text"><table width="100%" border="0" cellspacing="0" cellpadding="2">
+            </table>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
                     <tr>
                       <td valign="top"><div class="infoHeader"><? echo _Start_Type?> </div>
 				  <input name="FILTER_start_type" id="FILTER_start_type" type="hidden" value="0" />
@@ -447,15 +444,10 @@ function setClass(classID,val) {
 					  ?>					
 				  
 					  </td>
-                    </tr>
-                  </table></td>
-                </tr>
-
-            </table></td>
-          </tr>
-      </table></td>
-    </tr>
-	 <tr>
+                    </tr></tr>
+                  </table>
+		<table>
+				 <tr>
 	   <td colspan="2" valign="top" class="infoHeader"><?=_OTHER_FILTERS?></td>
     </tr>
 	 <tr>
@@ -518,12 +510,10 @@ function setClass(classID,val) {
               <option value="&lt;=" <? if ($FILTER_olc_score_op=="<=") echo "selected" ?>>&lt;=</option>
             </select>
               <input name="FILTER_olc_score_select" type="text" size="5" value="<? echo $FILTER_olc_score_select ?>" /></td>
-        </tr>
-
-
-      </table></td>
-    </tr>
-	
+</tr>
+</table>
+					
+                  
     <tr>
       <?
 		$dlgfiltersCount=count($dlgfilters);
@@ -549,6 +539,8 @@ function setClass(classID,val) {
       </div></td>
     </tr>
   </table>
+ 
+
   <p>&nbsp;</p>
 </form>
 <?
