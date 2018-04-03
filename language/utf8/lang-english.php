@@ -1006,6 +1006,7 @@ define("_FLIGHTS_SUBMITTED","Flights submitted");
 define("_FLIGHTS_TOTAL","Flights total");
 define("_BRAND","Brand");
 define("_STATS_LEGEND","Out of the flights that had the glider brand filled in");
+define("_PER_MONTH","Per month");
 define("_LEONARDO_INSTALLATIONS","Leonardo Installations");
 define("_LICENCE","Licence");
 define("_SCORING_OPTIMIZATION","Scoring Optimization");
