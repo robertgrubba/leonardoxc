@@ -422,7 +422,7 @@ TR .newDate {
 	text-align:right;	
 }
 
-.pilotTakeoffCell { width:300px;}
+.pilotTakeoffCell { width:auto;}
 
 </style>
 <link rel="stylesheet" href="<?=$moduleRelPath ?>/js/bettertip/jquery.bettertip.css" type="text/css" />

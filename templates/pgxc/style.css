@@ -992,3 +992,38 @@ img#stats{
 	width:100%;
 	height:auto;
 }
+
+#filter{
+	width: 50%;
+	max-width: 350px;
+	margin-left: auto;
+	margin-right: auto;
+	display: table-row;
+	float:left;
+}
+#filterCenter{
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	display: table-row;
+	float:none;
+	clear: both;
+}
+table#filterTable{
+	width: 100%;
+	max-width:800px;
+	margin-left:auto;
+	margin-right: auto;
+}
+
+#infoHeader{
+	border-bottom:1px solid #006699;
+        padding:5px;
+        margin-bottom:3px;
+        font-weight:bold;
+}
+
+#divLeftFilter{
+	float: left;
+	width: 30%;
+}

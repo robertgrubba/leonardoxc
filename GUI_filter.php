@@ -292,12 +292,11 @@ function setClass(classID,val) {
 	
 </script>
 <script language='javascript' src='<? echo $moduleRelPath ?>/js/cal/popcalendar.js'></script>
-
 <form name="formFilter"  id="formFilter" method="post" action="" onsubmit="activateFilter(); return false;">
   <table id="tableBlocks" class=main_text cellpadding="3" cellspacing="3">
-	<table id="filter" width="100%" border="0" cellspacing="0" cellpadding="0">
+	<table id="filterTable"  border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="50%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="6">
+            <td><div id="filter"><table border="0" cellspacing="0" cellpadding="6">
                 <tr>
                   <td colspan="2" class='infoHeader'><div align="left"><strong><? echo _SELECT_DATE ?></strong></div></td>
                 </tr>
@@ -391,8 +390,9 @@ function setClass(classID,val) {
 					</td>
                 </tr>
             </table>
-	
-<table width="100%" border="0" cellspacing="0" cellpadding="2">
+</div>
+<div id="filter">
+<table border="0" cellspacing="0" cellpadding="2">
                     <tr>
                       <td valign="top"><div class="infoHeader"><? echo _Start_Type?> </div>
 				  <input name="FILTER_start_type" id="FILTER_start_type" type="hidden" value="0" />
@@ -446,12 +446,17 @@ function setClass(classID,val) {
 					  </td>
                     </tr></tr>
                   </table>
-		<table>
+</div>
+</table>
+		<table id="filterTable">
 				 <tr>
-	   <td colspan="2" valign="top" class="infoHeader"><?=_OTHER_FILTERS?></td>
+<div id="filter">
+	   <td valign="top" class="infoHeader"><?=_OTHER_FILTERS?></td>
     </tr>
+</table>
+<table>
 	 <tr>
-      <td colspan="2" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="4">
+      <td valign="top"><table border="0" cellspacing="0" cellpadding="4">
         <tr>
           <td class="main_text"><div align="right"><? echo _Sex ?> </div></td>
           <td class="main_text"><select name="FILTER_sex">
@@ -510,8 +515,11 @@ function setClass(classID,val) {
               <option value="&lt;=" <? if ($FILTER_olc_score_op=="<=") echo "selected" ?>>&lt;=</option>
             </select>
               <input name="FILTER_olc_score_select" type="text" size="5" value="<? echo $FILTER_olc_score_select ?>" /></td>
+</div>
 </tr>
 </table>
+<div id="filter">
+<table>
 					
                   
     <tr>
@@ -522,24 +530,37 @@ function setClass(classID,val) {
 			$i++;
 		}
 	?>
-      <td width='50%' valign="top"><table >
+      </tr>
+</table>
+</div>
+
+<!-- last section -->
+<table>
+<tr>
+<td>
           <?=$html[0] ?>
-      </table></td>
-      <td width='50%' valign="top"><table >
+      
+</td>
+      <td>
           <?=$html[1] ?>
-      </table></td>
-    </tr>
+	</td>
+      </tr>
+</table>
+</table>
+</div>
+</tr><tr>
+<table width="100%">
     <tr>
-      <td colspan="2"><div align="center">
+	<td align="center">
           <input type="submit" name="SubmitButton" id="SubmitButton" value="<? echo _ACTIVATE_CHANGE_FILTER ?>" />
         &nbsp;
         <input type="hidden" name="clearFilter" id="clearFilter" value="0" />
         <input type="hidden" name="setFilter" id="setFilter" value="1" />
         <input type="submit" name="clearFilterButton" id="clearFilterButton" value="<? echo _DEACTIVATE_FILTER ?>" onclick="document.formFilter.clearFilter.value=1" />
-      </div></td>
+	
+      </td>
     </tr>
   </table>
- 
 
   <p>&nbsp;</p>
 </form>
