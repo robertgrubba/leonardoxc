@@ -323,9 +323,9 @@ function setClub(NACid) {
 	
 		
     <tr>
-      <td colspan="4" valign="middle"><div align="left" class="styleItalic"><?=_COMMENTS_FOR_THE_FLIGHT?>
+      <td colspan="4" valign="middle"><div id="addFlightComment" align="left" class="styleItalic"><?=_COMMENTS_FOR_THE_FLIGHT?>
 	 </div>
-	  <div align="left">
+	  <div align="left" id="addFlightComment">
 	   <label><?=_Comments_are_enabled_for_this_flight?>
   		<input type="checkbox" name="commentsEnabled" id="commentsEnabled" value="1" <?=(($thisPilot->commentsEnabled)?'checked':'')?> />
   	  </label>
@@ -347,7 +347,7 @@ function setClub(NACid) {
     <tr>
       <td><div align="right" class="styleItalic"><?=_RELEVANT_PAGE ?> </div></td>
       <td colspan="3">
-        http://<input name="linkURL" type="text" id="linkURL" size="50" value="">		</td>
+        http://<input name="linkURL" type="text" id="linkURL" size="30" value="">		</td>
     </tr>
 	<? for($i=0;$i<$CONF_photosPerFlight;$i++) { ?>
     <tr>
