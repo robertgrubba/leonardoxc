@@ -450,11 +450,11 @@ function setClass(classID,val) {
 </table>
 		<table id="filterTable">
 				 <tr>
-<div id="filter">
 	   <td valign="top" class="infoHeader"><?=_OTHER_FILTERS?></td>
     </tr>
 </table>
-<table>
+<div id="filter">
+<table id="filterTable">
 	 <tr>
       <td valign="top"><table border="0" cellspacing="0" cellpadding="4">
         <tr>
@@ -515,9 +515,9 @@ function setClass(classID,val) {
               <option value="&lt;=" <? if ($FILTER_olc_score_op=="<=") echo "selected" ?>>&lt;=</option>
             </select>
               <input name="FILTER_olc_score_select" type="text" size="5" value="<? echo $FILTER_olc_score_select ?>" /></td>
-</div>
 </tr>
 </table>
+</div>
 <div id="filter">
 <table>
 					
@@ -533,7 +533,6 @@ function setClass(classID,val) {
       </tr>
 </table>
 </div>
-
 <!-- last section -->
 <table>
 <tr>
