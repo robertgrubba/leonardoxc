@@ -489,7 +489,7 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
 ?>
 	</ul>
 </li>
-		
+<li class="lastRight"> <a href="http://trac.pgxc.pl/" target="_blank"><?= _TICKET_SYS ?></a></li>
 </ul>
 
 

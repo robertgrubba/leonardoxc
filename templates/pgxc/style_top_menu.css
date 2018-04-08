@@ -234,3 +234,7 @@ margin-left:8em;
 #nav li.lastItem , #nav li.lastItem a {
 	border-right:none;
 }
+
+#nav li.lastRight {
+	float: right;
+}

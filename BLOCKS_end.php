@@ -44,7 +44,8 @@
 
 function renderBlock($thisBlock) {
 	global $op;
-	require dirname(__FILE__)."/blocks/$thisBlock/config.php";
+//20180408 none of configs found
+//	require dirname(__FILE__)."/blocks/$thisBlock/config.php";
 	if (!$blockActive) return;
 	if ( !in_array($op,$blockShow) && count($blockShow) ) return;
 

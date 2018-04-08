@@ -1018,6 +1018,6 @@ define("_BIG_THANKS_TO","Big thanks to");
 define("_AND_HIS_PROJECT","and his project");
 define("_JS_LIBRARIES","Js Libraries");
 define("_DESIGN","Design");
-
+define("_TICKET_SYS","Submit support ticket"); 
 
 ?>
