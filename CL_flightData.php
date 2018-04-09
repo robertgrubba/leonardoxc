@@ -4153,8 +4153,8 @@ foreach ($data_time as $i=>$tm) {
 			$yvalues[0]=0;
 		}
 		if ($raw) {
-			$graphWidth=600;
-			$graphHeight=120;
+			$graphWidth=1200;
+			$graphHeight=240;
 			$mLeft=40;
 			$mRight=20;
 			$mTop=13;
@@ -4163,8 +4163,8 @@ foreach ($data_time as $i=>$tm) {
 			$labelSize=6;
 
 		}	else {
-			$graphWidth=600;
-			$graphHeight=200;
+			$graphWidth=1200;
+			$graphHeight=400;
 			$mLeft=40;
 			$mRight=20;
 			$mTop=20;

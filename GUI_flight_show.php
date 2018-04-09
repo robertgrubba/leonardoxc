@@ -769,29 +769,29 @@ $mapImg0.='</ul>';
 	
 //20180322 cdn for stats display
 if ($flight->is3D() &&  (is_file('./'.$flight->getChartfilename("alt",$PREFS->metricSystem)))){ 
-	$chart1= "<br><br><img src='".$flight->getChartRelPath("alt",$PREFS->metricSystem)."'>";
+	$chart1= "<br><br><img id='stats' src='".$flight->getChartRelPath("alt",$PREFS->metricSystem)."'>";
 }
 if ($flight->is3D() &&  (!is_file('./'.$flight->getChartfilename("alt",$PREFS->metricSystem)))){ 
-	$chart1= "<br><br><img src='".$CONF['cdnURL'].$flight->getChartRelPath("alt",$PREFS->metricSystem)."'>";
+	$chart1= "<br><br><img id='stats' src='".$CONF['cdnURL'].$flight->getChartRelPath("alt",$PREFS->metricSystem)."'>";
 }
 
 if ( is_file('./'.$flight->getChartfilename("takeoff_distance",$PREFS->metricSystem)) ){
-	$chart2="<br><br><img src='".$flight->getChartRelPath("takeoff_distance",$PREFS->metricSystem)."'>";
+	$chart2="<br><br><img id='stats' src='".$flight->getChartRelPath("takeoff_distance",$PREFS->metricSystem)."'>";
 }else{
-	$chart2="<br><br><img src='".$CONF['cdnURL'].$flight->getChartRelPath("takeoff_distance",$PREFS->metricSystem)."'>";
+	$chart2="<br><br><img id='stats' src='".$CONF['cdnURL'].$flight->getChartRelPath("takeoff_distance",$PREFS->metricSystem)."'>";
 }	
 
 if ( is_file('./'.$flight->getChartfilename("speed",$PREFS->metricSystem)) ){
-	$chart3="<br><br><img src='".$flight->getChartRelPath("speed",$PREFS->metricSystem)."'>";
+	$chart3="<br><br><img id='stats' src='".$flight->getChartRelPath("speed",$PREFS->metricSystem)."'>";
 }else{
-	$chart3="<br><br><img src='".$CONF['cdnURL'].$flight->getChartRelPath("speed",$PREFS->metricSystem)."'>";
+	$chart3="<br><br><img id='stats' src='".$CONF['cdnURL'].$flight->getChartRelPath("speed",$PREFS->metricSystem)."'>";
 }
 
 if ($flight->is3D() &&  (is_file('./'.$flight->getChartfilename("vario",$PREFS->metricSystem)))){
-	$chart4="<br><br><img src='".$flight->getChartRelPath("vario",$PREFS->metricSystem)."'>";
+	$chart4="<br><br><img id='stats' src='".$flight->getChartRelPath("vario",$PREFS->metricSystem)."'>";
 }
 if ($flight->is3D() &&  (!is_file('./'.$flight->getChartfilename("vario",$PREFS->metricSystem)))){
-	$chart4="<br><br><img src='".$CONF['cdnURL'].$flight->getChartRelPath("vario",$PREFS->metricSystem)."'>";
+	$chart4="<br><br><img id='stats' src='".$CONF['cdnURL'].$flight->getChartRelPath("vario",$PREFS->metricSystem)."'>";
 }
 
 
