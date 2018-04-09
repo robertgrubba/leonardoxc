@@ -13,8 +13,8 @@
 //************************************************************************
 
 class UserPrefs {
- var $themeName="basic";
- var $language="english";
+ var $themeName="pgxc";
+ var $language="polish";
  var $viewCat=0;
  var $viewCountry=0;
  var $itemsPerPage=35;
