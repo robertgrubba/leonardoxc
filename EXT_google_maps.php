@@ -51,7 +51,7 @@
 	</style>
   </head>
 <body>
-<div name="map" id="map" style="width: 710px; height: 420px"></div>
+<div name="map" id="map" style="width: 100%; height: 420px;margin-left:auto;margin-right:auto"></div>
 <script type="text/javascript">
     //<![CDATA[
 	if (GBrowserIsCompatible() ) {

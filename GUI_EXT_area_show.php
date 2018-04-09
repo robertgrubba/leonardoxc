@@ -113,7 +113,7 @@ padding:5px;
 $area=new area($areaID);
 $area->getFromDB();
 ?>
-<table border="0" cellpadding="0" cellspacing="0" width=720> 
+<table border="0" cellpadding="0" cellspacing="0" width="99%" style="margin-left:auto; margin-right:auto"> 
 <tr>
   <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
@@ -129,7 +129,7 @@ $area->getFromDB();
   </table></td>
   </tr>
 <tr>
-	<td><div name="map" id="map" style="width:565px; height: 450px"></div></td>
+	<td><div name="map" id="map" style="width:100%; height: 450px"></div></td>
 		<td width = 150 valign="top" bgcolor="#F4F4EA" >
 			<div id='takeoffHeader'>Takeoffs</div>
 			<div id="sidebar"></div>		</td>

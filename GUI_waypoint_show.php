@@ -52,7 +52,7 @@
 
   <tr>
     <td valign="middle">
-      <table width="710"  align="center" class="Box">
+      <table width="98%"  align="center" class="Box">
         <tr align="center" bgcolor="#D0E2CD">
           <td bgcolor="#49766D" class="col1"><div align="center" class="titleWhite titleText"><? echo _FLIGHTS ?></div></td>
           <td bgcolor="#49766D" class="col2"><div align="center" class="titleWhite titleText"><? echo _COORDINATES ?></div></td>
@@ -101,7 +101,7 @@
       </table>
 <? if ($wpLocation || $wpInfo->description || $wpInfo->link) { ?>
 	 <br>
-      <table class="Box"  align="center" width=710>
+      <table class="Box"  align="center" width="98%">
         <tr >
           <td colspan="2" class="col3">             
           <div align="center" class="titleWhite titleText"><? echo _SITE_INFO ?></div></td>
@@ -138,7 +138,7 @@
 			if ( $CONF_google_maps_api_key  ) { ?> 
 		<iframe align="center"
 		  SRC="<? echo "https://".$_SERVER['SERVER_NAME'].getRelMainDir()."EXT_google_maps.php?wpID=".$wpInfo->waypointID."&wpName=".$wpInfo->intName."&lat=".$wpInfo->lat."&lon=".-$wpInfo->lon; ?>"
-		  TITLE="Google Map" width="710px" height="400px"
+		  TITLE="Google Map" width="98%" height="400px"
 		  scrolling="no" frameborder="0">
 		Sorry. If you're seeing this, your browser doesn't support IFRAMEs.
 		You should upgrade to a more current browser.
