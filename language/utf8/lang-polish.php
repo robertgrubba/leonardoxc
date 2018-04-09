@@ -943,5 +943,5 @@ define("_BIG_THANKS_TO","Ogromne podziękowania dla");
 define("_AND_HIS_PROJECT","i jego projektu"); 
 define("_JS_LIBRARIES","Biblioteki JavaScript"); 
 define("_DESIGN","Projekt"); 
-define("_TICKET_SYS","Zgłoś pomysł lub problem"); 
+define("_TICKET_SYS","Zgłoś pomysł/problem"); 
 ?>
