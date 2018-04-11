@@ -351,7 +351,7 @@ function showStats($row,$groupBy,$where_clause,$where_clause2,$suffix='') {
 		if (!is_dir($path)) makeDir($path);
 	
 	
-		$graph = new Graph(680,250,"auto");    
+		$graph = new Graph(1360,500,"auto");    
 	    $graph->SetFrame(true,"#FFBC46");
 		$graph->SetScale("textlin");
 		
@@ -377,7 +377,7 @@ function showStats($row,$groupBy,$where_clause,$where_clause2,$suffix='') {
 		$graph->Stroke( getPilotStatsFilename($pilotIDview,'1'.$suffixHash) );
 	
 	
-		$graph = new Graph(680,250,"auto");    
+		$graph = new Graph(1360,500,"auto");    
 	    $graph->SetFrame(true,"#FFBC46");
 		$graph->SetScale("textlin");
 		
