@@ -94,7 +94,7 @@
         </tr>
 		<? if ($wpLocation) { ?>
         <tr bgcolor="#F2ECDB">
-          <td width=200><? echo _SITE_REGION ?></td>
+          <td width="10%"><? echo _SITE_REGION ?></td>
           <td valign="top"><? echo $wpLocation ?>&nbsp;</td>
         </tr>
 		<? } ?>
