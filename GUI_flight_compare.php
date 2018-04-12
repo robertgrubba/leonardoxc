@@ -31,7 +31,7 @@
 	}
 	
 	if ( $CONF_google_maps_api_key  ) {
-		 $googleMap="<div id='gmaps_div' style='display:block; width:745px; height:610px;'>
+		 $googleMap="<div id='gmaps_div' style='display:block; width:100%; height:610px;'>
 		 <iframe id='gmaps_iframe' align='left'
 		  SRC='".$CONF['protocol']."://".$_SERVER['SERVER_NAME'].getRelMainDir()."EXT_google_maps_track_v3.php?id=".
 		$flights.$str3d."' TITLE='Google Map' width='100%' height='100%'

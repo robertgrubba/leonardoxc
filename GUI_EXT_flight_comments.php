@@ -72,7 +72,7 @@ if (! $flightID) {
 	font-family:Verdana, Arial, Helvetica, sans-serif; font-size:10px;
 }
   
-	.depth0 { margin-left:0px;  width:710px;}
+	.depth0 { margin-left:0px;  width:100%;}
 	.depth1 { margin-left:20px;  width:690px;}
 	.depth2 { margin-left:40px;  width:670px;}
 	.depth3 { margin-left:60px;  width:650px;}
@@ -82,6 +82,7 @@ if (! $flightID) {
 	.depth7 { margin-left:140px; width:570px;}
 	.depth8 { margin-left:160px; width:550px;}
 	.depth9 { margin-left:180px; width:530px;}
+	.depth10 { margin-left:0px;  width:100%;}
 	
 <?php  if (!$print) { ?>	
 a {	text-decoration:none; 	color:#d02b55; 	}
@@ -823,7 +824,7 @@ if ($userID>0) {
 </div>
 
 
-<div id='commentsContainer' class='commentsContainer' style='width:720px'>
+<div id='commentsContainer' class='commentsContainer' style='width:100%'>
 
 <table border='0' cellpadding=5 width='100%'><tr>
 <td width="220">
@@ -847,11 +848,11 @@ if ($userID>0) {
   		}
   ?></div>
  </td>
-<td align="left">
+<td align="right" width="10%">
 	<?php  if (!$print ) { ?>
 	<div id="BookmarkButton" ></div></td>
 	<?php  } ?>
-<td>
+<td align="center" width="5%">
   <?
   if (!$print ) {
   	echo "<div id='rssButton'>".leoHtml::img("rss.gif",0,0,'absmiddle','','icons1').leoHtml::img("icon_arrow_down.gif",0,0,'','','icons1')."</div>";

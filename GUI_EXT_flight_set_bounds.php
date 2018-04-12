@@ -189,9 +189,12 @@ function fillInForm(name,area,countrycode){
 			  <div style="position: absolute; float:right; right:20px; top: 1px; z-index: 50; padding-right:4px; text-align:right;
 						 height:12px; width:130px; border:0px solid #777777; background-color:#F2F599;" 
               id="timeBar"><?=$title1?></div>
-
+		<? if(!is_file($img1)){
+			$img1=$CONF['cdnURL'].$img1;
+			}
+		?>
               <img style="position: absolute; top: 0px; left:0px; z-index: 0; cursor: crosshair;" 
-              id="imggraphs" src="<?=$CONF['cdnURL'].$img1?>" onclick="SetTimer(event)" alt="graphs" 
+              id="imggraphs" src="<?=$img1?>" onclick="SetTimer(event)" alt="graphs" 
               title="Click to set Time" border="0" 
               height="120" width="600"> </div> 
 			
@@ -225,14 +228,24 @@ function fillInForm(name,area,countrycode){
 			  <div style="position: absolute; float:right; right:20px; top: 1px; z-index: 50; padding-right:4px; text-align:right;
 						 height:12px; width:130px; border:0px solid #777777; background-color:#F2F599;"  id="timeBar"><?=$title2?>
 			  </div>
-			<img src="<?=$CONF['cdnURL'].$img2?>" alt="graphs" border="0" height="120" width="600">
+			<?
+			if (!is_file($img2)){
+				$img2=$CONF['cdnURL'].$img2;
+			}
+			?>
+			<img src="<?=$img2?>" alt="graphs" border="0" height="120" width="600">
 			</div></td>
           </tr>
           <tr>
             <td bgcolor="#E3E7F2"> <div style="position: relative; width: 600px; height:120px;"> 
 			  <div style="position: absolute; float:right; right:20px; top: 1px; z-index: 50; padding-right:4px; text-align:right;
 						 height:12px; width:130px; border:0px solid #777777; background-color:#F2F599;"  id="timeBar"><?=$title3?>
-			  </div><img src="<?=$CONF['cdnURL'].$img3?>" alt="graphs" border="0" height="120" width="600">
+			  </div>
+			<? if(!is_file($img3)){
+				$img3=$CONF['cdnURL'].$img3;
+				}
+			?>
+			<img src="<?=$img3?>" alt="graphs" border="0" height="120" width="600">
 			</div></td>
           </tr>
         </table>
