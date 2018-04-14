@@ -123,6 +123,7 @@ $Ltemplate->assign_vars(array(
 <meta name="category" content="' . $board_config['meta_category'] .'">
 <meta name="copyright" content="' . $board_config['meta_copyright'] .'">
 <meta name="generator" content="' . $board_config['meta_generator'] .'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="' . $board_config['meta_robots'] .'">
 <meta name="distribution" content="' . $board_config['meta_distribution'] .'">
 <meta name="date-creation-yyyymmdd" content="' . $board_config['meta_date_creation_year'] . '' . $board_config['meta_date_creation_month'] . '' . $board_config['meta_date_creation_day'] . '">

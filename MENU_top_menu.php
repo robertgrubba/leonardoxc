@@ -319,7 +319,7 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
 	  $langLiStr.="<li><a href='$flagLink'>$flagImg</a></li>\n";
 	} 
 ?>
-<li class="smallItem short"><a class="smallItem"  href='#'><?=$current_flagImg?></a>
+<li class="smallItem short hideOnSmall"><a class="smallItem"  href='#'><?=$current_flagImg?></a>
 	<ul class="short" >
 		<li class="li_h1 short_li_h1"><?=_LANGUAGE?></li>
 		<? echo $langLiStr ?>

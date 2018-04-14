@@ -238,3 +238,39 @@ margin-left:8em;
 #nav li.lastRight {
 	float: right;
 }
+
+@media only screen and (max-width: 600px){
+	.hideOnSmall{
+		display: none;
+	}
+	.sprite-icon_arrow_left{
+		display: none !important;
+	}
+	#nav li{
+		width: 14%;
+		padding-left:0;
+		padding-right:0;
+		height: 3em;
+	}
+	#nav a{
+		width:100%;
+	}
+	#nav li.lastRight {
+		float: left;
+		width: 80px;
+	}
+}
+@media (min-width: 600px) and (max-width: 950px){
+	#nav li{
+		width: 14%;
+		padding-left:0;
+		padding-right:0;
+	}
+	#nav a{
+		width:100%;
+	}
+	#nav li.lastRight {
+		float: left;
+		width: 120px;
+	}
+}
