@@ -565,8 +565,8 @@ function removeClubFlight(clubID,flightID) {
 		   printHeader(60,$sortOrder,"FLIGHT_KM",_OLC_KM,$queryExtraArray) ;
 		   printHeader(65,$sortOrder,"FLIGHT_POINTS",_OLC_SCORE,$queryExtraArray) ;
 		?>
-	  <td width="18" class='SortHeader'>&nbsp;</td>
-  	  <td width="50" class='SortHeader'>&nbsp;</td>
+	  <td width="18" class='SortHeader hideOnSmall'>&nbsp;</td>
+  	  <td width="50" class='SortHeader hideOnSmall'>&nbsp;</td>
 	  <td width="70" class='SortHeader displayCell alLeft'><? echo _SHOW ?></td>
   </tr>
 <?
@@ -722,7 +722,7 @@ function removeClubFlight(clubID,flightID) {
 	   echo "</TD>";
 	   
 	    
-	   echo "<TD><div class='catInfo'>";
+	   echo "<TD class='hideOnSmall'><div class='catInfo'>";
 	   
 	   $gliderTypeDesc=$gliderCatList[$row["cat"]];
 	   if ($row["category"]) {
@@ -734,7 +734,7 @@ function removeClubFlight(clubID,flightID) {
 	   
 	   echo leoHtml::img("icon_cat_".$row["cat"].".png",0,0,'top',$gliderTypeDesc,'icons1 catListIcon'). $categoryImg;
 	   
-	   echo "</div></td>\n\t<TD><div align='center'>$gliderBrandImg</div></td>";
+	   echo "</div></td>\n\t<TD class='hideOnSmall'><div align='center'>$gliderBrandImg</div></td>";
 
 		if ( L_auth::airspaceVisible($userID, $row["userID"],$row["userServerID"] ) ) {
 		/*

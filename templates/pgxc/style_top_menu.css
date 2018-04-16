@@ -242,6 +242,7 @@ margin-left:8em;
 @media only screen and (max-width: 600px){
 	.hideOnSmall{
 		display: none;
+		visibility: hidden;
 	}
 	.sprite-icon_arrow_left{
 		display: none !important;
