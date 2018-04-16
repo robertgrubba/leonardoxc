@@ -469,11 +469,14 @@ function printHeader($width,$sortOrder,$fieldName,$fieldDesc,$queryExtraArray,$s
   global $moduleRelPath;
   global $Theme;
 
+  $alignClass="";
+
   if ($width==0) $widthStr="";
   else  $widthStr="width='".$width."'";
 
+  if ($fieldName=="LINEAR_DISTANCE") $alignClass="hideOnExtraSmall";
+
   if ($fieldName=="pilotName") $alignClass="alLeft";
-  else $alignClass="";
   
   $alignClass.=" class_$fieldName ";
   if ($sort) {
@@ -551,23 +554,23 @@ function removeClubFlight(clubID,flightID) {
   ?>
   	<table class='listTable' style='clear:both' width="100%" cellpadding="2" cellspacing="0">
 	<tr> 
-	  <td class='SortHeader indexCell' width="25"><? echo _NUM ?></td>
+	  <td class='SortHeader indexCell hideOnExtraSmall' width="25"><? echo _NUM ?></td>
 		 <?
 		   printHeader(60,$sortOrder,"DATE",_DATE_SORT,$queryExtraArray) ;
 		   printHeader(160,$sortOrder,"pilotName",_PILOT,$queryExtraArray) ;
 		   printHeader(0,$sortOrder,"takeoffID",_TAKEOFF,$queryExtraArray) ;
-		   printHeader(40,$sortOrder,"DURATION",_DURATION_HOURS_MIN,$queryExtraArray) ;
+		   printHeader('auto',$sortOrder,"DURATION",_DURATION_HOURS_MIN,$queryExtraArray) ;
 		   if ($CONF['list_flights']['fields']['scoring'][0]=='LINEAR_DISTANCE' ){
-			   printHeader(60,$sortOrder,"LINEAR_DISTANCE",_LINEAR_DISTANCE,$queryExtraArray) ;
+			   printHeader('auto',$sortOrder,"LINEAR_DISTANCE",_LINEAR_DISTANCE,$queryExtraArray) ;
 		   }else {
 		   	   printHeader(60,$sortOrder,"SCORE_SPEED",_MEAN_SPEED1,$queryExtraArray) ;
 		   }
-		   printHeader(60,$sortOrder,"FLIGHT_KM",_OLC_KM,$queryExtraArray) ;
-		   printHeader(65,$sortOrder,"FLIGHT_POINTS",_OLC_SCORE,$queryExtraArray) ;
+		   printHeader('auto',$sortOrder,"FLIGHT_KM",_OLC_KM,$queryExtraArray) ;
+		   printHeader('auto',$sortOrder,"FLIGHT_POINTS",_OLC_SCORE,$queryExtraArray) ;
 		?>
-	  <td width="18" class='SortHeader hideOnSmall'>&nbsp;</td>
-  	  <td width="50" class='SortHeader hideOnSmall'>&nbsp;</td>
-	  <td width="70" class='SortHeader displayCell alLeft'><? echo _SHOW ?></td>
+	  <td width="18" class='SortHeader hideOnSmall hideOnExtraSmall'>&nbsp;</td>
+  	  <td width="50" class='SortHeader hideOnExtraSmall'>&nbsp;</td>
+	  <td  class='SortHeader displayCell alLeft'><? echo _SHOW ?></td>
   </tr>
 <?
    $i=1;
@@ -663,7 +666,7 @@ function removeClubFlight(clubID,flightID) {
 	    $gliderBrandImg=brands::getBrandImg($row["gliderBrandID"],$row['flight_glider'],$gliderType);
 
 
-	   echo "\n<TD $first_col_back_color class='indexCell'><div>".($i-1+$startNum)."</div>$privateIcon</TD>";
+	   echo "\n<TD $first_col_back_color class='indexCell hideOnExtraSmall'><div>".($i-1+$startNum)."</div>$privateIcon</TD>";
 	   echo "<TD class='dateString' valign='top'><div>$dateStr</div>$date2row";
 
 			if ( ( L_auth::isClubAdmin($userID,$clubID) || L_auth::isAdmin($userID) )&&  $add_remove_mode )  {
@@ -696,7 +699,7 @@ function removeClubFlight(clubID,flightID) {
 		echo "</div></TD>".
 	   "<TD>$duration</TD>";
 	   if ($CONF['list_flights']['fields']['scoring'][0]=='LINEAR_DISTANCE') {
-	   		echo "<TD class='distance'>$linearDistance</TD>";
+	   		echo "<TD class='distance hideOnExtraSmall'>$linearDistance</TD>";
 	   } else {
   		    echo "<TD class='speed'>$scoreSpeed</TD>";
 	   }
@@ -709,7 +712,6 @@ function removeClubFlight(clubID,flightID) {
        } else {        	
 	   		echo "<TD nowrap class='OLCScore'>$olcScore&nbsp;".leoHtml::img($olcScoreTypeImg,16,16,'top',formatOLCScoreType($olcScoreType,0),'icons1');
        }
-       
 		if ($CONF_use_validation) {
 			$isValidated=$row['validated'];
 			if ($isValidated==-1) $vImg="icon_valid_nok.gif";
@@ -717,12 +719,12 @@ function removeClubFlight(clubID,flightID) {
 			else if ($isValidated==1) $vImg="icon_valid_ok.gif";
 			
 			$valStr=leoHtml::img($vImg,12,12,'','','icons1 listIcons');		
-			echo $valStr;
+			echo '<div class="hideOnExtraSmall" style="float:right">'.$valStr.'</div>';
 		}
 	   echo "</TD>";
 	   
 	    
-	   echo "<TD class='hideOnSmall'><div class='catInfo'>";
+	   echo "<TD class='hideOnSmall hideOnExtraSmall'><div class='catInfo'>";
 	   
 	   $gliderTypeDesc=$gliderCatList[$row["cat"]];
 	   if ($row["category"]) {
@@ -734,7 +736,7 @@ function removeClubFlight(clubID,flightID) {
 	   
 	   echo leoHtml::img("icon_cat_".$row["cat"].".png",0,0,'top',$gliderTypeDesc,'icons1 catListIcon'). $categoryImg;
 	   
-	   echo "</div></td>\n\t<TD class='hideOnSmall'><div align='center'>$gliderBrandImg</div></td>";
+	   echo "</div></td>\n\t<TD class='hideOnExtraSmall'><div align='center'>$gliderBrandImg</div></td>";
 
 		if ( L_auth::airspaceVisible($userID, $row["userID"],$row["userServerID"] ) ) {
 		/*

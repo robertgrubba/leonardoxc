@@ -239,7 +239,56 @@ margin-left:8em;
 	float: right;
 }
 
-@media only screen and (max-width: 600px){
+.hideOnExtraSmall{
+}
+.class_LINEAR_DISTANCE{
+	width: 60px;
+}
+.class_FLIGHT_KM{
+	width: 60px;
+}
+.class_FLIGHT_POINTS{
+	width: 80px;
+}
+.class_DURATION{
+	width: 60px;
+}
+@media only screen and (max-width: 419px){
+	.hideOnExtraSmall{
+		display: none;
+		visibility: hidden;
+	}
+	.sprite-icon_arrow_left{
+		display: none !important;
+	}
+	#nav li{
+		width: 14%;
+		padding-left:0;
+		padding-right:0;
+		height: 3em;
+	}
+	#nav a{
+		width:100%;
+	}
+	#nav li.lastRight {
+		float: left;
+		width: 80px;
+	}
+	.class_LINEAR_DISTANCE{
+		width: auto;
+	}
+	.class_FLIGHT_KM{
+		width: auto;
+	}
+	.class_FLIGHT_POINTS{
+		width: auto;
+	}
+	.class_DURATION{
+		width: auto;
+	}
+}
+
+@media only screen and (min-width:420px) and (max-width: 600px){
 	.hideOnSmall{
 		display: none;
 		visibility: hidden;
@@ -259,6 +308,18 @@ margin-left:8em;
 	#nav li.lastRight {
 		float: left;
 		width: 80px;
+	}
+	.class_LINEAR_DISTANCE{
+		width: auto;
+	}
+	.class_FLIGHT_KM{
+		width: auto;
+	}
+	.class_FLIGHT_POINTS{
+		width: auto;
+	}
+	.class_DURATION{
+		width: auto;
 	}
 }
 @media (min-width: 600px) and (max-width: 950px){
