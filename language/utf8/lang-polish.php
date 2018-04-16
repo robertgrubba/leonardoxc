@@ -483,7 +483,7 @@ setXCtypesList();
 
 define("_Your_settings_have_been_updated","Nowe ustawienia zostały zapisane");
 
-define("_THEME","Temat");
+define("_THEME","Skórka");
 define("_LANGUAGE","Język");
 define("_VIEW_CATEGORY","Pokaż kategorię");
 define("_VIEW_COUNTRY","Pokaż kraj");
