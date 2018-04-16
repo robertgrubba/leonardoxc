@@ -570,7 +570,7 @@ function removeClubFlight(clubID,flightID) {
 		?>
 	  <td width="18" class='SortHeader hideOnSmall hideOnExtraSmall'>&nbsp;</td>
   	  <td width="50" class='SortHeader hideOnExtraSmall'>&nbsp;</td>
-	  <td  class='SortHeader displayCell alLeft'><? echo _SHOW ?></td>
+	  <td class='SortHeader displayCell alLeft'><? echo _SHOW ?></td>
   </tr>
 <?
    $i=1;

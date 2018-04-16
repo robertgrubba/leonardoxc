@@ -253,6 +253,9 @@ margin-left:8em;
 .class_DURATION{
 	width: 60px;
 }
+.displayCell{
+	width: 60px;
+}
 @media only screen and (max-width: 419px){
 	.hideOnExtraSmall{
 		display: none;
@@ -284,6 +287,9 @@ margin-left:8em;
 		width: auto;
 	}
 	.class_DURATION{
+		width: auto;
+	}
+	.displayCell{
 		width: auto;
 	}
 }
@@ -319,6 +325,9 @@ margin-left:8em;
 		width: auto;
 	}
 	.class_DURATION{
+		width: auto;
+	}
+	.displayCell{
 		width: auto;
 	}
 }
