@@ -50,7 +50,7 @@ define("_BEST_OLC_SCORE","Najlepszy wynik OLC");
 define("_From","od");
 
 // list_flights()
-define("_DURATION_HOURS_MIN","Czas (gg:mm)");
+define("_DURATION_HOURS_MIN","Czas lotu");
 define("_SHOW","Pokaż");
 
 // show flight
@@ -103,8 +103,8 @@ define("_PILOT_NAME","Pilot");
 define("_TAKEOFF","Start");
 define("_DURATION","Czas");
 define("_LINEAR_DISTANCE","Dystans po prostej");
-define("_OLC_KM","Km OLC");
-define("_OLC_SCORE","Punktacja OLC");
+define("_OLC_KM","km OLC");
+define("_OLC_SCORE","Punkty OLC");
 define("_DATE_ADDED","Ostatnio dodane");
 
 define("_SORTED_BY","Sortuj według:");
