@@ -296,7 +296,10 @@ function setClass(classID,val) {
   <table id="tableBlocks" class=main_text cellpadding="3" cellspacing="3">
 	<table id="filterTable"  border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td><div id="filter"><table border="0" cellspacing="0" cellpadding="6">
+            <td>
+            <div class="filterBox">
+                <table border="0" cellspacing="0" cellpadding="6">
+                        <!-- First Box -->
                 <tr>
                   <td colspan="2" class='infoHeader'><div align="left"><strong><? echo _SELECT_DATE ?></strong></div></td>
                 </tr>
@@ -389,10 +392,11 @@ function setClass(classID,val) {
 					
 					</td>
                 </tr>
-            </table>
-</div>
-<div id="filter">
-<table border="0" cellspacing="0" cellpadding="2">
+                </table>
+                </div>
+                       <!-- Scond Box -->
+                <div class="filterBox">
+                    <table border="0" cellspacing="0" cellpadding="2">
                     <tr>
                       <td valign="top"><div class="infoHeader"><? echo _Start_Type?> </div>
 				  <input name="FILTER_start_type" id="FILTER_start_type" type="hidden" value="0" />
@@ -444,19 +448,20 @@ function setClass(classID,val) {
 					  ?>					
 				  
 					  </td>
-                    </tr></tr>
-                  </table>
-</div>
-</table>
-		<table id="filterTable">
-				 <tr>
-	   <td valign="top" class="infoHeader"><?=_OTHER_FILTERS?></td>
+                    </tr>
+                    </table>
+                </div>
+          </tr>
+        </table>
+                        <!-- Third Box -->
+    <div class="filterBox">            
+    <table id="filterTable">
+    <tr>
+        <td valign="top" class="infoHeader"><?=_OTHER_FILTERS?></td>
     </tr>
-</table>
-<div id="filter">
-<table id="filterTable">
-	 <tr>
-      <td valign="top"><table border="0" cellspacing="0" cellpadding="4">
+    <tr>
+      <td valign="top">
+      <table border="0" cellspacing="0" cellpadding="4">
         <tr>
           <td class="main_text"><div align="right"><? echo _Sex ?> </div></td>
           <td class="main_text"><select name="FILTER_sex">
@@ -516,12 +521,14 @@ function setClass(classID,val) {
             </select>
               <input name="FILTER_olc_score_select" type="text" size="5" value="<? echo $FILTER_olc_score_select ?>" /></td>
 </tr>
-</table>
-</div>
-<div id="filter">
-<table>
-					
-                  
+      </table>
+      </td>
+    </tr>
+    </table>
+    </div>
+                        <!-- Fourth Box -->
+    <div class="filterBox">
+    <table id="filterTable">
     <tr>
       <?
 		$dlgfiltersCount=count($dlgfilters);
@@ -530,25 +537,27 @@ function setClass(classID,val) {
 			$i++;
 		}
 	?>
-      </tr>
-</table>
-</div>
+    </tr>
+    </table>
+    </div>
 <!-- last section -->
-<table>
+<div class="filterBox">
+<table ID="filterTable">
 <tr>
-<td>
+    <td>
           <?=$html[0] ?>
       
-</td>
-      <td>
+    </td>
+    <td>
           <?=$html[1] ?>
-	</td>
-      </tr>
-</table>
+    </td>
+</tr>
 </table>
 </div>
 </tr><tr>
-<table width="100%">
+<br><br><br>
+    <!-- Submit section -->
+<table width="100%" style="padding-top:30px">
     <tr>
 	<td align="center">
           <input type="submit" name="SubmitButton" id="SubmitButton" value="<? echo _ACTIVATE_CHANGE_FILTER ?>" />
@@ -559,7 +568,7 @@ function setClass(classID,val) {
 	
       </td>
     </tr>
-  </table>
+</table>
 
   <p>&nbsp;</p>
 </form>
