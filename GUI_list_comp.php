@@ -427,13 +427,13 @@ function listCategory($legend,$header, $arrayName, $formatFunction="") {
    
    ?>
    <tr>
-   <td class="SortHeader" width="30"><? echo _NUM ?></td>
+   <td class="SortHeader hideOnExtraSmall class_flightNo" ><? echo _NUM ?></td>
    <td class="SortHeader"><div align=left><? echo _PILOT ?></div></td>
    <td class="SortHeader" width="70"><? echo $header ?></td>
    <? for ($ii=1;$ii<=$countHowMany;$ii++) { ?>
    <td class="SortHeader" width="70">#<? echo $ii?></td>
    <? } ?>
-   <td class="SortHeader" width="50">&nbsp;</td>
+   <td class="SortHeader hideOnSmall hideOnExtraSmall class_gliderBrand" >&nbsp;</td>
    </tr>
    <? 
 
@@ -458,7 +458,7 @@ function listCategory($legend,$header, $arrayName, $formatFunction="") {
 		 	     
 	     
 		 echo "<TR $bg>";
-		 echo "<TD>".($i)."</TD>"; 	
+		 echo "<TD class='hideOnExtraSmall class_flightNo'>".($i)."</TD>"; 	
 	     echo "<TD nowrap><div align=left id='$arrayName"."_$i' class='pilotLink'>".		 
 				"<a href=\"javascript:pilotTip.newTip('inline', 0, 13, '$arrayName"."_$i', 200, '".$pilotID."','".
 					addslashes($pilotNames[$pilotID])."' )\"  onmouseout=\"pilotTip.hide()\">".$pilotNames[$pilotID]."</a>".
@@ -498,7 +498,7 @@ function listCategory($legend,$header, $arrayName, $formatFunction="") {
 			}
 		}
 
-		echo "<td align='center'>$gliderBrandImg</td>";
+		echo "<td align='center' class='hideOnSmall hideOnExtraSmall class_gliderBrand'>$gliderBrandImg</td>";
    	}	
 
 	echo "</table>"; 

@@ -261,7 +261,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
    
    ?>
    <tr>
-   <td class="SortHeader" width="30"><? echo _NUM ?></td>
+   <td class="SortHeader hideOnExtraSmall class_flightNo"><? echo _NUM ?></td>
    <td class="SortHeader"><div align=left><? echo _PILOT ?></div></td>
    <td class="SortHeader" width="70"><? echo $header ?></td>
    <? for ($ii=1;$ii<=$countHowMany;$ii++) { ?>
@@ -392,7 +392,7 @@ function listClubs($legend,$header, $category, $key, $formatFunction="") {
    
    ?>
    <tr>
-   <td class="SortHeader" width="30"><? echo _NUM ?></td>
+   <td class="SortHeader hideOnExtraSmall class_flightNo"><? echo _NUM ?></td>
    <td class="SortHeader"><div align=left><? echo _Club ?></div></td>
    <? for ($ii=1;$ii<=$pilotsMax;$ii++) { ?>
    <td class="SortHeader" width="55"><div align=left><? echo _PILOT." #$ii" ;?></div></td>

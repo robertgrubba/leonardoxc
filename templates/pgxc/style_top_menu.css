@@ -241,6 +241,13 @@ margin-left:8em;
 
 .hideOnExtraSmall{
 }
+
+.class_flightNo{
+	width:30px;
+}
+.class_gliderBrand{
+	width:50px;
+}
 .class_LINEAR_DISTANCE{
 	width: 60px;
 }
@@ -292,6 +299,12 @@ margin-left:8em;
 	.displayCell{
 		width: auto;
 	}
+	.class_flightNo{
+		width:auto;
+	}
+	.class_gliderBrand{
+		width:auto;
+	}
 }
 
 @media only screen and (min-width:420px) and (max-width: 600px){
@@ -329,6 +342,12 @@ margin-left:8em;
 	}
 	.displayCell{
 		width: auto;
+	}
+	.class_flightNo{
+		width:auto;
+	}
+	.class_gliderBrand{
+		width:auto;
 	}
 }
 @media (min-width: 600px) and (max-width: 950px){
