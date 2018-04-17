@@ -267,7 +267,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
    <? for ($ii=1;$ii<=$countHowMany;$ii++) { ?>
    <td class="SortHeader" width="55">#<? echo $ii?></td>
    <? } ?>
-   <td class="SortHeader" width="50">&nbsp;</td>
+   <td class="SortHeader hideOnSmall hideOnExtraSmall class_gliderBrand">&nbsp;</td>
    </tr>
    <? 
 
@@ -287,7 +287,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 		 	 	     
 	     $pilotIDinfo=str_replace("_","u",$pilotID);
 		 echo "<TR $bg>";
-		 echo "<TD>".($i)."</TD>"; 	
+		 echo "<TD class='hideOnExtraSmall class_flightNo' >".($i)."</TD>"; 	
 	     echo "<TD nowrap><div align=left id='$arrayName"."_$i' class='pilotLink'>";
 
 	     if (!isPrint()) {
@@ -363,7 +363,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 
 		$gliderBrandImg=brands::getBrandImg($flightBrandID,'',$cat);	
 
-		echo "<td align='center'>$gliderBrandImg</td>";
+		echo "<td align='center' class='hideOnSmall hideOnExtraSmall class_gliderBrand'>$gliderBrandImg</td>";
    	}	// next pilot
 
 	echo "</table>"; 
