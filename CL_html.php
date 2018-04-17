@@ -54,7 +54,7 @@ function img($imgName,$width=0,$height=0,$align='',$title='',$class='',$id='',$t
 	} else {
 		$imgName=str_replace("\/","-",$imgName);
 		$imgName=substr($imgName,0,-4);
-		$imgStr="<img class='$class sprite-$imgName' src='".$moduleRelPath."/img/space.gif' $str>";
+		$imgStr="<img class='$class sprite-$imgName ' src='".$moduleRelPath."/img/space.gif' $str>";
 	}		
 	return $imgStr;
 }

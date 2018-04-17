@@ -263,6 +263,18 @@ margin-left:8em;
 .displayCell{
 	width: 65px;
 }
+.takeoffCountry{
+        width:100px;
+}
+.takeoffFlights{
+        width:80px;
+}
+.takeoffMaxDistance{
+       	width:100px;
+}
+.pilotsTotalFlights{
+	width: 60px;
+}
 @media only screen and (max-width: 419px){
 	.hideOnExtraSmall{
 		display: none;
@@ -304,6 +316,18 @@ margin-left:8em;
 	}
 	.class_gliderBrand{
 		width:auto;
+	}
+	.takeoffCountry{
+                width:auto;
+        }
+	.takeoffFlights{
+        	width:auto;
+	}
+	.takeoffMaxDistance{
+        	width:auto;
+	}
+	.pilotsTotalFlights{
+		width: auto;
 	}
 }
 
@@ -348,6 +372,18 @@ margin-left:8em;
 	}
 	.class_gliderBrand{
 		width:auto;
+	}
+	.takeoffCountry{
+                width:auto;
+        }
+	.takeoffFlights{
+        	width:auto;
+	}
+	.takeoffMaxDistance{
+        	width:auto;
+	}
+	.pilotsTotalFlights{
+		width: auto;
 	}
 }
 @media (min-width: 600px) and (max-width: 950px){

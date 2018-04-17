@@ -272,6 +272,8 @@ function printHeaderPilotsTotals($width,$sortOrder,$fieldName,$fieldDesc,$queryE
 		$align="right";
 	}
 	
+	if ($fieldName=="totalFlights") $cList.=' pilotsTotalFlights';
+
 	if ($is_comp) {
 		echo "<td $widthStr align=$align class='$cList'><div align=$align>$fieldDesc$img</div></td>";
 	} else {
@@ -294,7 +296,7 @@ function listPilots($res,$legend,$queryExtraArray=array(),$sortOrder="bestDistan
    ?>
     <table class='listTable' width="100%"  cellpadding="2" cellspacing="0">
 	<tr> 
-		<td width="25" class='SortHeader'><? echo _NUM ?></td>
+		<td width="25" class='SortHeader hideOnExtraSmall'><? echo _NUM ?></td>
    <?
 	// was _TOTAL_KM -> bug
 	if ($PREFS->metricSystem==1) {
@@ -303,7 +305,7 @@ function listPilots($res,$legend,$queryExtraArray=array(),$sortOrder="bestDistan
 		$OPEN_DISTANCE_str=_TOTAL_DISTANCE." "._MI;
 	}
    printHeaderPilotsTotals(0,$sortOrder,"pilotName",_PILOT,$queryExtraArray,$is_comp);
-   printHeaderPilotsTotals(60,$sortOrder,"totalFlights",_NUMBER_OF_FLIGHTS,$queryExtraArray,$is_comp);
+   printHeaderPilotsTotals(0,$sortOrder,"totalFlights",_NUMBER_OF_FLIGHTS,$queryExtraArray,$is_comp);
    printHeaderPilotsTotals(80,$sortOrder,"bestDistance",_BEST_DISTANCE,$queryExtraArray,$is_comp);
    if (!is_comp) printHeaderPilotsTotals(60,$sortOrder,"mean_distance",_MEAN_KM,$queryExtraArray,$is_comp);
    printHeaderPilotsTotals(80,$sortOrder,"totalDistance",$OPEN_DISTANCE_str,$queryExtraArray,$is_comp);
@@ -327,7 +329,7 @@ function listPilots($res,$legend,$queryExtraArray=array(),$sortOrder="bestDistan
     $i++;
 
 	echo "\n\n<tr class='$sortRowClass'>";
-	echo "<TD>".($i-1+$startNum)."</TD>";
+	echo "<TD class='hideOnExtraSmall'>".($i-1+$startNum)."</TD>";
 	echo "<TD><div align=left id='p_$i' class='pilotLink'>";
 
 	// echo getNationalityDescription($row["countryCode"],1,0);

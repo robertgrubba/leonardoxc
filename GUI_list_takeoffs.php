@@ -131,13 +131,16 @@
 <?
 function printHeaderTakeoffs($width,$sortOrder,$fieldName,$fieldDesc,$queryExtraArray) {
   global $moduleRelPath ,$Theme;
+  $alignClass="";
 
   if ($width==0) $widthStr="";
   else  $widthStr="width='".$width."'";
 
   if ($fieldName=="intName") $alignClass="alLeft";
-  else $alignClass="";
 
+  if ($fieldName=="CountryCode") $alignClass="takeoffCountry";
+  if ($fieldName=="FlightsNum") $alignClass="takeoffFlights";
+  if ($fieldName=="max_distance") $alignClass="takeoffMaxDistance";
   if ($sortOrder==$fieldName) { 
    echo "<td $widthStr  class='SortHeader activeSortHeader $alignClass'>
 			$fieldDesc<img src='$moduleRelPath/img/icon_arrow_down.png' border=0  width=10 height=10></div>
@@ -161,12 +164,12 @@ function listTakeoffs($res,$legend, $queryExtraArray=array(),$sortOrder="Country
   ?>
   <table class='listTable' width="100%" cellpadding="2" cellspacing="0">
   <tr>
-  	<td width="25" class='SortHeader'><? echo _NUM ?></td>
+  	<td width="25" class='SortHeader hideOnExtraSmall'><? echo _NUM ?></td>
  	<?
-		printHeaderTakeoffs(100,$sortOrder,"CountryCode",_COUNTRY,$queryExtraArray) ;
+		printHeaderTakeoffs(0,$sortOrder,"CountryCode",_COUNTRY,$queryExtraArray) ;
 		printHeaderTakeoffs(0,$sortOrder,"intName",_TAKEOFF,$queryExtraArray) ;
-		printHeaderTakeoffs(80,$sortOrder,"FlightsNum",_NUMBER_OF_FLIGHTS,$queryExtraArray) ;
-		printHeaderTakeoffs(100,$sortOrder,"max_distance",_SITE_RECORD_OPEN_DISTANCE,$queryExtraArray) ;
+		printHeaderTakeoffs(0,$sortOrder,"FlightsNum",_NUMBER_OF_FLIGHTS,$queryExtraArray) ;
+		printHeaderTakeoffs(0,$sortOrder,"max_distance",_SITE_RECORD_OPEN_DISTANCE,$queryExtraArray) ;
 	?>
 	</tr>
 <?
@@ -189,8 +192,8 @@ function listTakeoffs($res,$legend, $queryExtraArray=array(),$sortOrder="Country
 
 		$i++;
 		echo "<TR class='$sortRowClass'>";	
-	   	echo "<TD>".($i-1+$startNum)."</TD>";
-		echo "<TD>$country_str</TD>";
+	   	echo "<TD class='hideOnExtraSmall'>".($i-1+$startNum)."</TD>";
+		echo "<TD class='takeoffCountry'>$country_str</TD>";
 
 $takeoffNameSafe=str_replace("'","\'",$takeoffName);
 $takeoffNameSafe=str_replace('"','\"',$takeoffNameSafe);
