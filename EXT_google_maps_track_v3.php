@@ -427,7 +427,7 @@ var airspaceCheck=<?php echo $airspaceCheck; ?>;
 <? } else { ?>
 	var baroGraph=false;
 	var userAccessPriv=false;
-<?php  } ?>
+<?  } ?>
 
 var skywaysVisible=0;
 var map;
