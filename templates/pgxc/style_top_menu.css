@@ -330,8 +330,8 @@ margin-left:8em;
 		width: auto;
 	}
         .filterBox{
-            width:90%;
-            padding-left: 10px;
+            width:98%;
+            padding-left: 1px;
             padding-bottom: 20px;
         }
 }
