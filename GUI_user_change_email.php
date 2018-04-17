@@ -200,4 +200,4 @@ text-align:center;
  <div align="center"><span class="alertMsg"><a href="mailto:<?=$adminMail?>" target="_self"><?=_PROBLEMS_HELP?></a></span>
  </div>
 </form>
-<?}?>
+<? }?>
