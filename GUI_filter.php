@@ -555,7 +555,6 @@ function setClass(classID,val) {
 </table>
 </div>
 </tr><tr>
-<br><br><br>
     <!-- Submit section -->
 <table width="100%" style="padding-top:30px">
     <tr>
