@@ -309,15 +309,17 @@ jQuery(document).ready(function() {
 <table align="center"  cellpadding="0" cellspacing="0" class="tableBlocks" width="100%">
   <tbody>
     <tr>
-      <td align="left" valign="top"><table width="100%" border="0" align="left" cellpadding="0">
+      <td align="left" valign="top">
+      <div class="firstFlightDataBox">
+       <table width="100%" border="0" align="left" cellpadding="0">
         <tr>
-          <td width="40%"  valign="top"><table  class="main_text flightShadowBox col1" width="300" border="0" cellpadding="0">
+          <td width="40%"  valign="top"><table  class="main_text flightShadowBox col1" border="0" cellpadding="0">
             <tr>
               <th colspan="2">{#_Takeoff_Info}</th>
             </tr>
             <tr>
-              <td width="200"><div align="left">{#_TAKEOFF_LOCATION}</div></td>
-              <td width="100"><div align="right">{TAKEOFF_TIME}</div></td>
+              <td width="66%"><div align="left">{#_TAKEOFF_LOCATION}</div></td>
+              <td width="33%"><div align="right">{TAKEOFF_TIME}</div></td>
             </tr>
             <tr>
               <td colspan="2" height='18'><div align="left">{TAKEOFF_LOCATION}</div></td>
@@ -329,14 +331,14 @@ jQuery(document).ready(function() {
             <tr>
               <td colspan="2"  height='18'><div align="left">{LANDING_LOCATION}</div></td>
             </tr>
-          </table>            <table class="main_text flightShadowBox col1" width="300" border="0" cellpadding="0" style="margin-top:8px;">
+          </table>            <table class="main_text flightShadowBox col1" border="0" cellpadding="0" style="margin-top:8px;">
               <tr>
                 <th colspan="2">{#_XC_Info}</th>
               </tr>
               <tr>
-                <td width="149"><div id='info1Pos' align="left" class='helpTooltips' onmouseover="docTips.show('openDistance')"
+                <td width="50%"><div id='info1Pos' align="left" class='helpTooltips' onmouseover="docTips.show('openDistance')"
  onmouseout="docTips.hide()" >{#_OPEN_DISTANCE}</div></td>
-                <td width="142"><div align="right">{LINEAR_DISTANCE}</div></td>
+                <td width="50%"><div align="right">{LINEAR_DISTANCE}</div></td>
               </tr>
               <tr>
                 <td><div id='info2Pos' align="left" class='helpTooltips' onmouseover="docTips.show('maxDistance')"
@@ -360,8 +362,14 @@ jQuery(document).ready(function() {
                 <td colspan="2" height='19' id="scoreInfoPos"><div align="right">{SCORE_INFO_LINK}</div></td>
               </tr>
             </table></td>
+        </tr>
+       </table>
+      </div>
+      <div class="flightDataBox">
+       <table width="100%" border="0" align="left" cellpadding="0">
+            <tr>
           <td width="30%" valign="top" align="center">
-			<table align=center class="main_text flightShadowBox col2" width="270" border="0" cellpadding="0" style='clear:left;'>
+			<table align=center class="main_text flightShadowBox col2" border="0" cellpadding="0" style='clear:left;'>
             <tr>
               <th height=22>{gliderCat} </th>
             </tr>
@@ -371,7 +379,7 @@ jQuery(document).ready(function() {
               </div></td>
             </tr>
           </table>
-			<table class="main_text flightShadowBox col2" width="270" border="0" cellpadding="0" style="margin-top:8px;">
+			<table class="main_text flightShadowBox col2" border="0" cellpadding="0" style="margin-top:8px;">
             <tr>
               <th colspan="2">{#_Flight_Info}</th>
             </tr>
@@ -412,20 +420,27 @@ jQuery(document).ready(function() {
               <td>{#_MEAN_SPEED}</td>
               <td><div align="right">{MEAN_SPEED}</div></td>
             </tr>
-          </table></td>
+          </table>
+          </td>
+        </tr>
+    </table>
+      </div>
+      <div class="flightDataBox">
+       <table width="100%" border="0" align="left" cellpadding="0">  
+            <tr>
           <td align="right" valign="top">
-			<table width="170" class="main_text flightShadowBox col3" border="0" cellpadding="0">
+			<table  class="main_text flightShadowBox col3" border="0" cellpadding="0">
             <tr>
               <th height="22"><div align="center">{#_FLIGHT_FILE}</div></th>
             </tr>
             <tr>
-              <td><div aling=center  style="height:28px; text-align:center">
+              <td><div align=center  style="height:28px; text-align:center">
                     {igcLink}::
 					<a href="#" onClick="toggleDiv('geOptionsID','geOptionsPos',14,-305);return false;">Google
                     Earth&nbsp;<img id="geOptionsPos" src="{M_PATH}/img/icon_arrow_down.gif" alt="a1" border="0"></a></div></td>
             </tr>
 			</table>
-			<table class="main_text flightShadowBox col3" width="170" border="0" cellpadding="3" style='margin-top:8px;'>
+			<table class="main_text flightShadowBox col3"  border="0" cellpadding="3" style='margin-top:8px;'>
             <tr>
               <th >{#_RELEVANT_PAGE}</th>
             </tr>
@@ -433,7 +448,7 @@ jQuery(document).ready(function() {
               <td height=19><div align="right">{visuGpsLink} <br> {linkURL}</div></td>
             </tr>
           </table>
-			<table class="main_text flightShadowBox col3" width="170" border="0" cellpadding="3" style="margin-top:8px;">
+	<table class="main_text flightShadowBox col3" border="0" cellpadding="3" style="margin-top:8px;">
             <tr>
               <th>{#_FLYING_AREA_INFO}</th>
             </tr>
@@ -451,7 +466,8 @@ jQuery(document).ready(function() {
 		</td>
         </tr>
       </table>
-	</td>
+      </div>
+       </td>
     </tr>
 <!-- BEGIN COMMENTS -->
     <tr>

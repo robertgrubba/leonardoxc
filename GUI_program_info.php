@@ -18,12 +18,12 @@
   
 <div align="center"> 
   <p> 
-  <table class=main_text width="700" border="0" align="center" cellpadding="2" cellspacing="2">
+  <table id="tableBlocks" class=main_text border="0" align="center" cellpadding="2" cellspacing="2">
     <tr> 
-      <td width="164">
+      <td width="20%">
 <div align="right"><? echo _DEVELOPMENT ?>: </div></td>
-      <td width="259"><? echo _ANDREADAKIS_MANOLIS ?> </td>
-      <td width="257" rowspan="10" valign="top"><div align="left">
+      <td width="30%"><? echo _ANDREADAKIS_MANOLIS ?> </td>
+      <td width="50%" rowspan="10" valign="top"><div align="left">
       
         <p align="left"><strong><? echo _LEONARDO_INSTALLATIONS ?></strong></p>
         <ul>

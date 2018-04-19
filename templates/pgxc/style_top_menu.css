@@ -275,6 +275,16 @@ margin-left:8em;
 .pilotsTotalFlights{
 	width: 60px;
 }
+.flightDataBox{
+        width: 33%;
+        display:block;
+        float: left;
+}
+.firstFlightDataBox{
+        width: 33%;
+        display:block;
+        float: left;
+}
 @media only screen and (max-width: 419px){
 	.hideOnExtraSmall{
 		display: none;
@@ -333,6 +343,16 @@ margin-left:8em;
             width:98%;
             padding-left: 1px;
             padding-bottom: 20px;
+        }
+        .flightDataBox{
+            width: 100%;
+            display:block;
+            float: left;
+        }
+        .firstFlightDataBox{
+            width:100%;
+            display: block;
+            float: left;
         }
 }
 
@@ -394,6 +414,17 @@ margin-left:8em;
             width: 80%;
             padding-left: 80px;
             padding-bottom: 20px;
+        }
+        .flightDataBox{
+            width: 50%;
+            min-width:200px;
+            display:block;
+            float: left;
+        }
+        .firstFlightDataBox{
+            width:100%;
+            display: block;
+            float: left;
         }
 }
 @media (min-width: 600px) and (max-width: 950px){
