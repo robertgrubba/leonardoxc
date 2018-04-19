@@ -50,7 +50,7 @@ class sql_db
 		
 	var $db_slaves=array();
 	var $db_slaves_config=array(
-		0=>array('hostname'=>'hostname1','dbname'=>'dbname1','user'=>'user','pass'=>'pass'=>false),
+		0=>array('hostname'=>'hostname1','dbname'=>'dbname1','user'=>'user','pass'=>'pass','useutf'=>false),
 		// only for leonardo queries
 		1=>array('hostname'=>'hostname2','dbname'=>'dbname2','user'=>'user','pass'=>'pass','useutf'=>true),		
 	);
