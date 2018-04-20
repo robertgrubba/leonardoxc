@@ -72,22 +72,22 @@
 
   <tr>
     <td valign="middle">
-      <table class="Box" width="530"  align="center">
+      <table class="Box" width="100%"  align="center">
         <tr align="center" bgcolor="#D0E2CD">
-          <td width="196"><strong><? echo "<a href='".getDownloadLink(array('type'=>'kml_wpt','wptID'=>$waypointIDview))."'>"._Navigate_with_Google_Earth."</a>"; ?>
+          <td width="34%"><strong><? echo "<a href='".getDownloadLink(array('type'=>'kml_wpt','wptID'=>$waypointIDview))."'>"._Navigate_with_Google_Earth."</a>"; ?>
             </strong>
           <div align="center"></div></td>
-          <td width="218"><strong><? echo "<a href='http://maps.google.com/maps?q=".$wpName."&ll=". $wpInfo->lat.",".-$wpInfo->lon."&spn=1.535440,2.885834&t=h&hl=en' target='_blank'>"._See_it_in_Google_Maps."</a>"; ?>
+          <td width="33%"><strong><? echo "<a href='http://maps.google.com/maps?q=".$wpName."&ll=". $wpInfo->lat.",".-$wpInfo->lon."&spn=1.535440,2.885834&t=h&hl=en' target='_blank'>"._See_it_in_Google_Maps."</a>"; ?>
             </strong>
           <div align="center"></div></td>
-          <td width="170"><strong><? echo "<a href='http://www.mapquest.com/maps/map.adp?searchtype=address&formtype=address&latlongtype=decimal&latitude=".$wpInfo->lat."&longitude=".-$wpInfo->lon."' target='_blank'>"._See_it_in_MapQuest."</a>"; ?>
+          <td width="33%"><strong><? echo "<a href='http://www.mapquest.com/maps/map.adp?searchtype=address&formtype=address&latlongtype=decimal&latitude=".$wpInfo->lat."&longitude=".-$wpInfo->lon."' target='_blank'>"._See_it_in_MapQuest."</a>"; ?>
             </strong>
           <div align="center"></div></td>
         </tr>
       </table>
 <? if ($wpLocation || $wpInfo->description || $wpInfo->link) { ?>
 	 <br>
-      <table class="Box"  align="center" width=450>
+      <table class="Box"  align="center" width="100%">
         <tr bgcolor="#49766D">
           <td colspan="2">             
               <div align="center" class="titleWhite"><strong><? echo _SITE_INFO ?></strong></div></td>
