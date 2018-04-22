@@ -285,6 +285,13 @@ margin-left:8em;
         display:block;
         float: left;
 }
+.indexTable{
+    width: 33%;
+    display:block;
+    float: left;
+    max-width: 400px;
+    
+}
 @media only screen and (max-width: 419px){
 	.hideOnExtraSmall{
 		display: none;
@@ -353,6 +360,9 @@ margin-left:8em;
             width:100%;
             display: block;
             float: left;
+        }
+        .indexTable{
+            width: 100%;
         }
 }
 

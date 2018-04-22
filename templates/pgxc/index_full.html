@@ -200,7 +200,7 @@ div#b_nav ul li.header a.on {
   <tr>
     <td colspan="4" align="center" valign="top">
   <div id="b_nav" align=center>
-        <ul>
+        <ul >
 		  <li><a href="{LINK_SITES_GUIDE}">{#_MENU_SITES_GUIDE}</a></li>
 		  <li><a href="{LINK_SHOW_LAST_ADDED}">{#_MENU_SHOW_LAST_ADDED}</a></li>
 		  <li><a href="{LINK_SHOW_PILOTS}">{#_MENU_SHOW_PILOTS}</a></li>
@@ -224,16 +224,25 @@ div#b_nav ul li.header a.on {
   <tr>
     <td colspan="4">&nbsp;</td>
   </tr>
+</table>
+    <!-- 20180422 -->
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="main_text indexTable">
   <tr>
     <td width="32%" bgcolor="#F4EAD5" class="catHeader">{#_National_XC_Leagues_for} <br />
     <select name="leagueYear" id="leagueYear">
       <option value="0">{#_ALL_YEARS}</option>
 			{YEARS_OPTION}
-          </select>
+      </select>
       <select name="leagueCat" id="leagueCat">
             {CATS_OPTION}
-          </select></td>
-    <td width="32%" bgcolor="#D7EDD3" class="catHeader">{#_Flights_per_Country} <br />
+      </select>
+        {lgStr}
+    </td>
+  </tr>
+</table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="main_text indexTable">
+    <tr>
+    <td width="32%" bgcolor="#D7EDD3"  class="catHeader">{#_Flights_per_Country} <br />
       <select name="flightsYear" id="flightsYear">
         <option value="0">{#_ALL_YEARS}</option>
         
@@ -245,18 +254,20 @@ div#b_nav ul li.header a.on {
         
  			{CATS_OPTION}
 	      
-      </select></td>
-    <td width="32%" valign="bottom" bgcolor="#CED8E1" class="catHeader">{#_Takeoffs_per_Country}</td>
-    <td valign="bottom" class="catHeader">&nbsp;</td>
-  </tr>
-  <tr>
-    <td align=left  bgcolor="#F4EAD5">{lgStr}</td>
-    <td align=left valign="top" bgcolor="#D7EDD3">{ctStr}<br></td>
-    <td align=left valign="top" bgcolor="#CED8E1">{tkStr}<br></td>
-    <td align=left valign="top">&nbsp;</td>
-  </tr>
-  <tr>
-    <td colspan="4">&nbsp;</td>
-  </tr>
+      </select>
+        {ctStr}
+    </td>
+    </tr>
 </table>
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="main_text indexTable">
+    <tr>
+    <td width="32%" valign="bottom" bgcolor="#CED8E1" class="catHeader">
+        {#_Takeoffs_per_Country}
+        <br>
+        {tkStr}
+        <br>
+    </td>
+    </tr>
+</table>
+
 </form>
