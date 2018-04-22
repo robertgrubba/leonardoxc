@@ -301,11 +301,22 @@ margin-left:8em;
 		display: none !important;
 	}
 	#nav li{
-		width: 14%;
+		width: 100%;
 		padding-left:0;
 		padding-right:0;
-		height: 3em;
+		height: 2em;
+                padding: 0px;
+                margin-top: 0px;
+                margin-bottom: 4px;
+                margin-right: 1px;
+                border-right: 1px solid #52371F;
+                border-bottom: 1px solid #52371F;
+                background-color: #f6f5fa;
 	}
+        ul#nav{
+            background-color: white;
+            border: 0px;
+        }
 	#nav a{
 		width:100%;
 	}
@@ -364,6 +375,10 @@ margin-left:8em;
         .indexTable{
             width: 100%;
         }
+        #b_nav ul li a{
+            width: 100% !important;
+        }
+        
 }
 
 @media only screen and (min-width:420px) and (max-width: 600px){

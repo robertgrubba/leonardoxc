@@ -193,7 +193,7 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
 	 
 ?>
 
-<li class="smallItem long"><a class="smallItem" href='#'><?=$iconImg?></a>
+<li class="smallItem long hideOnExtraSmall"><a class="smallItem" href='#'><?=$iconImg?></a>
 	<ul class="long">
 
 <? if ( L_auth::isAdmin($userID) )  {  ?>
@@ -430,7 +430,7 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
 	</ul>
 </li>
 
-<li class="long lastItem"><a href="#"><?=_MENU_XCLEAGUE." ".$arrDownImg?></a>
+<li class="long"><a href="#"><?=_MENU_XCLEAGUE." ".$arrDownImg?></a>
 	<ul class="long">
 		<li><a href="<?=getLeonardoLink(array('op'=>'competition') )?>"><?=_MENU_XCLEAGUE ?></a></li>
 		<? 
@@ -489,7 +489,7 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
 ?>
 	</ul>
 </li>
-<li class="lastRight"> <a href="http://trac.pgxc.pl/" target="_blank"><?= _TICKET_SYS ?></a></li>
+<li class="long"> <a href="http://trac.pgxc.pl/" target="_blank"><?= _TICKET_SYS ?></a></li>
 </ul>
 
 
