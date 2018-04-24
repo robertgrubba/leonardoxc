@@ -622,7 +622,8 @@ define('_Click_to_select_a_month','Kliknij aby wybrać miesiąc');//Click to sel
 define('_Click_to_select_a_year','Kliknij aby wybrać rok');//Click to select a year.');
 define('_Select_date_as_date.','Wybierz [date] jako datę');//Select [date] as date.'); // do not replace [date], it will be replaced by date.
 
-// end 2007/03/13
+// end 2007/03/13
+
 //--------------------------------------------------------
 //--------------------------------------------------------
 // Missing defines , autoreplaced values from 'english' 
@@ -945,4 +946,5 @@ define("_JS_LIBRARIES","Biblioteki JavaScript");
 define("_DESIGN","Projekt"); 
 define("_TICKET_SYS","Zgłoś problem"); 
 define("_Sync_Start_Times","Synchronizuj początki lotów");
+define("_SOCIAL_LINKS","Udostępnij stronę");
 ?>
