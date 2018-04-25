@@ -4,7 +4,7 @@ $i = 0;
 $url = "http://apache-wp-1/category/leonardoxc/feed/"; // url of news feed
 $rss = simplexml_load_file($url); // XML parser
 
-echo '<?php';
+echo '<?php ';
 echo '$CONF[\'news\'][\'items\']=array(';
 
 foreach($rss->channel->item as $item) {
