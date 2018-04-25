@@ -14,7 +14,8 @@
 
   $wpInfo =new waypoint($waypointIDview );
   $wpInfo->getFromDB();
-  
+
+  $pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/startowisko/".$waypointIDview;
 //  $wpName= getWaypointName($waypointIDview);
 
   $wpName= selectWaypointName($wpInfo->name,$wpInfo->intName,$wpInfo->countryCode);
@@ -56,7 +57,16 @@
         <tr align="center" bgcolor="#D0E2CD">
           <td bgcolor="#49766D" class="col1"><div align="center" class="titleWhite titleText"><? echo _FLIGHTS ?></div></td>
           <td bgcolor="#49766D" class="col2"><div align="center" class="titleWhite titleText"><? echo _COORDINATES ?></div></td>
-          <td width="150" class="col3"><div align="center" class="titleWhite titleText">Navigate</div></td>
+          <td width="140" class="col3"><div align="center" class="titleWhite titleText">Navigate</div></td>
+          <td width="40" class="col4" rowspan="4">
+		<div align="center" class="titleWhite titleText">
+  		 <a href="https://www.facebook.com/sharer.php?u=<?php echo $pageURL ?>" target="_blank"><img class="shareButtonSmall" src="https://leonardo.pgxc.pl/img/social/facebook.png" alt="Facebook" /></a>
+                 <a href="https://plus.google.com/share?url=<?php echo $pageURL ?>" target="_blank"><img class="shareButtonSmall" src="https://leonardo.pgxc.pl/img/social/google.png" alt="Google" /></a>
+                 <a href="https://twitter.com/share?url=<?php echo $pageURL ?>&amp;text=Ale%20miejscówka%20do%20latania!&amp;hashtags=pgxc" target="_blank"><img class="shareButtonSmall" src="https://leonardo.pgxc.pl/img/social/twitter.png" alt="Twitter" /></a>
+                 <a href="mailto:?Subject=Zobacz%20jaka%20miejscówa&amp;Body=Musimy%20się%20tam%20niebawem%20wybrać!%20 <?php echo $pageURL ?>"><img class="shareButtonSmall" src="https://leonardo.pgxc.pl/img/social/email.png" alt="Email" /></a>
+
+		</div>
+	  </td>
         </tr>
         <tr align="center" bgcolor="#D0E2CD">
           <td rowspan="3" class="col1_in">

@@ -1042,6 +1042,13 @@ div#addFlightComment{
     padding-left: 5px;
 }
 
+.shareButtonSmall{
+    height: 20px;
+    width: auto;
+    padding-left: 5px;
+}
+
+
 .hideObject{
         display:none;
         visibility: hidden;
@@ -1099,6 +1106,9 @@ div#addFlightComment{
         .shareButton{
                 height: 30px;
 		padding-left: 10px;
+        }
+        .shareButtonSmall{
+		padding-left: 2px;
         }
 
 }

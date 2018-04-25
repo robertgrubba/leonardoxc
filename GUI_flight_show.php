@@ -808,7 +808,7 @@ if($visuGpsLink=="" && $linkURL==_N_A){
 	$relevantClass='hideObject';
 }
  
-$pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/flights/details/".$flightID;
+$pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/lot/szczegoly/".$flightID;
 
 if($linkURL==_N_A){
 	$linkURL="";
