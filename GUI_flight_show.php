@@ -810,6 +810,9 @@ if($visuGpsLink=="" && $linkURL==_N_A){
  
 $pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/flights/details/".$flightID;
 
+if($linkURL==_N_A){
+	$linkURL="";
+}
 $Ltemplate->assign_vars(array(
 	'extFlightLegend'=> $extFlightLegend,
 	

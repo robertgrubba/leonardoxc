@@ -294,12 +294,10 @@ margin-left:8em;
 @media only screen and (max-width: 419px){
        .externalLinks{
 	        width: 100%;
-      		padding-left:30%;
+		padding-bottom: 2%;
+		padding-top: 2%;
         }
 
-	.shareButton{
-		height: 20%;
-	}
 	.hideOnExtraSmall{
 		display: none;
 		visibility: hidden;
@@ -390,8 +388,7 @@ margin-left:8em;
 
 @media only screen and (min-width:420px) and (max-width: 600px){
        .externalLinks{
-        width: 100%;
-        padding-left:30%;
+        	width: 100%;
         }
 	.hideOnSmall{
 		display: none;
