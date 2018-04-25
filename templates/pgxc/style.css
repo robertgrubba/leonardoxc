@@ -1041,6 +1041,7 @@ div#addFlightComment{
     box-sizing: border-box;
 }
 
+
 [class*="col-"] {
     float: left;
     padding: 15px;
@@ -1074,3 +1075,29 @@ div#addFlightComment{
     }
 } 
 
+.shareButton{
+    height: 20px;
+    width: auto;
+}
+
+.hideObject{
+        display:none;
+        visibility: hidden;
+}
+.externalLinks{
+    width: 50%;
+    min-width: 120px;
+    float:left;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10%;
+}
+
+
+@media only screen and (max-width: 419px){
+        .shareButton{
+                height: 40px;
+        }
+
+}

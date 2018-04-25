@@ -291,21 +291,15 @@ margin-left:8em;
     float: left;
     max-width: 400px; 
 }
-.externalLinks{
-    width: 50%;
-    min-width: 120px;
-    float:left;
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 10%;
-}
-.shareButton{
-    height: 20px;
-    width: auto;
-}
 @media only screen and (max-width: 419px){
+       .externalLinks{
+	        width: 100%;
+      		padding-left:30%;
+        }
 
+	.shareButton{
+		height: 20%;
+	}
 	.hideOnExtraSmall{
 		display: none;
 		visibility: hidden;

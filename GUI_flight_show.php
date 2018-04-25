@@ -803,6 +803,12 @@ $extFlightLegend=_Ext_text1." <i>".$CONF['servers']['list'][$flight->serverID]['
 		"</i>. <a href='".$flight->getOriginalURL().$extLinkLanguageStr."' target='_blank'>"._Ext_text3.
 		leoHtml::img('icon_link.gif',0,0,'',_External_Entry,'icons1 flagIcon')."</a>";
 
+$relevantClass="";
+if($visuGpsLink=="" && $linkURL==_N_A){
+	$relevantClass='hideObject';
+}
+ 
+$pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/flights/details/".$flightID;
 
 $Ltemplate->assign_vars(array(
 	'extFlightLegend'=> $extFlightLegend,
@@ -826,8 +832,8 @@ $Ltemplate->assign_vars(array(
 	'igcLink'=> $igcLink,
 	'visuGpsLink'=> $visuGpsLink,
 	'flightID'=>$flight->flightID,
-	
-
+	'relevantClass'=> $relevantClass,
+	'pageURL'=> $pageURL,
 ));
 
 if ($flight->externalFlightType &&  ! $CONF['servers']['list'][$flight->serverID]['treat_flights_as_local']) {
