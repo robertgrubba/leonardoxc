@@ -809,7 +809,7 @@ if($visuGpsLink=="" && $linkURL==_N_A){
 }
  
 $pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/lot/szczegoly/".$flightID;
-
+$takeoffName=getWaypointName($flight->takeoffID);
 if($linkURL==_N_A){
 	$linkURL="";
 }
@@ -837,6 +837,7 @@ $Ltemplate->assign_vars(array(
 	'flightID'=>$flight->flightID,
 	'relevantClass'=> $relevantClass,
 	'pageURL'=> $pageURL,
+	'takeoffName'=> $takeoffName,
 ));
 
 if ($flight->externalFlightType &&  ! $CONF['servers']['list'][$flight->serverID]['treat_flights_as_local']) {
