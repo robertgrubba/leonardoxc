@@ -79,9 +79,7 @@
 
 			$row = mysql_fetch_assoc($res);
 		
-			echo '<a target=\'_top\' href=\'http://'.$_SERVER['SERVER_NAME'].
-				getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])).'\'>'.
-			formatDistance($row['record_km'],1).'</a>';
+			echo '<a target=\'_top\' href=\''.getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])).'\'>'.formatDistance($row['record_km'],1).'</a>';
 			} else {
 				echo " No flights from this location";
 			}
