@@ -638,7 +638,7 @@ if (L_auth::isAdmin($userID) || $flight->belongsToUser($userID) ) {  //P. Wild 1
 $commentsHtml="<div id='tabcomments' class='tab_content'>
 	<div id='comments_iframe_div' style='width:100%; height:600px; text-align:left;'>
 		<iframe id='comments_iframe' align='left'
-		  SRC='".$CONF['protocol']."://".$_SERVER['SERVER_NAME'].getRelMainDir()."GUI_EXT_flight_comments.php?flightID=".
+		  SRC='".getRelMainDir()."GUI_EXT_flight_comments.php?flightID=".
 		$flight->flightID."' ".
 	 " TITLE='Comments' width='100%' height='100%'  style='padding:0;margin:0;'
 		  scrolling='auto' frameborder='0'>Sorry. If you're seeing this, your browser doesn't support IFRAMEs.	You should upgrade to a more current browser.
