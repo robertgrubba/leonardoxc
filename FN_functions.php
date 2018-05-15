@@ -1079,25 +1079,32 @@ function getLeonardoLink($argArray,$forcedLinkType=0) {
 		
 		$opTmp=$argArray['op'];
 		if ($opTmp=='list_flights') {
-			$args.='tracks/';
+			//$args.='tracks/';
+			$args.='loty/';
 		} else if ($opTmp=='explore_ge') {
 			$args.='ge/';
 		} else if ($opTmp=='list_pilots') {
-			$args.='pilots/';
+//			$args.='pilots/';
+			$args.='piloci/';
 		} else if ($opTmp=='competition') {
-			$args.='league/';
+			//$args.='league/';
+			$args.='liga/';
 		} else if ($opTmp=='comp') {
-			$args.='ranks/';
+//			$args.='ranks/';
+			$args.='rankingi/';
 		} else if ($opTmp=='list_takeoffs') {
-			$args.='takeoffs/';
+//			$args.='takeoffs/';
+			$args.='startowiska/';
 		} else if ($opTmp=='compare') {
-			$args.='compare/';
+//			$args.='compare/';
+			$args.='porownanie/';
 			if ($argArray['flightID']!='skipValue') {
 				$args.=$argArray['flightID'];
 				unset($argArray['flightID']);
 			}	
 		} else if ($opTmp=='compare3d') { 
-						$args.='compare3d/';
+//						$args.='compare3d/';
+						$args.='porownanie3d/';
 			if ($argArray['flightID']!='skipValue') {
 				$args.=$argArray['flightID'];
 				unset($argArray['flightID']);
@@ -1110,17 +1117,20 @@ function getLeonardoLink($argArray,$forcedLinkType=0) {
 		} else if ($opTmp=='pilot_profile_stats') {
 			
 			// $args.='pilot/'.($serverIDview+0).'_'.($pilotIDview).'/stats/';
-			$args.='stats/';
+//			$args.='stats/';
+			$args.='statystyki/';
 			// $args.='pilot/'.$argArray['pilotIDview'].'/stats/';
 			
 			// return $CONF['links']['baseURL'].'/'.$args;
 			
 		} else if ($opTmp=='show_waypoint') {
-			$args.='takeoff/'.$argArray['waypointIDview'];
+//			$args.='takeoff/'.$argArray['waypointIDview'];
+			$args.='startowisko/'.$argArray['waypointIDview'];
 			return $CONF['links']['baseURL'].'/'.$args;
 			
 		} else if ($opTmp=='show_flight') {	
-			$args.='flight/';	
+//			$args.='flight/';	
+			$args.='lot/';	
 			if ($argArray['flightID']!='skipValue') {
 				$args.=$argArray['flightID'];
 				unset($argArray['flightID']);
@@ -1169,6 +1179,7 @@ function getLeonardoLink($argArray,$forcedLinkType=0) {
 					$args.=$args2Array['country'].'/';
 				} else {
 					$args.='world/';
+//					$args.='swiat/';
 				}			
 			}
 						
@@ -1236,7 +1247,8 @@ function getLeonardoLink($argArray,$forcedLinkType=0) {
 		}
 
 		if (!$opProccessed && isset($argArray['op'])  ) {
-			$args.='page/'.$argArray['op'];
+//			$args.='page/'.$argArray['op'];
+			$args.='strona/'.$argArray['op'];
 			unset($argArray['op']);
 		}
 		if ($argArray['print']) {
