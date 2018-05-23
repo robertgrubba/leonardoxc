@@ -65,11 +65,11 @@ if ($op=='photos'){
 			if ($photoInfo['name']) {
 				$imgIconRel=$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg";
 				if(!is_file($imgIconRel)){
-					$imgIconRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg";
+					$imgIconRel=$CONF['cdnURL'].str_replace('https://leonardo.pgxc.pl','',$flightPhotos->getPhotoRelPath($photoNum)).".icon.jpg";
 				}
 				$imgBigRel=$flightPhotos->getPhotoRelPath($photoNum);
 				if(!is_file($imgBigRel)){
-					$imgBigRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum);
+					$imgBigRel=$CONF['cdnURL'].str_replace('https://leonardo.pgxc.pl','',$flightPhotos->getPhotoRelPath($photoNum));
 				}
 		
 				$imgIcon=$flightPhotos->getPhotoAbsPath($photoNum).".icon.jpg";
