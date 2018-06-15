@@ -58,7 +58,7 @@ $photos=array(); // new method -> one multi array
 while ($row = $db->sql_fetchrow($res)) {
          $photoID=$row['id'];
 	 list($pilotID,$fname,$year)=split("/",$row['path']);
-	 $photos[$i]['url']='https://files.leonardo.pgxc.pl/data/flights/'.$fname.'/'.$year.'/'.$pilotID.'/'.$row['name'];
+	 $photos[$i]['url']=$CONF['cdnURL'].'/data/flights/'.$fname.'/'.$year.'/'.$pilotID.'/'.$row['name'];
 	 $photos[$i]['photoURL']=$photos[$i]['url'].'.carousel.jpg';
 	 $photos[$i]['flightURL']=getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['flightID']));
 	 $photos[$i]['userName']=$row['firstName'].' '.$row['lastName'];
@@ -95,8 +95,8 @@ while ($row = $db->sql_fetchrow($res)) {
      <a href="<?php echo $photos[1]['flightURL']; ?>" >
       <img class="d-block w-100" src="<?php echo $photos[1]['photoURL'] ?>" alt="1">
       <div class="carousel-caption d-none d-md-block">
-       <h4><a class="btn btn-link btn-lg"  href="<?php echo $photos[1]['flightURL'] ?>"><? echo $photos[1]['takeoffName'] ?></a></h4>
-       <p><a class="btn btn-link"  href="<?php echo $photos[1]['userStatsURL'] ?>"><? echo $photos[1]['userName'] ?></a></p>
+       <h4><a class="btn btn-link btn-lg text-white"  href="<?php echo $photos[1]['flightURL'] ?>"><? echo $photos[1]['takeoffName'] ?></a></h4>
+       <p><a class="btn btn-link text-white"  href="<?php echo $photos[1]['userStatsURL'] ?>"><? echo $photos[1]['userName'] ?></a></p>
       </div>
      </a>
     </div>
@@ -109,8 +109,8 @@ while ($row = $db->sql_fetchrow($res)) {
     <a href="<?php echo $photos[$i]['flightURL']; ?>" >
       <img class="d-block w-100"  src="<?php echo $photos[$i]['photoURL'] ?>" alt="<? echo $i ?>">
       <div class="carousel-caption d-none d-md-block">
-       <h5><a class="btn btn-link btn-lg" href="<?php echo $photos[$i]['flightURL'] ?>"><? echo $photos[$i]['takeoffName'] ?></a></h5>
-       <p><a class="btn btn-link" href="<?php echo $photos[$i]['userStatsURL'] ?>"><? echo $photos[$i]['userName'] ?></a></p>
+       <h5><a class="btn btn-link btn-lg text-white" href="<?php echo $photos[$i]['flightURL'] ?>"><? echo $photos[$i]['takeoffName'] ?></a></h5>
+       <p><a class="btn btn-link text-white" href="<?php echo $photos[$i]['userStatsURL'] ?>"><? echo $photos[$i]['userName'] ?></a></p>
       </div>
     </a>
     </div>
