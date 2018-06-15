@@ -66,6 +66,7 @@ while ($row = $db->sql_fetchrow($res)) {
 	 $photos[$i]['takeoffName']=$row['waypointName'];
 //some more variables for possible future usage
 	 $photos[$i]['user']=$row['userID'];
+	 $photos[$i]['userStatsURL']=getLeonardoLink(array('op'=>'pilot_profile_stats','pilotIDview'=>$serverID.'_'.$row['userID']));
 //	 print_r($row);
 //	 print_r($photoID);
      $i++;
@@ -94,8 +95,8 @@ while ($row = $db->sql_fetchrow($res)) {
      <a href="<?php echo $photos[1]['flightURL']; ?>" >
       <img class="d-block w-100" src="<?php echo $photos[1]['photoURL'] ?>" alt="1">
       <div class="carousel-caption d-none d-md-block">
-       <h5><? echo $photos[1]['takeoffName'] ?></a></h5>
-       <p><? echo $photos[1]['userName'] ?></p>
+       <h4><a class="btn btn-link btn-lg"  href="<?php echo $photos[1]['flightURL'] ?>"><? echo $photos[1]['takeoffName'] ?></a></h4>
+       <p><a class="btn btn-link"  href="<?php echo $photos[1]['userStatsURL'] ?>"><? echo $photos[1]['userName'] ?></a></p>
       </div>
      </a>
     </div>
@@ -108,8 +109,8 @@ while ($row = $db->sql_fetchrow($res)) {
     <a href="<?php echo $photos[$i]['flightURL']; ?>" >
       <img class="d-block w-100"  src="<?php echo $photos[$i]['photoURL'] ?>" alt="<? echo $i ?>">
       <div class="carousel-caption d-none d-md-block">
-       <h5><? echo $photos[$i]['takeoffName'] ?></h5>
-       <p><? echo $photos[$i]['userName'] ?></p>
+       <h5><a class="btn btn-link btn-lg" href="<?php echo $photos[$i]['flightURL'] ?>"><? echo $photos[$i]['takeoffName'] ?></a></h5>
+       <p><a class="btn btn-link" href="<?php echo $photos[$i]['userStatsURL'] ?>"><? echo $photos[$i]['userName'] ?></a></p>
       </div>
     </a>
     </div>
