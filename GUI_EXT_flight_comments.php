@@ -450,7 +450,7 @@ $(document).ready(function(){
 	});
 	
 	$("#BookmarkButton").bookmark({
-		url: 'http://<?=$_SERVER['SERVER_NAME'].getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID) )?>',
+		url: '<?=getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID) )?>',
 		title: 'Flying',
 		description:'Look at this flight',
 		popup: true,

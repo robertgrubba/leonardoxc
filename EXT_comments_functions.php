@@ -92,7 +92,7 @@
 			$userEmail=leoUser::getEmail($flight->userID);
 			// echo " userEmail= $userEmail";
 			
-			$link=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].
+			$link=htmlspecialchars (
 				getLeonardoLink(array('op'=>'show_flight','flightID'=>$commentData['flightID'])) );
 				
 			$email_body=sprintf(_New_comment_email_body,
