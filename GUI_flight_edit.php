@@ -121,6 +121,15 @@
 						 					$CONF['photos']['thumbs']['max_height'],
 											$photoAbsPath, $photoAbsPath.".icon.jpg", 
 											$CONF['photos']['compression']);
+
+                                                //rgrubba - create medium sized thumbnails for carousel
+                                                CLimage::resizeJPG(
+                                                 $CONF['photos']['carousel']['max_width'],
+                                                 $CONF['photos']['carousel']['max_height'],
+                                                 $photoAbsPath, $photoAbsPath.".carousel.jpg",
+                                                 $CONF['photos']['compression']
+                                                );
+
 						CLimage::resizeJPG(
 						 $CONF['photos']['normal']['max_width'],
 						 $CONF['photos']['normal']['max_height'], $photoAbsPath, $photoAbsPath, 

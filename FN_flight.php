@@ -495,7 +495,14 @@ function addFlightFromFile($filename,$calledFromForm,$userIDstr,
 						 $CONF['photos']['normal']['max_height'], $photoAbsPath, $photoAbsPath, 
 						 $CONF['photos']['compression']
 						 );
-						 
+						//rgrubba - create medium sized thumbnails for carousel 
+						CLimage::resizeJPG( 
+						 $CONF['photos']['carousel']['max_width'],
+						 $CONF['photos']['carousel']['max_height'],
+						 $photoAbsPath, $photoAbsPath.".carousel.jpg", 
+						 $CONF['photos']['compression']
+						);
+
 						$flight->hasPhotos++;
 						$j++;
 					} else { //upload not successfull
