@@ -60,6 +60,10 @@
         </ul>
       </div></td>
     </tr>
+    <tr>
+      <td width="20%"><div align="right"><? echo _DEVELOPMENT_PGXC ?>:</div></td>
+      <td width="30%"><a href="https://www.linkedin.com/in/grubbarobert/" target="_blank">Robert Grubba</a> </td> 
+    </tr>
     <tr> 
       <td><div align="right"><? echo _VERSION ?>: </div></td>
       <td><? echo "$CONF_version (released $CONF_releaseDate)"; ?> </td>
@@ -102,6 +106,7 @@
       	 <li><a href="http://www.twinhelix.com" target="_blank">Tipster</a>
       	 <li><a href="http://www.aditus.nu/jpgraph/index.php" target="_blank">Jpgraph</a>
       	 <li><a href="http://www.flotcharts.org/" target="_blank">Flot graphs</a>
+	 <li><a href="http://bootstrap.org/" target="_blank">Bootstrap</a>
        </ul>
       </td>
     </tr>

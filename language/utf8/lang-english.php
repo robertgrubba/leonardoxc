@@ -1019,5 +1019,7 @@ define("_AND_HIS_PROJECT","and his project");
 define("_JS_LIBRARIES","Js Libraries");
 define("_DESIGN","Design");
 define("_TICKET_SYS","Submit support ticket"); 
+define("_SOCIAL_LINKS","Share the page");
+define("_DEVELOPMENT_PGXC","Developing pgxc.pl branch");
 
 ?>

@@ -942,9 +942,10 @@ define("_SOME_CODE_ADAPTED_FROM","Część kodu zaadoptowana z");
 define("_SKYWAYS_LAYER","Warstwa Skyways"); 
 define("_BIG_THANKS_TO","Ogromne podziękowania dla"); 
 define("_AND_HIS_PROJECT","i jego projektu"); 
-define("_JS_LIBRARIES","Biblioteki JavaScript"); 
+define("_JS_LIBRARIES","Biblioteki JavaScript/CSS"); 
 define("_DESIGN","Projekt"); 
 define("_TICKET_SYS","Zgłoś problem"); 
 define("_Sync_Start_Times","Synchronizuj początki lotów");
 define("_SOCIAL_LINKS","Udostępnij stronę");
+define("_DEVELOPMENT_PGXC","Rozwijanie leonardo.pgxc.pl");
 ?>
