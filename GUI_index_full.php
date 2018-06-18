@@ -124,9 +124,11 @@ $tkStr.='
 		'CATS_OPTION'=>$sel_cat,
 
 		'LINK_SITES_GUIDE'=>getLeonardoLink(array('op'=>'sites')),
-		'LINK_SHOW_LAST_ADDED'=>getLeonardoLink(array('op'=>'list_flights','sortOrder'=>'dateAdded',
-						'year'=>'0','month'=>'0','season'=>'0',
-						'country'=>'0','takeoffID'=>'0','pilotID'=>'0')),
+//		'LINK_SHOW_LAST_ADDED'=>getLeonardoLink(array('op'=>'list_flights','sortOrder'=>'dateAdded',
+//						'year'=>'0','month'=>'0','season'=>'0',
+//						'country'=>'0','takeoffID'=>'0','pilotID'=>'0')),
+//20180618 - change last added to all flights
+		'LINK_SHOW_LAST_ADDED'=> getLeonardoLink(array('op'=>'list_flights','year'=>'0','month'=>'0','pilotID'=>'0','takeoffID'=>'0','xctype'=>'all','class'=>'all','country'=>'0','cat'=>'0','clubID'=>'0','brandID'=>'0','nacclubid'=>'0','nacid'=>'0')),
 		'LINK_SHOW_PILOTS'    =>getLeonardoLink(array('op'=>'list_pilots','comp'=>'0')),
 		'LINK_SUBMIT_FLIGHT'  =>getLeonardoLink(array('op'=>'add_flight')),
 
