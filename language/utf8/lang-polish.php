@@ -507,7 +507,7 @@ define("_M_PER_SEC","m/s");
 
 define("_WORLD_WIDE","Cały świat");
 define("_National_XC_Leagues_for","Ligi narodowe");
-define("_Flights_per_Country","Liczba lotów na kraj");
+define("_Flights_per_Country","Loty według krajów");
 define("_Takeoffs_per_Country","Startowiska według krajów");
 define("_INDEX_HEADER","Witamy na serwerze Leonardo XC League");
 define("_INDEX_MESSAGE","Do nawigacji służy &quot;Menu główne&quot; powyżej, a poniżej znajdują się najczęściej używane odnośniki.");
