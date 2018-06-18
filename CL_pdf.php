@@ -36,7 +36,7 @@ class leoPdf {
 		@mkdir($tmpDir);
 		
 		$cmd="cd $tmpDir; ".$CONF['pdf']['pdfcreator']." '$url' $tmpFile";
-		echo "createPDF: Will exec $cmd<BR>";
+//rgrubba		echo "createPDF: Will exec $cmd<BR>";
 		exec($cmd);
 		
 		// echo "#######".$tmpDir.$tmpFile;
@@ -87,7 +87,7 @@ class leoPdf {
 			
 			// $cmd=" cd ".$CONF['pdf']['tmpPath']." ;  gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=finished.pdf *.pdf";
 			
-			echo "Will exec $cmd<BR>";
+//rgrubba			echo "Will exec $cmd<BR>";
 			exec($cmd);
 			// print_r($out);
 		} else {
