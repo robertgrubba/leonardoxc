@@ -173,7 +173,6 @@
                                 $cdnURL='';
 				$CONF['cdnURL']='';
                         }
-
 			echo "<div align='center'><a href='".$CONF['cdnURL'].getPilotPhotoRelFilename($serverID,$pilotIDview)."' target='_blank'><img src='".$CONF['cdnURL'].getPilotPhotoRelFilename($serverID,$pilotIDview,1)."' border=0></a></div>";
 		}
 	  ?></td>

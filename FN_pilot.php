@@ -391,8 +391,10 @@ function getPilotPhotoRelFilename($serverID,$pilotID,$icon=0) {
 	else $suffix=".jpg";
 	
 	if ($serverID) $pilotID=$serverID.'_'.$pilotID;
-	
-	return moduleRelPath().'/'.str_replace("%PILOTID%",$pilotID,$CONF['paths']['pilot'] ).'/PilotPhoto'.$suffix;
+
+	//20180619 rgrubba - for CDN purposes
+	return '/'.str_replace("%PILOTID%",$pilotID,$CONF['paths']['pilot'] ).'/PilotPhoto'.$suffix;
+	//return moduleRelPath().'/'.str_replace("%PILOTID%",$pilotID,$CONF['paths']['pilot'] ).'/PilotPhoto'.$suffix;
 	//return moduleRelPath()."/flights/".$pilotID."/PilotPhoto".$suffix;
 }
 
