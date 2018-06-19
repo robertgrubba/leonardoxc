@@ -483,7 +483,7 @@ if ( $RUN['view']=='print' && $RUN['view0']!='print0'  ) {
 			if ($pdfFile) {				
 				echo "<a href='".$moduleRelPath.'/'.$CONF['pdf']['tmpPathRel'].'/'.$pdfFile."' target='_blank'>PDF is ready</a>";
 				
-				echo "\n\n".$moduleRelPath.'/'.$CONF['pdf']['tmpPathRel'].'/'.$pdfFile;
+			//	echo "\n\n".$moduleRelPath.'/'.$CONF['pdf']['tmpPathRel'].'/'.$pdfFile;
 			} else {				
 				echo "ERROR: PDF creation failed";
 			}

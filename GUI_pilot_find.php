@@ -79,7 +79,7 @@
 	
 #mainPilotInfo {
    float: left;  
-	width:550px;
+	width:80%;
 	height:auto;
 	border-left:1px solid #c0c0c0;
 	padding-left:10px;
@@ -87,8 +87,8 @@
 	
 #searchResultsBox {
    float: left;
-   width: 157px;
-   min-height:400px;
+   width: 20%;
+   min-height:300px;
 	padding:4px;
 	padding-right:10px;
 }
@@ -138,7 +138,7 @@ $(document).ready(function() {
 			$("#mainPilotInfo .displayCell").css({'width':'16px'}).html('');
 			$("#mainPilotInfo .smallInfo").css({'width':'16px'});
 			
-			$(".listTable").css({'width':'565px'});
+			$(".listTable").css({'width':'100%'});
 		});
 	
 		
@@ -178,7 +178,7 @@ $(document).ready(function() {
 <div id='resultsBox'>
 	<div id='searchResultsBox'>	
 		<?=_PILOT_NAME?>
- 		<input id="pilotName" name="pilotName" type="text" />
+ 		<input id="pilotName" name="pilotName" type="text" size="10" />
 		<div id='searchResults'>
 		</div>
 	</div>
