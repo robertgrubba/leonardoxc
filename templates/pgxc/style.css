@@ -943,7 +943,8 @@ a.greenButtonLink:link, a.greenButtonLink:active, a.greenButtonLink:visited, a.g
 
 #headerIndex {
 	align: right;
-	margin-top: 50px;
+	margin-top: 65px;
+	margin-right: -35px;
 	padding-right: 7px;
 	clear: none;
 	float: right;

@@ -11,9 +11,80 @@ php_value upload_max_filesize 10M
 php_value post_max_size 200M
 php_value max_execution_time 300
 php_value max_input_time 180
-php_value memory_limit 256M
+php_value memory_limit 128M
 
 
 RedirectMatch 404 /\.git
 RedirectMatch 404 /\.gitignore
+
+RewriteEngine On
+RewriteBase /
+RewriteRule ^flights/details/(\d*)$ /index.php?name=leonardo&op=show_flight&flightID=$1 [L,NC]
+RewriteRule ^lot/szczegoly/(\d*)$ /index.php?name=leonardo&op=show_flight&flightID=$1 [L,NC]
+RewriteRule ^takeoff/(\d*)/?(.*)$ /index.php?name=leonardo&op=show_waypoint&waypointIDview=$1$2 [L,NC]
+RewriteRule ^startowisko/(\d*)/?(.*)$ /index.php?name=leonardo&op=show_waypoint&waypointIDview=$1$2 [L,NC]
+
+
+# exclude the real path
+RewriteRule ^/ - [L]
+
+# various operations on a flight
+RewriteRule ^flight/(\d*)/kml/(.*)$ /download.php?type=kml_trk&flightID=$1&$2 [L,NC]
+RewriteRule ^flight/(\d*)/igc/(.*)$ /download.php?type=igc&flightID=$1&$2 [L,NC]
+RewriteRule ^flight/(\d*)(.*)$ /index.php?name=leonardo&op=show_flight&flightID=$1$2 [L,NC]
+
+RewriteRule ^lot/(\d*)/kml/(.*)$ /download.php?type=kml_trk&flightID=$1&$2 [L,NC]
+RewriteRule ^lot/(\d*)/igc/(.*)$ /download.php?type=igc&flightID=$1&$2 [L,NC]
+RewriteRule ^lot/(\d*)(.*)$ /index.php?name=leonardo&op=show_flight&flightID=$1$2 [L,NC]
+#compare
+RewriteRule ^compare/(\d*)(.*)$ /index.php?name=leonardo&op=compare&flightID=$1$2 [L,NC]
+RewriteRule ^compare3d/(\d*)(.*)$ /index.php?name=leonardo&op=compare3d&flightID=$1$2 [L,NC]
+RewriteRule ^porownanie/(\d*)(.*)$ /index.php?name=leonardo&op=compare&flightID=$1$2 [L,NC]
+RewriteRule ^porownanie3d/(\d*)(.*)$ /index.php?name=leonardo&op=compare3d&flightID=$1$2 [L,NC]
+
+# various operations on a takeoff
+RewriteRule ^takeoff/(\d*)/kml/?$ /download.php?type=kml_wpt&wptID=$1 [L,NC]
+RewriteRule ^takeoff/(\d*)/?(.*)$ /index.php?name=leonardo&op=show_waypoint&waypointIDview=$1$2 [L,NC]
+RewriteRule ^startowisko/(\d*)/kml/?$ /download.php?type=kml_wpt&wptID=$1 [L,NC]
+RewriteRule ^startowisko/(\d*)/?(.*)$ /index.php?name=leonardo&op=show_waypoint&waypointIDview=$1$2 [L,NC]
+
+# various operations on a pilot
+#RewriteRule ^pilot/([\d_]*)/stats/?(.*)$   /index.php?name=leonardo&op=pilot_profile_stats&pilotIDview=$1$2 [L,NC]
+RewriteRule ^pilot/([\d_]*)/flights/?(.*)$ /index.php?name=leonardo&op=list_flights&pilotIDview=$1$2   [L,NC]
+RewriteRule ^pilot/([\d_]*)/?(.*)$ /index.php?name=leonardo&op=pilot_profile&pilotIDview=$1$2  [L,NC]
+
+# all 'list' ops that are /opname/countryCode/date/....
+RewriteRule ^loty/(.*)/(.*)/(.*)$ /index.php?name=leonardo&op=list_flights&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^statystyki/(.*)/(.*)/(.*)$ /index.php?name=leonardo&op=pilot_profile_stats&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^tracks/(.*)/(.*)/(.*)$ /index.php?name=leonardo&op=list_flights&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^stats/(.*)/(.*)/(.*)$ /index.php?name=leonardo&op=pilot_profile_stats&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^ge/(.*)$     /download.php?type=explore_ge&leoSeo=$1 [L,NC]
+RewriteRule ^pilots/(.*)/(.*)/(.*)$  /index.php?name=leonardo&op=list_pilots&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^league/(.*)/(.*)/(.*)$  /index.php?name=leonardo&op=competition&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^takeoffs/(.*)/(.*)/(.*)$  /index.php?name=leonardo&op=list_takeoffs&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^loty/(.*)/(.*)/(.*)$ /index.php?name=leonardo&op=list_flights&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^statystyki/(.*)/(.*)/(.*)$ /index.php?name=leonardo&op=pilot_profile_stats&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^ge/(.*)$     /download.php?type=explore_ge&leoSeo=$1 [L,NC]
+RewriteRule ^piloci/(.*)/(.*)/(.*)$  /index.php?name=leonardo&op=list_pilots&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^liga/(.*)/(.*)/(.*)$  /index.php?name=leonardo&op=competition&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^startowiska/(.*)/(.*)/(.*)$  /index.php?name=leonardo&op=list_takeoffs&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+
+RewriteRule ^ranks/(\d*)\.(\d*)/(.*)/(.*)$  /index.php?name=leonardo&op=comp&rank=$1&subrank=$2&l_date=$3&leoSeo=$4 [L,NC]
+RewriteRule ^rankingi/(\d*)\.(\d*)/(.*)/(.*)$  /index.php?name=leonardo&op=comp&rank=$1&subrank=$2&l_date=$3&leoSeo=$4 [L,NC]
+
+
+RewriteRule ^page/(.*)$ /index.php?name=leonardo&op=$1 [L,NC]
+RewriteRule ^strona/(.*)$ /index.php?name=leonardo&op=$1 [L,NC]
+
+RewriteRule ^&(.*)$ /index.php?name=leonardo&$1 [L,NC]
+
+# RewriteRule ^?[^.]*$ //tracks/world/%{TIME_YEAR}/ [R,NC]
+# co bedzie jak nie bedzie podanego zadnego URI
+RewriteRule ^/?$ strona/index_full/ [N,NC]
+RewriteRule ^/?$ tracks/world/%{TIME_YEAR}/ [N,NC]
+RewriteRule ^/?$ loty/swiat/%{TIME_YEAR}/ [N,NC]
+RewriteRule ^/?$ loty/world/%{TIME_YEAR}/ [N,NC]
+
+
+RewriteRule /^(.*)$ /$1 [L,NC]
 
