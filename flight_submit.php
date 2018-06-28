@@ -148,9 +148,7 @@ if (count($_POST) >0 ) {
 		echo getAddFlightErrMsg($errCode,$flightID);
 	} else {
 		// echo "response=$flightID<br>";
-		echo _YOUR_FLIGHT_HAS_BEEN_SUBMITTED."<br><br><a href='http://".$_SERVER['SERVER_NAME'].
-		getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID)).
-		"'>"._PRESS_HERE_TO_VIEW_IT.'</a>';
+		echo _YOUR_FLIGHT_HAS_BEEN_SUBMITTED."<br><br><a href='i".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>"._PRESS_HERE_TO_VIEW_IT.'</a>';
 
 	}
     // DEBUG_END();
