@@ -1111,5 +1111,19 @@ div#addFlightComment{
         .shareButtonSmall{
 		padding-left: 2px;
         }
+	.greenButtonLink{
+		float: left;
+		width: 100%;
+		text-align: center;
+	}
 
+}
+
+
+@media only screen and (max-width: 500px){
+        .greenButtonLink{
+                float: left;
+                width: 100%;
+                text-align: center;
+        }
 }

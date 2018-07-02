@@ -153,7 +153,7 @@ function getPilotInfo(serverID,pilotID,update) {
 			$imgBig=$CONF['cdnURL'].getPilotPhotoFilename($serverIDview,$pilotIDview);	
 			list($width, $height, $type, $attr) = getimagesize($imgBig);
 			list($width, $height)=CLimage::getJPG_NewSize($CONF['photos']['mid']['max_width'], $CONF['photos']['mid']['max_height'], $width, $height);
-			echo "<a href='$imgBigRel' target='_blank'><img src='".$CONF['cdnURL'].getPilotPhotoRelFilename($serverIDview,$pilotIDview,1)."'
+			echo "<a href='$imgBigRel' target='_blank'><img width='95%' style='max-width: 300px' src='".$CONF['cdnURL'].getPilotPhotoRelFilename($serverIDview,$pilotIDview,1)."'
 			onmouseover=\"trailOn('$imgBigRel','','','','','','1','$width','$height','','.');\" onmouseout=\"hidetrail();\" 
 			 border=0></a>";					
 		?>

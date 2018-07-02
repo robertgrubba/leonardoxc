@@ -306,7 +306,7 @@ define("_OLC_BARO","Barograf");
 //--------------------------------------------
 define("_Pilot_Profile","Profil pilota");
 define("_back_to_flights","powrót do lotów");
-define("_pilot_stats","statystyki");
+define("_pilot_stats","Statystyki");
 define("_edit_profile","edytuj profil");
 define("_flights_stats","statystyki lotów");
 define("_View_Profile","Pokaż profil");
