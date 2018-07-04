@@ -223,10 +223,10 @@
 			$kmlStr=$flight->kmlGetTrack("ff0000",1,2,0);
 			
 			
-			$markerIconUrl=$_SERVER['SERVER_NAME'].getRelMainDir()."/img/icon_cat_".$flight->cat.".png";
-			$markerIconUrl=str_replace('//','/', $markerIconUrl);
-			$markerIconUrl=str_replace('//','/', $markerIconUrl);
-			$markerIconUrl="http://".$markerIconUrl;
+			$markerIconUrl=getRelMainDir()."/img/icon_cat_".$flight->cat.".png";
+			//$markerIconUrl=str_replace('//','/', $markerIconUrl);
+			//$markerIconUrl=str_replace('//','/', $markerIconUrl);
+			//$markerIconUrl="http://".$markerIconUrl;
 			
 			// remove the string  
 			// var flightArray=

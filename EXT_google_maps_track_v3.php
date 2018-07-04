@@ -252,7 +252,7 @@ img.icons1 {   background: url(<?=$moduleRelPath?>/img/sprite_icons1.png) no-rep
 	  
 		<div id='trackCompareFinder'>
 			<div id="trackCompareFinderHeader">
-			<?php  echo _Find_and_Compare_Flights?> >> 
+			<?php  echo _Find_and_Compare_Flights?>  
 			</div> 
 			<div id="trackCompareFinderHeaderExpand" > 				
 				<div id="trackCompareFinderHeaderClose">
