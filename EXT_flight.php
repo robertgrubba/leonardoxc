@@ -92,9 +92,8 @@
 //			 $nearestWaypoint->getFromDB();
 	
 			$name=getPilotRealName($row["userID"],$row["userServerID"]);
-			$link=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].
-									getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])) 
-									);
+			//$link=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])));
+			$link=htmlspecialchars (getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])));
 			$this_year=substr($row[DATE],0,4);		
 			$linkIGC=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].getRelMainDir().
 						str_replace("%PILOTID%",getPilotID($row["userServerID"],$row["userID"]),str_replace("%YEAR%",$this_year,$CONF['paths']['igc']) ).'/'.
@@ -162,9 +161,8 @@
 			//$nearestWaypoint->getFromDB();
 	
 			$name=getPilotRealName($flight->userID,$flight->userServerID);
-			$link=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].
-										getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID)) 
-									);
+			//$link=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID)));
+			$link=htmlspecialchars (getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID)));
 										
 			$this_year=substr($flight->DATE,0,4);		
 			$linkIGC=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].getRelMainDir().
@@ -190,7 +188,7 @@
 					
 	
 			$polyFile=$flight->getPolylineFilename();
-			$polyPath="http://".$_SERVER['SERVER_NAME'].getRelMainDir().$flight->getPolylineRelPath();
+			$polyPath=getRelMainDir().$flight->getPolylineRelPath();
 			
 			$lines=$flight->getPolyHeader();
 			
@@ -211,7 +209,7 @@
 			$min_lon = $parts[2];
 			$max_lon = $parts[3];
 	
-			$jsonGraphData="http://".$_SERVER['SERVER_NAME'].getRelMainDir().$flight->getJsonRelPath();
+			$jsonGraphData=getRelMainDir().$flight->getJsonRelPath();
 			
 			$kmz=$_SERVER['SERVER_NAME']."/$baseInstallationPath/".$flight->getKMLRelPath(0);
 			$kmz=str_replace('//','/', $kmz);
