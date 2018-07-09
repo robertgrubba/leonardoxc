@@ -21,7 +21,7 @@
 $tz  = new DateTimeZone('Europe/Warsaw');
 $flightAge = DateTime::createFromFormat('Y-m-d G:i:s', $flight->dateAdded, $tz)->diff(new DateTime('now', $tz))->days;
 
-  if ($confirmed && ( ($flight->belongsToUser($userID) && $flightAge>$CONF['timeToDelete']) || L_auth::isAdmin($userID) )  ) {
+  if ($confirmed && ( ($flight->belongsToUser($userID) && $flightAge<$CONF['timeToDelete']) || L_auth::isAdmin($userID) )  ) {
 
 	$flight->deleteFlight();
 	echo "<br><span class='ok'>"._THE_FLIGHT_HAS_BEEN_DELETED."</span><br><br>";
