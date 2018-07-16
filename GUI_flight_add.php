@@ -504,8 +504,11 @@ This is nothing to worry about, but you can easily provide this info <br>by clic
 		  <br>
 		  <a href="<?=getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))?>"><?=_PRESS_HERE_TO_VIEW_IT ?></a><br>
 		  <em><?=_WILL_BE_ACTIVATED_SOON ?></em> 
+		
 		  <hr>	  
 		<?
+                //request to generate diagrams pushed send to CDN
+                $webPageContents = file_get_contents(getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID)));
 	}
 
 
