@@ -148,7 +148,9 @@ if (count($_POST) >0 ) {
 		echo getAddFlightErrMsg($errCode,$flightID);
 	} else {
 		// echo "response=$flightID<br>";
-		echo _YOUR_FLIGHT_HAS_BEEN_SUBMITTED."<br><br><a href='i".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>"._PRESS_HERE_TO_VIEW_IT.'</a>';
+		echo _YOUR_FLIGHT_HAS_BEEN_SUBMITTED."<br><br><a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>"._PRESS_HERE_TO_VIEW_IT.'</a>';
+		//request to generate diagrams pushed send to CDN
+		$webPageContents = file_get_contents(getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID)));
 
 	}
     // DEBUG_END();
