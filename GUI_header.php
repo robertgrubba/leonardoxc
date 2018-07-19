@@ -126,8 +126,11 @@ $Ltemplate->assign_vars(array(
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="' . $board_config['meta_robots'] .'">
 <meta name="distribution" content="' . $board_config['meta_distribution'] .'">
-<meta name="date-creation-yyyymmdd" content="' . $board_config['meta_date_creation_year'] . '' . $board_config['meta_date_creation_month'] . '' . $board_config['meta_date_creation_day'] . '">
-<meta name="date-revision-yyyymmdd" content="' . $board_config['meta_date_revision_year'] . '' . $board_config['meta_date_revision_month'] . '' . $board_config['meta_date_revision_day'] . '">
+<meta name="date-creation-yyyymmdd" content="' . $board_config['meta_date_creation'] . '">
+<meta name="date-revision-yyyymmdd" content="' . $board_config['meta_date_revision'] . '">
+<meta name="geo.position" content="'. $board_config['meta_geo']. '">
+<meta name="ICBM" content="'. $board_config['meta_geo']. '">
+
 '.$metaFlight,
 
 	'PAGE_TITLE' => $page_title,

@@ -376,7 +376,34 @@ if ($op=="show_flight"){
         echo "<br><div align='center'>No such flight exists</div><br><BR>";
         return;
   }
- $page_title = 'lot paralotnią z '.getWaypointName($flight->takeoffID); //.' do '.getWaypointName($flight->landingID);
+ $og_pilotName = $flight->userName;
+ $og_takeoffName = getWaypointName($flight->takeoffID);
+ $og_flightDate = $flight->DATE;
+ $og_flightSubmission = $flight->dateAdded;
+ $og_flightDistance = round(($flight->FLIGHT_KM)/1000,1);
+ $og_flightDuration = gmdate("H:i:s",$flight->DURATION);
+ $page_title = 'lot paralotnią ze startowiska '.$og_takeoffName; //.' do '.getWaypointName($flight->landingID);
+ $page_description = "Dnia ".$og_flightDate." ".$og_pilotName." w czasie ".$og_flightDuration." wykonał paralotnią lot na dystansie ".$og_flightDistance."KM (OLC) ze startowiska ".$og_takeoffName." - strona zawiera statystyki i wizualizację tego lotu.";
+ $page_keywords = "paralotnie, paragliding, flight, log, track, ".$og_takeoffName.", ".$og_pilotName;
+
+ $board_config['meta_description']=$page_description;
+ $board_config['meta_keywords']=$page_keywords;
+ $board_config['meta_author']=$og_pilotName;
+ $board_config['meta_date_creation']=str_replace('-','',$og_flightDate); 
+ $board_config['meta_date_revision']=substr(str_replace('-','',$og_flightSubmission),0,8); 
+ $board_config['meta_geo']=$flight->firstLat.", ".$flight->firstLon;
+
+ //og:title pilotName &#8226; flightDate &#8226; &#8722; dystans
+ //og:description PARAGLIDING &#9971; Miejsce &#8759; &#8987; Czas lotu &#8759; &#248; predkosc&#8759; &#8890; maks wys
+// og:type sport
+// og: url link
+// og:updated_time
+// og:image:type image/jpeg
+// og:latitude
+// og:longtitude
+// article:published_time
+// article:modified_time
+// og:site_name
 }
 
 
