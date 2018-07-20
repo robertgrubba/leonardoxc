@@ -363,7 +363,22 @@ if ($op=="pilot_profile_stats") $page_title = 'statystyki pilota';
 if ($op=="show_waypoint"){
 	 $wpInfo =new waypoint($waypointIDview );
 	 $wpInfo->getFromDB();
-         $page_title = selectWaypointName($wpInfo->name,$wpInfo->intName,$wpInfo->countryCode).' - opis startowiska paralotniowego';
+		 $query="SELECT  ID FROM $flightsTable  WHERE takeoffID =".$waypointIDview;
+		 $res= $db->sql_query($query);
+ 		 if($res > 0){
+                	$og_flightNum=mysql_num_rows($res);
+		 }
+	 $og_takeoffName = selectWaypointName($wpInfo->name,$wpInfo->intName,$wpInfo->countryCode);
+         $page_title = $og_takeoffName.' - opis startowiska paralotniowego';
+	 $page_keywords = "paralotnie, paragliding, flights, logs, track, igc, parapente, loty, opis, przewodnik, ".$og_takeoffName.", guide";
+	 $page_description = "Informacje na temat startowiska paralotniowego ".$og_takeoffName.": koordynaty GPS, ".$og_flightNum." zgłoszonych lotów i mapa ułatwiająca odnalezienie miejsca.";
+
+	 $board_config['meta_keywords']=$page_keywords;
+	 $board_config['meta_description']=$page_description;
+ 	 $board_config['meta_geo']=$wpInfo->lat.", ".$wpInfo->lon;
+	 $board_config['meta_date_revision']=str_replace('-','',$wpInfo->modifyDate);
+ 	 $board_config['meta_author']='https://leonardo.pgxc.pl';
+	
 }
 if ($op=="pilot_profile"){
 	$page_title = 'profil pilota paralotni - '.getPilotRealName($pilotIDview,0,0);
@@ -382,9 +397,11 @@ if ($op=="show_flight"){
  $og_flightSubmission = $flight->dateAdded;
  $og_flightDistance = round(($flight->FLIGHT_KM)/1000,1);
  $og_flightDuration = gmdate("H:i:s",$flight->DURATION);
+ $og_flightMeanSpeed = $flight->MEAN_SPEED;
+ $og_flightMaxHeight = $flight->MAX_ALT;
  $page_title = 'lot paralotnią ze startowiska '.$og_takeoffName; //.' do '.getWaypointName($flight->landingID);
  $page_description = "Dnia ".$og_flightDate." ".$og_pilotName." w czasie ".$og_flightDuration." wykonał paralotnią lot na dystansie ".$og_flightDistance."KM (OLC) ze startowiska ".$og_takeoffName." - strona zawiera statystyki i wizualizację tego lotu.";
- $page_keywords = "paralotnie, paragliding, flight, log, track, ".$og_takeoffName.", ".$og_pilotName;
+ $page_keywords = "paralotnie, paragliding, flight, log, track, igc, parapente, ".$og_takeoffName.", ".$og_pilotName;
 
  $board_config['meta_description']=$page_description;
  $board_config['meta_keywords']=$page_keywords;
@@ -393,17 +410,36 @@ if ($op=="show_flight"){
  $board_config['meta_date_revision']=substr(str_replace('-','',$og_flightSubmission),0,8); 
  $board_config['meta_geo']=$flight->firstLat.", ".$flight->firstLon;
 
- //og:title pilotName &#8226; flightDate &#8226; &#8722; dystans
- //og:description PARAGLIDING &#9971; Miejsce &#8759; &#8987; Czas lotu &#8759; &#248; predkosc&#8759; &#8890; maks wys
-// og:type sport
-// og: url link
-// og:updated_time
-// og:image:type image/jpeg
-// og:latitude
-// og:longtitude
-// article:published_time
-// article:modified_time
-// og:site_name
+ $board_config['meta_ogTitle'] = $og_pilotName." &#8226; ".$og_flightDate." &#8226; &#8722; ".$og_flightDistance." km";
+ $board_config['meta_ogDescription'] = "Paralotnie  &#9971; ".$og_takeoffName." &#8759; &#8987; ".$og_flightDuration." &#8759; &#248; ".$og_flightMeanSpeed." km/h &#8759; &#8890; ".$og_flightMaxHeight." m n.p.m";
+ $board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID));
+ $board_config['meta_ogUpdatedTime'] = $og_flightDate;
+ $board_config['meta_ogLatitude'] = $flight->firstLat;
+ $board_config['meta_ogLongtitude'] = $flight->firstLon;
+ $board_config['meta_ogType'] = 'sport';
+ $board_config['meta_ogPublished'] = $og_flightDate;
+ $board_config['meta_ogModified'] = $og_flightSubmission;
+ $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+
+ if ($flight->hasPhotos) {
+        require_once dirname(__FILE__)."/CL_flightPhotos.php";
+
+        $flightPhotos=new flightPhotos($flight->flightID);
+        $flightPhotos->getFromDB();
+
+        // get geoinfo
+        $flightPhotos->computeGeoInfo();
+
+	foreach ( $flightPhotos->photos as $photoNum=>$photoInfo) {
+		$imgIconRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg";
+	}
+	$board_config['meta_ogImage'] = $imgIconRel;
+	$board_config['meta_ogImageType'] = 'image/jpeg';
+ }else{
+	$board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/templates/pgxc/tpl/leonardo_logo.gif';
+	$board_config['meta_ogImageType'] = 'image/gif';
+ }
+
 }
 
 
