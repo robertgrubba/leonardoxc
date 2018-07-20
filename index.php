@@ -443,7 +443,7 @@ if ($op=="show_flight"){
  $board_config['meta_geo']=$flight->firstLat.", ".$flight->firstLon;
 
  $board_config['meta_ogTitle'] = $og_pilotName." &#8226; ".$og_flightDate." &#8226; &#8722; ".$og_flightDistance." km";
- $board_config['meta_ogDescription'] = "Paralotnie  &#9971; ".$og_takeoffName." &#8759; &#8987; ".$og_flightDuration." &#8759; &#248; ".$og_flightMeanSpeed." km/h &#8759; &#8890; ".$og_flightMaxHeight." m n.p.m";
+ $board_config['meta_ogDescription'] = "Paralotnie  &#9971; ".$og_takeoffName." &#8759; &#8987; ".$og_flightDuration." &#8759; &#248; ".$og_flightMeanSpeed." km/h &#8759; &#8613; ".$og_flightMaxHeight." m n.p.m";
  $board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID));
  $board_config['meta_ogUpdatedTime'] = $og_flightDate;
  $board_config['meta_ogLatitude'] = $flight->firstLat;
