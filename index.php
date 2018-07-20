@@ -400,7 +400,7 @@ if ($op=="show_waypoint"){
 	}
 
 	$board_config['meta_ogTitle'] = $page_title;
-	$board_config['meta_ogDescription']=  "&#9971; ".$og_takeoffName." &#8759; &#8721; ".$og_flightNum." &#8759; &#9812 ".$og_siteChampion." - ".$og_siteRecord;
+	$board_config['meta_ogDescription']=  "&#9872; ".$og_takeoffName." &#8759; &#8721; ".$og_flightNum." &#8759; &#9812 ".$og_siteChampion." - ".$og_siteRecord;
  	$board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$waypointIDview));
  	$board_config['meta_ogUpdatedTime'] = $wpInfo->modifyDate;
  	$board_config['meta_ogLatitude'] = $wpInfo->lat (-1*$wpInfo->lon);
