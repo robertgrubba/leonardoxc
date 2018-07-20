@@ -363,22 +363,54 @@ if ($op=="pilot_profile_stats") $page_title = 'statystyki pilota';
 if ($op=="show_waypoint"){
 	 $wpInfo =new waypoint($waypointIDview );
 	 $wpInfo->getFromDB();
-		 $query="SELECT  ID FROM $flightsTable  WHERE takeoffID =".$waypointIDview;
+		 $query="SELECT MAX(FLIGHT_KM) as record_km, ID, userID FROM $flightsTable  WHERE takeoffID =".$waypointIDview." GROUP BY ID ORDER BY record_km DESC";
 		 $res= $db->sql_query($query);
  		 if($res > 0){
                 	$og_flightNum=mysql_num_rows($res);
+			$row = mysql_fetch_assoc($res);
+			$og_siteRecord=formatDistance($row['record_km'],1);
+			
+			$flightID=$row['ID']; 
+			if ($flightID != ''){
+				$flight=new flight();
+  				if ( ! $flight->getFlightFromDB($flightID) ) {
+        		//		echo "<br><div align='center'>No such flight exists</div><br><BR>";
+        				return;
+				}else{
+					$og_siteChampion=$flight->userName;
+				}
+			}
 		 }
 	 $og_takeoffName = selectWaypointName($wpInfo->name,$wpInfo->intName,$wpInfo->countryCode);
          $page_title = $og_takeoffName.' - opis startowiska paralotniowego';
 	 $page_keywords = "paralotnie, paragliding, flights, logs, track, igc, parapente, loty, opis, przewodnik, ".$og_takeoffName.", guide";
 	 $page_description = "Informacje na temat startowiska paralotniowego ".$og_takeoffName.": koordynaty GPS, ".$og_flightNum." zgłoszonych lotów i mapa ułatwiająca odnalezienie miejsca.";
-
 	 $board_config['meta_keywords']=$page_keywords;
 	 $board_config['meta_description']=$page_description;
- 	 $board_config['meta_geo']=$wpInfo->lat.", ".$wpInfo->lon;
+ 	 $board_config['meta_geo']=$wpInfo->lat.", ".(-1*$wpInfo->lon);
 	 $board_config['meta_date_revision']=str_replace('-','',$wpInfo->modifyDate);
  	 $board_config['meta_author']='https://leonardo.pgxc.pl';
-	
+
+// map icons for social media
+	$dst=$CONF['mapIconsDir'].'/'.$waypointIDview.'.jpg';
+	$src='https://maps.googleapis.com/maps/api/staticmap?center='.$wpInfo->lat.",".(-1*$wpInfo->lon).'&zoom=11&size=400x300&markers=icon:http://bit.ly/PGICON32%7C|'.$wpInfo->lat.",".(-1*$wpInfo->lon).'&key='.$CONF_google_maps_api_key;
+// if not exists then create one
+	if (!file_exists($dst)){
+		file_put_contents($dst, file_get_contents($src));
+	}
+
+	$board_config['meta_ogTitle'] = $page_title;
+	$board_config['meta_ogDescription']=  "&#8226; ".$og_takeoffName." &#8759; &#8721; ".$og_flightNum." &#8759; &#9812 ".$og_siteChampion." - ".$og_siteRecord;
+ 	$board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$waypointIDview));
+ 	$board_config['meta_ogUpdatedTime'] = $wpInfo->modifyDate;
+ 	$board_config['meta_ogLatitude'] = $wpInfo->lat (-1*$wpInfo->lon);
+ 	$board_config['meta_ogLongtitude'] =  (-1*$wpInfo->lon);
+ 	$board_config['meta_ogType'] = 'sport';
+ 	$board_config['meta_ogPublished'] = $wpInfo->modifyDate;
+	$board_config['meta_ogModified'] = $wpInfo->modifyDate;
+ 	$board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+        $board_config['meta_ogImage'] = 'https://files.leonardo.pgxc.pl/'.$dst;
+        $board_config['meta_ogImageType'] = 'image/jpeg';
 }
 if ($op=="pilot_profile"){
 	$page_title = 'profil pilota paralotni - '.getPilotRealName($pilotIDview,0,0);
