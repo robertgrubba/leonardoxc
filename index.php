@@ -395,8 +395,11 @@ if ($op=="show_waypoint"){
 	$dst=$CONF['mapIconsDir'].'/'.$waypointIDview.'.jpg';
 	$src='https://maps.googleapis.com/maps/api/staticmap?center='.$wpInfo->lat.",".(-1*$wpInfo->lon).'&zoom=11&size=400x300&markers=icon:http://bit.ly/PGICON32%7C|'.$wpInfo->lat.",".(-1*$wpInfo->lon).'&key='.$CONF_google_maps_api_key;
 // if not exists then create one
-	if (!file_exists($dst)){
-		file_put_contents($dst, file_get_contents($src));
+	if (!file_exists($dst.".txt")){
+		$result=file_put_contents($dst, file_get_contents($src));
+		if ($result !== FALSE){
+			file_put_contents($dst.".txt", "1");
+		}
 	}
 
 	$board_config['meta_ogTitle'] = $page_title;
@@ -413,7 +416,7 @@ if ($op=="show_waypoint"){
         $board_config['meta_ogImageType'] = 'image/jpeg';
 }
 if ($op=="pilot_profile"){
-	$page_title = 'profil pilota paralotni - '.getPilotRealName($pilotIDview,0,0);
+	$page_title = 'profil pilota  - '.getPilotRealName($pilotIDview,0,0);
 }
 if ($op=="stats") $page_title = 'statystyki lotów zgłoszonych do portalu';
 if ($op=="show_flight"){
@@ -432,8 +435,8 @@ if ($op=="show_flight"){
  $og_flightMeanSpeed = $flight->MEAN_SPEED;
  $og_flightMaxHeight = $flight->MAX_ALT;
  $page_title = 'lot paralotnią ze startowiska '.$og_takeoffName; //.' do '.getWaypointName($flight->landingID);
- $page_description = "Dnia ".$og_flightDate." ".$og_pilotName." w czasie ".$og_flightDuration." wykonał paralotnią lot na dystansie ".$og_flightDistance."KM (OLC) ze startowiska ".$og_takeoffName." - strona zawiera statystyki i wizualizację tego lotu.";
- $page_keywords = "paralotnie, paragliding, flight, log, track, igc, parapente, ".$og_takeoffName.", ".$og_pilotName;
+ $page_description = $gliderCatList[$flight->cat].". Dnia ".$og_flightDate." ".$og_pilotName." w czasie ".$og_flightDuration." wykonał lot na dystansie ".$og_flightDistance."KM (OLC) ze startowiska ".$og_takeoffName." - strona zawiera statystyki i wizualizację tego lotu.";
+ $page_keywords = $gliderCatList[$flight->cat].", paragliding, flight, log, track, igc, parapente, ".$og_takeoffName.", ".$og_pilotName;
 
  $board_config['meta_description']=$page_description;
  $board_config['meta_keywords']=$page_keywords;
@@ -443,7 +446,7 @@ if ($op=="show_flight"){
  $board_config['meta_geo']=$flight->firstLat.", ".$flight->firstLon;
 
  $board_config['meta_ogTitle'] = $og_pilotName." &#8226; ".$og_flightDate." &#8226; &#8722; ".$og_flightDistance." km";
- $board_config['meta_ogDescription'] = "Paralotnie  &#9971; ".$og_takeoffName." &#8759; &#8987; ".$og_flightDuration." &#8759; &#248; ".$og_flightMeanSpeed." km/h &#8759; &#8613; ".$og_flightMaxHeight." m n.p.m";
+ $board_config['meta_ogDescription'] = $gliderCatList[$flight->cat]."  &#9971; ".$og_takeoffName." &#8759; &#8987; ".$og_flightDuration." &#8759; &#248; ".$og_flightMeanSpeed." km/h &#8759; &#8613; ".$og_flightMaxHeight." m n.p.m";
  $board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID));
  $board_config['meta_ogUpdatedTime'] = $og_flightDate;
  $board_config['meta_ogLatitude'] = $flight->firstLat;
@@ -453,6 +456,40 @@ if ($op=="show_flight"){
  $board_config['meta_ogModified'] = $og_flightSubmission;
  $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
 
+
+$dst=$CONF['flightMapThumbsDir'].'/'.$flightID.'.jpg';
+
+if (!file_exists($dst.".txt")){
+        $jsondata = file_get_contents('.'.$flight->getJsonRelPath());
+        $obj = json_decode(str_replace('var flightArray=','',$jsondata),true);
+        $size=count($obj['lat']);
+        $x=0;
+        $path="weight:2%7Ccolor:0xff0000ff%7C";
+
+        while ($x<$size){
+                $path.=$obj['lat'][$x].','.$obj['lon'][$x];
+                $x++;
+                if ($x!=$size){
+                        $path.='%7C';
+                }
+        }
+
+        $launch="".$obj['lat'][1].','.$obj['lon'][1];
+        $landing="".$obj['lat'][$size-1].','.$obj['lon'][$size-1];
+        $markers='icon:https://leonardo.pgxc.pl/img/go.png%7C'.$launch.'&markers=icon:https://leonardo.pgxc.pl/img/stop.png%7C'.$landing;
+
+        $src='https://maps.googleapis.com/maps/api/staticmap?size=800x600&markers='.$markers.'&path='.$path.'&key='.$CONF_google_maps_api_key;
+
+        $result=file_put_contents($dst, file_get_contents($src));
+        if ($result !== FALSE){
+                file_put_contents($dst.".txt","1");
+        }
+}
+
+	$board_config['meta_ogImage'] = $CONF['cdnURL'].'/'.$CONF['flightMapThumbsDir'].'/'.$flightID.'.jpg';
+	$board_config['meta_ogImageType'] = 'image/jpeg';
+
+$OG_PHOTOS="";
  if ($flight->hasPhotos) {
         require_once dirname(__FILE__)."/CL_flightPhotos.php";
 
@@ -464,14 +501,11 @@ if ($op=="show_flight"){
 
 	foreach ( $flightPhotos->photos as $photoNum=>$photoInfo) {
 		$imgIconRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg";
+//currently open graph accepts only one image that is why I'll leave it commented
+//		$OG_PHOTOS.=' <meta property="og:image" content="'.$imgIconRel.'" >';
 	}
-	$board_config['meta_ogImage'] = $imgIconRel;
-	$board_config['meta_ogImageType'] = 'image/jpeg';
- }else{
-	$board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/templates/pgxc/tpl/leonardo_logo.gif';
-	$board_config['meta_ogImageType'] = 'image/gif';
+		$board_config['meta_ogImage'] = ' <meta property="og:image" content="'.$imgIconRel.'" >';
  }
-
 }
 
 

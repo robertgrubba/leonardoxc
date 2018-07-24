@@ -124,6 +124,10 @@ if ($op=="show_flight" || $op=="show_waypoint"){
 	$og_metadata='';
 }
 
+if($op=="show_flight"){
+	$og_metadata.=$OG_PHOTOS;
+}
+
 $Ltemplate->assign_vars(array(
 	'SITENAME' => $board_config['sitename'],
 	'SITE_DESCRIPTION' => $board_config['site_desc'],
