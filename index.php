@@ -465,24 +465,34 @@ if (!file_exists($dst.".txt")){
         $size=count($obj['lat']);
         $x=0;
         $path="weight:2%7Ccolor:0xff0000ff%7C";
+	$step=1;
+	if($size>200){
+		$step=2;
+	}
+	if($size>400){
+		$step=3;
+	}
+	if($size>800){
+		$step=4;
+	}
 
         while ($x<$size){
                 $path.=$obj['lat'][$x].','.$obj['lon'][$x];
-                $x++;
-                if ($x!=$size){
+                $x=$x+$step;
+                if ($x<$size){
                         $path.='%7C';
                 }
         }
 
         $launch="".$obj['lat'][1].','.$obj['lon'][1];
         $landing="".$obj['lat'][$size-1].','.$obj['lon'][$size-1];
-        $markers='icon:https://leonardo.pgxc.pl/img/go.png%7C'.$launch.'&markers=icon:https://leonardo.pgxc.pl/img/stop.png%7C'.$landing;
+        $markers='icon:http://bit.ly/2JPR7nP%7C'.$launch.'&markers=icon:http://bit.ly/2LlZoWd%7C'.$landing;
 
         $src='https://maps.googleapis.com/maps/api/staticmap?size=800x600&markers='.$markers.'&path='.$path.'&key='.$CONF_google_maps_api_key;
 
         $result=file_put_contents($dst, file_get_contents($src));
         if ($result !== FALSE){
-                file_put_contents($dst.".txt","1");
+                file_put_contents($dst.".txt","$size");
         }
 }
 
