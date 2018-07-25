@@ -382,7 +382,7 @@ if ($op=="show_waypoint"){
 			}
 		 }
 	 $og_takeoffName = selectWaypointName($wpInfo->name,$wpInfo->intName,$wpInfo->countryCode);
-         $page_title = $og_takeoffName.' - opis startowiska paralotniowego';
+         $page_title = $og_takeoffName.' - opis startowiska ';
 	 $page_keywords = "paralotnie, paragliding, flights, logs, track, igc, parapente, loty, opis, przewodnik, ".$og_takeoffName.", guide";
 	 $page_description = "Informacje na temat startowiska paralotniowego ".$og_takeoffName.": koordynaty GPS, ".$og_flightNum." zgłoszonych lotów i mapa ułatwiająca odnalezienie miejsca.";
 	 $board_config['meta_keywords']=$page_keywords;
@@ -445,7 +445,7 @@ if ($op=="show_flight"){
  $board_config['meta_date_revision']=substr(str_replace('-','',$og_flightSubmission),0,8); 
  $board_config['meta_geo']=$flight->firstLat.", ".$flight->firstLon;
 
- $board_config['meta_ogTitle'] = $og_pilotName." &#8226; ".$og_flightDate." &#8226; &#8722; ".$og_flightDistance." km";
+ $board_config['meta_ogTitle'] = $og_pilotName." &#8226; ".$og_flightDate." &#8226; ".$og_flightDistance." km";
  $board_config['meta_ogDescription'] = $gliderCatList[$flight->cat]."  &#9971; ".$og_takeoffName." &#8759; &#8987; ".$og_flightDuration." &#8759; &#248; ".$og_flightMeanSpeed." km/h &#8759; &#8613; ".$og_flightMaxHeight." m n.p.m";
  $board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID));
  $board_config['meta_ogUpdatedTime'] = $og_flightDate;
@@ -486,7 +486,7 @@ if (!file_exists($dst.".txt")){
 
         $launch="".$obj['lat'][1].','.$obj['lon'][1];
         $landing="".$obj['lat'][$size-1].','.$obj['lon'][$size-1];
-        $markers='icon:http://bit.ly/2JPR7nP%7C'.$launch.'&markers=icon:http://bit.ly/2LlZoWd%7C'.$landing;
+        $markers='icon:http://bit.ly/2uZ79WQ%7C'.$launch.'&markers=icon:http://bit.ly/2LJNOju%7C'.$landing;
 
         $src='https://maps.googleapis.com/maps/api/staticmap?size=800x600&markers='.$markers.'&path='.$path.'&key='.$CONF_google_maps_api_key;
 
