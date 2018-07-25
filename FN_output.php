@@ -63,7 +63,7 @@ function formatURL($linkURL,$numChars=0) {
 		 if (strlen($linkURL) > $numChars - 3 )
 		 $linkURL=substr($linkURL,0,$numChars)."...";
 	}
-	if ( substr($linkURL,0,7) == "http://" ) return $linkURL;
+	if ( substr($linkURL,0,7) == "http://" || substr($linkURL,0,8) == "https://" ) return $linkURL;
 	else return "http://".$linkURL;
 }
 
