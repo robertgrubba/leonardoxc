@@ -462,7 +462,7 @@ if ($op=="show_waypoint"){
 
 // map icons for social media
 	$dst=$CONF['mapIconsDir'].'/'.$waypointIDview.'.jpg';
-	$src='https://maps.googleapis.com/maps/api/staticmap?center='.$wpInfo->lat.",".(-1*$wpInfo->lon).'&zoom=11&size=400x300&markers=icon:http://bit.ly/PGICON32%7C|'.$wpInfo->lat.",".(-1*$wpInfo->lon).'&key='.$CONF_google_maps_api_key;
+	$src='https://maps.googleapis.com/maps/api/staticmap?center='.$wpInfo->lat.",".(-1*$wpInfo->lon).'&zoom=11&size=800x600&markers=icon:http://bit.ly/PGICON32%7C|'.$wpInfo->lat.",".(-1*$wpInfo->lon).'&key='.$CONF_google_maps_api_key;
 // if not exists then create one
 	if (!file_exists($dst.".txt")){
 		$result=file_put_contents($dst, file_get_contents($src));
