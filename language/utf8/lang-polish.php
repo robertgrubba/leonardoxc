@@ -948,4 +948,8 @@ define("_TICKET_SYS","Zgłoś problem");
 define("_Sync_Start_Times","Synchronizuj początki lotów");
 define("_SOCIAL_LINKS","Udostępnij stronę");
 define("_DEVELOPMENT_PGXC","Rozwijanie leonardo.pgxc.pl");
+define("_All_flights_near_this_point","Wszystkie loty w pobliżu tego startowiska");
+define("_Total_Site_Airtime","Łączny nalot użytkowników");
+define("_Maximum_Number_Launches","Najwięcej startów ze startowiska");
+define("_Maximum_Total_Airtime","Największy nalot ze startowiska");
 ?>

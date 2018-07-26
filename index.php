@@ -421,9 +421,35 @@ if ($op=="show_waypoint"){
         				return;
 				}else{
 					$og_siteChampion=$flight->userName;
+					$og_siteChampionFlightID=$flight->flightID;
 				}
 			}
 		 }
+
+	$query="SELECT sum(DURATION) as total_time FROM $flightsTable  WHERE takeoffID =".$waypointIDview;
+	$res= $db->sql_query($query);
+ 	if($res > 0){
+		$row = mysql_fetch_assoc($res);
+		$og_siteTotalAirtime=sec2Time($row['total_time'],1);
+	}
+	$query="SELECT userID, count(*) as number_of_flights FROM $flightsTable  WHERE takeoffID =".$waypointIDview." group by userID order by number_of_flights DESC";
+	$res= $db->sql_query($query);
+ 	if($res > 0){
+		$row = mysql_fetch_assoc($res);
+		$og_siteMaxLaunches=$row['number_of_flights'];
+		$og_siteMaxLaunchesPilotID=$row['userID'];
+	}
+//highest total airtime
+
+	$query="SELECT userID, sum(DURATION) as total_airtime FROM $flightsTable  WHERE takeoffID =".$waypointIDview." group by userID order by total_airtime DESC";
+        $res= $db->sql_query($query);
+        if($res > 0){
+                $row = mysql_fetch_assoc($res);
+                $og_siteMaxTotalAirtime=sec2Time($row['total_airtime']);
+                $og_siteMaxTotalAirtimePilotID=$row['userID'];
+        }
+
+
 	 $og_takeoffName = selectWaypointName($wpInfo->name,$wpInfo->intName,$wpInfo->countryCode);
          $page_title = $og_takeoffName.' - opis startowiska ';
 	 $page_keywords = "paralotnie, paragliding, flights, logs, track, igc, parapente, loty, opis, przewodnik, ".$og_takeoffName.", guide";
@@ -446,7 +472,7 @@ if ($op=="show_waypoint"){
 	}
 
 	$board_config['meta_ogTitle'] = $page_title;
-	$board_config['meta_ogDescription']=  "&#9872; ".$og_takeoffName." &#8759; &#8721; ".$og_flightNum." &#8759; &#9812 ".$og_siteChampion." - ".$og_siteRecord;
+	$board_config['meta_ogDescription']=  "&#9872; ".$og_takeoffName." &#8759; &#8721; ".$og_flightNum." (".$og_siteTotalAirtime.") &#8759; &#9812 ".$og_siteChampion." - ".$og_siteRecord;
  	$board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$waypointIDview));
  	$board_config['meta_ogUpdatedTime'] = $wpInfo->modifyDate;
  	$board_config['meta_ogLatitude'] = $wpInfo->lat (-1*$wpInfo->lon);

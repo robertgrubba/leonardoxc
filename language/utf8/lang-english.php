@@ -1021,5 +1021,11 @@ define("_DESIGN","Design");
 define("_TICKET_SYS","Submit support ticket"); 
 define("_SOCIAL_LINKS","Share the page");
 define("_DEVELOPMENT_PGXC","Developing pgxc.pl branch");
+define("_All_flights_near_this_point","All flights near this point");
+define("_Total_Site_Airtime","Total airtime from this takeoff");
+define("_Maximum_Number_Launches","The highest number of flights from this takeoff");
+define("_Maximum_Total_Airtime","Maximum airtime at this site");
+
+
 
 ?>

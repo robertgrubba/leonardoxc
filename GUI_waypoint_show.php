@@ -70,7 +70,7 @@
         </tr>
         <tr align="center" bgcolor="#D0E2CD">
           <td rowspan="3" class="col1_in">
-<b><? echo _SITE_RECORD ?></b>:
+<b><? echo _SITE_RECORD." (OLC):" ?></b>
 	<?
 	 $query="SELECT  MAX(MAX_LINEAR_DISTANCE) as record_km, ID FROM $flightsTable  WHERE takeoffID =".$waypointIDview." GROUP BY ID ORDER BY record_km DESC ";
 
@@ -79,14 +79,21 @@
      if($res > 0){
 		$flightNum=mysql_num_rows($res);
 		$row = mysql_fetch_assoc($res);
-
-		echo "<a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID']))."'>".formatDistance($row['record_km'],1)."</a>";
+// 20180726 - display best OLC dist instead of straight line distance
+//		echo "<a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID']))."'>".$og_siteChampion.' - '.formatDistance($row['record_km'],1)."</a>";
+		echo "<a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$og_siteChampionFlightID))."'>".$og_siteChampion.' - '.$og_siteRecord."</a>";
 	 } 
 
 
 ?>
 <p>
-<strong><? echo "<a href='".getLeonardoLink(array('op'=>'list_flights','takeoffID'=>$waypointIDview))."'>"._See_flights_near_this_point." [ ".$flightNum." ]</a>"; ?></strong>
+<strong><? echo _Maximum_Total_Airtime.": ".$og_siteMaxTotalAirtime." - <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteMaxTotalAirtimePilotID))."'> ".getPilotRealName($og_siteMaxTotalAirtimePilotID,$serverIDview)." </a>"; ?></strong>
+<p>
+<strong><? echo _Maximum_Number_Launches.": <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteMaxLaunchesPilotID))."'> ".getPilotRealName($og_siteMaxLaunchesPilotID,$serverIDview)." </a>"; ?></strong>
+<p>
+<strong><? echo _All_flights_near_this_point.": <a href='".getLeonardoLink(array('op'=>'list_flights','takeoffID'=>$waypointIDview))."'>[ ".$flightNum." ]</a>"; ?></strong>
+</p><p>
+<strong><? echo _Total_Site_Airtime.":</strong> ".$og_siteTotalAirtime; ?></p>
 			</td>
           <td rowspan="3" class="col2_in"><p><strong>lat/lon (WGS84):</strong><br>
 		  <? 	echo $wpInfo->lat." , ".-$wpInfo->lon ;
