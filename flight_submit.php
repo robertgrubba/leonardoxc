@@ -131,7 +131,33 @@ if (count($_POST) >0 ) {
 	$glider=$_POST['glider'];
 	$gliderBrandID=$_POST['gliderBrandID'];
 				
-		
+	error_log("Glidercertcat:".$gliderCertCategory." glider: ".$glider." glider brand id: ".$gliderBrandID,1,"rgrubba@gmail.com");
+	//trac#40
+	if ($gliderCertCategory==""){
+		$model=preg_replace("/^(\w+\s)/", "",$glider);
+		$query= 'select gliderCertCategory as cert, glider, count(*) as total from '.$flightsTable.' where glider like "%'.$model.'%" group by glider order by total asc';
+
+	        $result = $db->sql_query($query);
+		if($result >0) {
+         	//get the glider cert from existing flights with this glider
+			while($row = mysql_fetch_assoc($result)){ 
+		        	$gliderCertCategory=$row["cert"];
+			}
+		}
+	if($gliderCertCategory==0){
+                	//new glider, select most common category
+			$query='select gliderCertCategory as cert, count(*) as total from '.$flightsTable.' group by gliderCertCategory order by total asc';
+			$result1 = $db->sql_query($query);
+			if ($result1 >0){	
+				while($row = mysql_fetch_assoc($result1)){
+					$gliderCertCategory=$row["cert"];
+				}
+			}
+		}
+	}
+
+	error_log("Glider cert cat:".$gliderCertCategory." glider: ".$glider." glider model: ".$model." result:".$result." query: ".$query." row:".$row['gliderCertCategory'],1,"rgrubba@gmail.com");
+			
 	// log_msg("category=$category,cat=$cat,gliderCertCategory=$gliderCertCategory\r\n");				
 	list($errCode,$flightID)=addFlightFromFile($filename,0,$userID,	
 		array('category'=>$category,
