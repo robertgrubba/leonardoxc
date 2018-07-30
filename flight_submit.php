@@ -131,7 +131,6 @@ if (count($_POST) >0 ) {
 	$glider=$_POST['glider'];
 	$gliderBrandID=$_POST['gliderBrandID'];
 				
-	error_log("Glidercertcat:".$gliderCertCategory." glider: ".$glider." glider brand id: ".$gliderBrandID,1,"rgrubba@gmail.com");
 	//trac#40
 	if ($gliderCertCategory==""){
 		$model=preg_replace("/^(\w+\s)/", "",$glider);
@@ -156,8 +155,6 @@ if (count($_POST) >0 ) {
 		}
 	}
 
-	error_log("Glider cert cat:".$gliderCertCategory." glider: ".$glider." glider model: ".$model." result:".$result." query: ".$query." row:".$row['gliderCertCategory'],1,"rgrubba@gmail.com");
-			
 	// log_msg("category=$category,cat=$cat,gliderCertCategory=$gliderCertCategory\r\n");				
 	list($errCode,$flightID)=addFlightFromFile($filename,0,$userID,	
 		array('category'=>$category,
