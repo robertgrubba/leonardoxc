@@ -174,6 +174,7 @@ function addFlightFromFile($filename,$calledFromForm,$userIDstr,
 		$flight->commentsNum=1;
 	}	
 
+	if ( strtolower(substr($flight->linkURL,0,8)) == "https://" ) $flight->linkURL=substr($flight->linkURL,8);
 	if ( strtolower(substr($flight->linkURL,0,7)) == "http://" ) $flight->linkURL=substr($flight->linkURL,7);
 
 	if ($flight->cat==-1) $flight->cat=$CONF_default_cat_add;
