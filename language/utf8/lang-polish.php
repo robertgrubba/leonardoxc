@@ -396,6 +396,7 @@ define("_Best_OLC_score","Najlepszy wynik OLC");
 
 define("_Absolute_Height_Record","Rekord wysokości");
 define("_Altitute_gain_Record","Rekord przewyższenia");
+define("_Altitude_gain_Record","Rekord przewyższenia");
 define("_Mean_values","Wartości średnie");
 define("_Mean_distance_per_flight","Średni dystans");
 define("_Mean_flights_per_Month","Średnia liczba lotów na miesiąc");

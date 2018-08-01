@@ -81,10 +81,12 @@
 		$row = mysql_fetch_assoc($res);
 // 20180726 - display best OLC dist instead of straight line distance
 //		echo "<a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID']))."'>".$og_siteChampion.' - '.formatDistance($row['record_km'],1)."</a>";
-		echo "<a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$og_siteChampionFlightID))."'>".$og_siteChampion.' - '.$og_siteRecord."</a>";
+		echo "<a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$og_siteChampionFlightID))."'>".$og_siteRecord."</a> - <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteChampionID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'>".$og_siteChampion." </a>";
 	 } 
 
 ?>
+<p>
+<strong><? echo _Altitude_gain_Record.": <a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$og_siteMaxGainFlightID))."' >".$og_siteMaxGain."</a> - <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteMaxGainPilotID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'> ".getPilotRealName($og_siteMaxGainPilotID,$serverIDview)." </a>"; ?></strong>
 <p>
 <strong><? echo _Maximum_Total_Airtime.": ".$og_siteMaxTotalAirtime." - <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteMaxTotalAirtimePilotID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'> ".getPilotRealName($og_siteMaxTotalAirtimePilotID,$serverIDview)." </a>"; ?></strong>
 <p>

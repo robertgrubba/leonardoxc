@@ -421,6 +421,7 @@ if ($op=="show_waypoint"){
         				return;
 				}else{
 					$og_siteChampion=$flight->userName;
+					$og_siteChampionID=$flight->userID;
 					$og_siteChampionFlightID=$flight->flightID;
 				}
 			}
@@ -447,6 +448,16 @@ if ($op=="show_waypoint"){
                 $row = mysql_fetch_assoc($res);
                 $og_siteMaxTotalAirtime=sec2Time($row['total_airtime']);
                 $og_siteMaxTotalAirtimePilotID=$row['userID'];
+        }
+
+//highest altitude from takeoff
+	$query="SELECT DISTINCT userID, (MAX_ALT-TAKEOFF_ALT) as maximum_gain, ID  FROM $flightsTable  WHERE takeoffID =".$waypointIDview." order by maximum_gain DESC limit 1";
+        $res= $db->sql_query($query);
+        if($res > 0){
+                $row = mysql_fetch_assoc($res);
+                $og_siteMaxGain=formatAltitude($row['maximum_gain']);
+                $og_siteMaxGainPilotID=$row['userID'];
+                $og_siteMaxGainFlightID=$row['ID'];
         }
 
 

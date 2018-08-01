@@ -420,6 +420,7 @@ define("_Best_OLC_score","Best XC score");
 
 define("_Absolute_Height_Record","Absolute Height Record");
 define("_Altitute_gain_Record","Altitute gain Record");
+define("_Altitude_gain_Record","Altitute gain Record");
 define("_Mean_values","Mean values");
 define("_Mean_distance_per_flight","Mean distance per flight");
 define("_Mean_flights_per_Month","Mean flights per Month");
