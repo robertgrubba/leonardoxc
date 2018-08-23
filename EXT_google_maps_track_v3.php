@@ -104,8 +104,8 @@
 	$useGE=1;	 
 	$is3D=$_GET['3d']+0;
 			
-	if ($CONF_google_api_key) {
-		$googleApiKeyStr="?key=$CONF_google_api_key";
+	if ($CONF_google_maps_api_key) {
+		$googleApiKeyStr="?key=$CONF_google_maps_api_key";
 	} else {
 		$googleApiKeyStr='';
 	}
