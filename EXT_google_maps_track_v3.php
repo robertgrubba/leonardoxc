@@ -105,7 +105,7 @@
 	$is3D=$_GET['3d']+0;
 			
 	if ($CONF_google_maps_api_key) {
-		$googleApiKeyStr="?key=$CONF_google_maps_api_key";
+		$googleApiKeyStr="&key=$CONF_google_maps_api_key";
 	} else {
 		$googleApiKeyStr='';
 	}
@@ -193,7 +193,7 @@ img.icons1 {   background: url(<?=$moduleRelPath?>/img/sprite_icons1.png) no-rep
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry<?php echo $googleApiKeyStr ?>" type="text/JavaScript"></script>
 <script src="<?=$moduleRelPath?>/js/google_maps/extensions.pack.js" type="text/javascript"></script>
 <? } else { ?>
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry" type="text/JavaScript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry<?php echo $googleApiKeyStr ?>" type="text/JavaScript"></script>
 <? } ?>
 
 <script src="<?=$moduleRelPath?>/js/google_maps/jquery.js" type="text/javascript"></script>
