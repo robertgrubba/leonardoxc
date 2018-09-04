@@ -173,8 +173,7 @@ if($_POST['registerForm']==1){
 		 )";
 		 if( $db->sql_query($sql)) {
 			$email_body=sprintf(_Pilot_confirm_subscription,$CONF['site']['name'],$r['user_name'],
-				$_SERVER['SERVER_NAME'],
-				str_replace('//','/',$_SERVER['SERVER_NAME'].getRelMainDir().'/'.$CONF_mainfile),$actkey );
+				$_SERVER['SERVER_NAME'],''.getRelMainDir().'/'.$CONF_mainfile,$actkey );
 //20160203
 			//LeonardoMail::sendMail('[Leonardo] - Confirmation email',utf8_decode($email_body),$_POST['email'],addslashes($_POST['firstname']));
 			LeonardoMail::sendMail('[Leonardo] - Confirmation email',$email_body,$_POST['email'],addslashes($_POST['firstname']));

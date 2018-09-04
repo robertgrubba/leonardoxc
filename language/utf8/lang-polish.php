@@ -797,7 +797,7 @@ To jest wiadomość aktywacyjna wysłana  z portalu %s
  
 Aby dokończyć proces tworzenia konta, kliknij w poniższy odnośnik aby potwierdzić swoją rejestrację:
 
-http://%s?op=register&rkey=%s 
+%s?op=register&rkey=%s 
 
 Jeśli nie rejestrowałeś się w naszym portalu zignoruj tę wiadomość.
 
@@ -843,7 +843,7 @@ Hasło tymczasowe:%s
  
 Aby aktywować hasło kliknij w odnośnik poniżej:
 
-http://%s?op=send_password&rkey=%s 
+%s?op=send_password&rkey=%s 
 
 Po zalogowaniu się z hasłem tymczasowym z głównego menu wybierz pozycję \"Mój profil\", 
 kliknij odnośnik \"edytuj profil\", podaj nowe hasło i zatwierdź je przyciskiem \"Prześlij - zmień dane\".
