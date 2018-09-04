@@ -817,7 +817,7 @@ To jest  wiadomość weryfikująca wysłana z portalu %s
  
 Aby dokończyć proces zmiany adresu email kliknij w odnośnik poniżej:
 
-http://%s?op=chem&rkey=%s
+%s?op=chem&rkey=%s
 
 Z pozdrowieniami,
 Zespół pgxc.pl

@@ -124,8 +124,7 @@ if($_POST['registerForm']==1){
 			$msg= "<p align ='center'>".sprintf(_Pilot_civlid_email_pre_registration,$r['user_name'])."</p>";
 			print "<p align ='center'>"._Pilot_have_pre_registration."</p>";
 			$email_body=sprintf(_Pilot_confirm_subscription,$CONF['site']['name'],$r['user_name'],
-			$_SERVER['SERVER_NAME'],
-			str_replace('//','/',$_SERVER['SERVER_NAME'].getRelMainDir().'/'.$CONF_mainfile),
+			$_SERVER['SERVER_NAME'],''.getRelMainDir().'/'.$CONF_mainfile,
 			$actkey );
 //20160203
 			//LeonardoMail::sendMail('[Leonardo] - Confirmation email',utf8_decode($email_body),$r['user_email'],addslashes($_POST['firstname']));
