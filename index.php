@@ -381,7 +381,8 @@ if ($op=="list_takeoffs"){
 }
 if ($op=="list_flights") $page_title = 'lista zgłoszonych lotów';
 if ($op=="pilot_profile_stats"){
-	 $realName = getPilotRealName($pilotIDview,$serverIDview);
+//	 $realName = getPilotRealName($pilotIDview,$serverIDview);
+	 $realName = getPilotRealName($pilotID,$serverIDview);
 	 $page_title = $realName.' - statystyki lotów' ;
          $page_keywords = "paralotnie, loty, statystyki";
          $page_description = "Strona ze statystykami lotów pilota paralotni: ".$realName;
@@ -391,7 +392,7 @@ if ($op=="pilot_profile_stats"){
 
          $board_config['meta_ogTitle'] =  $page_title;
          $board_config['meta_ogDescription'] = $page_description;
-         $board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'pilot_profile_stats','pilotIDview'=>$serverIDview.'_'.$pilotIDview));
+         $board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'pilot_profile_stats','pilotIDview'=>$serverIDview.'_'.$pilotIDview)).'&pilotIDview=0_'.$pilotID;
 //       $board_config['meta_ogUpdatedTime'] = $og_flightDate;
 //       $board_config['meta_ogLatitude'] = $flight->firstLat;
 //       $board_config['meta_ogLongtitude'] = $flight->firstLon;
@@ -399,7 +400,7 @@ if ($op=="pilot_profile_stats"){
 //       $board_config['meta_ogPublished'] = $og_flightDate;
 //       $board_config['meta_ogModified'] = $og_flightSubmission;
          $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
-	$dstUserMap=$CONF['mapUsersDir'].'/'.$pilotIDview.'.jpg';
+	$dstUserMap=$CONF['mapUsersDir'].'/'.$pilotID.'.jpg';
         $board_config['meta_ogImage'] = 'https://files.leonardo.pgxc.pl/'.$dstUserMap;
         $board_config['meta_ogImageType'] = 'image/jpeg';
 }
