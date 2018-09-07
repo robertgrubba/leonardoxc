@@ -399,8 +399,9 @@ if ($op=="pilot_profile_stats"){
 //       $board_config['meta_ogPublished'] = $og_flightDate;
 //       $board_config['meta_ogModified'] = $og_flightSubmission;
          $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
-	 $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/templates/pgxc/tpl/leonardo_logo.gif';
-         $board_config['meta_ogImageType'] = 'image/gif';
+	$dstUserMap=$CONF['mapUsersDir'].'/'.$pilotIDview.'.jpg';
+        $board_config['meta_ogImage'] = 'https://files.leonardo.pgxc.pl/'.$dstUserMap;
+        $board_config['meta_ogImageType'] = 'image/jpeg';
 }
 
 if ($op=="show_waypoint"){
