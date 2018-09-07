@@ -398,7 +398,7 @@ if ($op=="pilot_profile_stats"){
 	}
 
 // best flight
-	$query="SELECT FLIGHT_KM as record_km, takeoffID FROM $flightsTable  WHERE userID =".$pilotID." ORDER by FLIGHT_KM DESC";
+	$query="SELECT FLIGHT_KM as record_km, takeoffID FROM $flightsTable  WHERE userID =".$pilotID." ORDER by FLIGHT_KM DESC limit 1";
 	$res= $db->sql_query($query);
  	if($res > 0){
 		$row = mysql_fetch_assoc($res);
