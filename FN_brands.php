@@ -87,6 +87,8 @@
 	92=>'Paramania',
 	
 	93=>'Triple Seven',
+	191=>'Scheibe',
+	192=>'Air-Sport',
  );
 
 ?>
