@@ -398,11 +398,14 @@ if ($op=="pilot_profile_stats"){
 	}
 
 // best flight
-	$query="SELECT MAX(FLIGHT_KM) as record_km, takeoffID FROM $flightsTable  WHERE userID =".$pilotID;
+	$query="SELECT FLIGHT_KM as record_km, takeoffID FROM $flightsTable  WHERE userID =".$pilotID." ORDER by FLIGHT_KM DESC";
 	$res= $db->sql_query($query);
  	if($res > 0){
 		$row = mysql_fetch_assoc($res);
 		$og_userRecord=formatDistance($row['record_km'],1);
+	 	$wpInfo =new waypoint($row['takeoffID'],1);
+	 	$wpInfo->getFromDB();
+	 	$og_userRecordTakeoff = selectWaypointName($wpInfo->name,$wpInfo->intName,$wpInfo->countryCode);
 	}
 
 
@@ -416,7 +419,7 @@ if ($op=="pilot_profile_stats"){
          $board_config['meta_author']='https://leonardo.pgxc.pl';
 
          $board_config['meta_ogTitle'] =  $page_title;
-	 $board_config['meta_ogDescription']= $realName." &#8759; &#8721; ".$og_userTotalLaunches." (".$og_userTotalAirtime.") &#8759; &#9812 ".$og_userRecord;
+	 $board_config['meta_ogDescription']= $realName." &#8759; &#8721; ".$og_userTotalLaunches." (".$og_userTotalAirtime.") &#8759; &#9812 ".$og_userRecord.' - '.$og_userRecordTakeoff;
          $board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'pilot_profile_stats','pilotIDview'=>$serverIDview.'_'.$pilotIDview)).'&pilotIDview=0_'.$pilotID;
 //       $board_config['meta_ogUpdatedTime'] = $og_flightDate;
 //       $board_config['meta_ogLatitude'] = $flight->firstLat;
