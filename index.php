@@ -381,6 +381,31 @@ if ($op=="list_takeoffs"){
 }
 if ($op=="list_flights") $page_title = 'lista zgłoszonych lotów';
 if ($op=="pilot_profile_stats"){
+// user total airtime
+	$query="SELECT sum(DURATION) as total_time FROM $flightsTable  WHERE userID =".$pilotID;
+	$res= $db->sql_query($query);
+ 	if($res > 0){
+		$row = mysql_fetch_assoc($res);
+		$og_userTotalAirtime=sec2Time($row['total_time'],1);
+	}
+
+// number of flights
+	$query="SELECT count(*) as number_of_flights FROM $flightsTable  WHERE userID =".$pilotID;
+	$res= $db->sql_query($query);
+ 	if($res > 0){
+		$row = mysql_fetch_assoc($res);
+		$og_userTotalLaunches=$row['number_of_flights'];
+	}
+
+// best flight
+	$query="SELECT MAX(FLIGHT_KM) as record_km, takeoffID FROM $flightsTable  WHERE userID =".$pilotID;
+	$res= $db->sql_query($query);
+ 	if($res > 0){
+		$row = mysql_fetch_assoc($res);
+		$og_userRecord=formatDistance($row['record_km'],1);
+	}
+
+
 //	 $realName = getPilotRealName($pilotIDview,$serverIDview);
 	 $realName = getPilotRealName($pilotID,$serverIDview);
 	 $page_title = $realName.' - statystyki lotów' ;
@@ -391,7 +416,7 @@ if ($op=="pilot_profile_stats"){
          $board_config['meta_author']='https://leonardo.pgxc.pl';
 
          $board_config['meta_ogTitle'] =  $page_title;
-         $board_config['meta_ogDescription'] = $page_description;
+	 $board_config['meta_ogDescription']= $realName." &#8759; &#8721; ".$og_userTotalLaunches." (".$og_userTotalAirtime.") &#8759; &#9812 ".$og_userRecord;
          $board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'pilot_profile_stats','pilotIDview'=>$serverIDview.'_'.$pilotIDview)).'&pilotIDview=0_'.$pilotID;
 //       $board_config['meta_ogUpdatedTime'] = $og_flightDate;
 //       $board_config['meta_ogLatitude'] = $flight->firstLat;
