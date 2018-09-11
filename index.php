@@ -602,30 +602,30 @@ if (!file_exists($dst.".txt")){
 
         $result=file_put_contents($dst, file_get_contents($src));
         if ($result !== FALSE){
-                file_put_contents($dst.".txt","$size");
+                file_put_contents($dst.".txt","$size"." $src");
         }
 }
 
 	$board_config['meta_ogImage'] = $CONF['cdnURL'].'/'.$CONF['flightMapThumbsDir'].'/'.$flightID.'.jpg';
 	$board_config['meta_ogImageType'] = 'image/jpeg';
 
-$OG_PHOTOS="";
- if ($flight->hasPhotos) {
-        require_once dirname(__FILE__)."/CL_flightPhotos.php";
+/* $OG_PHOTOS=""; */
+/*  if ($flight->hasPhotos) { */
+/*         require_once dirname(__FILE__)."/CL_flightPhotos.php"; */
 
-        $flightPhotos=new flightPhotos($flight->flightID);
-        $flightPhotos->getFromDB();
+/*         $flightPhotos=new flightPhotos($flight->flightID); */
+/*         $flightPhotos->getFromDB(); */
 
-        // get geoinfo
-        $flightPhotos->computeGeoInfo();
+/*         // get geoinfo */
+/*         //$flightPhotos->computeGeoInfo(); */
 
-	foreach ( $flightPhotos->photos as $photoNum=>$photoInfo) {
-		$imgIconRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg";
-//currently open graph accepts only one image that is why I'll leave it commented
-//		$OG_PHOTOS.=' <meta property="og:image" content="'.$imgIconRel.'" >';
-	}
-		$board_config['meta_ogImage'] = ' <meta property="og:image" content="'.$imgIconRel.'" >';
- }
+/* 	foreach ( $flightPhotos->photos as $photoNum=>$photoInfo) { */
+/* 		$imgIconRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg"; */
+/* //currently open graph accepts only one image that is why I'll leave it commented */
+/* //		$OG_PHOTOS.=' <meta property="og:image" content="'.$imgIconRel.'" >'; */
+/* 	} */
+/* 		$board_config['meta_ogImage'] = ' <meta property="og:image" content="'.$imgIconRel.'" >'; */
+/*  } */
 }
 
 

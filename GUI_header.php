@@ -107,26 +107,26 @@ if (!is_array($board_config) ) {
 //
 if ($op=="show_flight" || $op=="show_waypoint" || $op=="list_takeoffs" || $op=="pilot_profile_stats"){
 	$og_metadata='
-	<meta property="og:site_name" content="'.$board_config['meta_ogSiteName'] .'" >
-	<meta property="og:type" content="'.$board_config['meta_ogType'].'" >
-	<meta property="og:url" content="'.$board_config['meta_ogUrl'].'" >
-	<meta property="og:title" content="'.$board_config['meta_ogTitle'].'" >
-	<meta property="og:description" content="'.$board_config['meta_ogDescription'].'" >
-	<meta property="og:updated_time" content="'.$board_config['meta_ogUpdatedTime'].'" >
-	<meta property="og:image:type" content="'.$board_config['meta_ogImageType'].'" >
-	<meta property="og:image" content="'.$board_config['meta_ogImage'].'" >
-	<meta property="og:latitude" content="'.$board_config['meta_ogLatitude'].'" >
-	<meta property="og:longitude" content="'.$board_config['meta_ogLongtitude'].'" >
-	<meta property="article:published_time" content="'.$board_config['meta_ogPublished'].'" >
-	<meta property="article:modified_time" content="'.$board_config['meta_ogModified'].'" >
+	<meta property="og:site_name" content="'.$board_config['meta_ogSiteName'] .'">
+	<meta property="og:type" content="'.$board_config['meta_ogType'].'">
+	<meta property="og:url" content="'.$board_config['meta_ogUrl'].'">
+	<meta property="og:title" content="'.$board_config['meta_ogTitle'].'">
+	<meta property="og:description" content="'.$board_config['meta_ogDescription'].'">
+	<meta property="og:updated_time" content="'.$board_config['meta_ogUpdatedTime'].'">
+	<meta property="og:image:type" content="'.$board_config['meta_ogImageType'].'">
+	<meta property="og:image" content="'.$board_config['meta_ogImage'].'">
+	<meta property="og:latitude" content="'.$board_config['meta_ogLatitude'].'">
+	<meta property="og:longitude" content="'.$board_config['meta_ogLongtitude'].'">
+	<meta property="article:published_time" content="'.$board_config['meta_ogPublished'].'">
+	<meta property="article:modified_time" content="'.$board_config['meta_ogModified'].'">
 	';
 }else{
 	$og_metadata='';
 }
 
-if($op=="show_flight"){
-	$og_metadata.=$OG_PHOTOS;
-}
+/* if($op=="show_flight"){ */
+/* 	$og_metadata.=$OG_PHOTOS; */
+/* } */
 
 $Ltemplate->assign_vars(array(
 	'SITENAME' => $board_config['sitename'],
