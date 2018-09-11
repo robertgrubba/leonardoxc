@@ -583,7 +583,7 @@ if (!file_exists($dst.".txt")){
 		$step=3;
 	}
 	if($size>800){
-		$step=4;
+		$step=6;
 	}
 
         while ($x<$size){
@@ -602,7 +602,7 @@ if (!file_exists($dst.".txt")){
 
         $result=file_put_contents($dst, file_get_contents($src));
         if ($result !== FALSE){
-                file_put_contents($dst.".txt","$size"." $src");
+            file_put_contents($dst.".txt","$size"." $src ".$flight->getJsonRelPath());
         }
 }
 
