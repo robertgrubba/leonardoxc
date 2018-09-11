@@ -953,4 +953,6 @@ define("_All_flights_near_this_point","Wszystkie loty w pobliżu tego startowisk
 define("_Total_Site_Airtime","Łączny nalot użytkowników");
 define("_Maximum_Number_Launches","Najwięcej startów ze startowiska");
 define("_Maximum_Total_Airtime","Największy nalot ze startowiska");
+define("_Breakdown_Per_Takeoff","Z podziałem na startowiska");
+define("_Breakdown_Per_Glider","Z podziałem na skrzydła");
 ?>

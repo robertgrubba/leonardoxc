@@ -132,7 +132,7 @@
     	return;		
     }
     
-    echo "<h1> Breakdown per Takeoff</h1>";
+    echo "<h1> "._Breakdown_Per_Takeoff." </h1>";
   /*
    * Break down per takeoff
    */
@@ -172,7 +172,7 @@
 		//print_r($row);		
 	}
   
-	    echo "<h1> Breakdown per Glider</h1>";
+	    echo "<h1> "._Breakdown_Per_Glider." </h1>";
 	
 	/*
    * Break down per glider
