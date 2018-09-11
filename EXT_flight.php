@@ -251,8 +251,14 @@
 					$pnum=0;
 					if ($photoInfo['lat'] && $photoInfo['lon'] ) {
 						$imgIconRel=$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg";
+						if(!is_file($imgIconRel)){
+                                			$imgIconRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg";
+                        			}
+
 						$imgBigRel=$flightPhotos->getPhotoRelPath($photoNum);
-				
+			                        if(!is_file($imgBigRel)){
+                        			        $imgBigRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum);
+                        			}
 						$imgIcon=$flightPhotos->getPhotoAbsPath($photoNum).".icon.jpg";
 						$imgBig=$flightPhotos->getPhotoAbsPath($photoNum);
 			
@@ -264,7 +270,10 @@
 							list($width, $height, $type, $attr) = getimagesize($imgIcon);
 							list($width, $height)=CLimage::getJPG_NewSize($CONF['photos']['mid']['max_width'], $CONF['photos']['mid']['max_height'], $width, $height);
 							$imgTarget=$imgIconRel;
-						} 
+						} else if (!file_exists($imgBig) || !file_exists($imgIcon)){
+							list($width, $height)=array(800,800);
+							$imgTarget=$imgBigRel;
+						}
 			
 						// echo " 	drawPhoto(".$photoInfo['lat'].",".$photoInfo['lon'].",$photoNum,'$imgIconRel','$imgTarget',$width,$height); \n";
 						
