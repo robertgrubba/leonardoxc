@@ -580,28 +580,28 @@ if (!file_exists($dst.".txt")){
 		$step=2;
 	}
 	if($size>400){
-		$step=3;
-	}
+        $step=4;
+    }
 	if($size>800){
-		$step=6;
+		$step=8;
 	}
 
         while ($x<$size){
-                $path.=$obj['lat'][$x].','.$obj['lon'][$x];
+            $path.=round($obj['lat'][$x],4).','.round($obj['lon'][$x],4);
                 $x=$x+$step;
                 if ($x<$size){
                         $path.='%7C';
                 }
         }
 
-        $launch="".$obj['lat'][1].','.$obj['lon'][1];
-        $landing="".$obj['lat'][$size-1].','.$obj['lon'][$size-1];
+        $launch="".round($obj['lat'][1],4).','.round($obj['lon'][1],4);
+        $landing="".round($obj['lat'][$size-1],4).','.round($obj['lon'][$size-1],4);
         $markers='icon:http://bit.ly/2uZ79WQ%7C'.$launch.'&markers=icon:http://bit.ly/2LJNOju%7C'.$landing;
 
         $src='https://maps.googleapis.com/maps/api/staticmap?size=800x600&markers='.$markers.'&path='.$path.'&key='.$CONF_google_maps_api_key;
 
         $result=file_put_contents($dst, file_get_contents($src));
-        if ($result !== FALSE){
+        if ($result !== FALSE && $size>0){
             file_put_contents($dst.".txt","$size"." $src ".$flight->getJsonRelPath());
         }
 }
