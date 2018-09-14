@@ -558,7 +558,15 @@ function initialize() {
     var mapOptions= {
             zoom: 8,
             mapTypeControl: true,
-            scaleControl: true,            
+            scaleControl: true,
+            zoomControl: true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.LEFT_TOP
+            },
+            streetViewControl: true,
+            streetViewControlOptions: {
+              position: google.maps.ControlPosition.LEFT_TOP
+            },
             mapTypeControlOptions: {
                 mapTypeIds: [
 					"Relief",

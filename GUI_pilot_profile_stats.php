@@ -132,7 +132,7 @@
     	return;		
     }
     
-    echo "<h1> Breakdown per Takeoff</h1>";
+    echo "<h1> "._Breakdown_Per_Takeoff." </h1>";
   /*
    * Break down per takeoff
    */
@@ -172,7 +172,7 @@
 		//print_r($row);		
 	}
   
-	    echo "<h1> Breakdown per Glider</h1>";
+	    echo "<h1> "._Breakdown_Per_Glider." </h1>";
 	
 	/*
    * Break down per glider
@@ -547,5 +547,25 @@ function showStats($row,$groupBy,$where_clause,$where_clause2,$suffix='') {
 <?php  } // end function show stats ?>
 
 <?
+      // static map of visited takeoffs for social media
+ 
+        $dst=$CONF['mapUsersDir'].'/'.$pilotIDview.'.jpg';
+        // if not exists then create one
+        if (!file_exists($dst)){
+            $query="select ROUND(firstLat,2) as lat,ROUND(firstLon,2) as lon from leonardo_flights where userID=".$pilotIDview." group by takeoffID";
+            $res= $db->sql_query($query);
+            $places="";
+            if($res > 0){
+                while ($row=mysql_fetch_assoc($res)){
+                    $places.=$row['lat'].",".$row['lon']."|";
+                }
+            }
+
+            $src='https://maps.googleapis.com/maps/api/staticmap?size=800x600&markers=color:red%7Csize:tiny|'.$places.'&key='.$CONF_google_maps_api_key;
+//		echo $src; 
+            $result=file_put_contents($dst, file_get_contents($src));
+	}
+
+
 	// closeMain();
 ?>

@@ -381,7 +381,36 @@ if ($op=="list_takeoffs"){
 }
 if ($op=="list_flights") $page_title = 'lista zgłoszonych lotów';
 if ($op=="pilot_profile_stats"){
-	 $realName = getPilotRealName($pilotIDview,$serverIDview);
+// user total airtime
+	$query="SELECT sum(DURATION) as total_time FROM $flightsTable  WHERE userID =".$pilotID;
+	$res= $db->sql_query($query);
+ 	if($res > 0){
+		$row = mysql_fetch_assoc($res);
+		$og_userTotalAirtime=sec2Time($row['total_time'],1);
+	}
+
+// number of flights
+	$query="SELECT count(*) as number_of_flights FROM $flightsTable  WHERE userID =".$pilotID;
+	$res= $db->sql_query($query);
+ 	if($res > 0){
+		$row = mysql_fetch_assoc($res);
+		$og_userTotalLaunches=$row['number_of_flights'];
+	}
+
+// best flight
+	$query="SELECT FLIGHT_KM as record_km, takeoffID FROM $flightsTable  WHERE userID =".$pilotID." ORDER by FLIGHT_KM DESC limit 1";
+	$res= $db->sql_query($query);
+ 	if($res > 0){
+		$row = mysql_fetch_assoc($res);
+		$og_userRecord=formatDistance($row['record_km'],1);
+	 	$wpInfo =new waypoint($row['takeoffID'],1);
+	 	$wpInfo->getFromDB();
+	 	$og_userRecordTakeoff = selectWaypointName($wpInfo->name,$wpInfo->intName,$wpInfo->countryCode);
+	}
+
+
+//	 $realName = getPilotRealName($pilotIDview,$serverIDview);
+	 $realName = getPilotRealName($pilotID,$serverIDview);
 	 $page_title = $realName.' - statystyki lotów' ;
          $page_keywords = "paralotnie, loty, statystyki";
          $page_description = "Strona ze statystykami lotów pilota paralotni: ".$realName;
@@ -390,8 +419,8 @@ if ($op=="pilot_profile_stats"){
          $board_config['meta_author']='https://leonardo.pgxc.pl';
 
          $board_config['meta_ogTitle'] =  $page_title;
-         $board_config['meta_ogDescription'] = $page_description;
-         $board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'pilot_profile_stats','pilotIDview'=>$serverIDview.'_'.$pilotIDview));
+	 $board_config['meta_ogDescription']= $realName." &#8759; &#8721; ".$og_userTotalLaunches." (".$og_userTotalAirtime.") &#8759; &#9812 ".$og_userRecord.' - '.$og_userRecordTakeoff;
+         $board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'pilot_profile_stats','pilotIDview'=>$serverIDview.'_'.$pilotIDview)).'&pilotIDview=0_'.$pilotID;
 //       $board_config['meta_ogUpdatedTime'] = $og_flightDate;
 //       $board_config['meta_ogLatitude'] = $flight->firstLat;
 //       $board_config['meta_ogLongtitude'] = $flight->firstLon;
@@ -399,8 +428,9 @@ if ($op=="pilot_profile_stats"){
 //       $board_config['meta_ogPublished'] = $og_flightDate;
 //       $board_config['meta_ogModified'] = $og_flightSubmission;
          $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
-	 $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/templates/pgxc/tpl/leonardo_logo.gif';
-         $board_config['meta_ogImageType'] = 'image/gif';
+	$dstUserMap=$CONF['mapUsersDir'].'/'.$pilotID.'.jpg';
+        $board_config['meta_ogImage'] = 'https://files.leonardo.pgxc.pl/'.$dstUserMap;
+        $board_config['meta_ogImageType'] = 'image/jpeg';
 }
 
 if ($op=="show_waypoint"){
@@ -550,52 +580,52 @@ if (!file_exists($dst.".txt")){
 		$step=2;
 	}
 	if($size>400){
-		$step=3;
-	}
+        $step=4;
+    }
 	if($size>800){
-		$step=4;
+		$step=8;
 	}
 
         while ($x<$size){
-                $path.=$obj['lat'][$x].','.$obj['lon'][$x];
+            $path.=round($obj['lat'][$x],4).','.round($obj['lon'][$x],4);
                 $x=$x+$step;
                 if ($x<$size){
                         $path.='%7C';
                 }
         }
 
-        $launch="".$obj['lat'][1].','.$obj['lon'][1];
-        $landing="".$obj['lat'][$size-1].','.$obj['lon'][$size-1];
+        $launch="".round($obj['lat'][1],4).','.round($obj['lon'][1],4);
+        $landing="".round($obj['lat'][$size-1],4).','.round($obj['lon'][$size-1],4);
         $markers='icon:http://bit.ly/2uZ79WQ%7C'.$launch.'&markers=icon:http://bit.ly/2LJNOju%7C'.$landing;
 
         $src='https://maps.googleapis.com/maps/api/staticmap?size=800x600&markers='.$markers.'&path='.$path.'&key='.$CONF_google_maps_api_key;
 
         $result=file_put_contents($dst, file_get_contents($src));
-        if ($result !== FALSE){
-                file_put_contents($dst.".txt","$size");
+        if ($result !== FALSE && $size>0){
+            file_put_contents($dst.".txt","$size"." $src ".$flight->getJsonRelPath());
         }
 }
 
 	$board_config['meta_ogImage'] = $CONF['cdnURL'].'/'.$CONF['flightMapThumbsDir'].'/'.$flightID.'.jpg';
 	$board_config['meta_ogImageType'] = 'image/jpeg';
 
-$OG_PHOTOS="";
- if ($flight->hasPhotos) {
-        require_once dirname(__FILE__)."/CL_flightPhotos.php";
+/* $OG_PHOTOS=""; */
+/*  if ($flight->hasPhotos) { */
+/*         require_once dirname(__FILE__)."/CL_flightPhotos.php"; */
 
-        $flightPhotos=new flightPhotos($flight->flightID);
-        $flightPhotos->getFromDB();
+/*         $flightPhotos=new flightPhotos($flight->flightID); */
+/*         $flightPhotos->getFromDB(); */
 
-        // get geoinfo
-        $flightPhotos->computeGeoInfo();
+/*         // get geoinfo */
+/*         //$flightPhotos->computeGeoInfo(); */
 
-	foreach ( $flightPhotos->photos as $photoNum=>$photoInfo) {
-		$imgIconRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg";
-//currently open graph accepts only one image that is why I'll leave it commented
-//		$OG_PHOTOS.=' <meta property="og:image" content="'.$imgIconRel.'" >';
-	}
-		$board_config['meta_ogImage'] = ' <meta property="og:image" content="'.$imgIconRel.'" >';
- }
+/* 	foreach ( $flightPhotos->photos as $photoNum=>$photoInfo) { */
+/* 		$imgIconRel=$CONF['cdnURL'].$flightPhotos->getPhotoRelPath($photoNum).".icon.jpg"; */
+/* //currently open graph accepts only one image that is why I'll leave it commented */
+/* //		$OG_PHOTOS.=' <meta property="og:image" content="'.$imgIconRel.'" >'; */
+/* 	} */
+/* 		$board_config['meta_ogImage'] = ' <meta property="og:image" content="'.$imgIconRel.'" >'; */
+/*  } */
 }
 
 
