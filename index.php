@@ -352,7 +352,11 @@ if (  count($pilotPartsArray=split('_',$pilotID)) >1 ) {
 }
 
 
-if ($op=="main") $op=$CONF_main_page;
+if ($op=="main"){
+    $op=$CONF_main_page;
+}
+
+
 if ($op=="sites") $page_title = 'przewodnik po startowiskach paralotniowych';
 if ($op=="list_pilots") $page_title = 'lista pilotów paralotni portalu';
 if ($op=="pilot_search") $page_title = 'wyszukiwarka pilotów paralotni portalu';
@@ -628,6 +632,72 @@ if (!file_exists($dst.".txt")){
 /*  } */
 }
 
+if ($op=="index_full"){
+    // users total airtime
+    $query="SELECT sum(DURATION) as total_time FROM $flightsTable";
+    $res= $db->sql_query($query);
+    if($res > 0){
+        $row = mysql_fetch_assoc($res);
+        $og_userTotalAirtime=sec2Time($row['total_time'],1);
+    }
+
+    // number of flights
+    $query="SELECT count(*) as number_of_flights FROM $flightsTable ";
+    $res= $db->sql_query($query);
+    if($res > 0){
+        $row = mysql_fetch_assoc($res);
+        $og_userTotalLaunches=$row['number_of_flights'];
+    }
+
+    // best flight
+    $query="SELECT FLIGHT_KM as record_km, takeoffID, userID FROM $flightsTable  ORDER by FLIGHT_KM DESC limit 1";
+    $res= $db->sql_query($query);
+    if($res > 0){
+        $row = mysql_fetch_assoc($res);
+        $og_userRecord=formatDistance($row['record_km'],1);
+        $og_userRecordID=$row['userID'];
+        $wpInfo =new waypoint($row['takeoffID'],1);
+        $wpInfo->getFromDB();
+        $og_userRecordTakeoff = selectWaypointName($wpInfo->name,$wpInfo->intName,$wpInfo->countryCode);
+    }
+
+
+    //   $realName = getPilotRealName($pilotIDview,$serverIDview);
+    $userRecordName = getPilotRealName($og_userRecordID,$serverIDview);
+    $page_title = 'Polski Serwer Leonardo' ;
+    $page_keywords = "księga lotów, paralotnie, loty, statystyki";
+    $page_description = "Książka lotów online";
+    $board_config['meta_keywords']=$page_keywords;
+    $board_config['meta_description']=$page_description;
+    $board_config['meta_author']='https://leonardo.pgxc.pl';
+
+    $board_config['meta_ogTitle'] =  $page_title;
+    $board_config['meta_ogDescription']= "Małe podsumowanie: &#8759; &#8721; ".$og_userTotalLaunches." zgłoszonych lotów &#8759; &#10710; (".$og_userTotalAirtime.") (h:m) &#8759; &#9812 ".$userRecordName.' - '.$og_userRecordTakeoff;
+    $board_config['meta_ogUrl'] = 'https://leonardo.pgxc.pl/';
+    $board_config['meta_ogType'] = 'sport';
+    $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+    $dstUserMap=$CONF['mapUsersDir'].'/all.jpg';
+    $board_config['meta_ogImage'] = 'https://files.leonardo.pgxc.pl/'.$dstUserMap;
+    $board_config['meta_ogImageType'] = 'image/jpeg';
+
+    $dst=$CONF['mapUsersDir'].'/all.jpg';
+    // if not exists then create one
+    if (!file_exists($dst)){
+        $query="select ROUND(firstLat,2) as lat,ROUND(firstLon,2) as lon from leonardo_flights group by takeoffID";
+        $res= $db->sql_query($query);
+        $places="";
+        if($res > 0){
+            while ($row=mysql_fetch_assoc($res)){
+                $places.=$row['lat'].",".$row['lon']."|";
+            }
+        }
+
+        $src='https://maps.googleapis.com/maps/api/staticmap?size=800x600&markers=color:red%7Csize:tiny|'.$places.'&key='.$CONF_google_maps_api_key;
+        //      echo $src;
+        $result=file_put_contents($dst, file_get_contents($src));
+    }
+
+}
 
 if ($op=="competition") $page_title = 'zestawienie lotów pilotów portalu';
 if ($op=="show_flight" && $flightID==0) $op=$CONF_main_page;
@@ -743,8 +813,8 @@ if ( $RUN['view']=='print' && $RUN['view0']!='print0'  ) {
 }
 	
 if ($op=="index_full") {
-	require $LeoCodeBase."/GUI_index_full.php";
-} else if ($op=="index_help") {
+   	require $LeoCodeBase."/GUI_index_full.php";
+}else if ($op=="index_help") {
 	require $LeoCodeBase."/GUI_index_help.php";
 } else if ($op=="index_news") {
 	require $LeoCodeBase."/GUI_index_news.php";
