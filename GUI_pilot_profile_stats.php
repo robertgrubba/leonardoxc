@@ -133,7 +133,7 @@
     }
 echo "<h1> "._map_of_visited_takeoffs."</h1>";
 ?>
-<iframe align="center" width="100%" height="450" src="https://leonardo.pgxc.pl/GUI_EXT_user_map.php?userID=<?php echo $pilotID ?>" frameborder="no" scrolling="no" name="visitedPlaces" id="visitedPlaces"> </iframe>
+<iframe align="center" width="100%" class="flownPlacesMapIF" src="https://leonardo.pgxc.pl/GUI_EXT_user_map.php?userID=<?php echo $pilotID ?>" frameborder="no" scrolling="no" name="visitedPlaces" id="visitedPlaces"> </iframe>
 <?
     echo "<h1> "._Breakdown_Per_Takeoff." </h1>";
   /*
