@@ -4092,12 +4092,20 @@ $kml_file_contents=
 		$vario_img_filename2=$this->getChartFilename("vario",2,$rawCharts);
 		$takeoff_distance_img_filename2=$this->getChartFilename("takeoff_distance",2,$rawCharts);
 
-		if ( !is_file($alt_img_filename) ||  !is_file($speed_img_filename) ||
-			 !is_file($vario_img_filename) ||  !is_file($takeoff_distance_img_filename) ||
-			 !is_file($alt_img_filename2) ||  !is_file($speed_img_filename2) ||
-			 !is_file($vario_img_filename2) ||  !is_file($takeoff_distance_img_filename2) ||
+		if ( !is_file($alt_img_filename.".txt") ||  !is_file($speed_img_filename.".txt") ||
+			 !is_file($vario_img_filename.".txt") ||  !is_file($takeoff_distance_img_filename.".txt") ||
+			 !is_file($alt_img_filename2.".txt") ||  !is_file($speed_img_filename2.".txt") ||
+			 !is_file($vario_img_filename2.".txt") ||  !is_file($takeoff_distance_img_filename2.".txt") ||
 			 $forceRefresh) {
-
+            file_put_contents($alt_img_filename.".txt", "1");
+            file_put_contents($speed_img_filename.".txt", "1");
+            file_put_contents($vario_img_filename.".txt", "1");
+            file_put_contents($takeoff_distance_img_filename.".txt", "1");
+            file_put_contents($alt_img_filename2.".txt", "1");
+            file_put_contents($speed_img_filename2.".txt", "1");
+            file_put_contents($vario_img_filename2.".txt", "1");
+            file_put_contents($takeoff_distance_img_filename2.".txt", "1");
+            
 			// list ($data_time,$data_alt,$data_speed,$data_vario,$data_takeoff_distance)=$this->getAltValues();
 
 			if ($rawCharts)  {
