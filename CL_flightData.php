@@ -3713,6 +3713,10 @@ $kml_file_contents=
 				$this->deleteFile($this->getChartFilename("speed",$metric_system,$raw) );
 				$this->deleteFile($this->getChartFilename("vario",$metric_system,$raw) );
 				$this->deleteFile($this->getChartFilename("takeoff_distance",$metric_system,$raw) );
+				$this->deleteFile($this->getChartFilename("alt",$metric_system,$raw).".txt" );
+				$this->deleteFile($this->getChartFilename("speed",$metric_system,$raw).".txt" );
+				$this->deleteFile($this->getChartFilename("vario",$metric_system,$raw).".txt" );
+				$this->deleteFile($this->getChartFilename("takeoff_distance",$metric_system,$raw).".txt" );
 			}
 		}
 
@@ -3831,6 +3835,10 @@ $kml_file_contents=
 				$this->deleteFile($this->getChartFilename("speed",$metric_system,$raw) );
 				$this->deleteFile($this->getChartFilename("vario",$metric_system,$raw) );
 				$this->deleteFile($this->getChartFilename("takeoff_distance",$metric_system,$raw) );
+				$this->deleteFile($this->getChartFilename("alt",$metric_system,$raw).".txt" );
+				$this->deleteFile($this->getChartFilename("speed",$metric_system,$raw).".txt" );
+				$this->deleteFile($this->getChartFilename("vario",$metric_system,$raw).".txt" );
+				$this->deleteFile($this->getChartFilename("takeoff_distance",$metric_system,$raw).".txt" );
 			}
 		}
 
