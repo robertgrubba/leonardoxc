@@ -1031,5 +1031,6 @@ define("_Maximum_Total_Airtime","Maximum airtime at this site");
 
 define("_Breakdown_Per_Takeoff","Breakdown per Takeoff");
 define("_Breakdown_Per_Glider","Breakdown per Glider");
+define("_map_of_visited_takeoffs","Map of visited takeoffs");
 
 ?>

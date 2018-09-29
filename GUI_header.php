@@ -105,7 +105,9 @@ if (!is_array($board_config) ) {
 // The following assigns all _common_ variables that may be used at any point
 // in a template.
 //
-if ($op=="show_flight" || $op=="show_waypoint" || $op=="list_takeoffs" || $op=="pilot_profile_stats"){
+
+
+if ($op=="show_flight" || $op=="show_waypoint" || $op=="list_takeoffs" || $op=="pilot_profile_stats" || $op=="index_full"){
 	$og_metadata='
 	<meta property="og:site_name" content="'.$board_config['meta_ogSiteName'] .'">
 	<meta property="og:type" content="'.$board_config['meta_ogType'].'">

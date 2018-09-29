@@ -1029,6 +1029,10 @@ table#filterTable{
 	width: 30%;
 }
 
+.flownPlacesMapIF{
+    height: 450px;
+}
+
 img#pilotProfileStats {
 	width: 100%;
 }
@@ -1115,6 +1119,9 @@ div#addFlightComment{
 		float: left;
 		width: 100%;
 		text-align: center;
+	}
+	.flownPlacesMapIF{
+	    height: 350px;
 	}
 
 }

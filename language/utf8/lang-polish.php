@@ -955,4 +955,5 @@ define("_Maximum_Number_Launches","Najwięcej startów ze startowiska");
 define("_Maximum_Total_Airtime","Największy nalot ze startowiska");
 define("_Breakdown_Per_Takeoff","Z podziałem na startowiska");
 define("_Breakdown_Per_Glider","Z podziałem na skrzydła");
+define("_map_of_visited_takeoffs","Mapa oblatanych startowisk");
 ?>

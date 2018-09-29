@@ -2,7 +2,7 @@
 
 	// leonardo paths
 	$leoBase=realpath(dirname(__FILE__).'/../../../..');
-	$cssFile="$leoBase/templates/basic/sprites.css";
+	$cssFile="$leoBase/templates/pgxc/sprites.css";
 	$imgDir="$leoBase/img";
 	
 	$tmpImgDir=realpath(dirname(__FILE__).'/../cache/sprites');

@@ -29,7 +29,7 @@
 
 	$op=makeSane($_GET['op']);
 
-	if (!in_array($op,array("find_wpt","get_nearest","get_latest","get_info","getTakeoffsForArea","get_country_takeoffs")) ) return;
+	if (!in_array($op,array("find_wpt","get_nearest","get_latest","get_info","getTakeoffsForArea","get_country_takeoffs","get_user_takeoffs")) ) return;
 
 	if ($op=="get_info") {
 		$wpID=$_GET['wpID']+0;
@@ -259,7 +259,31 @@ $sql .= "ORDER BY distance LIMIT $limit \n";
 		}	
 		$str.=' } ';
 		echo $str;
+	} else if ($op=="get_user_takeoffs") {
+		$userID=makesane($_GET['userID']);	
+		//$sql = "SELECT * FROM $waypointsTable,$areasTakeoffsTable	
+		//	WHERE $areasTakeoffsTable.takeoffID = $waypointsTable.ID AND $areasTakeoffsTable.areaID=$areaID";
+$sql="SELECT * from $waypointsTable WHERE ID in (select takeoffID from $flightsTable where userID='$userID' group by takeoffID)";
+        
+
+		$dbres= $db->sql_query($sql);
+	    if($dbres <= 0){
+		    echo '{ "waypoints": [ ]  }';
+			return;
+    	}
+		
+		$res='{ "waypoints": [ ';
+		$i=0;
+		while ($row = mysql_fetch_assoc($dbres)) { 
+			if ($i>0)$res.=" ,\n";
+			$res.=' { "id":'.$row[ID].', "lat":'.$row['lat'].', "lon":'.-$row['lon'].' , "name":"'.str_replace('"','\"',$row['intName']).'", "type":'.$row['type'].' } ';
+		  $i++;	  
+		}     
+		
+		$res.=' ]  }';
+		echo $res;
+	    mysql_freeResult($dbres);
+
+	 
 	}
-
-
 ?>
