@@ -854,7 +854,7 @@ Zespół pgxc.pl
 --------
 Note: Mail został wysłany automatycznie. Nie odpowiadaj na niego!
 --------"); 
-define("_MENU_AREA_GUIDE","Przewodnik po okolicy");//Area Guide"); 
+define("_MENU_AREA_GUIDE","Rejony do latania");//Area Guide"); 
 define("_All_XC_types","Wszystkie rodzaje przelotów");//All XC types"); 
 define("_xctype","Rodzaje przelotów");//  XC type"); 
 define("_Flying_Areas","Rejony do latania");//Flying Areas"); 
