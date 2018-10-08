@@ -65,7 +65,7 @@
 	
 	</script>
 	
-	<?php  
+	<?  
 		
 	
 		require_once dirname(__FILE__).'/SQL_list_flights.php';	
@@ -78,7 +78,7 @@
 	
 	
 	<div class='pilot_stats_div'>
-	<?php 
+	<? 
 	// echo "#$serverIDview $pilotIDview,#";
 	if (!isPrint()) {
 		$realName=getPilotRealName($pilotIDview,$serverIDview);	
@@ -126,14 +126,32 @@
     }  
     $row = mysql_fetch_assoc($res);
     $groupBy='userID';
-    showStats($row,'userID',$where_clause,'') ;
     
+
+   $queryStartTypes = 'SELECT DISTINCT userID,
+	count(*) as towStarts FROM '.$flightsTable.' WHERE userID = '.$pilotIDview.' AND startType=2 ';
+	$resStartTypes= $db->sql_query($queryStartTypes);	
+    if($resStartTypes <= 0){
+      //return;
+    }  
+    $rowStartTypes = mysql_fetch_assoc($resStartTypes);
+    $groupBy='userID';
+   // echo "resStartTypes = ".var_dump($rowStartTypes);
+   //showStats($rowStartTypes,'userID',$where_clause,'') ;
+   //echo "<hr>stats query: $query<hr>";
+        
+  if ($rowStartTypes["towStarts"]){
+	  $towStarts=$rowStartTypes["towStarts"];
+  }else{
+	  $towStarts="0";
+  }
+ showStats($row,'userID',$where_clause,'') ;
     if (isPrint()) {
     	return;		
     }
 echo "<h1> "._map_of_visited_takeoffs."</h1>";
 ?>
-<iframe align="center" width="100%" class="flownPlacesMapIF" src="https://leonardo.pgxc.pl/GUI_EXT_user_map.php?userID=<?php echo $pilotID ?>" frameborder="no" scrolling="no" name="visitedPlaces" id="visitedPlaces"> </iframe>
+<iframe align="center" width="100%" class="flownPlacesMapIF" src="https://leonardo.pgxc.pl/GUI_EXT_user_map.php?userID=<? echo $pilotID ?>" frameborder="no" scrolling="no" name="visitedPlaces" id="visitedPlaces"> </iframe>
 <?
     echo "<h1> "._Breakdown_Per_Takeoff." </h1>";
   /*
@@ -224,7 +242,7 @@ echo "<h1> "._map_of_visited_takeoffs."</h1>";
 
 	</div>
 
-<?php 
+<? 
   
 function showStats($row,$groupBy,$where_clause,$where_clause2,$suffix='') {
 	global $CONF,$db, $flightsTable,$pilotIDview,$serverIDview,$extra_table_str;
@@ -274,6 +292,7 @@ function showStats($row,$groupBy,$where_clause,$where_clause2,$suffix='') {
 	 $mean_duration="N/A";
 	 $mean_distance="N/A";
 	}
+
 	 list($flyingYears,$flyingMonths)=days2YearsMonths($row["flyingPeriod"]);
 	
 	 $flyingPeriod=$flyingMonths." months";
@@ -412,7 +431,7 @@ function showStats($row,$groupBy,$where_clause,$where_clause2,$suffix='') {
 
 
 ?>
-<div id='stats_<?php echo $pilotIDview.$suffix;?>' class='stat_totals'>
+<div id='stats_<? echo $pilotIDview.$suffix;?>' class='stat_totals'>
  <div class='infoHeader'><?=_Totals?></div>
  <table  class=main_text  width="100%" border="0" cellpadding="3" cellspacing="3">
   <tr>
@@ -442,11 +461,18 @@ function showStats($row,$groupBy,$where_clause,$where_clause2,$suffix='') {
     <td bgcolor="#F1FAE2"> <? echo sec2Time($row["totalDuration"],1) ?></td>
   </tr>
   <tr>
-    <td valign="top" bgcolor="#E9EDF5">&nbsp;</td>
-    <td bgcolor="#E0E0E0">&nbsp;</td>
+    <td valign="top" bgcolor="#E9EDF5"><div align="right">_Number_of_tow_starts </div></td>
+    <td bgcolor="#E0E0E0"><? echo "TOW STARTS=".$towStarts ?></td>
     <td>&nbsp;</td>
     <td bgcolor="#E9EDF5"><div align="right"><? echo _Total_num_of_flights ?></div></td>
     <td bgcolor="#E0E0E0"> <? echo $row['totalFlights'] ?></td>
+  </tr>
+  <tr>
+    <td valign="top" bgcolor="#E9EDF5"></td>
+    <td bgcolor="#E0E0E0"></td>
+    <td>&nbsp;</td>
+    <td bgcolor="#E9EDF5"><div align="right"><? echo _Total_PPG_airtime ?></div></td>
+    <td bgcolor="#E0E0E0"> Total PPG Airtime</td>
   </tr>
   </table>
   
@@ -547,7 +573,7 @@ function showStats($row,$groupBy,$where_clause,$where_clause2,$suffix='') {
 
 </div>
 
-<?php  } // end function show stats ?>
+<?  } // end function show stats ?>
 
 <?
       // static map of visited takeoffs for social media
