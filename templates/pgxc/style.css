@@ -920,14 +920,14 @@ a.greenButtonLink:link, a.greenButtonLink:active, a.greenButtonLink:visited, a.g
 }
 
 #headerLeft {
-	float: left;
+	float: right;
 	clear: none;
 	position: relative;
-	left: 0px;
+	right: 0px;
 	top: 29px;
-	width: 400px;
+	width: auto;
 	align: left;
-	text-align: center;
+	text-align: right;
 	padding: 5px;
 	font-family: Vendana, Arial;
 	text-align: center;
