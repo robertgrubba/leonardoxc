@@ -770,7 +770,7 @@ if (!$print) {
 	if ( is_file('./'.$flight->getChartfilename("takeoff_distance",$PREFS->metricSystem)) ){
 		$chart2="<br><br><img src='".$flight->getChartRelPath("takeoff_distance",$PREFS->metricSystem)."'>";
 	}else{
-		$chart2="<br><br><img src='"$CONF['cdnURL'].$flight->getChartRelPath("takeoff_distance",$PREFS->metricSystem)."'>";
+		$chart2="<br><br><img src='".$CONF['cdnURL'].$flight->getChartRelPath("takeoff_distance",$PREFS->metricSystem)."'>";
 	}
 
 		

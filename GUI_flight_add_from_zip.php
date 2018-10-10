@@ -348,7 +348,7 @@ function setClub(NACid) {
 	$archive = new PclZip($tmpZIPPath);
     $list 	 = $archive->extract(PCLZIP_OPT_PATH, $tmpZIPfolder,
                                 PCLZIP_OPT_REMOVE_ALL_PATH,
-								PCLZIP_OPT_BY_PREG, "/(\.igc)|(\.olc)|(\.jpg)$/i");
+								PCLZIP_OPT_BY_PREG, "/(\.igc)|(\.olc)$/i");
 
 	echo "<b>List of uploaded igc/olc files</b><BR>";
 	$f_num=1;
@@ -385,7 +385,7 @@ function setClub(NACid) {
 										'startType'=>$_POST["startType"]+0,
 										'NACclubID'=>$NACclubID,'NACid'=>$NACid,
 										'commentsEnabled'=>($_POST['commentsEnabled']+0)
-										),$tmpZIPFolder
+										) 
 			) ;
 			 
 			 if ($res==1) { 
