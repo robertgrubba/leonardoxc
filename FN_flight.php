@@ -93,7 +93,7 @@ function submitFlightToServer($serverURL, $username, $passwd, $igcURL, $igcFilen
 
 function addFlightFromFile($filename,$calledFromForm,$userIDstr,
 		// $is_private=0,$gliderCat=-1,$linkURL="",$comments="",$glider="", $category=1,
-		$argArray=array()	 )  {
+		$argArray=array(),$tmpZIPFolder	 )  {
 
 	global $CONF_default_cat_add, $CONF_photosPerFlight,$CONF;
 	global $CONF_NAC_list,  $CONF_use_NAC, $CONF_use_validation,$CONF_airspaceChecks ,$CONF_server_id;
@@ -517,7 +517,77 @@ function addFlightFromFile($filename,$calledFromForm,$userIDstr,
 		// also try to get geotag info	
 		$flightPhotos->computeGeoInfo();
 
-    } // took care of photos
+        }
+        
+        // when added from zipfile
+       	
+		require_once dirname(__FILE__)."/CL_flightPhotos.php";
+		$flightPhotos=new flightPhotos($flight->flightID);
+		// $flightPhotos->getFromDB();
+		$j=0;
+		for($i=0;$i<$CONF_photosPerFlight;$i++) {
+			$var_name="photo".$i."Filename";
+			$photoName=$_FILES[$var_name]['name'];
+			$photoFilename=$_FILES[$var_name]['tmp_name'];
+			// $filename nazwa pliku igc
+         
+                        // $tmpZIPFolder
+                        echo "TMPZIPFOLDER: $tmpZIPFolder";
+                        foreach(glob($tmpZIPFolder.'*.{jpg,JPG}',GLOB_BRACE) as $photoName){
+                            $photoFilename=$photoName.'tmp';
+                            echo $photoName;
+                            if ( $photoName ) {  
+				if ( CLimage::validJPGfilename($photoName) && CLimage::validJPGfile($photoFilename) ) {
+				
+					// $newPhotoName=toLatin1($photoName);
+					// Fix for same photo filenames 2009.02.03
+					//global $flightsAbsPath;	
+					global $CONF;
+					$newPhotoName=flightPhotos::getSafeName(
+						LEONARDO_ABS_PATH.'/'.str_replace("%PILOTID%",$flight->getPilotID(),str_replace("%YEAR%",$flight->getYear(),$CONF['paths']['photos']) ),
+						$photoName);				
+						//$flightsAbsPath.'/'.$flight->getPilotID()."/photos/".$flight->getYear() , 
+						//$photoName	) ;
+					
+					$phNum=$flightPhotos->addPhoto($j,$flight->getPilotID()."/photos/".$flight->getYear(), $newPhotoName,$description);
+					$photoAbsPath=$flightPhotos->getPhotoAbsPath($j);
+
+					if ( move_uploaded_file($photoFilename, $photoAbsPath ) ) {
+					
+						CLimage::resizeJPG( $CONF['photos']['thumbs']['max_width'],
+						 					$CONF['photos']['thumbs']['max_height'],
+											$photoAbsPath, $photoAbsPath.".icon.jpg", 
+											$CONF['photos']['compression']);
+						CLimage::resizeJPG(
+						 $CONF['photos']['normal']['max_width'],
+						 $CONF['photos']['normal']['max_height'], $photoAbsPath, $photoAbsPath, 
+						 $CONF['photos']['compression']
+						 );
+						//rgrubba - create medium sized thumbnails for carousel 
+						CLimage::resizeJPG( 
+						 $CONF['photos']['carousel']['max_width'],
+						 $CONF['photos']['carousel']['max_height'],
+						 $photoAbsPath, $photoAbsPath.".carousel.jpg", 
+						 $CONF['photos']['compression']
+						);
+
+						$flight->hasPhotos++;
+						$j++;
+					} else { //upload not successfull
+						$flightPhotos->deletePhoto($j);						
+					}
+					
+
+				}
+                            }
+                        }
+		}  
+		// also try to get geotag info	
+		$flightPhotos->computeGeoInfo();
+            
+        
+        
+        // took care of photos
 	
 	// tkae care of comments 
 	if ($comments) {
