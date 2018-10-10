@@ -564,7 +564,7 @@ function showStats($row,$groupBy,$where_clause,$where_clause2,$suffix='') {
                 }
             }
 
-            $src='https://maps.googleapis.com/maps/api/staticmap?size=800x600&markers=color:red%7Csize:tiny|'.$places.'&key='.$CONF_google_maps_api_key;
+            $src='https://maps.googleapis.com/maps/api/staticmap?size=400x300&markers=color:red%7Csize:tiny|'.$places.'&key='.$CONF_google_maps_api_key;
 //		echo $src; 
             $result=file_put_contents($dst, file_get_contents($src));
 	}
