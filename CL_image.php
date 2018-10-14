@@ -23,6 +23,11 @@ class CLimage {
 		if ( strtolower(substr($filename,-4))==".jpg" || strtolower(substr($filename,-5))==".jpeg" ) return 1;
 		return 0;
 	}
+	function validPNGfilename($filename) {
+		$filename=strtolower($filename);
+		if ( strtolower(substr($filename,-4))==".png") return 1;
+		return 0;
+	}
 	
 	function validJPGfile($filename) {
 		  $im = getimagesize($filename);
@@ -46,8 +51,7 @@ class CLimage {
 		}
 		return array($dest_width,$dest_height);
 	}
-	
-	
+
 	function resizeJPG($forcedwidth, $forcedheight, $sourcefile, $destfile, $imgcomp)
 	{
 		$g_imgcomp=100-$imgcomp;
