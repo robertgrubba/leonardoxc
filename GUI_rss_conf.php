@@ -13,7 +13,7 @@
 //************************************************************************
 
  list($countriesCodes,$countriesNames)=getCountriesList();
- $rss_url_base="http://".$_SERVER['SERVER_NAME'].getRelMainDir()."rss.php";
+ $rss_url_base=getRelMainDir()."rss.php";
  $rss_url_base_comments.= $rss_url_base."?op=comments";
  
  openMain("Configure RSS Feed",0,"icons1/rss.gif"); 
