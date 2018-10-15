@@ -613,7 +613,7 @@ function findBrowserOS(){
 		$takeoffServers=array(
 			1=>array(
 				/* calling  method */
-				"callUrl"=>"http://www.paraglidingearth.com/takeoff_around.php?",
+				"callUrl"=>"http://www.paraglidingearth.com/api/getAroundLatLngSites.php?",
 				"latArg"=>"lat",
 				"lonArg"=>"lng",
 				"limitKmArg"=>"distance",
@@ -623,7 +623,8 @@ function findBrowserOS(){
 				"XML_distance"=>"distance",
 				"XML_area"=>"area",
 				"XML_countryCode"=>"countryCode",
-				"XML_url"=>"pe_link",
+				//"XML_url"=>"pe_link",
+				"XML_url"=>"pge_link",
 				"XML_lat"=>"lat",
 				"XML_lon"=>"lng",
 				),

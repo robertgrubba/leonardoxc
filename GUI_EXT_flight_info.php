@@ -271,7 +271,7 @@ if ($flight->commentsNum) {
 	$takoffsList=getExtrernalServerTakeoffs(1,$firstPoint->lat,-$firstPoint->lon,50,5);
 	
 	if (count($takoffsList) >0 ) {
-		$linkToInfoHdr1="<a href='http://www.paraglidingearth.com/en-html/sites_around.php?lng=".-$firstPoint->lon."&lat=".$firstPoint->lat."&dist=20' target=_blank>";
+	    $linkToInfoHdr1="<a href='http://www.paraglidingearth.com/?bounds=".$firstPoint->lat.",".-$firstPoint->lon.",".$firstPoint->lat.",".-$firstPoint->lon."' target=_blank>";
 	    $linkToInfoHdr1.="<img src='".$moduleRelPath."/img/paraglidingearth_logo.gif' border=0> "._FLYING_AREA_INFO."</a>";
 		
 		$linkToInfoStr1="<ul>";
@@ -282,7 +282,7 @@ if ($flight->commentsNum) {
 				else 
 					$areaStr="";
 
-				$takeoffLink="<a href='".$takeoffItem['url']."' target=_blank>".$takeoffItem['name']."$areaStr (".$takeoffItem['countryCode'].") [~".formatDistance($distance,1)."]</a>";
+				$takeoffLink="<a href='".$takeoffItem['url']."' target=_blank>".$takeoffItem['name']."$areaStr (".$takeoffItem['countryCode'].") [~".$distance." km]</a>";
 
 				$linkToInfoStr1.="<li>$takeoffLink";
 		}
