@@ -125,7 +125,7 @@ function setClub(NACid) {
     <tr>
       <td width="120" valign="top"><div align="right" class="styleItalic"><? echo _SUBMIT_THE_ZIP_FILE_CONTAINING_THE_FLIGHTS ?></div></td>
       <td  colspan="3" valign="top">
-        <input name="zip_datafile" id="zip_datafile" type="file" size="50">
+        <input name="zip_datafile" id="zip_datafile" type="file" size="50" accept=".zip,.ZIP">
       </td>
     </tr>
 	<? // common part with GUI_flight_add_from_zip.php ?>
