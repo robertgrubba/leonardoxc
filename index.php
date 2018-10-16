@@ -12,6 +12,13 @@
 //
 //************************************************************************
 
+$userAgent=$_SERVER['HTTP_USER_AGENT'];
+
+if ( $_SERVER['REQUEST_URI']=='/' && (strpos($userAgent, 'curl') !== false)){
+	echo "OK ";
+	die();
+}
+
 if ( file_exists(dirname(__FILE__)."/install.php") ) {
 	echo "Please remove install.php from dir modules/leonardo in order to run Leonardo<br>";
 	exit;
