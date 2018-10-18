@@ -471,25 +471,17 @@ function addFlightFromFile($filename,$calledFromForm,$userIDstr,
 			
 			if ( $photoName ) {  
 				if ( CLimage::validPNGfilename($photoName) || (CLimage::validJPGfilename($photoName) && CLimage::validJPGfile($photoFilename)) ) {
-					//20181014 in case PNG image convert it to jpg
+				//20181014 in case PNG image convert it to jpg
 					if (CLimage::validPNGfilename($photoName)){
-						//echo convert png file to jpg 
-						$image = imagecreatefrompng($photoName);
-						$bg = imagecreatetruecolor(imagesx($image), imagesy($image));
-						//fill transparency with white color
-						imagefill($bg, 0, 0, imagecolorallocate($bg, 255, 255, 255));
-						imagealphablending($bg, TRUE);
-						imagecopy($bg, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
+						$image = imagecreatefrompng($photoFilename);
+						$quality = 98; // 0 = worst / smaller file, 100 = better / bigger file
+						$newName=str_replace(".png","",$photoName).".jpg";
+						imagejpeg($image, $photoFilename, $quality);
 						imagedestroy($image);
-						$quality = 100; // 0 = worst / smaller file, 100 = better / bigger file
-						$newName=$photoName.".jpg";
-						imagejpeg($bg, $newName, $quality);
-						imagedestroy($bg);
-						//delete old png file
-						@unlink($photoName);
 						//assign set new photoName to created jpg
 						$photoName=$newName;
 					}
+
 
 					// $newPhotoName=toLatin1($photoName);
 					// Fix for same photo filenames 2009.02.03
