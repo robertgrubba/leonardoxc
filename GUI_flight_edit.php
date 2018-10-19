@@ -790,7 +790,7 @@ require_once dirname(__FILE__).'/FN_editor.php';
 			<tr>
 				<td><div align="right" class="style2"><? echo _PHOTO ?> #<? echo ($i+1)?></div></td>
 				<td>  
-					<input name="photo<? echo $i?>Filename" type="file" size="30">
+					<input name="photo<? echo $i?>Filename" type="file" size="30" accept=".jpg,.jpeg,.JPG,.JPEG,.png,.PNG image/jpeg,image/png" >
 				</td>
 			</tr>
 			<? 

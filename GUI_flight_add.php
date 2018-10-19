@@ -353,7 +353,7 @@ function setClub(NACid) {
     <tr>
       <td><div align="right" class="styleItalic"><? echo _PHOTO.' #'.($i+1); ?></div></td>
       <td colspan="3">
-        <input id="photo<?=$i?>Filename" name="photo<?=$i?>Filename" type="file" size="50" accept=".jpg,.jpeg,.JPG,.JPEG, image/jpeg" />	  </td>
+        <input id="photo<?=$i?>Filename" name="photo<?=$i?>Filename" type="file" size="50" accept=".jpg,.jpeg,.JPG,.JPEG,.png,.PNG image/jpeg,image/png" />	  </td>
     </tr>
 	<? } ?>
 	 <tr>
