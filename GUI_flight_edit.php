@@ -101,7 +101,19 @@
 			$photoFilename=$_FILES[$var_name]['tmp_name'];
 			if ( $photoName ) {  // upload new
 				// $flight->deletePhoto($i);  //first delete old
-				if ( CLimage::validJPGfilename($photoName) && CLimage::validJPGfile($photoFilename) ) {
+				if ( CLimage::validPNGfilename($photoName) || ( CLimage::validJPGfilename($photoName) && CLimage::validJPGfile($photoFilename) )) {
+				//20181014 in case PNG image convert it to jpg
+					if (CLimage::validPNGfilename($photoName)){
+						$image = imagecreatefrompng($photoFilename);
+						$quality = 98; // 0 = worst / smaller file, 100 = better / bigger file
+						$newName=str_replace(".png","",$photoName).".jpg";
+						imagejpeg($image, $photoFilename, $quality);
+						imagedestroy($image);
+						//assign set new photoName to created jpg
+						$photoName=$newName;
+					}
+
+
 					
 					// $newPhotoName=toLatin1($photoName);
 					// Fix for same photo filenames 2009.02.03
