@@ -80,7 +80,7 @@ foreach($jobs as $job){
 	if ($job['jobType']=='pdf') {
 		echo "JobID: ".$job['jobID']." created on GMT".$job['timeCreated']." by userID: ".$job['userID']."\n";
 		
-		$url=$job['param1'];
+		$url=str_replace('https://','http://',$job['param1']);
 		$userEmail=$job['param2'];		
 		$res=fetchURL($url,300);
 		
@@ -110,7 +110,6 @@ foreach($jobs as $job){
 			
 			// print_r($pdfUrls);
 			$tmpDir=md5($url);
-			 
 			$pdfFile=leoPdf::createPDFmulti($pdfUrls,$tmpDir);	
 	
 			// $pdfFile=$tmpDir.'/logbook.pdf';
@@ -121,7 +120,7 @@ foreach($jobs as $job){
 							
 			if ($pdfFile) {	
 
-				$pdfFile=$helperUrl.$CONF['pdf']['tmpPathRel'].'/'.$pdfFile;
+				$pdfFile=$CONF['links']['baseURL'].'/'.$CONF['pdf']['tmpPathRel'].'/'.$pdfFile;
 				//echo "<a href='".$helperUrl.$CONF['pdf']['tmpPathRel'].'/'.$pdfFile."' target='_blank'>PDF is ready</a>";
 				// echo "\n\n".$moduleRelPath.'/'.$CONF['pdf']['tmpPathRel'].'/'.$pdfFile;
 			} else {				

@@ -57,6 +57,7 @@
 		unset($_GET['remote']);
 
 		$url="http://".urldecode($_GET['url']);
+		$url=str_replace('http://leonardo.pgxc.pl','',$url);
 		foreach($_GET as $name=>$val ) {
 			if ( !in_array($name,array('print','url') )  ){
 				$url.="&$name=$val";
