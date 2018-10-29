@@ -181,8 +181,7 @@ $RSS_str="<?xml version=\"1.0\" encoding=\"$encoding\" ?>
 <channel>
 	<docs>http://www.leonardoxc.net</docs>
 	<title>Leonardo at ".$_SERVER['SERVER_NAME']." :: Latest flights</title>
-	<link>http://".$_SERVER['SERVER_NAME'].
-	str_replace("&","&amp;",
+	<link>".str_replace("&","&amp;",
 		getLeonardoLink(array('op'=>'list_flights',
 						'year'=>'0','month'=>'0','pilotID'=>'0','takeoffID'=>'0',
 						'xctype'=>'all','class'=>'all',
@@ -222,8 +221,7 @@ $RSS_str="<?xml version=\"1.0\" encoding=\"$encoding\" ?>
 			$title=str_replace("&nbsp;"," ",$title);
 
 			// MANOLIS new way of writing URLS
-			$link=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].
-			getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['flightID'])) );
+			$link=htmlspecialchars (getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['flightID'])) );
 
 
 		if ($row['takeoffVinicity'] > $takeoffRadious ) 
@@ -363,7 +361,7 @@ if ( !file_exists($localMap) )
 
 // MANOLIS official way to get the download link
 $langArray=array("lng">=$currentlang);
-$kmlLink="http://".$_SERVER['SERVER_NAME'].getDownloadLink(array('type'=>'kml_trk','flightID'=>$row['flightID'])+$langArray) ;
+$kmlLink=getDownloadLink(array('type'=>'kml_trk','flightID'=>$row['flightID'])+$langArray) ;
 $desc .= "<br><a href='$kmlLink'>See flight in Google Earth</a><br>";
 		
 //$desc .= "<br><a href=\"$url_root/flight/".$row['flightID']."/kml/&lang=english&w=2&c=FFFFFF&an=1\">See flight in Google Earth</a><br>";
