@@ -53,7 +53,8 @@ function igc2kmz($file,$outputFile,$timezone,$flightID) {
 	$cmd.=" --directory '".realpath(dirname(__FILE__))."'";
 	// $cmd.=" --igcpath '".dirname(__FILE__).'/'.$CONF['paths']['intermediate']."'";
 	// $cmd.=" --directory '".realpath(dirname(__FILE__).'/../..')."'";
-	$cmd.=" --url 'http://".$_SERVER['SERVER_NAME']."$baseInstallationPath'";
+	$cmd.=" --url ".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID));
+	// cmd=" --url $baseInstallationPath";
 	
 // 	$cmd.=" --icon '$baseInstallationPath/templates/basic/tpl/leonardo_logo.gif' ";
 //	$cmd.=" --photos_path '".$CONF['paths']['photos']."' ";
