@@ -53,12 +53,13 @@ function igc2kmz($file,$outputFile,$timezone,$flightID) {
 	$cmd.=" --directory '".realpath(dirname(__FILE__))."'";
 	// $cmd.=" --igcpath '".dirname(__FILE__).'/'.$CONF['paths']['intermediate']."'";
 	// $cmd.=" --directory '".realpath(dirname(__FILE__).'/../..')."'";
-	$cmd.=" --url ".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID));
+//	$cmd.=" --url ".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID));
+	$cmd.=" --url 'https://leonardo.pgxc.pl' ";
 	// cmd=" --url $baseInstallationPath";
 	
 // 	$cmd.=" --icon '$baseInstallationPath/templates/basic/tpl/leonardo_logo.gif' ";
-//	$cmd.=" --photos_path '".$CONF['paths']['photos']."' ";
-//	$cmd.=" --photos_url '$baseInstallationPath/'".$CONF['paths']['photos']."'' ";
+	//$cmd.=" --photos_path '".$CONF['paths']['photos']."' ";
+	//$cmd.=" --photos_url '$baseInstallationPath/'".$CONF['paths']['photos']."'' ";
 
 	//DEFAULT_PHOTOS_PATH = 'data/flights/photos/%YEAR%/%PILOTID%'
 	//DEFAULT_PHOTOS_URL = '/modules/leonardo/data/flights/photos/%YEAR%/%PILOTID%'
@@ -70,7 +71,6 @@ function igc2kmz($file,$outputFile,$timezone,$flightID) {
 	
 		
 	DEBUG('igc2kmz',1,"igc2kmz: $cmd <BR>");
-
 
 	exec($cmd,$res);
 	
