@@ -63,7 +63,7 @@
 		 $XML_str="<result>\n";
 		$XML_str.="
 			<title>Leonardo at ".$_SERVER['SERVER_NAME']." :: Flight list</title>
-			<link>http://".$_SERVER['SERVER_NAME'].getLeonardoLink(array('op'=>'list_flights')) ."</link>		
+			<link>".getLeonardoLink(array('op'=>'list_flights')) ."</link>		
 			<date>". gmdate('D, d M Y H:i:s', time()) . " GMT</date>
 		";
 
@@ -95,7 +95,7 @@
 			//$link=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])));
 			$link=htmlspecialchars (getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])));
 			$this_year=substr($row[DATE],0,4);		
-			$linkIGC=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].getRelMainDir().
+			$linkIGC=htmlspecialchars (getRelMainDir().
 						str_replace("%PILOTID%",getPilotID($row["userServerID"],$row["userID"]),str_replace("%YEAR%",$this_year,$CONF['paths']['igc']) ).'/'.
 						$row['filename']);
 			//	$flightsRelPath."/".$row[userID]."/flights/".$this_year."/".$row[filename] );  
@@ -165,7 +165,7 @@
 			$link=htmlspecialchars (getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID)));
 										
 			$this_year=substr($flight->DATE,0,4);		
-			$linkIGC=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].getRelMainDir().
+			$linkIGC=htmlspecialchars (getRelMainDir().
 					str_replace("%PILOTID%",getPilotID($flight->userServerID,$flight->userID),str_replace("%YEAR%",$this_year,$CONF['paths']['igc']) ).'/'.
 					$flight->filename );  
 					//$flightsRelPath."/".$row[userID]."/flights/".$this_year."/".$row[filename] );  
@@ -376,12 +376,11 @@
 			 $nearestWaypoint->getFromDB();
 	
 			$name=getPilotRealName($row["userID"],$row["userServerID"]);
-			$link=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].
-										getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])) 
+			$link=htmlspecialchars (getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])) 
 									);
 										
 			$this_year=substr($row['DATE'],0,4);		
-			$linkIGC=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].getRelMainDir().
+			$linkIGC=htmlspecialchars (getRelMainDir().
 					str_replace("%PILOTID%",getPilotID($row["userServerID"],$row["userID"]),str_replace("%YEAR%",$this_year,$CONF['paths']['igc']) ).'/'.
 					$row['filename'] );  
 					//$flightsRelPath."/".$row[userID]."/flights/".$this_year."/".$row[filename] );  
@@ -531,12 +530,11 @@
 			 $nearestWaypoint->getFromDB();
 	
 			$name=getPilotRealName($row["userID"],$row["userServerID"],1);
-			$link=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].
-										getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])) 
+			$link=htmlspecialchars (getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])) 
 									);
 										
 			$this_year=substr($row[DATE],0,4);		
-			$linkIGC=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].getRelMainDir().
+			$linkIGC=htmlspecialchars (getRelMainDir().
 					str_replace("%PILOTID%",getPilotID($row["userServerID"],$row["userID"]),str_replace("%YEAR%",$this_year,$CONF['paths']['igc']) ).'/'.
 					$row['filename'] );  
 					//$flightsRelPath."/".$row[userID]."/flights/".$this_year."/".$row[filename] );  
@@ -660,7 +658,7 @@
 		$XML_str="
 		<result>
 			<title>Leonardo at ".$_SERVER['SERVER_NAME']." :: Flight list</title>
-			<link>http://".$_SERVER['SERVER_NAME'].	getLeonardoLink(array('op'=>'list_flights'))."</link>
+			<link>".getLeonardoLink(array('op'=>'list_flights'))."</link>
 			<description>Leonardo at ".$_SERVER['SERVER_NAME']." :: Flight list</description>
 			<managingEditor>".$CONF_admin_email."</managingEditor>
 			<webMaster>".$CONF_admin_email."</webMaster>
@@ -672,9 +670,7 @@
 			 $nearestWaypoint->getFromDB();
 	
 			$name=getPilotRealName($row["userID"],$row["userServerID"]);
-			$link=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].
-										getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])) 		
-									);
+			$link=htmlspecialchars (getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID'])));
 			$this_year=substr($row[DATE],0,4);		
 			$linkIGC=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].getRelMainDir().
 						str_replace("%PILOTID%",getPilotID($row["userServerID"],$row["userID"]),str_replace("%YEAR%",$this_year,$CONF['paths']['igc']) ).'/'.

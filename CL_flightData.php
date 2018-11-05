@@ -838,8 +838,7 @@ $resStr='{
 	// Full url functions
 	//----------------------------------------
 	function getFlightLinkURL() {
-		return "http://".$_SERVER['SERVER_NAME'].
-			getLeonardoLink(array('op'=>'show_flight','flightID'=>$this->flightID));
+		return getLeonardoLink(array('op'=>'show_flight','flightID'=>$this->flightID));
 	}
 
 	function getIGC_URL($saned=0) {
@@ -848,8 +847,7 @@ $resStr='{
 	}
 
 	function getZippedIGC_URL() {
-		return "http://".$_SERVER['SERVER_NAME'].
-			getDownloadLink(array('type'=>'igc','zip'=>'1','flightID'=>$this->flightID)) ;
+		return getDownloadLink(array('type'=>'igc','zip'=>'1','flightID'=>$this->flightID)) ;
 		// getRelMainDir()."download.php?type=igc&zip=1&flightID=".$this->flightID;
 	}
 
@@ -858,14 +856,12 @@ $resStr='{
 		if ($includeLang) $langArray=array("lng">=$currentlang);
 		else  $langArray=array();
 
-		return "http://".$_SERVER['SERVER_NAME'].
-			getDownloadLink(array('type'=>'kml_trk','flightID'=>$this->flightID)+$langArray) ;
+		return 	getDownloadLink(array('type'=>'kml_trk','flightID'=>$this->flightID)+$langArray) ;
 		// getRelMainDir()."download.php?type=kml_trk&flightID=".$this->flightID.$langStr;
 	}
 
 	function getFlightGPX() {
-		return "http://".$_SERVER['SERVER_NAME'].
-			getDownloadLink(array('type'=>'gpx_trk','flightID'=>$this->flightID)) ;
+		return 	getDownloadLink(array('type'=>'gpx_trk','flightID'=>$this->flightID)) ;
 		//getRelMainDir()."download.php?type=gpx_trk&flightID=".$this->flightID;
 	}
 
@@ -910,7 +906,7 @@ $resStr='{
 			"<tr><td>"._MIN_ALTITUDE."</td><td> ".formatAltitude($this->MIN_ALT)."</td></tr>".
 			"<tr bgcolor='#CCCCCC'><td>"._TAKEOFF_ALTITUDE."</td><td> ".formatAltitude($this->TAKEOFF_ALT)."</td></tr>".
 			"<tr><td>"._GLIDER."</td><td>".$this->glider."</td></tr>".
-			"<tr bgcolor='#D7E1EE'><td></td><td><div align='right'>"._KML_file_made_by." <a href='http://www.leonardoxc.net'>Leonardo</a></div></td></tr>";
+			"<tr bgcolor='#D7E1EE'><td></td><td><div align='right'>"._KML_file_made_by." <a href='https://leonardo.pgxc.pl'>Leonardo</a></div></td></tr>";
 			if($ext) $str.=	"<tr bgcolor='#D7E1EE'><td></td><td><div align='right'>Extra analysis module by  Man\'s <a href='http://www.parawing.net'>GPS2GE V2.0</a></div></td></tr>";
 			$str.="<tr bgcolor='#D7E1EE'><td></td><td><div align='right'><a href='$getFlightKML&show_url=1'>URL of this KML file</div></td></tr>";
 
