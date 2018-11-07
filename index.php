@@ -1017,7 +1017,7 @@ function exitPage($exitNow=1){
 		}else{
 			$dateto=date("Y")." - ";
 		}
-	 	echo "<br><center><font size='1'>Copyright © 2018 - ".$dateto." leonardo.pgxc.pl - <a target='_blank' href='regulamin.pdf'>regulamin</a></font></center>";
+	 	echo "<br><center><font size='1'>Copyright © 2018 - ".$dateto." leonardo.pgxc.pl - <a target='_blank' href='https://leonardo.pgxc.pl/regulamin.pdf'>regulamin</a></font></center>";
    	 }
    }
    echo "</div>";
