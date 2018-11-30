@@ -108,10 +108,8 @@
     209=>'Sun Gliders',
     210=>"Sup'Air",
 
-//Gliders
-/**
+
 	301=>'Condor',
-	302=>'Drachenbau Guggenmos',
 	303=>'North Wing Design',
 	304=>'Quasar',
 	305=>'Ch. Kratzner',
@@ -120,7 +118,7 @@
 	308=>'Laurent Zahn',
 	309=>'Ulteam',
 	310=>'Helite',
-	311=>'VEGA Drachenbau',
+	311=>'VEGA Drachenbau', 
 	312=>'Skypoint',
 	313=>'Avian Hand Gliders',
 	314=>'Ikarus Pellicci',
@@ -130,8 +128,8 @@
 	318=>'Eigenmann',
 	319=>'Pioneer Aviation',
 	320=>'Thalhofer',
-	321=>'Grif',
-*/
+	321=>'Grif Italia',
+
     401=>'Alexander Schleicher',
     402=>'DG-Flugzeugbau',
     403=>'Jonker Sailplanes',
