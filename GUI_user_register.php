@@ -179,6 +179,7 @@ if($_POST['registerForm']==1){
 			LeonardoMail::sendMail('[Leonardo] - Confirmation email',$email_body,$_POST['email'],addslashes($_POST['firstname']));
 			
 			$msg="<p align='center'>".sprintf(_Server_send_conf_email,$_POST['email'])."</p>";
+            error_log("User ".$_POST['firstname']." ".$_POST['lastname']." ".$_POST['email']." have submitted registration form",1,"rgrubba@gmail.com","From: root@leonardo.pgxc.pl");
 		 }
     } else {
 		 // var_dump($r); 
@@ -268,7 +269,7 @@ function setCIVL_ID() {
             <?=_Only_after_time;?>
           </li>
           <li>
-            <?=sprintf(_Disable_Anti_Spam,$CONF_admin_email);?>
+            <?=sprintf(_Disable_Anti_Spam,$CONF_noreply_email);?>
             </b> </li>
         </ul>
         </li>

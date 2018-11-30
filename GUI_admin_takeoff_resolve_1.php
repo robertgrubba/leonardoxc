@@ -224,8 +224,8 @@ function deleteMarked(j){
 
 
 				if ( $lastName) {
-					$nameDistanceFromPrevious1=levenshtein (strtolower($lastIntName),strtolower($row2['intName'])); 
-					similar_text (strtolower($lastIntName),strtolower($row2['intName']),&$nameDistanceFromPrevious2); 
+					$nameDistanceFromPrevious1=levenshtein(strtolower($lastIntName),strtolower($row2['intName'])); 
+					similar_text(strtolower($lastIntName),strtolower($row2['intName']),&$nameDistanceFromPrevious2); 
 				} else {
 					$nameDistanceFromPrevious1=0;
 					$nameDistanceFromPrevious2=0;

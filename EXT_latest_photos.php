@@ -60,7 +60,7 @@ while ($row = $db->sql_fetchrow($res)) {
          $photoID=$row['id'];
 	 list($pilotID,$fname,$year)=split("/",$row['path']);
 	 $photos[$i]['url']=$CONF['cdnURL'].'/data/flights/'.$fname.'/'.$year.'/'.$pilotID.'/'.$row['name'];
-	 $photos[$i]['photoURL']=$photos[$i]['url'].'.carousel.jpg';
+	 $photos[$i]['photoURL']=$photos[$i]['url'].'.icon.jpg';
 	 $photos[$i]['flightURL']=getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['flightID']));
 	 $photos[$i]['userName']=$row['firstName'].' '.$row['lastName'];
 	 $photos[$i]['takeoffID']=$row['takeoffID'];
