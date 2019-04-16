@@ -120,6 +120,7 @@ if (count($_POST) >0 ) {
 		$cat=$_POST['gliderCat']+0;
 		$category=$_POST['Category']+0;
 		if (!$category) $category=1;		
+		if (!$cat) $cat=2;		
 	} else if ($klasse==1) $cat=2 ; //flex
 	else if ($klasse==2) $cat=4 ; //rigid
 	else if ($klasse==3) { $cat=1 ;  $category=2; } // pg  open
