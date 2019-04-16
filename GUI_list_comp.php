@@ -202,7 +202,7 @@
   				 gliderBrandID,'.$flightsTable.'.glider as glider,cat, '.
 				 $leagueCategories[$leagueCategory]['select_fields'].' as '.$leagueCategories[$leagueCategory]['select_as']
   		. ' FROM '.$flightsTable. $extra_table_str
-        . ' WHERE (userID!=0 AND  private=0) '.$where_clause
+        . ' WHERE (userID!=0 AND  private=0 AND validated=1 ) '.$where_clause
         . ' ORDER BY  userID , userServerID, '.$leagueCategories[$leagueCategory]['sortBy'].' DESC ';
 /*
   $query = 'SELECT '.$flightsTable.'.ID, userID, '.$flightsTable.'.userServerID , 
