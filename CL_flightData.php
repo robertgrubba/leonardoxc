@@ -2899,6 +2899,10 @@ $kml_file_contents=
 	// trac#40
 	//		$IGCwebPath=urlencode($baseInstallationPath."/").$this->getIGCRelPath(0); // validate original file
 			$IGCwebPath=$this->getIGCRelPath(0); // validate original file
+			if(strpos($IGCwebPath,"http")=== FALSE){
+				$IGCwebPath=urlencode('https://'.$_SERVER['SERVER_NAME'].$baseInstallationPath."/").$this->getIGCRelPath(0);
+			}
+			//error_log(print_r($IGCwebPath,true));
 			$fl=  $CONF['validation']['server_url']."?file=".$IGCwebPath;
 			if ($DBGlvl) $fl.="&dbg=1";
 			DEBUG("VALIDATE_IGC",1,"Will use URL: $fl<BR>");
