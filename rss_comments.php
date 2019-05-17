@@ -39,9 +39,7 @@ $RSS_str="<?xml version=\"1.0\" encoding=\"$encoding\" ?>
 <channel>
 	<docs>http://www.leonardoxc.net</docs>
 	<title>Leonardo at ".$_SERVER['SERVER_NAME']." :: Latest comments</title>
-	<link>http://".$_SERVER['SERVER_NAME'].
-	str_replace("&","&amp;",
-		getLeonardoLink(array('op'=>'list_flights',
+	<link>".str_replace("&","&amp;",getLeonardoLink(array('op'=>'list_flights',
 						'year'=>'0','month'=>'0','pilotID'=>'0','takeoffID'=>'0',
 						'xctype'=>'all','class'=>'all',
 						'country'=>'0','cat'=>'0','clubID'=>'0','brandID'=>'0','nacclubid'=>'0','nacid'=>'0') )
@@ -67,8 +65,7 @@ $RSS_str="<?xml version=\"1.0\" encoding=\"$encoding\" ?>
 			}
 	 	}	 
 	 
-		$link=htmlspecialchars ("http://".$_SERVER['SERVER_NAME'].
-				getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['flightID'])) );
+		$link=htmlspecialchars(getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['flightID'])) );
 
 	
 		$RSS_str.="<item>
