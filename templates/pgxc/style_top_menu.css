@@ -286,7 +286,18 @@ margin-left:8em;
         float: left;
 }
 .indexTable{
-    width: 33%;
+    width: 23%;
+    display:block;
+    float: left;
+    max-width: 400px; 
+}
+.indexTableCenter{
+    width: 55%;
+    display:block;
+    float: left;
+}
+.indexTableRight{
+    width: 20%;
     display:block;
     float: left;
     max-width: 400px; 
