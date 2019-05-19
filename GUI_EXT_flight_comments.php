@@ -73,15 +73,15 @@ if (! $flightID) {
 }
   
 	.depth0 { margin-left:0px;  width:100%;}
-	.depth1 { margin-left:20px;  width:690px;}
-	.depth2 { margin-left:40px;  width:670px;}
-	.depth3 { margin-left:60px;  width:650px;}
-	.depth4 { margin-left:80px;  width:630px;}
-	.depth5 { margin-left:100px; width:610px;}
-	.depth6 { margin-left:120px; width:590px;}
-	.depth7 { margin-left:140px; width:570px;}
-	.depth8 { margin-left:160px; width:550px;}
-	.depth9 { margin-left:180px; width:530px;}
+	.depth1 { margin-left:20px;  width:100%;}
+	.depth2 { margin-left:40px;  width:100%;}
+	.depth3 { margin-left:60px;  width:100%;}
+	.depth4 { margin-left:80px;  width:100%;}
+	.depth5 { margin-left:100px; width:100%;}
+	.depth6 { margin-left:120px; width:100%;}
+	.depth7 { margin-left:140px; width:100%;}
+	.depth8 { margin-left:160px; width:100%;}
+	.depth9 { margin-left:180px; width:100%;}
 	.depth10 { margin-left:0px;  width:100%;}
 	
 <?php  if (!$print) { ?>	
