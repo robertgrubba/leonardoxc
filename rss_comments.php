@@ -11,20 +11,23 @@
 // $Id: rss.php,v 1.21 2010/09/09 12:46:40 manolis E                                                                 
 //
 //************************************************************************
-
 	if (!defined("IN_RSS") ) exit;
 
 		$flightID = $_GET['flightID']+0;
 		if ($flightID) $flightWhereClause=" AND $commentsTable.flightID=$flightID ";
 		else $flightWhereClause='';
 		
-		$query="SELECT $commentsTable.* 
-		 		FROM $commentsTable , $flightsTable
+		$query="SELECT $commentsTable.*, $pilotsTable.firstName, $pilotsTable.lastName, $waypointsTable.intName 
+		 		FROM $commentsTable , $flightsTable, $pilotsTable, $waypointsTable
 				WHERE $commentsTable.flightID = $flightsTable.ID
-						AND $flightsTable.private=0
+						AND $flightsTable.private=0 
+						AND $commentsTable.flightID = $flightsTable.ID
+						AND $flightsTable.userID = $pilotsTable.pilotID 
+						AND $waypointsTable.ID = $flightsTable.takeoffID
 				$flightWhereClause
 				ORDER BY $commentsTable.dateAdded DESC LIMIT $count";
-		// echo $query;
+		//echo $query;
+		//die();
 		$res= $db->sql_query($query);
 		if ( $_GET['debug'] ) exit($query);
 		if($res <= 0){
@@ -69,7 +72,7 @@ $RSS_str="<?xml version=\"1.0\" encoding=\"$encoding\" ?>
 
 	
 		$RSS_str.="<item>
-<title><![CDATA[$name on flight ".$row['flightID']."]]></title>
+<title><![CDATA[$name -> ".$row['firstName']." ".$row['lastName']." @".$row['intName']." ]]></title>
 <guid isPermaLink=\"false\">".$row['commentID']."</guid>
 <pubDate>". gmdate('D, d M Y H:i:s', strtotime($row['dateUpdated']) ) . " GMT</pubDate>
 <link>$link</link>

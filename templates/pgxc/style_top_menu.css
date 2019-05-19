@@ -295,7 +295,14 @@ margin-left:8em;
     width: 55%;
     display:block;
     float: left;
+    height: 380px;
 }
+.catHeaderCenter{
+	width: 100%;
+	display: block;
+	height: 100%;
+}
+
 .indexTableRight{
     width: 20%;
     display:block;
@@ -391,6 +398,13 @@ margin-left:8em;
         .indexTable{
             width: 100%;
         }
+        .indexTableRight{
+            width: 100%;
+        }
+        .indexTableCenter{
+            width: 100%;
+	    max-height: 200px;
+        }
         #b_nav ul li a{
             width: 100% !important;
         }
@@ -398,6 +412,16 @@ margin-left:8em;
 }
 
 @media only screen and (min-width:420px) and (max-width: 600px){
+        .indexTable{
+            width: 100%;
+        }
+        .indexTableRight{
+            width: 100%;
+        }
+        .indexTableCenter{
+            width: 100%;
+	    max-height: 300px;
+        }
        .externalLinks{
         	width: 100%;
         }
