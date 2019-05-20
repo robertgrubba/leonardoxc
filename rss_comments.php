@@ -70,9 +70,13 @@ $RSS_str="<?xml version=\"1.0\" encoding=\"$encoding\" ?>
 	 
 		$link=htmlspecialchars(getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['flightID'])) );
 
-	
+		if ($name!= $row['firstName']." ".$row['lastName']){
+			$name = $name."-> ";
+		}else{
+			$name = "";
+		} 	
 		$RSS_str.="<item>
-<title><![CDATA[$name -> ".$row['firstName']." ".$row['lastName']." @".$row['intName']." ]]></title>
+<title><![CDATA[$name".$row['firstName']." ".$row['lastName']." @".$row['intName']." ]]></title>
 <guid isPermaLink=\"false\">".$row['commentID']."</guid>
 <pubDate>". gmdate('D, d M Y H:i:s', strtotime($row['dateUpdated']) ) . " GMT</pubDate>
 <link>$link</link>
