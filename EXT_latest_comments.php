@@ -30,7 +30,7 @@
 		echo '<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="main_text indexTable">';
 		echo '<tr>';
 		echo '<td width="20%" valign="bottom" bgcolor="#CED8E1" class="catHeader">';
-		echo '<a style="font-size: 11px;font-family: Verdana, Arial, Helvetica, sans-serif; line-height: 110%;" href="'.$link.'" title="'.$title.'">'.$title.':</a>';
+		echo '<a style="font-size: 11px;font-family: Verdana, Arial, Helvetica, sans-serif; line-height: 110%;" href="'.$link.'" title="'.$title.'">'.$title.'</a><em style="font-size: 11px;font-family: Verdana, Arial, Helvetica, sans-serif; line-height: 110%;font-style:regular;">:</em>';
 		echo '<ul style="font-size: 10px;font-family: Verdana, Arial, Helvetica, sans-serif; line-height: 110%;font-style: italic;" >'.$description.'</ul>';
 		echo '<div align="right" style="font-size: 10px;font-family: Verdana, Arial, Helvetica, sans-serif; line-height: 110%;font-style: italic;" >('.$date.') </div>';
 		echo '<hr>';
