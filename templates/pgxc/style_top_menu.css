@@ -317,10 +317,31 @@ margin-left:8em;
 	min-height: inherit;
 }
 @media only screen and (max-width: 419px){
-.latestPhotos{
-	height: fit-content;
-	min-height: 200px;
-}
+	#mainPageContent{
+		display: flex;
+		flex-flow: wrap;
+	}
+	#flightsPerCountry{
+		order:3;
+		width: 100%;
+	}
+	#latestPhotographs{
+		order:1;
+		width: 100%;
+	}
+	#latestComments{
+		order:2;
+		width:100%;
+	}
+	.latestPhotos{
+		height: fit-content;
+		min-height: 200px;
+		max-width: inherit;
+	}
+	.latestPhotos{
+		height: fit-content;
+		min-height: 200px;
+	}
        .externalLinks{
 	        width: 100%;
 		padding-bottom: 2%;
@@ -423,11 +444,27 @@ margin-left:8em;
 }
 
 @media only screen and (min-width:420px) and (max-width: 600px){
-.latestPhotos{
-	height: fit-content;
-	min-height: 200px;
-	max-width: inherit;
-}
+	#mainPageContent{
+		display: flex;
+		flex-flow: wrap;
+	}
+	#flightsPerCountry{
+		order:2;
+		width: 50%;
+	}
+	#latestPhotographs{
+		order:1;
+		width: 100%;
+	}
+	#latestComments{
+		order:3;
+		width:50%;
+	}
+	.latestPhotos{
+		height: fit-content;
+		min-height: 200px;
+		max-width: inherit;
+	}
         .indexTable{
             width: 100%;
         }
@@ -436,7 +473,7 @@ margin-left:8em;
         }
         .indexTableCenter{
             width: 100%;
-	    max-height: 300px;
+	    max-height: 320px;
         }
        .externalLinks{
         	width: 100%;
