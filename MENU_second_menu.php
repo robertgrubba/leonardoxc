@@ -407,9 +407,15 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
 
 <? if ($op=='list_flights') { ?>
 	<div id='favMenuID' class="menuButton"><a href="#" onClick="toogleFav(); return false;">
-	<?=leoHtml::img('icon_fav.png',0,0,'absmiddle','','icons1','',0);?>
-	<? echo $arrDownImg; ?></a>
-    </div>
+		<?=leoHtml::img('icon_fav.png',0,0,'absmiddle','','icons1','',0);?>
+		<? echo $arrDownImg; ?></a>
+    	</div>
+	<!-- dodac warunek na listing tylko w lotach uzytkownika -->
+
+	<div id='ippiMenuID' class="menuButton"><a href="#" onClick="toogleIppi(); return false;">
+		IPPI
+		<? echo $arrDownImg; ?></a>
+    	</div>
 <? } ?>
     
 <? if ($op!='comp'  || 1 ) { // custom ranks , we now allow also on custom ranks?>
@@ -836,6 +842,8 @@ if (! $dontShowCountriesSelection ) {
 <?
 if ($op=='list_flights') { 
 	require_once  dirname(__FILE__).'/MENU_fav.php';
+	//dodac warunek ze require jesli listing lotow uzytkownika
+	require_once  dirname(__FILE__).'/MENU_ippi.php';
 }
 
 require_once  dirname(__FILE__).'/MENU_clubs.php';
