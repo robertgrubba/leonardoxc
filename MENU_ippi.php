@@ -61,6 +61,7 @@ function activateIppi() {
 		$(".indexCell .selectThermal").show();
 		$(".indexCell .selectDynamic").show();
 	//	$(".indexCell .selectTrack").show();
+		$("#selectionSummary").show();
 	} else {
 		//$(".indexCell").attr('style', 'text-align: left');
 		$(".indexCell").width('70px');
@@ -68,6 +69,7 @@ function activateIppi() {
 		$(".indexCell").not('.SortHeader').append("Termika: <input class='selectThermal' type='checkbox' value='1'><br>Żagiel: <input class='selectDynamic' type='checkbox' value='1'> ");
 		favSelectInit=1;
 		ippiSelectInit=1;
+		$("#selectionSummary").show();
 	//	thermalSelectInit=1;
 	//	dynamicSelectInit=1;
 	}
@@ -84,25 +86,9 @@ function loadFavs() {
 	}	
 }
 
-function addFav(flightID ){
-	if ( $.inArray(flightID, favList)  >=0 ) { return; }
-	var newrow=$("#row_"+flightID).clone().attr('id', 'fav_'+(flightID)  ).appendTo("#favList > tbody:last");
-	$("#fav_"+flightID+" *").removeAttr('id').removeAttr("href");
-	$("#fav_"+flightID+" a").contents().unwrap();
-	$("#fav_"+flightID+" .dateHidden").removeClass('dateHidden');
-	$("#fav_"+flightID+" .indexCell").remove();
-	$("#fav_"+flightID+" .indexCell").remove();
-	$("#fav_"+flightID+" .smallInfo").html("<div class='fav_remove' id='fav_remove_"+flightID+"'>"+
-				"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
-	favList.push(flightID);
-	updateLink();
-	updateCookie();
-	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
-}
-
 function addThermal(flightID ){
-	if ( $.inArray(flightID, thermalList)  >=0 ) { return; }
-	var newrow=$("#row_"+flightID).clone().attr('id', 'thermal_'+(flightID)  ).appendTo("#thermalList > tbody:last");
+	//if ( $.inArray(flightID, thermalList)  >=0 ) { return; };
+	var newrow=$("#row_"+flightID).clone().attr('id', 'thermal_'+(flightID)  ).appendTo("#thermalListIppi > tbody:last");
 	$("#thermal_"+flightID+" *").removeAttr('id').removeAttr("href");
 	$("#thermal_"+flightID+" a").contents().unwrap();
 	$("#thermal_"+flightID+" .dateHidden").removeClass('dateHidden');
@@ -111,14 +97,14 @@ function addThermal(flightID ){
 	$("#thermal_"+flightID+" .smallInfo").html("<div class='thermal_remove' id='thermal_remove_"+flightID+"'>"+
 				"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
 	thermalList.push(flightID);
-	updateLink();
-	updateCookie();
+	updateLinkIppi();
+	updateCookieIppi();
 	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
 }
 
 function addDynamic(flightID ){
-	if ( $.inArray(flightID, dynamicList)  >=0 ) { return; }
-	var newrow=$("#row_"+flightID).clone().attr('id', 'dynamic_'+(flightID)  ).appendTo("#dynamicList > tbody:last");
+	//if ( $.inArray(flightID, dynamicList)  >=0 ) { return; }
+	var newrow=$("#row_"+flightID).clone().attr('id', 'dynamic_'+(flightID)  ).appendTo("#dynamicListIppi > tbody:last");
 	$("#dynamic_"+flightID+" *").removeAttr('id').removeAttr("href");
 	$("#dynamic_"+flightID+" a").contents().unwrap();
 	$("#dynamic_"+flightID+" .dateHidden").removeClass('dateHidden');
@@ -127,24 +113,11 @@ function addDynamic(flightID ){
 	$("#dynamic_"+flightID+" .smallInfo").html("<div class='dynamic_remove' id='dynamic_remove_"+flightID+"'>"+
 				"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
 	dynamicList.push(flightID);
-	updateLink();
-	updateCookie();
+	updateLinkIppi();
+	updateCookieIppi();
 	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
 }
 
-
-function removeFav(flightID){
-	if ( $.inArray(flightID, favList)  < 0  ) { return; }
-	$("#fav_"+flightID).fadeOut(300,function() {
-		$(this).remove();
-		//remove from list
-		favList = jQuery.grep(favList, function(value) {
-			  return value != flightID;
-		});
-		updateLink();
-		updateCookie();
-	});
-}
 
 function removeThermal(flightID){
 	if ( $.inArray(flightID, thermalList)  < 0  ) { return; }
@@ -154,8 +127,8 @@ function removeThermal(flightID){
 		thermalList = jQuery.grep(thermalList, function(value) {
 			  return value != flightID;
 		});
-		updateLink();
-		updateCookie();
+		updateLinkIppi();
+		updateCookieIppi();
 	});
 }
 
@@ -168,67 +141,83 @@ function removeDynamic(flightID){
 		dynamicList = jQuery.grep(dynamicList, function(value) {
 			  return value != flightID;
 		});
-		updateLink();
-		updateCookie();
+		updateLinkIppi();
+		updateCookieIppi();
 	});
 }
 
 
-function updateCookie(){
+function updateCookieIppi(){
 	//return;
-	var str='';
+	var strThermal='';
 	var thermalListNum=0;
 	for(var i in thermalList) {
-		if (thermalListNum>0) str+=',';
-		str+=thermalList[i];
+		if (thermalListNum>0) strThermal+=',';
+		strThermal+=thermalList[i];
 		thermalListNum++;
 	}
-	
-	$.cookie("thermalList", str );
-	$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeFavs", { favHtml: $("#favListDiv").html() } );
+	$.cookie("thermalList", strThermal );
+	var dynamicListNum=0;
+	var strDynamic='';
+	str='';
+	for(var i in dynamicList) {
+		if (dynamicListNum>0) strDynamic+=',';
+		strDynamic+=dynamicList[i];
+		dynamicListNum++;
+	}
+	$.cookie("dynamicList", strDynamic );
+	$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeIppi", { ippiHtml: $("#favListDiv").html() } );
+	//$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeFavs", { favHtml: $("#selectionSummary").html() } );
 	
 }
 
-function clearFavs(){
-	$.cookie("favList", null );
-	$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeFavs", { favHtml: '' } );
-	$("#favList tr").remove();
-	favList=[];
-	updateLink();
-}
 
 function clearThermal(){
 	$.cookie("thermalList", null);
-	$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeFavs", { favHtml: '' } );
+	$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeIppi", { ippiHtml: '' } );
 	$("#favList tr").remove();
 	thermalList=[];
-	updateLink();
+	updateLinkIppi();
 }
 function clearDynamic(){
 	$.cookie("dynamicList", null);
-	$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeFavs", { favHtml: '' } );
+	$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeIppi", { ippiHtml: '' } );
 	$("#favList tr").remove();
 	dynamicList=[];
-	updateLink();
+	updateLinkIppi();
 }
 
-function updateLink() {
-	var str='';
-	var  favListNum=0;
-	for(var i in favList) {
-		if (favListNum>0) str+=',';
-		str+=favList[i];
-		favListNum++;
+function updateLinkIppi() {
+	var strThermal='';
+	var strDynamic='';
+	var  thermalListNum=0;
+	var  dynamicListNum=0;
+	for(var i in thermalList) {
+		if (thermalListNum>0) strThermal+=',';
+		strThermal+=thermalList[i];
+		thermalListNum++;
 	}
-	if (favListNum>0) {
+	for(var i in dynamicList) {
+		if (dynamicListNum>0) strDynamic+=',';
+		strDynamic+=dynamicList[i];
+		dynamicListNum++;
+	}
+
+	if (thermalListNum>0 || dynamicListNum>0 ) {
+		$("#ippiDropDownID").removeClass('secondMenuDropLayer');
 		$("#compareFavoritesLink").show();
 		$("#compareFavoritesText").hide();
+		$("#selectionSummary").show();
+		$("#ippiListDiv").show();
+//		console.log("thermals: "+ thermalListNum + " dynamic: " +dynamicListNum);
 		
-		compareUrl=compareUrlBase.replace("%FLIGHTS%",str);
+		compareUrl=compareUrlBase.replace("%FLIGHTS%",strThermal+','+strDynamic);
 		$("#compareFavoritesLink").attr('href',compareUrl);
 	} else {
+		$("#ippiDropDownID").addClass('secondMenuDropLayer');
 		$("#compareFavoritesLink").hide();
 		$("#compareFavoritesText").show();
+		$("#selectionSummary").hide();
 	}
 
 	
@@ -236,35 +225,16 @@ function updateLink() {
 
 $(document).ready(function(){
 
-	var favListCookie=$.cookie("favList");
-	if (favListCookie) {
-		favList=favListCookie.split(',');		
-		updateLink();		
-	}
-	var thermalListCookie=$.cookie("thermalList");
+ 	var thermalListCookie=$.cookie("thermalList");
 	if (thermalListCookie){
 		thermalList=thermalListCookie.split(',');
-		updateLink();
+		updateLinkIppi();
 	}
 	var dynamicListCookie=$.cookie("dynamicList");
 	if (dynamicListCookie){
 		dynamicList=dynamicListCookie.split(',');
-		updateLink();
+		updateLinkIppi();
 	}
-	
-	$(".indexCell .selectTrack").live('click',function() {
-		var row=$(this).parent().parent();
-		var flightID=row.attr('id').substr(4);
-//		alert(flightID);
-		if ( $(this).is(':checked') ) {
-			addFav(flightID);
-		} else {
-			removeFav(flightID);
-		}
-		//$("#dbg").html("id="+flightID+"@"+row.attr('id'));
-		//row.css({background:"#ff0000",height:"100"});
-	});
-
 	$(".indexCell .selectThermal").live('click',function() {
 		var row=$(this).parent().parent();
 		var flightID=row.attr('id').substr(4);
@@ -274,6 +244,7 @@ $(document).ready(function(){
 		} else {
 			removeThermal(flightID);
 		}
+		$(this).parent().nextAll().addBack().css("background-color","#ff9933");
 		//$("#dbg").html("id="+flightID+"@"+row.attr('id'));
 		//row.css({background:"#ff0000",height:"100"});
 	});
@@ -287,17 +258,11 @@ $(document).ready(function(){
 		} else {
 			removeDynamic(flightID);
 		}
+
+		$(this).parent().nextAll().addBack().css("background-color","#66ccff");
 		//$("#dbg").html("id="+flightID+"@"+row.attr('id'));
 		//row.css({background:"#ff0000",height:"100"});
 	});
- 
-	$(".fav_remove").live('click',function() {
-		var flightID=$(this).attr('id').substr(11);
-		//$("#row_"+flightID+" .selectThermal").attr('checked', false);
-		//$("#row_"+flightID+" .selectDynamic").attr('checked', false);
-		removeFav(flightID);
-	});
-
 	$(".thermal_remove").live('click',function() {
 		var flightID=$(this).attr('id').substr(11);
 		$("#row_"+flightID+" .selectThermal").attr('checked', false);
@@ -316,7 +281,7 @@ $(document).ready(function(){
 
 </script>
 
-<div id="favDropDownID" class="secondMenuDropLayer"  >
+<div id="ippiDropDownID" class="secondMenuDropLayer"  >
 <div class='closeButton closeLayerButton'></div>        
 <div class='content' align="left">
 
@@ -334,23 +299,20 @@ $(document).ready(function(){
 		<a id='compareFavoritesLink' class='greenButton' href=''><?php echo _Compare_Favorite_Tracks ?></a>
 		
 		<a class='redButton smallButton' href='javascript:clearFavs()'><?php echo _Remove_all_favorites?></a>
-		
 		<hr>
 	</div>	 
-	<div id='favListDiv'>
-		<?php  if (strlen($_SESSION['favHtml'])>30) { 
-			echo $_SESSION['favHtml'];
-		} else { ?>
-		<table id='favList'>
+	<div id='ippiListDiv'>
+		<table id='selectionSummary' >
+			<tr><td>Rodzaj lotów</td><td>Liczba lotów</td><td>Czas lotów</td></tr>
+			<tr><td>Termika</td><td id='numberOfThermalFlights'></td><td id='timeOfThermalFlights'></td>
+			<tr><td>Żagiel</td><td id='numberOfDynamicFlights'></td><td id='timeOfDynamicFlights'></td>
+		</table>
+		<table id='thermalListIppi'>
 			<tbody></tbody>
 		</table>
-		<table id='thermalList'>
+		<table id='dynamicListIppi'>
 			<tbody></tbody>
 		</table>
-		<table id='dynamicList'>
-			<tbody></tbody>
-		</table>
-		<?php  } ?>
 	</div>
 </div>
 </div>

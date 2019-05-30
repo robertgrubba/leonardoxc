@@ -63,6 +63,10 @@
 	
 		$_SESSION['favHtml']=$_POST['favHtml'];
 		echo "OK";
+	} else if ($op=='storeIppi'){
+
+		$_SESSION['storeIppi']=$_POST['ippiHtml'];
+		echo "OK";
 	} else if ($op=='getCountriesSelect') {
 		require_once dirname(__FILE__)."/language/".CONF_LANG_ENCODING_TYPE."/countries-".$currentlang.".php";
 		asort($countries);
