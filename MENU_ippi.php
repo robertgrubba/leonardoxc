@@ -17,11 +17,11 @@
 <div id="dbg" style="position:absolute;top:0;left:0;width:100px;height:20px;display:none;"></div>
 
 <script type="text/javascript">
-
+/*
 var favList=[];
 var favVisible=0;
 var favSelectInit=0;
-
+ */
 var thermalList=[];
 var thermalVisible=0;
 var thermalSelectInit=0;
@@ -37,7 +37,7 @@ var compareUrlBase='<?php echo getLeonardoLink(array('op'=>'compare','flightID'=
 var compareUrl='';
 
 function toogleIppi() {
-	if (favVisible) {
+	if (ippiVisible) {
 		deactivateIppi();
 		favVisible=0;
 		ippiVisible=0;
@@ -45,12 +45,12 @@ function toogleIppi() {
 	//	dynamicVisible=0;
 	} else {
 		activateIppi();
-		favVisible=1;
+		favVisible=0;
 		ippiVisible=1;
 	//	thermalVisible=1;
 	//	dynamicVisible=1;
 	}
-	toogleMenu('fav');
+	//toogleMenu('fav');
 }
 
 function activateIppi() {
@@ -62,22 +62,26 @@ function activateIppi() {
 		$(".indexCell .selectDynamic").show();
 	//	$(".indexCell .selectTrack").show();
 		$("#selectionSummary").show();
+		$("#ippiDropDownID").show();
 	} else {
 		//$(".indexCell").attr('style', 'text-align: left');
 		$(".indexCell").width('70px');
 //		$(".indexCell").not('.SortHeader').empty();
-		$(".indexCell").not('.SortHeader').append("Termika: <input class='selectThermal' type='checkbox' value='1'><br>Żagiel: <input class='selectDynamic' type='checkbox' value='1'> ");
+		$(".indexCell").not('.SortHeader').append("<em class='selectThermal'>Termika: <input type='checkbox' value='1'></em><br><em class='selectDynamic'>Żagiel: <input type='checkbox' value='1'></em> ");
 		favSelectInit=1;
 		ippiSelectInit=1;
 		$("#selectionSummary").show();
+		$("#ippiDropDownID").show();
 	//	thermalSelectInit=1;
 	//	dynamicSelectInit=1;
 	}
 }
 
 function deactivateIppi() {
-	$(".indexCell .selectThermal").hide();
-	$(".indexCell .selectDynamic").hide();
+	$(".selectThermal").hide();
+	$(".selectDynamic").hide();
+	$("#ippiDropDownID").hide();
+	//$(".indexCell").not('.SortHeader').text().replace("Termika:","").replace("Żagiel:","");
 }
 
 function loadFavs() {
@@ -177,6 +181,7 @@ function clearThermal(){
 	$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeIppi", { ippiHtml: '' } );
 	$("#favList tr").remove();
 	thermalList=[];
+	$("#numberOfThermalFlights").text('0');
 	updateLinkIppi();
 }
 function clearDynamic(){
@@ -184,7 +189,12 @@ function clearDynamic(){
 	$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeIppi", { ippiHtml: '' } );
 	$("#favList tr").remove();
 	dynamicList=[];
+	$("#numberOfDynamicFlights").text('0');
 	updateLinkIppi();
+}
+function clearAll(){
+	clearDynamic();
+	clearThermal();
 }
 
 function updateLinkIppi() {
@@ -209,6 +219,8 @@ function updateLinkIppi() {
 		$("#compareFavoritesText").hide();
 		$("#selectionSummary").show();
 		$("#ippiListDiv").show();
+		$("#numberOfThermalFlights").text(thermalListNum);
+		$("#numberOfDynamicFlights").text(dynamicListNum);
 //		console.log("thermals: "+ thermalListNum + " dynamic: " +dynamicListNum);
 		
 		compareUrl=compareUrlBase.replace("%FLIGHTS%",strThermal+','+strDynamic);
@@ -236,30 +248,30 @@ $(document).ready(function(){
 		updateLinkIppi();
 	}
 	$(".indexCell .selectThermal").live('click',function() {
+		$(this).parent().nextAll().addBack().css("background-color","#ff9933");
 		var row=$(this).parent().parent();
 		var flightID=row.attr('id').substr(4);
 //		alert(flightID);
-		if ( $(this).is(':checked') ) {
+		if ( $(this).children('input').is(':checked') ) {
 			addThermal(flightID);
 		} else {
 			removeThermal(flightID);
 		}
-		$(this).parent().nextAll().addBack().css("background-color","#ff9933");
 		//$("#dbg").html("id="+flightID+"@"+row.attr('id'));
 		//row.css({background:"#ff0000",height:"100"});
 	});
 
 	$(".indexCell .selectDynamic").live('click',function() {
+		$(this).parent().nextAll().addBack().css("background-color","#66ccff");
 		var row=$(this).parent().parent();
 		var flightID=row.attr('id').substr(4);
 
-		if ( $(this).is(':checked') ) {
+		if ( $(this).children('input').is(':checked') ) {
 			addDynamic(flightID);
 		} else {
 			removeDynamic(flightID);
 		}
 
-		$(this).parent().nextAll().addBack().css("background-color","#66ccff");
 		//$("#dbg").html("id="+flightID+"@"+row.attr('id'));
 		//row.css({background:"#ff0000",height:"100"});
 	});
@@ -275,44 +287,44 @@ $(document).ready(function(){
 		removeDynamic(flightID);
 	});
 
-	
+	/*
+	$("#ippiMenuID").live('click',function() {
+		
+	});	
+ */
 });
 
 
 </script>
 
 <div id="ippiDropDownID" class="secondMenuDropLayer"  >
-<div class='closeButton closeLayerButton'></div>        
-<div class='content' align="left">
+	<div class='closeButton closeLayerButton'></div>        
+	<div class='content' align="left">
 
-	<div style='text-align:center;margin-top:10px;'>
-		<span class='info' id='compareFavoritesText'>
-		<h2><?php echo _Favorites ?></h2>
-		<?php echo _Compare_flights_line_1 ?>
-		<BR>
-		<!-- Select Flights by clicking on the checkbox  -->	
-		<?php echo _Compare_flights_line_2 ?>
-			<!-- You can then compare all your selected flights in google maps -->	
-			<br><BR>	
-		</span>
-		
-		<a id='compareFavoritesLink' class='greenButton' href=''><?php echo _Compare_Favorite_Tracks ?></a>
-		
-		<a class='redButton smallButton' href='javascript:clearFavs()'><?php echo _Remove_all_favorites?></a>
-		<hr>
-	</div>	 
-	<div id='ippiListDiv'>
-		<table id='selectionSummary' >
-			<tr><td>Rodzaj lotów</td><td>Liczba lotów</td><td>Czas lotów</td></tr>
-			<tr><td>Termika</td><td id='numberOfThermalFlights'></td><td id='timeOfThermalFlights'></td>
-			<tr><td>Żagiel</td><td id='numberOfDynamicFlights'></td><td id='timeOfDynamicFlights'></td>
-		</table>
-		<table id='thermalListIppi'>
-			<tbody></tbody>
-		</table>
-		<table id='dynamicListIppi'>
-			<tbody></tbody>
-		</table>
+		<div style='text-align:center;margin-top:10px;'>
+			<span class='info' id='ippiText'>
+			<h2>Wyciąg z księgi lotów na potrzeby IPPI </h2>
+			<BR>
+			<!-- Select Flights by clicking on the checkbox  -->	
+			<p>W kolumnie z numerami lotów możesz zaznaczyć wybrane loty jako termiczne i żaglowe</p>	
+			</span>
+			
+			<a id='compareFavoritesLink' class='greenButton' href=''><?php echo _Compare_Favorite_Tracks ?></a>
+			
+			<hr>
+		</div>	 
+		<div id='ippiListDiv'>
+			<table id='selectionSummary' >
+				<tr><th>Rodzaj lotów</th><th>Liczba lotów</th><th>Czas lotów</th></tr>
+				<tr><th>Termika</th><td id='numberOfThermalFlights'></td><td id='timeOfThermalFlights'></td>
+				<tr><th>Żagiel</th><td id='numberOfDynamicFlights'></td><td id='timeOfDynamicFlights'></td>
+			</table>
+			<table id='thermalListIppi'>
+				<tbody></tbody>
+			</table>
+			<table id='dynamicListIppi'>
+				<tbody></tbody>
+			</table>
+		</div>
 	</div>
-</div>
 </div>
