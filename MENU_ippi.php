@@ -117,6 +117,7 @@ function addDynamic(flightID ){
 	$("#dynamic_"+flightID+" .smallInfo").html("<div class='dynamic_remove' id='dynamic_remove_"+flightID+"'>"+
 				"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
 	dynamicList.push(flightID);
+	$("#timeOfDynamicFlights").text($("#row_"+flightID+ " td:nth-child(4)").text()).
 	updateLinkIppi();
 	updateCookieIppi();
 	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
