@@ -36,6 +36,25 @@ var ippiSelectInit=0;
 var compareUrlBase='<?php echo getLeonardoLink(array('op'=>'compare','flightID'=>'%FLIGHTS%'));?>';
 var compareUrl='';
 
+function timeToSeconds(time) {
+	    time = time.split(/:/);
+//	        return time[0] * 3600 + time[1] * 60 + time[2]*1;
+	        return time[0] * 3600 + time[1] * 60 ;
+}
+function secondsToTime(time) {
+	minutes = Math.floor(time / 60)%60;
+	hours = Math.floor(time/60/60);
+	if (hours<10) {
+		hours = "0".concat(hours.toString());
+	}
+	if (minutes<10){
+		minutes = "0".concat(minutes.toString());
+	}
+ 
+	return hours.toString().concat(":", minutes.toString());
+
+}
+
 function toogleIppi() {
 	if (ippiVisible) {
 		deactivateIppi();
@@ -101,6 +120,9 @@ function addThermal(flightID ){
 	$("#thermal_"+flightID+" .smallInfo").html("<div class='thermal_remove' id='thermal_remove_"+flightID+"'>"+
 				"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
 	thermalList.push(flightID);
+	var total = timeToSeconds($("#timeOfThermalFlights").text());
+	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
+	$("#timeOfThermalFlights").text(secondsToTime(total+time));
 	updateLinkIppi();
 	updateCookieIppi();
 	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
@@ -117,7 +139,9 @@ function addDynamic(flightID ){
 	$("#dynamic_"+flightID+" .smallInfo").html("<div class='dynamic_remove' id='dynamic_remove_"+flightID+"'>"+
 				"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
 	dynamicList.push(flightID);
-	$("#timeOfDynamicFlights").text($("#row_"+flightID+ " td:nth-child(4)").text()).
+	var total = timeToSeconds($("#timeOfDynamicFlights").text());
+	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
+	$("#timeOfDynamicFlights").text(secondsToTime(total+time));
 	updateLinkIppi();
 	updateCookieIppi();
 	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
@@ -132,6 +156,9 @@ function removeThermal(flightID){
 		thermalList = jQuery.grep(thermalList, function(value) {
 			  return value != flightID;
 		});
+	var total = timeToSeconds($("#timeOfThermalFlights").text());
+	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
+	$("#timeOfThermalFlights").text(secondsToTime(total-time));
 		updateLinkIppi();
 		updateCookieIppi();
 	});
@@ -146,6 +173,9 @@ function removeDynamic(flightID){
 		dynamicList = jQuery.grep(dynamicList, function(value) {
 			  return value != flightID;
 		});
+	var total = timeToSeconds($("#timeOfDynamicFlights").text());
+	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
+	$("#timeOfDynamicFlights").text(secondsToTime(total-time));
 		updateLinkIppi();
 		updateCookieIppi();
 	});
@@ -317,8 +347,8 @@ $(document).ready(function(){
 		<div id='ippiListDiv'>
 			<table id='selectionSummary' >
 				<tr><th>Rodzaj lotów</th><th>Liczba lotów</th><th>Czas lotów</th></tr>
-				<tr><th>Termika</th><td id='numberOfThermalFlights'></td><td id='timeOfThermalFlights'></td>
-				<tr><th>Żagiel</th><td id='numberOfDynamicFlights'></td><td id='timeOfDynamicFlights'></td>
+				<tr><th>Termika</th><td id='numberOfThermalFlights'></td>0<td id='timeOfThermalFlights'>00:00</td>
+				<tr><th>Żagiel</th><td id='numberOfDynamicFlights'></td>0<td id='timeOfDynamicFlights'>00:00</td>
 			</table>
 			<table id='thermalListIppi'>
 				<tbody></tbody>
