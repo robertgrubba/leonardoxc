@@ -117,8 +117,16 @@ function addThermal(flightID ){
 	$("#thermal_"+flightID+" .dateHidden").removeClass('dateHidden');
 	$("#thermal_"+flightID+" .indexCell").remove();
 	$("#thermal_"+flightID+" .indexCell").remove();
-	$("#thermal_"+flightID+" .smallInfo").html("<div class='thermal_remove' id='thermal_remove_"+flightID+"'>"+
-				"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
+	$("#thermal_"+flightID+" .pilotLink").remove();
+	$("#thermal_"+flightID+" .catInfo").remove();
+	$("#thermal_"+flightID+" td:nth-child(4)").remove();
+	$("#thermal_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("-");
+	$("#thermal_"+flightID+" td:has(img.sprite-icon_valid_ok)").html("&#10004;");
+	$("#thermal_"+flightID+" td:nth-child(6)").html("<a href='https://leonardo.pgxc.pl/lot/"+flightID+"/'>https://leonardo.pgxc.pl/lot/"+flightID+"</a>");
+	var model = $("#thermal_"+flightID+" img.brands").attr('alt');
+	$("#thermal_"+flightID+" td:has(img.brands)").html(model);
+	//$("#thermal_"+flightID+" .smallInfo").html("<div class='thermal_remove' id='thermal_remove_"+flightID+"'>"+
+	//			"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
 	thermalList.push(flightID);
 	var total = timeToSeconds($("#timeOfThermalFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
@@ -136,8 +144,13 @@ function addDynamic(flightID ){
 	$("#dynamic_"+flightID+" .dateHidden").removeClass('dateHidden');
 	$("#dynamic_"+flightID+" .indexCell").remove();
 	$("#dynamic_"+flightID+" .indexCell").remove();
-	$("#dynamic_"+flightID+" .smallInfo").html("<div class='dynamic_remove' id='dynamic_remove_"+flightID+"'>"+
-				"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
+	$("#dynamic_"+flightID+" td:nth-child(4)").remove();
+	$("#dynamic_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("-");
+	$("#dynamic_"+flightID+" td:has(img.sprite-icon_valid_ok)").html("&#10004;");
+	$("#dynamic_"+flightID+" td:nth-child(6)").html("<a href='https://leonardo.pgxc.pl/lot/"+flightID+"/'>https://leonardo.pgxc.pl/lot/"+flightID+"</a>");
+	var model = $("#dynamic_"+flightID+" img.brands").attr('alt');
+	$("#dynamic_"+flightID+" td:has(img.brands)").html(model);
+		//		"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
 	dynamicList.push(flightID);
 	var total = timeToSeconds($("#timeOfDynamicFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
@@ -351,10 +364,14 @@ $(document).ready(function(){
 				<tr><th>Żagiel</th><td id='numberOfDynamicFlights'></td>0<td id='timeOfDynamicFlights'>00:00</td>
 			</table>
 			<table id='thermalListIppi'>
-				<tbody></tbody>
+				<tbody>
+					<th>Data</th><th>Startowisko</th><th></th><th>Czas lotu</th><th>Dystans</th><th>G-Record</th><th>Link do lotu</th><th>Skrzydło</th>
+				</tbody>
 			</table>
 			<table id='dynamicListIppi'>
-				<tbody></tbody>
+				<tbody>
+					<th>Data</th><th>Startowisko</th><th></th><th>Czas lotu</th><th>Dystans</th><th>G-Record</th><th>Link do lotu</th><th>Skrzydło</th>
+				</tbody>
 			</table>
 		</div>
 	</div>
