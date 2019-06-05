@@ -120,19 +120,26 @@ function addThermal(flightID ){
 	$("#thermal_"+flightID+" .pilotLink").remove();
 	$("#thermal_"+flightID+" .catInfo").remove();
 	$("#thermal_"+flightID+" td:nth-child(4)").remove();
-	$("#thermal_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("-");
+	$("#thermal_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("&#10007;");
 	$("#thermal_"+flightID+" td:has(img.sprite-icon_valid_ok)").html("&#10004;");
 	$("#thermal_"+flightID+" td:nth-child(6)").html("<a href='https://leonardo.pgxc.pl/lot/"+flightID+"/'>https://leonardo.pgxc.pl/lot/"+flightID+"</a>");
 	var model = $("#thermal_"+flightID+" img.brands").attr('alt');
 	$("#thermal_"+flightID+" td:has(img.brands)").html(model);
+	$("#thermal_"+flightID+" td:nth-child(8)").remove();
 	//$("#thermal_"+flightID+" .smallInfo").html("<div class='thermal_remove' id='thermal_remove_"+flightID+"'>"+
 	//			"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
 	thermalList.push(flightID);
 	var total = timeToSeconds($("#timeOfThermalFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
 	$("#timeOfThermalFlights").text(secondsToTime(total+time));
+	var old = $("#numberOfThermalFlights").text()*1;
+	$("#numberOfThermalFlights").text(old+1);
+	updateLinkIppi();
 	updateLinkIppi();
 	updateCookieIppi();
+	$("#row_"+flightID+" em.selectDynamic").hide();
+	var total = $("#totalNumberOfFlights").text()*1;
+	$("#totalNumberOfFlights").text(total+1);
 	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
 }
 
@@ -144,19 +151,26 @@ function addDynamic(flightID ){
 	$("#dynamic_"+flightID+" .dateHidden").removeClass('dateHidden');
 	$("#dynamic_"+flightID+" .indexCell").remove();
 	$("#dynamic_"+flightID+" .indexCell").remove();
+	$("#dynamic_"+flightID+" .pilotLink").remove();
 	$("#dynamic_"+flightID+" td:nth-child(4)").remove();
-	$("#dynamic_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("-");
+	$("#dynamic_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("&#10007;");
 	$("#dynamic_"+flightID+" td:has(img.sprite-icon_valid_ok)").html("&#10004;");
 	$("#dynamic_"+flightID+" td:nth-child(6)").html("<a href='https://leonardo.pgxc.pl/lot/"+flightID+"/'>https://leonardo.pgxc.pl/lot/"+flightID+"</a>");
 	var model = $("#dynamic_"+flightID+" img.brands").attr('alt');
 	$("#dynamic_"+flightID+" td:has(img.brands)").html(model);
+	$("#dynamic_"+flightID+" td:nth-child(8)").remove();
 		//		"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
 	dynamicList.push(flightID);
 	var total = timeToSeconds($("#timeOfDynamicFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
 	$("#timeOfDynamicFlights").text(secondsToTime(total+time));
+	var old = $("#numberOfDynamicFlights").text()*1;
+	$("#numberOfDynamicFlights").text(old+1);
 	updateLinkIppi();
 	updateCookieIppi();
+	$("#row_"+flightID+" em.selectThermal").hide();
+	var total = $("#totalNumberOfFlights").text()*1;
+	$("#totalNumberOfFlights").text(total+1);
 	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
 }
 
@@ -175,6 +189,12 @@ function removeThermal(flightID){
 		updateLinkIppi();
 		updateCookieIppi();
 	});
+	$("#row_"+flightID+" em.selectDynamic").show();
+	var old = $("#numberOfThermalFlights").text()*1;
+	$("#numberOfThermalFlights").text(old-1);
+	var total = $("#totalNumberOfFlights").text()*1;
+	$("#totalNumberOfFlights").text(total-1);
+	updateLinkIppi();
 }
 
 
@@ -192,6 +212,11 @@ function removeDynamic(flightID){
 		updateLinkIppi();
 		updateCookieIppi();
 	});
+	$("#row_"+flightID+" em.selectThermal").show();
+	var old = $("#numberOfDynamicFlights").text()*1;
+	$("#numberOfDynamicFlights").text(old-1);
+	var total = $("#totalNumberOfFlights").text()*1;
+	$("#totalNumberOfFlights").text(total-1);
 }
 
 
@@ -263,8 +288,8 @@ function updateLinkIppi() {
 		$("#compareFavoritesText").hide();
 		$("#selectionSummary").show();
 		$("#ippiListDiv").show();
-		$("#numberOfThermalFlights").text(thermalListNum);
-		$("#numberOfDynamicFlights").text(dynamicListNum);
+//		$("#numberOfThermalFlights").text(thermalListNum);
+//		$("#numberOfDynamicFlights").text(dynamicListNum);
 //		console.log("thermals: "+ thermalListNum + " dynamic: " +dynamicListNum);
 		
 		compareUrl=compareUrlBase.replace("%FLIGHTS%",strThermal+','+strDynamic);
@@ -300,6 +325,7 @@ $(document).ready(function(){
 			addThermal(flightID);
 		} else {
 			removeThermal(flightID);
+			$(this).parent().nextAll().addBack().css("background-color","#bfbfbf");
 		}
 		//$("#dbg").html("id="+flightID+"@"+row.attr('id'));
 		//row.css({background:"#ff0000",height:"100"});
@@ -314,6 +340,7 @@ $(document).ready(function(){
 			addDynamic(flightID);
 		} else {
 			removeDynamic(flightID);
+			$(this).parent().nextAll().addBack().css("background-color","#bfbfbf");
 		}
 
 		//$("#dbg").html("id="+flightID+"@"+row.attr('id'));
@@ -359,17 +386,20 @@ $(document).ready(function(){
 		</div>	 
 		<div id='ippiListDiv'>
 			<table id='selectionSummary' >
-				<tr><th>Rodzaj lotów</th><th>Liczba lotów</th><th>Czas lotów</th></tr>
-				<tr><th>Termika</th><td id='numberOfThermalFlights'></td>0<td id='timeOfThermalFlights'>00:00</td>
-				<tr><th>Żagiel</th><td id='numberOfDynamicFlights'></td>0<td id='timeOfDynamicFlights'>00:00</td>
+				<tr><th align="left">Rodzaj lotów</th><th align="center">Liczba lotów</th><th align="center">Czas lotów</th></tr>
+				<tr><th align="left">Termika</th><td align="center"  id='numberOfThermalFlights'>0</td><td align="center"  id='timeOfThermalFlights'>00:00</td>
+				<tr><th align="left">Żagiel</th><td align="center" id='numberOfDynamicFlights'>0</td><td align="center" id='timeOfDynamicFlights'>00:00</td>
+				<tr><th align="left">Suma</th><td align="center" id='totalNumberOfFlights'>0</td><td align="center" id='totalTimeOfFlights'>00:00</td>
 			</table>
 			<table id='thermalListIppi'>
 				<tbody>
+					<tr><th cellspan="6">Loty termiczne:</th></tr>
 					<th>Data</th><th>Startowisko</th><th></th><th>Czas lotu</th><th>Dystans</th><th>G-Record</th><th>Link do lotu</th><th>Skrzydło</th>
 				</tbody>
 			</table>
 			<table id='dynamicListIppi'>
 				<tbody>
+					<tr><th cellspan="6">Loty żaglowe:</th></tr>
 					<th>Data</th><th>Startowisko</th><th></th><th>Czas lotu</th><th>Dystans</th><th>G-Record</th><th>Link do lotu</th><th>Skrzydło</th>
 				</tbody>
 			</table>
