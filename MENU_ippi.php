@@ -117,7 +117,7 @@ function addThermal(flightID ){
 	$("#thermal_"+flightID+" .dateHidden").removeClass('dateHidden');
 	$("#thermal_"+flightID+" .indexCell").remove();
 	$("#thermal_"+flightID+" .indexCell").remove();
-	$("#thermal_"+flightID+" .pilotLink").remove();
+//	$("#thermal_"+flightID+" .pilotLink").remove();
 	$("#thermal_"+flightID+" .catInfo").remove();
 	$("#thermal_"+flightID+" td:nth-child(4)").remove();
 	$("#thermal_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("&#10007;");
@@ -128,6 +128,13 @@ function addThermal(flightID ){
 	$("#thermal_"+flightID+" td:nth-child(8)").remove();
 	//$("#thermal_"+flightID+" .smallInfo").html("<div class='thermal_remove' id='thermal_remove_"+flightID+"'>"+
 	//			"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
+	$("#thermal_"+flightID+" td:nth-child(2)").after("<td>"+model+"</td>");
+	$("#thermal_"+flightID+" td:nth-child(8)").remove();
+	$("#thermal_"+flightID+" *").removeAttr('style');
+	$("#thermal_"+flightID+" *").removeAttr('class','dateString');
+	$("#thermal_"+flightID+" *").removeAttr('valign','top');
+	$("#thermal_"+flightID+" *").attr('style','text-align:center');
+	$("#thermal_"+flightID+" *").removeClass('l_row2').addClass('l_row1');
 	thermalList.push(flightID);
 	var total = timeToSeconds($("#timeOfThermalFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
@@ -153,7 +160,7 @@ function addDynamic(flightID ){
 	$("#dynamic_"+flightID+" .dateHidden").removeClass('dateHidden');
 	$("#dynamic_"+flightID+" .indexCell").remove();
 	$("#dynamic_"+flightID+" .indexCell").remove();
-	$("#dynamic_"+flightID+" .pilotLink").remove();
+//	$("#dynamic_"+flightID+" .pilotLink").remove();
 	$("#dynamic_"+flightID+" td:nth-child(4)").remove();
 	$("#dynamic_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("&#10007;");
 	$("#dynamic_"+flightID+" td:has(img.sprite-icon_valid_ok)").html("&#10004;");
@@ -161,7 +168,15 @@ function addDynamic(flightID ){
 	var model = $("#dynamic_"+flightID+" img.brands").attr('alt');
 	$("#dynamic_"+flightID+" td:has(img.brands)").html(model);
 	$("#dynamic_"+flightID+" td:nth-child(8)").remove();
-		//		"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
+		//		"<?php echo leoHtml::img("icon_faov_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
+	$("#dynamic_"+flightID+" td:nth-child(2)").after("<td>"+model+"</td>");
+	$("#dynamic_"+flightID+" td:nth-child(8)").remove();
+	$("#dynamic_"+flightID+" *").removeAttr('style');
+	$("#dynamic_"+flightID+" *").removeAttr('class','dateString');
+	$("#dynamic_"+flightID+" *").removeAttr('valign','top');
+	$("#dynamic_"+flightID+" *").attr('style','text-align:center');
+	$("#dynamic_"+flightID+" *").removeClass('l_row2').addClass('l_row1');
+	//trzeba odwolac sie do tr z id
 	dynamicList.push(flightID);
 	var total = timeToSeconds($("#timeOfDynamicFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
@@ -399,16 +414,16 @@ $(document).ready(function(){
 				<tr><th align="left">Żagiel</th><td align="center" id='numberOfDynamicFlights'>0</td><td align="center" id='timeOfDynamicFlights'>00:00</td>
 				<tr><th align="left">Suma</th><td align="center" id='totalNumberOfFlights'>0</td><td align="center" id='totalTimeOfFlights'>00:00</td>
 			</table>
-			<table id='thermalListIppi'>
+				<center><h2>Loty termiczne</h2></center>
+			<table id='thermalListIppi' width="100%" >
 				<tbody>
-					<tr><th cellspan="6">Loty termiczne:</th></tr>
-					<th>Data</th><th>Startowisko</th><th></th><th>Czas lotu</th><th>Dystans</th><th>G-Record</th><th>Link do lotu</th><th>Skrzydło</th>
+					<th>Data</th><th>Pilot / Startowisko</th><th></th><th>Skrzydło</th><th>Czas lotu</th><th>Dystans</th><th>G-Record</th><th>Link do lotu</th>
 				</tbody>
 			</table>
-			<table id='dynamicListIppi'>
+				<center><h2>Loty żaglowe</h2></center>
+			<table id='dynamicListIppi' width="100%">
 				<tbody>
-					<tr><th cellspan="6">Loty żaglowe:</th></tr>
-					<th>Data</th><th>Startowisko</th><th></th><th>Czas lotu</th><th>Dystans</th><th>G-Record</th><th>Link do lotu</th><th>Skrzydło</th>
+					<th>Data</th><th>Pilot / Startowisko</th><th></th><th>Skrzydło</th><th>Czas lotu</th><th>Dystans</th><th>G-Record</th><th>Link do lotu</th>
 				</tbody>
 			</table>
 		</div>
