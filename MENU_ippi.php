@@ -140,6 +140,8 @@ function addThermal(flightID ){
 	$("#row_"+flightID+" em.selectDynamic").hide();
 	var total = $("#totalNumberOfFlights").text()*1;
 	$("#totalNumberOfFlights").text(total+1);
+	var totalTime = timeToSeconds($("#totalTimeOfFlights").text());
+	$("#totalTimeOfFlights").text(secondsToTime(totalTime + time));
 	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
 }
 
@@ -171,6 +173,8 @@ function addDynamic(flightID ){
 	$("#row_"+flightID+" em.selectThermal").hide();
 	var total = $("#totalNumberOfFlights").text()*1;
 	$("#totalNumberOfFlights").text(total+1);
+	var totalTime = timeToSeconds($("#totalTimeOfFlights").text());
+	$("#totalTimeOfFlights").text(secondsToTime(totalTime + time));
 	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
 }
 
@@ -186,6 +190,8 @@ function removeThermal(flightID){
 	var total = timeToSeconds($("#timeOfThermalFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
 	$("#timeOfThermalFlights").text(secondsToTime(total-time));
+	var totalTime = timeToSeconds($("#totalTimeOfFlights").text());
+	$("#totalTimeOfFlights").text(secondsToTime(totalTime - time));
 		updateLinkIppi();
 		updateCookieIppi();
 	});
@@ -209,6 +215,8 @@ function removeDynamic(flightID){
 	var total = timeToSeconds($("#timeOfDynamicFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
 	$("#timeOfDynamicFlights").text(secondsToTime(total-time));
+	var totalTime = timeToSeconds($("#totalTimeOfFlights").text());
+	$("#totalTimeOfFlights").text(secondsToTime(totalTime-time));
 		updateLinkIppi();
 		updateCookieIppi();
 	});
