@@ -36,6 +36,7 @@ function toogleFav() {
 }
 
 function activateFavorites() {
+		$("#ippiMenuID").hide();
 
 	// $("#favFloatDiv").show("");
 	if (favSelectInit) {
@@ -47,6 +48,7 @@ function activateFavorites() {
 }
 
 function deactivateFavorites() {
+	$("#ippiMenuID").show();
 
 	$(".indexCell .selectTrack").hide();
 

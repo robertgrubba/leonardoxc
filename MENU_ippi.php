@@ -33,9 +33,8 @@ var dynamicSelectInit=0;
 var ippiVisible=0;
 var ippiSelectInit=0;
 
-var compareUrlBase='<?php echo getLeonardoLink(array('op'=>'compare','flightID'=>'%FLIGHTS%'));?>';
-var compareUrl='';
-
+var ippiUrlBase='<?php echo getLeonardoLink(array('op'=>'compare','flightID'=>'%FLIGHTS%'));?>';
+var ippiUrl='';
 function timeToSeconds(time) {
 	    time = time.split(/:/);
 //	        return time[0] * 3600 + time[1] * 60 + time[2]*1;
@@ -60,12 +59,16 @@ function toogleIppi() {
 		deactivateIppi();
 		favVisible=0;
 		ippiVisible=0;
+	//	$("#favMenuID").show();
 	//	thermalVisible=0;
 	//	dynamicVisible=0;
+		favSelectInit=0;
 	} else {
 		activateIppi();
 		favVisible=0;
 		ippiVisible=1;
+		favSelectInit=0;
+	//	$("#favMenuID").hide();
 	//	thermalVisible=1;
 	//	dynamicVisible=1;
 	}
@@ -76,12 +79,14 @@ function activateIppi() {
 
 	// $("#favFloatDiv").show("");
 //		if (favSelectInit) {
-		if (ippiSelectInit) {
+	if (ippiSelectInit) {
 		$(".indexCell .selectThermal").show();
 		$(".indexCell .selectDynamic").show();
 	//	$(".indexCell .selectTrack").show();
 		$("#selectionSummary").show();
 		$("#ippiDropDownID").show();
+		$("#favMenuID").hide();
+		$("#favDropDownID").hide();
 	} else {
 		//$(".indexCell").attr('style', 'text-align: left');
 		$(".indexCell").width('70px');
@@ -91,6 +96,8 @@ function activateIppi() {
 		ippiSelectInit=1;
 		$("#selectionSummary").show();
 		$("#ippiDropDownID").show();
+		$("#favMenuID").hide();
+		$("#favDropDownID").hide();
 	//	thermalSelectInit=1;
 	//	dynamicSelectInit=1;
 	}
@@ -100,6 +107,7 @@ function deactivateIppi() {
 	$(".selectThermal").hide();
 	$(".selectDynamic").hide();
 	$("#ippiDropDownID").hide();
+	$("#favMenuID").show();
 	//$(".indexCell").not('.SortHeader').text().replace("Termika:","").replace("Żagiel:","");
 }
 
@@ -122,6 +130,9 @@ function addThermal(flightID ){
 	$("#thermal_"+flightID+" td:nth-child(4)").remove();
 	$("#thermal_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("&#10007;");
 	$("#thermal_"+flightID+" td:has(img.sprite-icon_valid_ok)").html("&#10004;");
+	if($("#thermal_"+flightID+" td:nth-child(5)").text().length>1){
+		$("#thermal_"+flightID+" td:nth-child(5)").html("&quest;");
+	}
 	$("#thermal_"+flightID+" td:nth-child(6)").html("<a href='https://leonardo.pgxc.pl/lot/"+flightID+"/'>https://leonardo.pgxc.pl/lot/"+flightID+"</a>");
 	var model = $("#thermal_"+flightID+" img.brands").attr('alt');
 	$("#thermal_"+flightID+" td:has(img.brands)").html(model);
@@ -164,6 +175,9 @@ function addDynamic(flightID ){
 	$("#dynamic_"+flightID+" td:nth-child(4)").remove();
 	$("#dynamic_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("&#10007;");
 	$("#dynamic_"+flightID+" td:has(img.sprite-icon_valid_ok)").html("&#10004;");
+	if($("#dynamic_"+flightID+" td:nth-child(5)").text().length>1){
+		$("#dynamic_"+flightID+" td:nth-child(5)").html("&quest;");
+	}
 	$("#dynamic_"+flightID+" td:nth-child(6)").html("<a href='https://leonardo.pgxc.pl/lot/"+flightID+"/'>https://leonardo.pgxc.pl/lot/"+flightID+"</a>");
 	var model = $("#dynamic_"+flightID+" img.brands").attr('alt');
 	$("#dynamic_"+flightID+" td:has(img.brands)").html(model);
@@ -307,7 +321,7 @@ function updateLinkIppi() {
 
 	if (thermalListNum>0 || dynamicListNum>0 ) {
 		$("#ippiDropDownID").removeClass('secondMenuDropLayer');
-		$("#compareFavoritesLink").show();
+		$("#compareIppiLink").show();
 		$("#compareFavoritesText").hide();
 		$("#selectionSummary").show();
 		$("#ippiListDiv").show();
@@ -315,11 +329,11 @@ function updateLinkIppi() {
 //		$("#numberOfDynamicFlights").text(dynamicListNum);
 //		console.log("thermals: "+ thermalListNum + " dynamic: " +dynamicListNum);
 		
-		compareUrl=compareUrlBase.replace("%FLIGHTS%",strThermal+','+strDynamic);
-		$("#compareFavoritesLink").attr('href',compareUrl);
+		ippiUrl=ippiUrlBase.replace("%FLIGHTS%",strThermal+','+strDynamic);
+		$("#compareIppiLink").attr('href',ippiUrl);
 	} else {
 		$("#ippiDropDownID").addClass('secondMenuDropLayer');
-		$("#compareFavoritesLink").hide();
+		$("#compareIppiLink").hide();
 		$("#compareFavoritesText").show();
 		$("#selectionSummary").hide();
 	}
@@ -328,7 +342,8 @@ function updateLinkIppi() {
 }
 
 $(document).ready(function(){
-
+$("#ippiDropDownID").hide();
+$("#favDropDownID").hide();
  	var thermalListCookie=$.cookie("thermalList");
 	if (thermalListCookie){
 		thermalList=thermalListCookie.split(',');
@@ -400,10 +415,10 @@ $(document).ready(function(){
 			<h2>Wyciąg z księgi lotów na potrzeby IPPI </h2>
 			<BR>
 			<!-- Select Flights by clicking on the checkbox  -->	
-			<p>W kolumnie z numerami lotów możesz zaznaczyć wybrane loty jako termiczne i żaglowe</p>	
+			<p>Funkcjonalność pozwala na wygenerowanie zestawienia lotów potrzebnego w procesie wydania poświadczeń IPPI (Pozycja 8.c z <a href="https://www.aeroklub-polski.pl/wp-content/uploads/2019/02/181214-Regulamin-kart-IPPI_2018.pdf" target="_blank">regulaminu wydawania kart IPPI</a>). Pozostałe formularze jakie trzeba wysłać do AP - <a href="https://www.aeroklub-polski.pl/wp-content/uploads/2019/02/181214-Wniosek-kart-IPPI-_2018.pdf" target="_blank">link</a>.</p><p>W kolumnie z numerami lotów możesz zaznaczyć wybrane loty jako termiczne i żaglowe</p>	
 			</span>
 			
-			<a id='compareFavoritesLink' class='greenButton' href=''><?php echo _Compare_Favorite_Tracks ?></a>
+			<a id='compareIppiLink' class='greenButton' href=''>Wygeneruj zestawienie lotów<?php echo _Compare_Favorite_Tracks ?></a>
 			
 			<hr>
 		</div>	 
