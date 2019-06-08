@@ -843,7 +843,10 @@ if (! $dontShowCountriesSelection ) {
 if ($op=='list_flights') { 
 	require_once  dirname(__FILE__).'/MENU_fav.php';
 	//dodac warunek ze require jesli listing lotow uzytkownika
+	//<?=getLeonardoLink(array('op'=>'list_flights','pilotID'=>'0_'.$userID,'takeoffID'=>'0','country'=>'0','year'=>'0','month'=>'0','season'=>'0'))
+	if($userID){
 	require_once  dirname(__FILE__).'/MENU_ippi.php';
+	}
 }
 
 require_once  dirname(__FILE__).'/MENU_clubs.php';
