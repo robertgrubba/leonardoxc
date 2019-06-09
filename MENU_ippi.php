@@ -14,7 +14,15 @@
  
 
 ?>
-<div id="dbg" style="position:absolute;top:0;left:0;width:100px;height:20px;display:none;"></div>
+<div id="infobox" style="position:fixed;top:0;left:0;background-color:green;">
+
+	<table id='selectionSummary' >
+					<tr><th align="left">Rodzaj lotów</th><th align="center">Liczba lotów</th><th align="center">Czas lotów</th></tr>
+					<tr><th align="left">Termika</th><td align="center"  id='numberOfThermalFlights'>0</td><td align="center"  id='timeOfThermalFlights'>00:00</td>
+					<tr><th align="left">Żagiel</th><td align="center" id='numberOfDynamicFlights'>0</td><td align="center" id='timeOfDynamicFlights'>00:00</td>
+					<tr><th align="left">Suma</th><td align="center" id='totalNumberOfFlights'>0</td><td align="center" id='totalTimeOfFlights'>00:00</td>
+	</table>
+</div>
 
 <script type="text/javascript">
 /*
@@ -85,6 +93,7 @@ function activateIppi() {
 	//	$(".indexCell .selectTrack").show();
 		$("#selectionSummary").show();
 		$("#ippiDropDownID").show();
+		$("#infobox").show();
 		$("#favMenuID").hide();
 		$("#favDropDownID").hide();
 	} else {
@@ -96,6 +105,7 @@ function activateIppi() {
 		ippiSelectInit=1;
 		$("#selectionSummary").show();
 		$("#ippiDropDownID").show();
+		$("#infobox").show();
 		$("#favMenuID").hide();
 		$("#favDropDownID").hide();
 	//	thermalSelectInit=1;
@@ -107,6 +117,7 @@ function deactivateIppi() {
 	$(".selectThermal").hide();
 	$(".selectDynamic").hide();
 	$("#ippiDropDownID").hide();
+	$("#infobox").hide();
 	$("#favMenuID").show();
 	//$(".indexCell").not('.SortHeader').text().replace("Termika:","").replace("Żagiel:","");
 }
@@ -344,6 +355,7 @@ function updateLinkIppi() {
 $(document).ready(function(){
 $("#ippiDropDownID").hide();
 $("#favDropDownID").hide();
+$("#infobox").hide();
  	var thermalListCookie=$.cookie("thermalList");
 	if (thermalListCookie){
 		thermalList=thermalListCookie.split(',');
