@@ -412,10 +412,16 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
     	</div>
 	<!-- dodac warunek na listing tylko w lotach uzytkownika -->
 
-	<div id='ippiMenuID' class="menuButton"><a href="#" onClick="toogleIppi(); return false;">
-		IPPI
-		<? echo $arrDownImg; ?></a>
-    	</div>
+<?php	if($userID){
+		if($pilotID == $userID){
+			require_once  dirname(__FILE__).'/MENU_ippi.php';?>
+
+			<div id='ippiMenuID' class="menuButton"><a href="#" onClick="toogleIppi(); return false;">
+			IPPI
+			<? echo $arrDownImg; ?></a>
+			</div>
+<?php		}
+	} ?>
 <? } ?>
     
 <? if ($op!='comp'  || 1 ) { // custom ranks , we now allow also on custom ranks?>
@@ -842,10 +848,10 @@ if (! $dontShowCountriesSelection ) {
 <?
 if ($op=='list_flights') { 
 	require_once  dirname(__FILE__).'/MENU_fav.php';
-	//dodac warunek ze require jesli listing lotow uzytkownika
-	//<?=getLeonardoLink(array('op'=>'list_flights','pilotID'=>'0_'.$userID,'takeoffID'=>'0','country'=>'0','year'=>'0','month'=>'0','season'=>'0'))
 	if($userID){
-	require_once  dirname(__FILE__).'/MENU_ippi.php';
+		if($pilotID == $userID){
+			require_once  dirname(__FILE__).'/MENU_ippi.php';
+		}
 	}
 }
 

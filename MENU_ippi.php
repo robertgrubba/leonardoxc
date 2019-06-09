@@ -424,6 +424,11 @@ $("#favDropDownID").hide();
 		</div>	 
 		<div id='ippiListDiv'>
 			<table id='selectionSummary' >
+<?php 
+$pilotName = getPilotRealName($pilotIDview,$serverIDview,0);
+?>
+	<p>Zestawienie lotów przgotowane przez <?php echo "$pilotName"; ?>, na bazie lotów zgłoszonych do Polskiego Serwera Leonardo dostępnego pod adresem <a href="https://leonardo.pgxc.pl">https://leonardo.pgxc.pl</a>.</p>
+
 				<tr><th align="left">Rodzaj lotów</th><th align="center">Liczba lotów</th><th align="center">Czas lotów</th></tr>
 				<tr><th align="left">Termika</th><td align="center"  id='numberOfThermalFlights'>0</td><td align="center"  id='timeOfThermalFlights'>00:00</td>
 				<tr><th align="left">Żagiel</th><td align="center" id='numberOfDynamicFlights'>0</td><td align="center" id='timeOfDynamicFlights'>00:00</td>
