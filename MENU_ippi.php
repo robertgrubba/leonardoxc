@@ -16,11 +16,11 @@
 ?>
 <div id="infobox" style="position:fixed;top:0;left:0;background-color:green;">
 
-	<table id='selectionSummary' >
+	<table id='selectionSummaryInfobox' >
 					<tr><th align="left">Rodzaj lotów</th><th align="center">Liczba lotów</th><th align="center">Czas lotów</th></tr>
-					<tr><th align="left">Termika</th><td align="center"  id='numberOfThermalFlights'>0</td><td align="center"  id='timeOfThermalFlights'>00:00</td>
-					<tr><th align="left">Żagiel</th><td align="center" id='numberOfDynamicFlights'>0</td><td align="center" id='timeOfDynamicFlights'>00:00</td>
-					<tr><th align="left">Suma</th><td align="center" id='totalNumberOfFlights'>0</td><td align="center" id='totalTimeOfFlights'>00:00</td>
+					<tr><th align="left">Termika</th><td align="center"  id='numberOfThermalFlightsInfobox'>0</td><td align="center"  id='timeOfThermalFlightsInfobox'>00:00</td>
+					<tr><th align="left">Żagiel</th><td align="center" id='numberOfDynamicFlightsInfobox'>0</td><td align="center" id='timeOfDynamicFlightsInfobox'>00:00</td>
+					<tr><th align="left">Suma</th><td align="center" id='totalNumberOfFlightsInfobox'>0</td><td align="center" id='totalTimeOfFlightsInfobox'>00:00</td>
 	</table>
 </div>
 
