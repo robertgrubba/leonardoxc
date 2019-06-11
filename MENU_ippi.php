@@ -14,12 +14,12 @@
  
 
 ?>
-<div id="infobox" style="position:fixed;top:0;left:0;background-color:green;">
+<div id="infobox" style="position:fixed;top:0;right:0;background-color:rgba(0,255,0,.7);display:none;">
 
 	<table id='selectionSummaryInfobox' >
 					<tr><th align="left">Rodzaj lotów</th><th align="center">Liczba lotów</th><th align="center">Czas lotów</th></tr>
 					<tr><th align="left">Termika</th><td align="center"  id='numberOfThermalFlightsInfobox'>0</td><td align="center"  id='timeOfThermalFlightsInfobox'>00:00</td>
-					<tr><th align="left">Żagiel</th><td align="center" id='numberOfDynamicFlightsInfobox'>0</td><td align="center" id='timeOfDynamicFlightsInfobox'>00:00</td>
+					<tr ><th align="left">Żagiel</th><td align="center" id='numberOfDynamicFlightsInfobox'>0</td><td align="center" id='timeOfDynamicFlightsInfobox'>00:00</td>
 					<tr><th align="left">Suma</th><td align="center" id='totalNumberOfFlightsInfobox'>0</td><td align="center" id='totalTimeOfFlightsInfobox'>00:00</td>
 	</table>
 </div>
@@ -96,6 +96,7 @@ function activateIppi() {
 		$("#infobox").show();
 		$("#favMenuID").hide();
 		$("#favDropDownID").hide();
+		$("#ippiListDiv").hide();
 	} else {
 		//$(".indexCell").attr('style', 'text-align: left');
 		$(".indexCell").width('70px');
@@ -108,6 +109,7 @@ function activateIppi() {
 		$("#infobox").show();
 		$("#favMenuID").hide();
 		$("#favDropDownID").hide();
+		$("#ippiListDiv").hide();
 	//	thermalSelectInit=1;
 	//	dynamicSelectInit=1;
 	}
@@ -119,6 +121,7 @@ function deactivateIppi() {
 	$("#ippiDropDownID").hide();
 	$("#infobox").hide();
 	$("#favMenuID").show();
+	$("#ippiListDiv").hide();
 	//$(".indexCell").not('.SortHeader').text().replace("Termika:","").replace("Żagiel:","");
 }
 
@@ -161,16 +164,20 @@ function addThermal(flightID ){
 	var total = timeToSeconds($("#timeOfThermalFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
 	$("#timeOfThermalFlights").text(secondsToTime(total+time));
+	$("#timeOfThermalFlightsInfobox").text(secondsToTime(total+time));
 	var old = $("#numberOfThermalFlights").text()*1;
 	$("#numberOfThermalFlights").text(old+1);
+	$("#numberOfThermalFlightsInfobox").text(old+1);
 	updateLinkIppi();
 	updateLinkIppi();
 	updateCookieIppi();
 	$("#row_"+flightID+" em.selectDynamic").hide();
 	var total = $("#totalNumberOfFlights").text()*1;
 	$("#totalNumberOfFlights").text(total+1);
+	$("#totalNumberOfFlightsInfobox").text(total+1);
 	var totalTime = timeToSeconds($("#totalTimeOfFlights").text());
 	$("#totalTimeOfFlights").text(secondsToTime(totalTime + time));
+	$("#totalTimeOfFlightsInfobox").text(secondsToTime(totalTime + time));
 	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
 }
 
@@ -206,15 +213,19 @@ function addDynamic(flightID ){
 	var total = timeToSeconds($("#timeOfDynamicFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
 	$("#timeOfDynamicFlights").text(secondsToTime(total+time));
+	$("#timeOfDynamicFlightsInfobox").text(secondsToTime(total+time));
 	var old = $("#numberOfDynamicFlights").text()*1;
 	$("#numberOfDynamicFlights").text(old+1);
+	$("#numberOfDynamicFlightsInfobox").text(old+1);
 	updateLinkIppi();
 	updateCookieIppi();
 	$("#row_"+flightID+" em.selectThermal").hide();
 	var total = $("#totalNumberOfFlights").text()*1;
 	$("#totalNumberOfFlights").text(total+1);
+	$("#totalNumberOfFlightsInfobox").text(total+1);
 	var totalTime = timeToSeconds($("#totalTimeOfFlights").text());
 	$("#totalTimeOfFlights").text(secondsToTime(totalTime + time));
+	$("#totalTimeOfFlightsInfobox").text(secondsToTime(totalTime + time));
 	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
 }
 
@@ -230,16 +241,20 @@ function removeThermal(flightID){
 	var total = timeToSeconds($("#timeOfThermalFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
 	$("#timeOfThermalFlights").text(secondsToTime(total-time));
+	$("#timeOfThermalFlightsInfobox").text(secondsToTime(total-time));
 	var totalTime = timeToSeconds($("#totalTimeOfFlights").text());
 	$("#totalTimeOfFlights").text(secondsToTime(totalTime - time));
+	$("#totalTimeOfFlightsInfobox").text(secondsToTime(totalTime - time));
 		updateLinkIppi();
 		updateCookieIppi();
 	});
 	$("#row_"+flightID+" em.selectDynamic").show();
 	var old = $("#numberOfThermalFlights").text()*1;
 	$("#numberOfThermalFlights").text(old-1);
+	$("#numberOfThermalFlightsInfobox").text(old-1);
 	var total = $("#totalNumberOfFlights").text()*1;
 	$("#totalNumberOfFlights").text(total-1);
+	$("#totalNumberOfFlightsInfobox").text(total-1);
 	updateLinkIppi();
 }
 
@@ -255,16 +270,20 @@ function removeDynamic(flightID){
 	var total = timeToSeconds($("#timeOfDynamicFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
 	$("#timeOfDynamicFlights").text(secondsToTime(total-time));
+	$("#timeOfDynamicFlightsInfobox").text(secondsToTime(total-time));
 	var totalTime = timeToSeconds($("#totalTimeOfFlights").text());
 	$("#totalTimeOfFlights").text(secondsToTime(totalTime-time));
+	$("#totalTimeOfFlightsInfobox").text(secondsToTime(totalTime-time));
 		updateLinkIppi();
 		updateCookieIppi();
 	});
 	$("#row_"+flightID+" em.selectThermal").show();
 	var old = $("#numberOfDynamicFlights").text()*1;
 	$("#numberOfDynamicFlights").text(old-1);
+	$("#numberOfDynamicFlightsInfobox").text(old-1);
 	var total = $("#totalNumberOfFlights").text()*1;
 	$("#totalNumberOfFlights").text(total-1);
+	$("#totalNumberOfFlightsInfobox").text(total-1);
 }
 
 
@@ -335,13 +354,13 @@ function updateLinkIppi() {
 		$("#compareIppiLink").show();
 		$("#compareFavoritesText").hide();
 		$("#selectionSummary").show();
-		$("#ippiListDiv").show();
+//		$("#ippiListDiv").show();
 //		$("#numberOfThermalFlights").text(thermalListNum);
 //		$("#numberOfDynamicFlights").text(dynamicListNum);
 //		console.log("thermals: "+ thermalListNum + " dynamic: " +dynamicListNum);
 		
 		ippiUrl=ippiUrlBase.replace("%FLIGHTS%",strThermal+','+strDynamic);
-		$("#compareIppiLink").attr('href',ippiUrl);
+	//	$("#compareIppiLink").attr('href',ippiUrl);
 	} else {
 		$("#ippiDropDownID").addClass('secondMenuDropLayer');
 		$("#compareIppiLink").hide();
@@ -366,6 +385,12 @@ $("#infobox").hide();
 		dynamicList=dynamicListCookie.split(',');
 		updateLinkIppi();
 	}
+	$("#compareIppiLink").live('click',function(){
+//		$("#ippiListDiv").print();
+		$("#selectionSummary").printArea({ mode: 'popup', popClose: true });
+		$("#ippiListDiv").printArea({ mode: 'popup', popClose: true });
+	//	$.post("EXT_generate_ippi.php", $("#ippiListDiv").text());
+	});
 	$(".indexCell .selectThermal").live('click',function() {
 		$(this).parent().nextAll().addBack().css("background-color","#ff9933");
 		var row=$(this).parent().parent();
@@ -430,11 +455,12 @@ $("#infobox").hide();
 			<p>Funkcjonalność pozwala na wygenerowanie zestawienia lotów potrzebnego w procesie wydania poświadczeń IPPI (Pozycja 8.c z <a href="https://www.aeroklub-polski.pl/wp-content/uploads/2019/02/181214-Regulamin-kart-IPPI_2018.pdf" target="_blank">regulaminu wydawania kart IPPI</a>). Pozostałe formularze jakie trzeba wysłać do AP - <a href="https://www.aeroklub-polski.pl/wp-content/uploads/2019/02/181214-Wniosek-kart-IPPI-_2018.pdf" target="_blank">link</a>.</p><p>W kolumnie z numerami lotów możesz zaznaczyć wybrane loty jako termiczne i żaglowe</p>	
 			</span>
 			
-			<a id='compareIppiLink' class='greenButton' href=''>Wygeneruj zestawienie lotów<?php echo _Compare_Favorite_Tracks ?></a>
+			<a id='compareIppiLink' class='greenButton' href=''>Wygeneruj zestawienie lotów</a>
 			
 			<hr>
 		</div>	 
 		<div id='ippiListDiv'>
+			<html><body>
 			<table id='selectionSummary' >
 <?php 
 $pilotName = getPilotRealName($pilotIDview,$serverIDview,0);
@@ -458,6 +484,7 @@ $pilotName = getPilotRealName($pilotIDview,$serverIDview,0);
 					<th>Data</th><th>Pilot / Startowisko</th><th></th><th>Skrzydło</th><th>Czas lotu</th><th>Dystans</th><th>G-Record</th><th>Link do lotu</th>
 				</tbody>
 			</table>
+		</body></html>
 		</div>
 	</div>
 </div>
