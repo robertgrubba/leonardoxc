@@ -386,11 +386,9 @@ $("#infobox").hide();
 		updateLinkIppi();
 	}
 	$("#compareIppiLink").live('click',function(){
-//		$("#ippiListDiv").print();
-		$("#selectionSummary").printArea({ mode: 'popup', popClose: true });
-		$("#ippiListDiv").printArea({ mode: 'popup', popClose: true });
-	//	$.post("EXT_generate_ippi.php", $("#ippiListDiv").text());
+		$.post("<?=$moduleRelPath?>/EXT_generate_ippi.php", { body: $("#ippiListDiv").html(), thermal: $.cookie("thermalList"), dynamic: $.cookie("dynamicList") });
 	});
+
 	$(".indexCell .selectThermal").live('click',function() {
 		$(this).parent().nextAll().addBack().css("background-color","#ff9933");
 		var row=$(this).parent().parent();
