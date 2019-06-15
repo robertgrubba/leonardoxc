@@ -25,11 +25,6 @@
 </div>
 
 <script type="text/javascript">
-/*
-var favList=[];
-var favVisible=0;
-var favSelectInit=0;
- */
 var thermalList=[];
 var thermalVisible=0;
 var thermalSelectInit=0;
@@ -45,7 +40,6 @@ var ippiUrlBase='<?php echo getLeonardoLink(array('op'=>'compare','flightID'=>'%
 var ippiUrl='';
 function timeToSeconds(time) {
 	    time = time.split(/:/);
-//	        return time[0] * 3600 + time[1] * 60 + time[2]*1;
 	        return time[0] * 3600 + time[1] * 60 ;
 }
 function secondsToTime(time) {
@@ -67,40 +61,29 @@ function toogleIppi() {
 		deactivateIppi();
 		favVisible=0;
 		ippiVisible=0;
-	//	$("#favMenuID").show();
-	//	thermalVisible=0;
-	//	dynamicVisible=0;
 		favSelectInit=0;
 	} else {
 		activateIppi();
 		favVisible=0;
 		ippiVisible=1;
 		favSelectInit=0;
-	//	$("#favMenuID").hide();
-	//	thermalVisible=1;
-	//	dynamicVisible=1;
 	}
-	//toogleMenu('fav');
 }
 
 function activateIppi() {
 
-	// $("#favFloatDiv").show("");
-//		if (favSelectInit) {
 	if (ippiSelectInit) {
 		$(".indexCell .selectThermal").show();
 		$(".indexCell .selectDynamic").show();
-	//	$(".indexCell .selectTrack").show();
 		$("#selectionSummary").show();
 		$("#ippiDropDownID").show();
 		$("#infobox").show();
 		$("#favMenuID").hide();
 		$("#favDropDownID").hide();
 		$("#ippiListDiv").hide();
+		$("[src='/img/icon_private.gif']").parent().parent().hide();
 	} else {
-		//$(".indexCell").attr('style', 'text-align: left');
 		$(".indexCell").width('70px');
-//		$(".indexCell").not('.SortHeader').empty();
 		$(".indexCell").not('.SortHeader').append("<em class='selectThermal'>Termika: <input type='checkbox' value='1'></em><br><em class='selectDynamic'>Żagiel: <input type='checkbox' value='1'></em> ");
 		favSelectInit=1;
 		ippiSelectInit=1;
@@ -110,8 +93,7 @@ function activateIppi() {
 		$("#favMenuID").hide();
 		$("#favDropDownID").hide();
 		$("#ippiListDiv").hide();
-	//	thermalSelectInit=1;
-	//	dynamicSelectInit=1;
+		$("[src='/img/icon_private.gif']").parent().parent().hide();
 	}
 }
 
@@ -122,7 +104,7 @@ function deactivateIppi() {
 	$("#infobox").hide();
 	$("#favMenuID").show();
 	$("#ippiListDiv").hide();
-	//$(".indexCell").not('.SortHeader').text().replace("Termika:","").replace("Żagiel:","");
+	$("[src='/img/icon_private.gif']").parent().parent().show();
 }
 
 function loadFavs() {
@@ -132,14 +114,12 @@ function loadFavs() {
 }
 
 function addThermal(flightID ){
-	//if ( $.inArray(flightID, thermalList)  >=0 ) { return; };
 	var newrow=$("#row_"+flightID).clone().attr('id', 'thermal_'+(flightID)  ).appendTo("#thermalListIppi > tbody:last");
 	$("#thermal_"+flightID+" *").removeAttr('id').removeAttr("href");
 	$("#thermal_"+flightID+" a").contents().unwrap();
 	$("#thermal_"+flightID+" .dateHidden").removeClass('dateHidden');
 	$("#thermal_"+flightID+" .indexCell").remove();
 	$("#thermal_"+flightID+" .indexCell").remove();
-//	$("#thermal_"+flightID+" .pilotLink").remove();
 	$("#thermal_"+flightID+" .catInfo").remove();
 	$("#thermal_"+flightID+" td:nth-child(4)").remove();
 	$("#thermal_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("&#10007;");
@@ -151,8 +131,6 @@ function addThermal(flightID ){
 	var model = $("#thermal_"+flightID+" img.brands").attr('alt');
 	$("#thermal_"+flightID+" td:has(img.brands)").html(model);
 	$("#thermal_"+flightID+" td:nth-child(8)").remove();
-	//$("#thermal_"+flightID+" .smallInfo").html("<div class='thermal_remove' id='thermal_remove_"+flightID+"'>"+
-	//			"<?php echo leoHtml::img("icon_fav_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
 	$("#thermal_"+flightID+" td:nth-child(2)").after("<td>"+model+"</td>");
 	$("#thermal_"+flightID+" td:nth-child(8)").remove();
 	$("#thermal_"+flightID+" *").removeAttr('style');
@@ -178,18 +156,15 @@ function addThermal(flightID ){
 	var totalTime = timeToSeconds($("#totalTimeOfFlights").text());
 	$("#totalTimeOfFlights").text(secondsToTime(totalTime + time));
 	$("#totalTimeOfFlightsInfobox").text(secondsToTime(totalTime + time));
-	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
 }
 
 function addDynamic(flightID ){
-	//if ( $.inArray(flightID, dynamicList)  >=0 ) { return; }
 	var newrow=$("#row_"+flightID).clone().attr('id', 'dynamic_'+(flightID)  ).appendTo("#dynamicListIppi > tbody:last");
 	$("#dynamic_"+flightID+" *").removeAttr('id').removeAttr("href");
 	$("#dynamic_"+flightID+" a").contents().unwrap();
 	$("#dynamic_"+flightID+" .dateHidden").removeClass('dateHidden');
 	$("#dynamic_"+flightID+" .indexCell").remove();
 	$("#dynamic_"+flightID+" .indexCell").remove();
-//	$("#dynamic_"+flightID+" .pilotLink").remove();
 	$("#dynamic_"+flightID+" td:nth-child(4)").remove();
 	$("#dynamic_"+flightID+" td:has(img.sprite-icon_valid_nok)").html("&#10007;");
 	$("#dynamic_"+flightID+" td:has(img.sprite-icon_valid_ok)").html("&#10004;");
@@ -200,7 +175,6 @@ function addDynamic(flightID ){
 	var model = $("#dynamic_"+flightID+" img.brands").attr('alt');
 	$("#dynamic_"+flightID+" td:has(img.brands)").html(model);
 	$("#dynamic_"+flightID+" td:nth-child(8)").remove();
-		//		"<?php echo leoHtml::img("icon_faov_remove.png",0,0,'absmiddle',_Remove_From_Favorites,'icons1','',0)?></div>");
 	$("#dynamic_"+flightID+" td:nth-child(2)").after("<td>"+model+"</td>");
 	$("#dynamic_"+flightID+" td:nth-child(8)").remove();
 	$("#dynamic_"+flightID+" *").removeAttr('style');
@@ -208,7 +182,6 @@ function addDynamic(flightID ){
 	$("#dynamic_"+flightID+" *").removeAttr('valign','top');
 	$("#dynamic_"+flightID+" *").attr('style','text-align:center');
 	$("#dynamic_"+flightID+" *").removeClass('l_row2').addClass('l_row1');
-	//trzeba odwolac sie do tr z id
 	dynamicList.push(flightID);
 	var total = timeToSeconds($("#timeOfDynamicFlights").text());
 	var time = timeToSeconds($("#row_"+flightID+" td:nth-child(4)").text()); 
@@ -226,7 +199,6 @@ function addDynamic(flightID ){
 	var totalTime = timeToSeconds($("#totalTimeOfFlights").text());
 	$("#totalTimeOfFlights").text(secondsToTime(totalTime + time));
 	$("#totalTimeOfFlightsInfobox").text(secondsToTime(totalTime + time));
-	//$.getJSON('EXT_flight.php?op=list_flights_json&lat='+flights[i].data.firstLat+'&lon='+flights[i].data.firstLon+'&distance='+radiusKm+queryString,null,addFlightToFav);	
 }
 
 
@@ -234,7 +206,6 @@ function removeThermal(flightID){
 	if ( $.inArray(flightID, thermalList)  < 0  ) { return; }
 	$("#thermal_"+flightID).fadeOut(300,function() {
 		$(this).remove();
-		//remove from list
 		thermalList = jQuery.grep(thermalList, function(value) {
 			  return value != flightID;
 		});
@@ -263,7 +234,6 @@ function removeDynamic(flightID){
 	if ( $.inArray(flightID, dynamicList)  < 0  ) { return; }
 	$("#dynamic_"+flightID).fadeOut(300,function() {
 		$(this).remove();
-		//remove from list
 		dynamicList = jQuery.grep(dynamicList, function(value) {
 			  return value != flightID;
 		});
@@ -288,7 +258,6 @@ function removeDynamic(flightID){
 
 
 function updateCookieIppi(){
-	//return;
 	var strThermal='';
 	var thermalListNum=0;
 	for(var i in thermalList) {
@@ -307,8 +276,6 @@ function updateCookieIppi(){
 	}
 	$.cookie("dynamicList", strDynamic );
 	$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeIppi", { ippiHtml: $("#favListDiv").html() } );
-	//$.post("<?=$moduleRelPath?>/EXT_ajax_functions.php?op=storeFavs", { favHtml: $("#selectionSummary").html() } );
-	
 }
 
 
@@ -354,13 +321,8 @@ function updateLinkIppi() {
 		$("#compareIppiLink").show();
 		$("#compareFavoritesText").hide();
 		$("#selectionSummary").show();
-//		$("#ippiListDiv").show();
-//		$("#numberOfThermalFlights").text(thermalListNum);
-//		$("#numberOfDynamicFlights").text(dynamicListNum);
-//		console.log("thermals: "+ thermalListNum + " dynamic: " +dynamicListNum);
 		
 		ippiUrl=ippiUrlBase.replace("%FLIGHTS%",strThermal+','+strDynamic);
-	//	$("#compareIppiLink").attr('href',ippiUrl);
 	} else {
 		$("#ippiDropDownID").addClass('secondMenuDropLayer');
 		$("#compareIppiLink").hide();
@@ -386,22 +348,19 @@ $("#infobox").hide();
 		updateLinkIppi();
 	}
 	$("#compareIppiLink").live('click',function(){
-		$.post("<?=$moduleRelPath?>/EXT_generate_ippi.php", { body: $("#ippiListDiv").html(), thermal: $.cookie("thermalList"), dynamic: $.cookie("dynamicList") });
+		$.post("<?=$moduleRelPath?>/EXT_generate_ippi.php", { body: $("#ippiListDiv").html(), flights: $.merge($.cookie("thermalList"), $.cookie("dynamicList")) });
 	});
 
 	$(".indexCell .selectThermal").live('click',function() {
 		$(this).parent().nextAll().addBack().css("background-color","#ff9933");
 		var row=$(this).parent().parent();
 		var flightID=row.attr('id').substr(4);
-//		alert(flightID);
 		if ( $(this).children('input').is(':checked') ) {
 			addThermal(flightID);
 		} else {
 			removeThermal(flightID);
 			$(this).parent().nextAll().addBack().css("background-color","#bfbfbf");
 		}
-		//$("#dbg").html("id="+flightID+"@"+row.attr('id'));
-		//row.css({background:"#ff0000",height:"100"});
 	});
 
 	$(".indexCell .selectDynamic").live('click',function() {
@@ -416,8 +375,6 @@ $("#infobox").hide();
 			$(this).parent().nextAll().addBack().css("background-color","#bfbfbf");
 		}
 
-		//$("#dbg").html("id="+flightID+"@"+row.attr('id'));
-		//row.css({background:"#ff0000",height:"100"});
 	});
 	$(".thermal_remove").live('click',function() {
 		var flightID=$(this).attr('id').substr(11);
@@ -431,11 +388,6 @@ $("#infobox").hide();
 		removeDynamic(flightID);
 	});
 
-	/*
-	$("#ippiMenuID").live('click',function() {
-		
-	});	
- */
 });
 
 
@@ -458,12 +410,10 @@ $("#infobox").hide();
 			<hr>
 		</div>	 
 		<div id='ippiListDiv'>
-			<html><body>
 			<table id='selectionSummary' >
 <?php 
 $pilotName = getPilotRealName($pilotIDview,$serverIDview,0);
 ?>
-	<p>Zestawienie lotów przgotowane przez <?php echo "$pilotName"; ?>, na bazie lotów zgłoszonych do Polskiego Serwera Leonardo dostępnego pod adresem <a href="https://leonardo.pgxc.pl">https://leonardo.pgxc.pl</a>.</p>
 
 				<tr><th align="left">Rodzaj lotów</th><th align="center">Liczba lotów</th><th align="center">Czas lotów</th></tr>
 				<tr><th align="left">Termika</th><td align="center"  id='numberOfThermalFlights'>0</td><td align="center"  id='timeOfThermalFlights'>00:00</td>
@@ -482,7 +432,7 @@ $pilotName = getPilotRealName($pilotIDview,$serverIDview,0);
 					<th>Data</th><th>Pilot / Startowisko</th><th></th><th>Skrzydło</th><th>Czas lotu</th><th>Dystans</th><th>G-Record</th><th>Link do lotu</th>
 				</tbody>
 			</table>
-		</body></html>
+	<p>Zestawienie lotów przgotowane przez <?php echo "$pilotName"; ?>, na bazie lotów zgłoszonych do Polskiego Serwera Leonardo dostępnego pod adresem <a href="https://leonardo.pgxc.pl">https://leonardo.pgxc.pl</a>.</p>
 		</div>
 	</div>
 </div>
