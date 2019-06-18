@@ -110,7 +110,7 @@ $duration = sec2Time($totalDynamic);
 $body.='</table>';
 $totalNum=sizeof($flights);
 $totalAirtime=sec2Time($totalTime);
-$body.="<p>W powyższej tabeli zgłoszono <b> $totalNum lotów</b>, o łącznym nalocie <b>$totalAirtime</b>.</p>";
+$body.="<p>W powyższych tabelach zgłoszono <b> $totalNum lotów</b>, o łącznym nalocie <b>$totalAirtime</b>.</p>";
 $body.="</body></html>";
 file_put_contents($CONF['pdf']['tmpPath']."/".$now[0],$body);
 $url = $CONF['links']['baseURL'].'/'.$CONF['pdf']['tmpPathRel'].'/'.$now[0];
