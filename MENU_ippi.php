@@ -357,7 +357,9 @@ $("#infobox").hide();
 			timeout: 10000,
 			error: function(jqXHR, textStatus, errorThrown) {
         			if(textStatus==="timeout") {
-          				alert("Wystąpił z generowaniem zestawienia lotów"); //do something on timeout
+          				alert("Niebawem dostaniesz maila z PDF'em (jeśli nie możesz go znaleźć to zobacz czy nie wylądował w spamie)."); 
+                    			$.cookie("thermalList", null);
+					$.cookie("dynamicList", null);
         			}	
 			},
                 	success: function( data, textStatus, jQxhr ){
