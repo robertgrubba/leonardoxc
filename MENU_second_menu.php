@@ -416,7 +416,7 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
 		if($pilotID == $userID){
 			require_once  dirname(__FILE__).'/MENU_ippi.php';?>
 
-			<div id='ippiMenuID' class="menuButton"><a href="#" onClick="toogleIppi(); return false;">
+			<div id='ippiMenuID' class="menuButton" style="height: 24px;vertical-align: center;"><a href="#" onClick="toogleIppi(); return false;">
 			IPPI
 			<? echo $arrDownImg; ?></a>
 			</div>

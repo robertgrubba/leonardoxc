@@ -11,10 +11,10 @@ require_once dirname(__FILE__)."/CL_pdf.php";
 require_once dirname(__FILE__)."/CL_flightData.php";
 require_once dirname(__FILE__)."/CL_user.php";
 
-echo "OK";
+
 $thermal = explode(',',$_POST['thermal']);
 $dynamic = explode(',',$_POST['dynamic']);
-$flights = array_merge($thermal,$dynamic);//explode(',',$_POST['flights']);
+$flights = array_unique(array_merge($thermal,$dynamic));//explode(',',$_POST['flights']);
 
 if(sizeof($flights)<2){
 	error_log("problem with body and flights array".print_r($body,true).'  '.print_r($flights,true));
@@ -27,6 +27,7 @@ $now = getdate();
 $flight = new flight();
 foreach ($flights as $key => $val){
 	if(!isset($uid)){
+		$val = addslashes($val);
 		$flight->getFlightFromDB($val+0);
 		if(isset($flight->userID)){
 			$uid=$flight->userID;
@@ -38,6 +39,7 @@ foreach ($flights as $key => $val){
 		}	
 		
 	}else{
+		$val = addslashes($val);
 		$flight->getFlightFromDB($val+0);
 		if(isset($flight->userID)){
 			$nuid=$flight->userID; 
@@ -67,6 +69,7 @@ $body.='<table style="font-size: 10px; "><tr><th>lp</th><th>Pilot</th><th>Data</
 $totalTime=0;
 $totalThermal=0;
 foreach ($thermal as $key => $val){
+	$val = addslashes($val);
 	$num = (int)($key+1);
 	$flight->getFlightFromDB($val+0);
 	$distance = formatDistance($flight->FLIGHT_KM,1);
@@ -88,6 +91,7 @@ $body.='<center><h4>Loty żaglowe</h4></center>';
 $body.='<table style="font-size: 10px; "><tr><th>lp</th><th>Pilot</th><th>Data</th><th>Startowisko</th><th>Czas lotu</th><th>XC km</th><th>G-Record</th><th>link</th></tr>';
 $totalDynamic=0;
 foreach ($dynamic as $key => $val){
+	$val = addslashes($val);
 	$num = (int)($key+1);
 	$flight->getFlightFromDB($val+0);
 	$distance = formatDistance($flight->FLIGHT_KM,1);
@@ -106,7 +110,7 @@ $duration = sec2Time($totalDynamic);
 $body.='</table>';
 $totalNum=sizeof($flights);
 $totalAirtime=sec2Time($totalTime);
-$body.="<p>W powyższej tabeli zgłoszono $totalNum lotów, o łącznym nalocie $totalAirtime.</p>";
+$body.="<p>W powyższej tabeli zgłoszono <b> $totalNum lotów</b>, o łącznym nalocie <b>$totalAirtime</b>.</p>";
 $body.="</body></html>";
 file_put_contents($CONF['pdf']['tmpPath']."/".$now[0],$body);
 $url = $CONF['links']['baseURL'].'/'.$CONF['pdf']['tmpPathRel'].'/'.$now[0];
