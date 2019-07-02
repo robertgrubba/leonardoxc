@@ -47,7 +47,8 @@
     $clientIP=getClientIpAddr();
     $directIGCLink=1;
     
-	if ( $flight->belongsToUser($userID) || L_auth::isModerator($userID) || L_auth::canDownloadIGC($clientIP) ) {
+//	if ( $flight->belongsToUser($userID) || L_auth::isModerator($userID) || L_auth::canDownloadIGC($clientIP) ) {
+	if ( $flight->belongsToUser($userID) || L_auth::isModerator($userID) ) {
 		$directIGCLink=1;
 		$base_name=md5(basename($flight->getIGCRelPath()));
 		$_SESSION['di'.$base_name]=1;
@@ -55,7 +56,8 @@
 		$igcLink="<a href='http://leonardo.pgxc.pl".$flight->getIGCRelPath()."' >IGC</a>";
 	} else {
 		$directIGCLink=0;
-		$igcLink=" <a href='javascript:nop()' onClick='toggleIgcDownload();return false;' id='IgcDownloadPos'>IGC</a>";
+//		$igcLink=" <a href='javascript:nop()' onClick='toggleIgcDownload();return false;' id='IgcDownloadPos'>IGC</a>";
+		$igcLink="";
 	}	
 
 	if ( $flight->belongsToUser($userID) || L_auth::isModerator($userID) || L_auth::canDownloadIGC($clientIP) ) {
