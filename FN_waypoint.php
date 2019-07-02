@@ -220,7 +220,7 @@ function getWaypointName($ID,$forceIntl=-1,$countryFirst=0,$maxChars=0) {
 	else return $tname." - ".$row["countryCode"];	
 }
 
-function isWaypointDescribed($ID) {
+function showWaypointDesciptionIcon($ID) {
 	global $db,$waypointsTable;
 	global $CONFIG_forceIntl;
 
