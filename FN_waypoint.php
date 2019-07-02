@@ -215,9 +215,29 @@ function getWaypointName($ID,$forceIntl=-1,$countryFirst=0,$maxChars=0) {
 
 	$tname=selectWaypointName($row["name"],$row["intName"],$row["countryCode"],$forceIntl);
 	$tname=trimText($tname,$maxChars);
-	
+
 	if ($countryFirst)	return $row["countryCode"]." - ".$tname;	
 	else return $tname." - ".$row["countryCode"];	
+}
+
+function isWaypointDescribed($ID) {
+	global $db,$waypointsTable;
+	global $CONFIG_forceIntl;
+
+		
+	$query="SELECT * from $waypointsTable WHERE ID=".$ID;
+	$res= $db->sql_query($query);			
+	if($res <= 0) return "";
+	
+	$row = $db->sql_fetchrow($res) ;
+	$db->sql_freeresult($res);
+
+	$descLength = strlen($row["description"]);
+	if ($descLength > 500){	
+		return "&#x1F6C8; ";	
+	}else{
+		return "";
+	}
 }
 
 function selectWaypointName($name,$intName,$countryCode,$forceIntl=-1) {
