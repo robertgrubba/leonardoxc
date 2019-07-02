@@ -234,7 +234,7 @@ function showWaypointDesciptionIcon($ID) {
 
 	$descLength = strlen($row["description"]);
 	if ($descLength > 500){	
-		return "&#x1F6C8; ";	
+		return "&#9432; ";	
 	}else{
 		return "";
 	}
