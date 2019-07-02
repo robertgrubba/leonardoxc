@@ -61,7 +61,6 @@
           <td width="40" class="col4" rowspan="4">
 		<div align="center" class="titleWhite titleText">
   		 <a href="https://www.facebook.com/sharer.php?u=<?php echo $pageURL ?>" target="_blank"><img class="shareButtonSmall" src="https://leonardo.pgxc.pl/img/social/facebook.png" alt="Facebook" /></a>
-                 <a href="https://plus.google.com/share?url=<?php echo $pageURL ?>" target="_blank"><img class="shareButtonSmall" src="https://leonardo.pgxc.pl/img/social/google.png" alt="Google" /></a>
                  <a href="https://twitter.com/share?url=<?php echo $pageURL ?>&amp;text=Ale%20miejscówka%20do%20latania!&amp;hashtags=pgxc,paralotnie,<?php echo $wpName;  ?>" target="_blank"><img class="shareButtonSmall" src="https://leonardo.pgxc.pl/img/social/twitter.png" alt="Twitter" /></a>
                  <a href="mailto:?Subject=Zobacz%20jaka%20miejscówa&amp;Body=<?php echo $wpName ?>%20-%20musimy%20się%20tam%20niebawem%20wybrać!%20 <?php echo $pageURL ?>"><img class="shareButtonSmall" src="https://leonardo.pgxc.pl/img/social/email.png" alt="Email" /></a>
 

@@ -336,7 +336,7 @@ $flightAge = DateTime::createFromFormat('Y-m-d G:i:s', $flight->dateAdded, $tz)-
   $flight->checkDirs(); //Added 27.11.2011 for localhost installations P.Wild
   $flight->updateAll(0);
   //echo "START<br>";
-  $location=formatLocation(getWaypointName($flight->takeoffID),$flight->takeoffVinicity,$takeoffRadious);
+  $location=formatLocation(showWaypointDesciptionIcon($flight->takeoffID)." ".getWaypointName($flight->takeoffID),$flight->takeoffVinicity,$takeoffRadious);
 
 
   // $firstPoint=new gpsPoint($flight->FIRST_POINT,$flight->timezone);						

@@ -591,7 +591,7 @@ function removeClubFlight(clubID,flightID) {
 	if ($takeoffNames[$row["flight_takeoffID"]]) {
 		$takeoffName= $takeoffNames[ $row["flight_takeoffID"] ];
 	} else {
-		$takeoffName= prepare_for_js(getWaypointName($row["flight_takeoffID"],-1,0,20) ) ;
+		$takeoffName= prepare_for_js(showWaypointDesciptionIcon($row["flight_takeoffID"])." ".getWaypointName($row["flight_takeoffID"],-1,0,20) ) ;
 		$takeoffNames[$row["flight_takeoffID"]]=$takeoffName;
 	}
 	 
