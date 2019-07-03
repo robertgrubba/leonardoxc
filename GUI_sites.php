@@ -34,7 +34,7 @@
 	$TAKEOFF_OPTION_LIST="";
 	for($k=0;$k<count($takeoffs);$k++) {
 		$sel=($takeoffsID[$k]==$FILTER_takeoff1_select)?"selected":"";
-		 $TAKEOFF_OPTION_LIST.="<option value='".$takeoffsID[$k]."' $sel>".$takeoffs[$k]."</option>\n";
+		 $TAKEOFF_OPTION_LIST.="<option value='".$takeoffsID[$k]."' $sel>".$takeoffs[$k]." ".showWaypointDesciptionIcon($takeoffsID[$k])." </option>\n";
 	}
 
 	
