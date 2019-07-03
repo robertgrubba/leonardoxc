@@ -94,13 +94,13 @@
 	    if($dbres <= 0){
 		    echo '{ "waypoints": [ ]  }';
 			return;
-    	}
+    		}
 		
 		$res='{ "waypoints": [ ';
 		$i=0;
 		while ($row = mysql_fetch_assoc($dbres)) { 
 			if ($i>0)$res.=" ,\n";
-			$res.=' { "id":'.$row[ID].', "lat":'.$row['lat'].', "lon":'.-$row['lon'].' , "name":"'.str_replace('"','\"',$row['intName']).'", "type":'.$row['type'].' } ';
+			$res.=' { "id":'.$row[ID].', "lat":'.$row['lat'].', "lon":'.-$row['lon'].' , "name":"'.showWaypointDesciptionIcon($row[ID]).' '.str_replace('"','\"',$row['intName']).'", "type":'.$row['type'].' } ';
 		  $i++;	  
 		}     
 		

@@ -233,7 +233,7 @@ function showWaypointDesciptionIcon($ID) {
 	$db->sql_freeresult($res);
 
 	$descLength = strlen($row["description"]);
-	if ($descLength > 500){	
+	if ($descLength > 200){	
 		return "&#9432; ";	
 	}else{
 		return "";
