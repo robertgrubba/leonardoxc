@@ -69,7 +69,10 @@
         </tr>
         <tr align="center" bgcolor="#D0E2CD">
           <td rowspan="3" class="col1_in">
-<b><? echo _SITE_RECORD." (OLC):" ?></b>
+<!-- beginning of stats section -->
+	<table align="left">
+<tr><td>
+<b><? echo _SITE_RECORD." (OLC)" ?></b></td><td>
 	<?
 	 $query="SELECT  MAX(MAX_LINEAR_DISTANCE) as record_km, ID FROM $flightsTable  WHERE takeoffID =".$waypointIDview." GROUP BY ID ORDER BY record_km DESC ";
 
@@ -78,22 +81,22 @@
      if($res > 0){
 		$flightNum=mysql_num_rows($res);
 		$row = mysql_fetch_assoc($res);
-// 20180726 - display best OLC dist instead of straight line distance
-//		echo "<a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$row['ID']))."'>".$og_siteChampion.' - '.formatDistance($row['record_km'],1)."</a>";
-		echo "<a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$og_siteChampionFlightID))."'>".$og_siteRecord."</a> - <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteChampionID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'>".$og_siteChampion." </a>";
+		echo "<a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteChampionID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'>".$og_siteChampion." </a></td><td><a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$og_siteChampionFlightID))."'>".$og_siteRecord."</a></td></tr>";
 	 } 
 
 ?>
-<p>
-<strong><? echo _Altitude_gain_Record.": <a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$og_siteMaxGainFlightID))."' >".$og_siteMaxGain."</a> - <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteMaxGainPilotID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'> ".getPilotRealName($og_siteMaxGainPilotID,$serverIDview)." </a>"; ?></strong>
-<p>
-<strong><? echo _Maximum_Total_Airtime.": ".$og_siteMaxTotalAirtime." - <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteMaxTotalAirtimePilotID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'> ".getPilotRealName($og_siteMaxTotalAirtimePilotID,$serverIDview)." </a>"; ?></strong>
-<p>
-<strong><? echo _Maximum_Number_Launches.": <a href='".getLeonardoLink(array('op'=>'list_flights','takeoffID'=>$waypointIDview,'year'=>0,'month'=>'0','season'=>'0','pilotID'=>'0_'.$og_siteMaxLaunchesPilotID,'country'=>'0','cat'=>'0'))."'>".$og_siteMaxLaunches."</a> - <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteMaxLaunchesPilotID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'> ".getPilotRealName($og_siteMaxLaunchesPilotID,$serverIDview)." </a>"; ?></strong>
-<p>
-<strong><? echo _All_flights_near_this_point.": <a href='".getLeonardoLink(array('op'=>'list_flights','takeoffID'=>$waypointIDview, 'year'=>'0','month'=>'0','country'=>'0','cat'=>'0'))."'>[ ".$flightNum." ]</a>"; ?></strong>
-</p><p>
-<strong><? echo _Total_Site_Airtime.":</strong> ".$og_siteTotalAirtime; ?></p>
+<tr><td>
+<strong><? echo _Altitude_gain_Record." </td><td> <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteMaxGainPilotID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'> ".getPilotRealName($og_siteMaxGainPilotID,$serverIDview)." </a></td><td><a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$og_siteMaxGainFlightID))."' >".$og_siteMaxGain."</a></td></tr>"; ?></strong>
+<tr><td>
+<strong><? echo _Maximum_Total_Airtime."</td><td> <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteMaxTotalAirtimePilotID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'> ".getPilotRealName($og_siteMaxTotalAirtimePilotID,$serverIDview)." </a></td><td> ".$og_siteMaxTotalAirtime." </td></tr>"; ?></strong>
+<tr><td>
+<strong><? echo _Maximum_Number_Launches."</td><td> <a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteMaxLaunchesPilotID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'> ".getPilotRealName($og_siteMaxLaunchesPilotID,$serverIDview)." </a></td><td> <a href='".getLeonardoLink(array('op'=>'list_flights','takeoffID'=>$waypointIDview,'year'=>0,'month'=>'0','season'=>'0','pilotID'=>'0_'.$og_siteMaxLaunchesPilotID,'country'=>'0','cat'=>'0'))."'>".$og_siteMaxLaunches."</a></td></tr>"; ?></strong>
+<tr><td>
+<strong><? echo _All_flights_near_this_point."</td><td></td><td><a href='".getLeonardoLink(array('op'=>'list_flights','takeoffID'=>$waypointIDview, 'year'=>'0','month'=>'0','country'=>'0','cat'=>'0'))."'>[ ".$flightNum." ]</a></td></tr>"; ?></strong>
+<tr><td>
+<strong><? echo _Total_Site_Airtime."</strong></td><td></td><td> ".$og_siteTotalAirtime; ?></td></tr></table>
+<!-- end of stats section -->
+
 			</td>
           <td rowspan="3" class="col2_in"><p><strong>lat/lon (WGS84):</strong><br>
 		  <? 	echo $wpInfo->lat." , ".-$wpInfo->lon ;
