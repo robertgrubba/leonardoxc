@@ -160,8 +160,15 @@ $weatherResponse= $obj->status;
 		  <td width=200 class="col3_in">Przydatne linki</td>
 		  <td valign="top" ><? 
 			$links=$obj->links; 
-			foreach($links as $key=>$value){ 
-				print "$value <br>";
+			foreach($links as $key=>$value){
+				$protocols = array();
+				$protocols[0]='/http:\/\//';
+				$protocols[1]='/https:\/\//';
+				$domain = preg_replace($protocols,'',$value);
+				$domain = preg_replace("/\/.*$/",'',$domain);
+				$thumbnail = preg_replace("/\./",'',$domain);
+  $pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/startowisko/".$waypointIDview;
+				print "<a href='$value' target='_blank'><img alt='Informacje o $wpName na $domain' src='".$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/img/ext/$thumbnail.png'></a> ";
 			}  ?>&nbsp;</td>
 		</tr>
 	<? } ?>
