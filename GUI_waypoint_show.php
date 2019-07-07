@@ -134,6 +134,38 @@
           <td valign="top"><a href='<? echo formatURL($wpInfo->link) ?>' target="_blank"><? echo formatURL($wpInfo->link) ?></a>&nbsp;</td>
         </tr>
 		<? } ?>
+<!-- data from weather raport -->
+<?
+$json = file_get_contents('http://weather/spot/'.$wpName);
+$obj = json_decode($json);
+$weatherResponse= $obj->status;
+?>
+
+<!-- end of data from weather raport -->
+<? if ($weatherResponse ==200) { ?>
+        <tr bgcolor="white">
+          <td width=200 class="col3_in">Użyteczne kierunki wiatru</td>
+          <td valign="top" ><? echo $obj->dirMin."&deg - ".$obj->dirMax."&deg;" ?>&nbsp;</td>
+        </tr>
+        <tr bgcolor="white">
+          <td width=200 class="col3_in">Użyteczna siła wiatru</td>
+          <td valign="top" ><? echo (($obj->spdMin)/2)." - ".(($obj->spdMax)/2)."m/s" ?>&nbsp;</td>
+        </tr>
+        <tr bgcolor="white">
+          <td width=200 class="col3_in">Prognozy pogody</td>
+          <td valign="top" ><? echo "<a target='_blank' href='https://www.windguru.cz/".$obj->windguruID."'>Windguru</a> <a target='_blank' href='https://www.windy.com/".$obj->lat."/".$obj->lon."'>Windy</a>" ?>&nbsp;</td>
+        </tr>
+	<? if ($obj->links!="None"){ ?>
+		<tr bgcolor="white">
+		  <td width=200 class="col3_in">Przydatne linki</td>
+		  <td valign="top" ><? 
+			$links=$obj->links; 
+			foreach($links as $key=>$value){ 
+				print "$value <br>";
+			}  ?>&nbsp;</td>
+		</tr>
+	<? } ?>
+<? } ?>
 		<? if ($wpInfo->description) { ?>
         <tr bgcolor="#49766D">
           <td colspan=2 class="col3"><div align="center" class="titleWhite  titleText"><? echo _SITE_DESCR ?>
