@@ -136,17 +136,31 @@
 		<? } ?>
 <!-- data from weather raport -->
 <?
-$json = file_get_contents('http://weather/spot/'.$wpName);
+$json = file_get_contents($CONF['weatherapi'].'/spot/'.$wpInfo->intName);
 $obj = json_decode($json);
 $weatherResponse= $obj->status;
 ?>
 
 <!-- end of data from weather raport -->
 <? if ($weatherResponse ==200) { ?>
+  <? if(!is_array($obj->dirMin)) { ?>
         <tr bgcolor="white">
           <td width=200 class="col3_in">Użyteczne kierunki wiatru</td>
           <td valign="top" ><? echo $obj->dirMin."&deg - ".$obj->dirMax."&deg;" ?>&nbsp;</td>
-        </tr>
+	</tr>
+  <? } else { ?>
+        <tr bgcolor="white">
+          <td width=200 class="col3_in">Użyteczne kierunki wiatru</td>
+	  <td valign="top" ><? 
+		$numberOfRanges=sizeOf($obj->dirMin);	
+		for($x=0; $x<$numberOfRanges; $x++){
+			print $obj->dirMin[$x]."&deg - ".$obj->dirMax[$x]."&deg;" ;
+			if ($x!=$numberOfRanges-1) print ", ";
+		 } 
+		?>&nbsp;
+	   </td>
+	</tr>
+  <? } ?>	
         <tr bgcolor="white">
           <td width=200 class="col3_in">Użyteczna siła wiatru</td>
           <td valign="top" ><? echo (($obj->spdMin)/2)." - ".(($obj->spdMax)/2)."m/s" ?>&nbsp;</td>
@@ -168,7 +182,7 @@ $weatherResponse= $obj->status;
 				$domain = preg_replace("/\/.*$/",'',$domain);
 				$thumbnail = preg_replace("/\./",'',$domain);
   $pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/startowisko/".$waypointIDview;
-				print "<a href='$value' target='_blank'><img alt='Informacje o $wpName na $domain' src='".$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/img/ext/$thumbnail.png'></a> ";
+				print "<a href='$value' target='_blank'><img alt='Informacje o $wpName na $domain' width='32' height='32' src='".$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/img/ext/$thumbnail.png'></a> ";
 			}  ?>&nbsp;</td>
 		</tr>
 	<? } ?>
