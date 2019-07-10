@@ -70,7 +70,7 @@
         <tr align="center" bgcolor="#D0E2CD">
           <td rowspan="3" class="col1_in">
 <!-- beginning of stats section -->
-	<table align="left">
+	<table align="left" width="98%">
 <tr><td>
 <b><? echo _SITE_RECORD." (OLC)" ?></b></td><td>
 	<?
@@ -119,18 +119,21 @@
 	 <br>
       <table class="Box"  align="center" width="98%">
         <tr >
-          <td colspan="2" class="col3">             
+          <td colspan="3" class="col3">             
           <div align="center" class="titleWhite titleText"><? echo _SITE_INFO ?></div></td>
         </tr>
 		<? if ($wpLocation) { ?>
         <tr bgcolor="white">
-          <td width=200 class="col3_in"> <? echo _SITE_REGION ?></td>
-          <td valign="top" ><? echo $wpLocation ?>&nbsp;</td>
+          <td width=180 class="col3_in"> <? echo _SITE_REGION ?></td>
+	  <td valign="top" ><? echo $wpLocation ?>&nbsp;</td>
+<?
+				$windForSpotGraphicsURL="https://leonardo.pgxc.pl".$CONF['images']['directionsRel']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";?>
+				<td rowspan=7 width="150"><img height="150" src="<? echo $windForSpotGraphicsURL ?>"> </td>
         </tr>
 		<? } ?>
 		<? if ($wpInfo->link) { ?>
         <tr bgcolor="white">
-          <td width=200 class="col3_in"><? echo _SITE_LINK ?></td>
+          <td width=180 class="col3_in"><? echo _SITE_LINK ?></td>
           <td valign="top"><a href='<? echo formatURL($wpInfo->link) ?>' target="_blank"><? echo formatURL($wpInfo->link) ?></a>&nbsp;</td>
         </tr>
 		<? } ?>
@@ -142,15 +145,24 @@ $weatherResponse= $obj->status;
 ?>
 
 <!-- end of data from weather raport -->
-<? if ($weatherResponse ==200) { ?>
+<? if ($weatherResponse==200) {
+	$windForSpotGraphics=$CONF['images']['directions']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";
+	
+	if (!is_file($windForSpotGraphics.".txt")) {
+		$response = file_get_contents($CONF['weatherapi']."/windrose/".$wpInfo->intName);
+		file_put_contents($windForSpotGraphics,$response);
+		file_put_contents($windForSpotGraphics.".txt","ok");
+	}
+
+	?>
   <? if(!is_array($obj->dirMin)) { ?>
         <tr bgcolor="white">
-          <td width=200 class="col3_in">Użyteczne kierunki wiatru</td>
+          <td width=180 class="col3_in">Użyteczne kierunki wiatru</td>
           <td valign="top" ><? echo $obj->dirMin."&deg - ".$obj->dirMax."&deg;" ?>&nbsp;</td>
 	</tr>
   <? } else { ?>
         <tr bgcolor="white">
-          <td width=200 class="col3_in">Użyteczne kierunki wiatru</td>
+          <td width=180 class="col3_in">Użyteczne kierunki wiatru</td>
 	  <td valign="top" ><? 
 		$numberOfRanges=sizeOf($obj->dirMin);	
 		for($x=0; $x<$numberOfRanges; $x++){
@@ -162,12 +174,20 @@ $weatherResponse= $obj->status;
 	</tr>
   <? } ?>	
         <tr bgcolor="white">
-          <td width=200 class="col3_in">Użyteczna siła wiatru</td>
+          <td width=180 class="col3_in">Użyteczna siła wiatru</td>
           <td valign="top" ><? echo (($obj->spdMin)/2)." - ".(($obj->spdMax)/2)."m/s" ?>&nbsp;</td>
         </tr>
         <tr bgcolor="white">
-          <td width=200 class="col3_in">Prognozy pogody</td>
+          <td width=180 class="col3_in">Prognozy pogody</td>
           <td valign="top" ><? echo "<a target='_blank' href='https://www.windguru.cz/".$obj->windguruID."'>Windguru</a> <a target='_blank' href='https://www.windy.com/".$obj->lat."/".$obj->lon."'>Windy</a>" ?>&nbsp;</td>
+        </tr>
+        <tr bgcolor="white">
+          <td width=180 class="col3_in">Czy dziś jest szansa na warun?</td>
+          <td valign="top" ><? print_r(file_get_contents($CONF['weatherapi']."/isflyabletoday/".$wpInfo->intName)) ?>&nbsp;</td>
+        </tr>
+        <tr bgcolor="white">
+          <td width=180 class="col3_in">Najbliższe lotne terminy</td>
+          <td valign="top" ><a href="http://pgxc.pl/weather_forecast.pdf" target="_blank"><? print_r(file_get_contents($CONF['weatherapi']."/flyabledays/".$wpInfo->intName)) ?></a>&nbsp;</td>
         </tr>
 	<? if ($obj->links!="None"){ ?>
 		<tr bgcolor="white">
