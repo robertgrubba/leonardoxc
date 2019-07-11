@@ -133,7 +133,7 @@ $json = file_get_contents($CONF['weatherapi'].'/spot/'.$wpInfo->intName);
 $obj = json_decode($json);
 $weatherResponse= $obj->status;
 if ($weatherResponse==200){
-			$windForSpotGraphicsURL="https://leonardo.pgxc.pl".$CONF['images']['directionsRel']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";?>
+			$windForSpotGraphicsURL=$CONF['links']['baseURL']."/".$CONF['images']['directionsRel']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";?>
 			<td rowspan=7 width="150"><img height="150" src="<? echo $windForSpotGraphicsURL ?>"> </td>
 <? } ?>
         </tr>
