@@ -12,6 +12,7 @@
 //
 //************************************************************************
 require_once dirname(__FILE__).'/FN_output.php';
+//require_once dirname(__FILE__)."/config.php";
 
 function findNearestWaypoint($lat,$lon) {
 	global $waypoints;
@@ -218,6 +219,21 @@ function getWaypointName($ID,$forceIntl=-1,$countryFirst=0,$maxChars=0) {
 
 	if ($countryFirst)	return $row["countryCode"]." - ".$tname;	
 	else return $tname." - ".$row["countryCode"];	
+}
+
+function getWaypointIntName($ID) {
+	global $db,$waypointsTable;
+	global $CONFIG_forceIntl;
+		
+	$query="SELECT * from $waypointsTable WHERE ID=".$ID;
+	$res= $db->sql_query($query);			
+	if($res <= 0) return "UNKNOWN";
+	
+	$row = $db->sql_fetchrow($res) ;
+	$db->sql_freeresult($res);
+	$tname=selectWaypointName($row["name"],$row["intName"],$row["countryCode"],1);
+	return $tname;
+
 }
 
 function showWaypointDesciptionIcon($ID) {
