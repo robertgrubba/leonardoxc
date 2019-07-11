@@ -126,9 +126,16 @@
         <tr bgcolor="white">
           <td width=180 class="col3_in"> <? echo _SITE_REGION ?></td>
 	  <td valign="top" ><? echo $wpLocation ?>&nbsp;</td>
+
+<!-- data from weather raport -->
 <?
-				$windForSpotGraphicsURL="https://leonardo.pgxc.pl".$CONF['images']['directionsRel']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";?>
-				<td rowspan=7 width="150"><img height="150" src="<? echo $windForSpotGraphicsURL ?>"> </td>
+$json = file_get_contents($CONF['weatherapi'].'/spot/'.$wpInfo->intName);
+$obj = json_decode($json);
+$weatherResponse= $obj->status;
+if ($weatherResponse==200){
+			$windForSpotGraphicsURL="https://leonardo.pgxc.pl".$CONF['images']['directionsRel']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";?>
+			<td rowspan=7 width="150"><img height="150" src="<? echo $windForSpotGraphicsURL ?>"> </td>
+<? } ?>
         </tr>
 		<? } ?>
 		<? if ($wpInfo->link) { ?>
@@ -137,14 +144,7 @@
           <td valign="top"><a href='<? echo formatURL($wpInfo->link) ?>' target="_blank"><? echo formatURL($wpInfo->link) ?></a>&nbsp;</td>
         </tr>
 		<? } ?>
-<!-- data from weather raport -->
-<?
-$json = file_get_contents($CONF['weatherapi'].'/spot/'.$wpInfo->intName);
-$obj = json_decode($json);
-$weatherResponse= $obj->status;
-?>
 
-<!-- end of data from weather raport -->
 <? if ($weatherResponse==200) {
 	$windForSpotGraphics=$CONF['images']['directions']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";
 	
@@ -191,8 +191,8 @@ $weatherResponse= $obj->status;
         </tr>
 	<? if ($obj->links!="None"){ ?>
 		<tr bgcolor="white">
-		  <td width=200 class="col3_in">Przydatne linki</td>
-		  <td valign="top" ><? 
+		  <td  width=200 class="col3_in">Przydatne linki</td>
+		  <td colspan=2 valign="top" ><? 
 			$links=$obj->links; 
 			foreach($links as $key=>$value){
 				$protocols = array();
@@ -201,19 +201,21 @@ $weatherResponse= $obj->status;
 				$domain = preg_replace($protocols,'',$value);
 				$domain = preg_replace("/\/.*$/",'',$domain);
 				$thumbnail = preg_replace("/\./",'',$domain);
-  $pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/startowisko/".$waypointIDview;
-				print "<a href='$value' target='_blank'><img alt='Informacje o $wpName na $domain' width='32' height='32' src='".$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/img/ext/$thumbnail.png'></a> ";
+				$pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/startowisko/".$waypointIDview;
+				if ($domain!=$_SERVER['SERVER_NAME'] and $domain!=""){
+					print "<a href='$value' target='_blank'><img alt='Informacje o $wpName na $domain' width='32' height='32' src='".$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/img/ext/$thumbnail.png'></a> ";
+				}
 			}  ?>&nbsp;</td>
 		</tr>
 	<? } ?>
 <? } ?>
 		<? if ($wpInfo->description) { ?>
         <tr bgcolor="#49766D">
-          <td colspan=2 class="col3"><div align="center" class="titleWhite  titleText"><? echo _SITE_DESCR ?>
+          <td colspan=3 class="col3"><div align="center" class="titleWhite  titleText"><? echo _SITE_DESCR ?>
           </div></td>
         </tr>
         <tr>
-          <td colspan=2 valign="top"><? echo $wpInfo->description ?>&nbsp;</td>
+          <td colspan=3 valign="top"><? echo $wpInfo->description ?>&nbsp;</td>
         </tr>
 		<? } ?>
       </table>    
