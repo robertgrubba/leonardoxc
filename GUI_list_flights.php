@@ -898,6 +898,8 @@ function removeClubFlight(clubID,flightID) {
    echo "</table>\n\n"  ;      
    $db->sql_freeresult($res);
 }
-
-
 ?>
+	<div style="text-align: right"><?
+print_r(displayWeatherLegend());
+?>
+</div>

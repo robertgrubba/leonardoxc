@@ -211,7 +211,13 @@ $takeoffName=file_get_contents('http://weather/isflyabletoday/1/'.$takeoffName).
 	   	echo "<TD>".formatDistanceOpen($row["max_distance"])."</TD>";
 		echo "</TR>";
    }     
-   echo "</table>";
+	echo "</table>";
+?>
+           <div style="text-align: right"><?
+		print_r(displayWeatherLegend());
+?>
+</div>
+<?
    $db->sql_freeresult($res);
 }
 

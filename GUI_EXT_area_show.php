@@ -140,6 +140,12 @@ $area->getFromDB();
 		<div id="siteInfo"></div>	</td>
 </tr>
 </table>
+        <div style="text-align: right; font-size:12px;"><?
+ 	require_once dirname(__FILE__)."/FN_functions.php";
+print_r(displayWeatherLegend());
+?>
+</div>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 	  $('a[rel*=facebox]').facebox()
