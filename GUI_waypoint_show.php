@@ -209,6 +209,25 @@ if ($weatherResponse==200){
 		</tr>
 	<? } ?>
 <? } ?>
+        <tr>
+	  <td  valign="top" width="180">
+<? }
+if (is_user($user) || $userID>0) {
+	require_once dirname(__FILE__)."/CL_user.php";
+
+	$email = LeoUser::getEmail($userID);
+	if ($weatherResponse==200){
+				?>
+	  <a href='http://trac.pgxc.pl/newticket?summary=Zmiana informacji o startowisku <? echo $wpName ?> (<?echo $waypointIDview ?>)&description=Proszę napisz tutaj co powinno zostać zmienione w obecnym opisie bazując na własnym doświadczeniu&component=Treści&priority=minor&cc=<? echo $email ?>&type=ulepszenie'><button>Zaproponuj zmianę danych o startowisku</button></a>
+<? 	}else{
+	?>
+	 <center> <a href='http://trac.pgxc.pl/newticket?summary=Dodanie informacji o startowisku <? echo $wpName ?> (<?echo $waypointIDview ?>)&description=Proszę napisz dla jakich kierunków jest to startowisko (zakresy w stopniach), podaj dokładne koordynaty lub pinezkę do google maps, link do prognozy windguru dla tego startowiska, przydatne odnośniki oraz jeśli to możliwe opis startowiska i lądowiska&component=Treści&priority=minor&cc=<? echo $email ?>&type=ulepszenie'><button>Dodaj informacje o startowisku</button></a></center>
+<?
+	}
+} 
+?>
+	  </td>
+        </tr>
 		<? if ($wpInfo->description) { ?>
         <tr bgcolor="#49766D">
           <td colspan=3 class="col3"><div align="center" class="titleWhite  titleText"><? echo _SITE_DESCR ?>
@@ -219,7 +238,7 @@ if ($weatherResponse==200){
         </tr>
 		<? } ?>
       </table>    
-	  <? } ?>  
+	  <?// } ?>  
       </td>
   </tr>
   <tr> 
