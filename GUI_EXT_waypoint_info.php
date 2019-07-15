@@ -156,7 +156,7 @@ if ($weatherResponse==200){
           <td valign="top" ><? print_r(file_get_contents($CONF['weatherapi']."/isflyabletoday/".$wpInfo->intName)) ?>&nbsp;</td>
         </tr>
         <tr  bgcolor="#F2ECDB">
-          <td width=180 class="col3_in">Najbliższe lotne terminy</td>
+          <td width=180 class="col3_in">Najbliższa szansa na warun</td>
           <td valign="top" ><a href="http://pgxc.pl/weather_forecast.pdf" target="_blank"><? print_r(file_get_contents($CONF['weatherapi']."/flyabledays/".$wpInfo->intName)) ?></a>&nbsp;</td>
         </tr>
         <? if ($obj->links!="None"){ ?>

@@ -23,7 +23,7 @@ function htmlDecode($encoded) {
 }
 
 function displayWeatherLegend(){
-	return "Szanse na warun wg prognoz: &#9730; - nie ma, &#9729; - niewielkie, &#9728; - całkiem spore";   
+	return "Szanse na warun wg prognoz: &#9730; - brak, &#9729; - niewielkie, &#9728; - duże";   
 }
 
 
