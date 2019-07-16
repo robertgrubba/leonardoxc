@@ -653,9 +653,9 @@ if ($op=="area_show"){
         $numberOfTakeoffs=$row['number_of_takeoffs'];
     }
     $areaName = $area->name;
-    $page_title = 'Polski Serwer Leonardo' ;
+    $page_title = 'Startowiska paralotniowe w rejonie: '.$areaName ;
     $page_keywords = "księga lotów, paralotnie, loty, statystyki";
-    $page_description = "Książka lotów online";
+    $page_description = $areaName." - ".$numberOfTakeoffs. " startowisk wraz z informacjami o dzisiejszym warunie";
     $board_config['meta_keywords']=$page_keywords;
     $board_config['meta_description']=$page_description;
     $board_config['meta_author']='https://leonardo.pgxc.pl';
