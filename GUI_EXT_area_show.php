@@ -115,7 +115,7 @@ padding:5px;
   <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td width="100"><div id='takeoffHeader'><? echo _AREA ?></div></td>
-      <td ><div id='takeoffHeader'><b><?=$area->name?></b></div></td>
+      <td ><div id='takeoffHeader'><b><?=$area->name?></b></td>
     </tr>
     <tr>
       <td colspan="2"><?=$area->desc?></td>
@@ -136,6 +136,10 @@ padding:5px;
 		
 		<div id="siteInfo"></div>	</td>
 </tr>
+    <tr><td colspan=2>
+	<? require_once "FN_functions.php";?>
+        <a target="_parent" href="<? echo getLeonardoLink(array('op'=>'list_areas')) ?>"> <-<? echo _MENU_AREA_GUIDE ?></a>
+    </td></tr>
 </table>
         <div style="text-align: right; font-size:12px;"><?
  	require_once dirname(__FILE__)."/FN_functions.php";
@@ -325,8 +329,6 @@ print_r(displayWeatherLegend());
  <? } ?>	
  
 	getAjax('EXT_takeoff.php?op=getTakeoffsForArea&areaID=<?=$areaID?>',null,drawTakeoffs);
-
-
 }
     //]]>
 </script>
