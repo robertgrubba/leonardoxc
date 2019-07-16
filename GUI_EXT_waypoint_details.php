@@ -104,6 +104,91 @@
           <td valign="top"><a href='<? echo formatURL($wpInfo->link) ?>' target="_blank"><? echo formatURL($wpInfo->link) ?></a>&nbsp;</td>
         </tr>
 		<? } ?>
+<!-- extended description begins here -->
+<?
+$json = file_get_contents($CONF['weatherapi'].'/spot/'.$wpInfo->intName);
+$obj = json_decode($json);
+$weatherResponse= $obj->status;
+if ($weatherResponse==200){
+                        $windForSpotGraphicsURL=$CONF['links']['baseURL'].$CONF['images']['directionsRel']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";?>
+                        <td rowspan=7 width="150"  bgcolor="#F2ECDB"><img height="150" src="<? echo $windForSpotGraphicsURL ?>"> </td>
+<? } ?>
+        </tr>
+                <? if ($wpInfo->link) { ?>
+        <tr  bgcolor="#F2ECDB">
+          <td width=180 class="col3_in"><? echo _SITE_LINK ?></td>
+          <td valign="top"><a href='<? echo formatURL($wpInfo->link) ?>' target="_blank"><? echo formatURL($wpInfo->link) ?></a>&nbsp;</td>
+        </tr>
+                <? } ?>
+
+<? if ($weatherResponse==200) {
+        $windForSpotGraphics=$CONF['images']['directions']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";
+
+        if (!is_file($windForSpotGraphics.".txt")) {
+                $response = file_get_contents($CONF['weatherapi']."/windrose/".$wpInfo->intName);
+                file_put_contents($windForSpotGraphics,$response);
+                file_put_contents($windForSpotGraphics.".txt","ok");
+        }
+
+        ?>
+  <? if(!is_array($obj->dirMin)) { ?>
+        <tr  bgcolor="#F2ECDB">
+          <td width=180 class="col3_in">Użyteczne kierunki wiatru</td>
+          <td valign="top" ><? echo $obj->dirMin."&deg - ".$obj->dirMax."&deg;" ?>&nbsp;</td>
+        </tr>
+  <? } else { ?>
+        <tr bgcolor="white">
+          <td width=180 class="col3_in">Użyteczne kierunki wiatru</td>
+          <td valign="top" ><?
+                $numberOfRanges=sizeOf($obj->dirMin);
+                for($x=0; $x<$numberOfRanges; $x++){
+                        print $obj->dirMin[$x]."&deg - ".$obj->dirMax[$x]."&deg;" ;
+                        if ($x!=$numberOfRanges-1) print ", ";
+                 }
+                ?>&nbsp;
+           </td>
+        </tr>
+  <? } ?>
+        <tr bgcolor="#F2ECDB">
+          <td width=180 class="col3_in">Użyteczna siła wiatru</td>
+          <td valign="top" ><? echo (($obj->spdMin)/2)." - ".(($obj->spdMax)/2)."m/s" ?>&nbsp;</td>
+        </tr>
+        <tr  bgcolor="#F2ECDB">
+          <td width=180 class="col3_in">Prognozy pogody</td>
+          <td valign="top" ><? echo "<a target='_blank' href='https://www.windguru.cz/".$obj->windguruID."'>Windguru</a> <a target='_blank' href='https://www.windy.com/".$obj->lat."/".$obj->lon."'>Windy</a>" ?>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#F2ECDB">
+          <td width=180 class="col3_in">Czy dziś jest szansa na warun?</td>
+          <td valign="top" ><? print_r(file_get_contents($CONF['weatherapi']."/isflyabletoday/".$wpInfo->intName)) ?>&nbsp;</td>
+        </tr>
+        <tr  bgcolor="#F2ECDB">
+          <td width=180 class="col3_in">Najbliższa szansa na warun</td>
+          <td valign="top" ><a href="http://pgxc.pl/weather_forecast.pdf" target="_blank"><? print_r(file_get_contents($CONF['weatherapi']."/flyabledays/".$wpInfo->intName)) ?></a>&nbsp;</td>
+        </tr>
+        <? if ($obj->links!="None"){ ?>
+                <tr bgcolor="#F2ECDB">
+                  <td  width=200 class="col3_in">Przydatne linki</td>
+                  <td colspan=2 valign="top" ><?
+                        $links=$obj->links;
+                        foreach($links as $key=>$value){
+                                $protocols = array();
+                                $protocols[0]='/http:\/\//';
+                                $protocols[1]='/https:\/\//';
+                                $domain = preg_replace($protocols,'',$value);
+                                $domain = preg_replace("/\/.*$/",'',$domain);
+                                $thumbnail = preg_replace("/\./",'',$domain);
+                                $pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/startowisko/".$waypointIDview;
+                                if ($domain!=$_SERVER['SERVER_NAME'] and $domain!=""){
+                                        print "<a href='$value' target='_blank'><img alt='Informacje o $wpName na $domain' width='32' height='32' src='".$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/img/ext/$thumbnail.png'></a> ";
+                                }
+                        }  ?>&nbsp;</td>
+                </tr>
+        <? } ?>
+<? } ?>
+
+
+<!-- extended description ends here-->
+
 		<? if ($wpInfo->description) { ?>
         <tr bgcolor="#F2ECDB">
           <td width=200><? echo _SITE_DESCR ?></td>
