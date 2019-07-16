@@ -199,7 +199,7 @@ $takeoffNameSafe=str_replace("'","\'",$takeoffName);
 $takeoffNameSafe=str_replace('"','\"',$takeoffNameSafe);
 $takeoffNameSafe=htmlspecialchars($takeoffName); 
 
-$takeoffName=file_get_contents('http://weather/isflyabletoday/1/'.$takeoffName)." ".showWaypointDesciptionIcon($row["takeoffID"])." ".$takeoffName;
+$takeoffName=file_get_contents('http://weather/isflyabletoday/1/'.$row["intName"])." ".showWaypointDesciptionIcon($row["takeoffID"])." ".$takeoffName;
 
 		echo "<TD class='alLeft'><div align=left id='t_$i'>";
 	//	echo "<a href='javascript:nop()' onclick=\"takeoffTip.newTip('inline', 0, 13, 't_$i', 250, '".$row["takeoffID"]."','".str_replace("'","\'",$takeoffName)."')\"  onmouseout=\"takeoffTip.hide()\">$takeoffName</a>";
