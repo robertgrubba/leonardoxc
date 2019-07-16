@@ -17,9 +17,10 @@
 	$CONF_use_utf=1;
  	require_once dirname(__FILE__)."/EXT_config.php";
  	require_once dirname(__FILE__)."/CL_area.php";
-	
 
 	$areaID=makeSane($_GET['areaID'],0);
+	$area=new area($areaID);
+	$area->getFromDB();
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
   <head>
@@ -109,10 +110,6 @@ padding:5px;
 	<div id ='resDiv'><BR /><BR /></div>
 </div>
 
-<? 
-$area=new area($areaID);
-$area->getFromDB();
-?>
 <table border="0" cellpadding="0" cellspacing="0" width="99%" style="margin-left:auto; margin-right:auto"> 
 <tr>
   <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">

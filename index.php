@@ -639,6 +639,54 @@ if (!file_exists($dst.".txt")){
 /*  } */
 }
 
+if ($op=="area_show"){
+    $areaID=makeSane($_GET['areaID'],0);
+    require_once dirname(__FILE__)."/CL_area.php";
+    $area=new area($areaID);
+    $area->getFromDB();
+
+    // number of takeoffs
+    $query="SELECT count(*) as number_of_takeoffs FROM leonardo_areas_takeoffs where areaID=".$areaID;
+    $res= $db->sql_query($query);
+    if($res > 0){
+        $row = mysql_fetch_assoc($res);
+        $numberOfTakeoffs=$row['number_of_takeoffs'];
+    }
+    $areaName = $area->name;
+    $page_title = 'Polski Serwer Leonardo' ;
+    $page_keywords = "księga lotów, paralotnie, loty, statystyki";
+    $page_description = "Książka lotów online";
+    $board_config['meta_keywords']=$page_keywords;
+    $board_config['meta_description']=$page_description;
+    $board_config['meta_author']='https://leonardo.pgxc.pl';
+    $board_config['meta_ogTitle'] =  $page_title;
+    $board_config['meta_ogDescription']= $areaName." - ".$numberOfTakeoffs. " startowisk wraz z informacjami o dzisiejszym warunie";
+    $board_config['meta_ogUrl'] = 'https://leonardo.pgxc.pl/';
+    $board_config['meta_ogType'] = 'sport';
+    $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+    $dstUserMap=$CONF['mapUsersDir'].'/rejon_'.$areaID.'.jpg';
+    $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/'.$dstUserMap;
+    $board_config['meta_ogImageType'] = 'image/jpeg';
+
+    $dst=$CONF['mapUsersDir'].'/rejon_'.$areaID.'.jpg';
+    // if not exists then create one
+    if (!file_exists($dst)){
+        $query="select lat,lon from leonardo_waypoints where ID in (select takeoffID from leonardo_areas_takeoffs where areaID=".$areaID.")  group by ID";
+        $res= $db->sql_query($query);
+        $places="";
+        if($res > 0){
+            while ($row=mysql_fetch_assoc($res)){
+                $places.=$row['lat'].",".(floatval($row['lon'])*-1)."|";
+            }
+        }
+
+        $src='https://maps.googleapis.com/maps/api/staticmap?size=600x400&markers=color:red%7Csize:tiny|'.$places.'&key='.$CONF_google_maps_api_key;
+        //      echo $src;
+        $result=file_put_contents($dst, file_get_contents($src));
+    }
+
+}
+
 if ($op=="index_full"){
     // users total airtime
     $query="SELECT sum(DURATION) as total_time FROM $flightsTable";

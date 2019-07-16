@@ -1133,6 +1133,9 @@ function getLeonardoLink($argArray,$forcedLinkType=0) {
 			$args.='startowisko/'.$argArray['waypointIDview'];
 			return $CONF['links']['baseURL'].'/'.$args;
 			
+		} else if ($opTmp=="area_show"){
+			$args.='rejon/'.$argArray['areaID'];
+			return $CONF['links']['baseURL'].'/'.$args;
 		} else if ($opTmp=='show_flight') {	
 //			$args.='flight/';	
 			$args.='lot/';	
