@@ -117,7 +117,7 @@ $area->getFromDB();
 <tr>
   <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
-      <td width="100"><div id='takeoffHeader'>Area</div></td>
+      <td width="100"><div id='takeoffHeader'><? echo _AREA ?></div></td>
       <td ><div id='takeoffHeader'><b><?=$area->name?></b></div></td>
     </tr>
     <tr>
@@ -131,7 +131,7 @@ $area->getFromDB();
 <tr>
 	<td><div name="map" id="map" style="width:100%; height: 450px"></div></td>
 		<td width = 150 valign="top" bgcolor="#F4F4EA" >
-			<div id='takeoffHeader'>Takeoffs</div>
+			<div id='takeoffHeader'><? echo _TAKEOFFS ?></div>
 			<div id="sidebar"></div>		</td>
 </tr>
 <tr>
