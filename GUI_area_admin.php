@@ -228,35 +228,33 @@ function  addTakeoffToArea ()  {
 };
 
 
+function getTakeoffsForCountry(cCode) {
+	$("#addList").removeOption(/./);
+	$("#addList").ajaxAddOption('<?=$moduleRelPath?>/EXT_takeoff.php?op=get_country_takeoffs&countryCode='+cCode);
+}
+
 $(document).ready(function(){
    // Your code here
 	$('.stripeMe tr:even:gt(0)').addClass('alt');
 	$('.stripeMe tr:odd').addClass('alt2');
 
-  
-	$(".removeTakeoff").livequery('click',function() {		
-		$("#resDiv").html("<img src='<?=$moduleRelPath?>/img/ajax-loader.gif'>");				
-	  	$("#resDiv").load("<?=$moduleRelPath?>/EXT_takeoff_functions.php?op=removeFromArea&aID=<?=$areaID?>&tID="+$(this).attr("id") ); 
-		
-		$(this).parent().parent().addClass("deleted");
-	});
 	
-	$("#countryList").change(function(f) {
+	$("#countryList").on('change',function(f) {
 		cCode=$("#countryList").val();
 		getTakeoffsForCountry(cCode);
 	});
 
+	$(".removeTakeoff").livequery('click',function() {		
+		$("#resDiv").html("<img src='<?=$moduleRelPath?>/img/ajax-loader.gif'>");				
+	  	$("#resDiv").load("<?=$moduleRelPath?>/EXT_takeoff_functions.php?op=removeFromArea&aID=<?=$areaID?>&tID="+$(this).attr("id") ); 
+		$(this).parent().parent().addClass("deleted");
+	});
 	<? if ($CONF['takeoffAreas']['defaultCountry'] ) { ?>
 		$("#countryList").val('<?=$CONF['takeoffAreas']['defaultCountry']?>');
 		getTakeoffsForCountry('<?=$CONF['takeoffAreas']['defaultCountry']?>');
 	<? } ?>
 });
 
-
-function getTakeoffsForCountry(cCode) {
-	$("#addList").removeOption(/./);
-	$("#addList").ajaxAddOption('<?=$moduleRelPath?>/EXT_takeoff.php?op=get_country_takeoffs&countryCode='+cCode);
-}
 </script>
 
 <style type="text/css">
