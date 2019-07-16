@@ -89,19 +89,13 @@
 	 <br>
       <table class="Box"  align="center" width="100%">
         <tr bgcolor="#49766D">
-          <td colspan="2">             
+          <td colspan="3">             
               <div align="center" class="titleWhite"><strong><? echo _SITE_INFO ?></strong></div></td>
         </tr>
 		<? if ($wpLocation) { ?>
         <tr bgcolor="#F2ECDB">
           <td width="10%"><? echo _SITE_REGION ?></td>
-          <td valign="top"><? echo $wpLocation ?>&nbsp;</td>
-        </tr>
-		<? } ?>
-		<? if ($wpInfo->link) { ?>
-        <tr bgcolor="#F2ECDB">
-          <td width=200><? echo _SITE_LINK ?></td>
-          <td valign="top"><a href='<? echo formatURL($wpInfo->link) ?>' target="_blank"><? echo formatURL($wpInfo->link) ?></a>&nbsp;</td>
+          <td valign="top" colspan="2"><? echo $wpLocation ?>&nbsp;</td>
         </tr>
 		<? } ?>
 <!-- extended description begins here -->
@@ -192,7 +186,7 @@ if ($weatherResponse==200){
 		<? if ($wpInfo->description) { ?>
         <tr bgcolor="#F2ECDB">
           <td width=200><? echo _SITE_DESCR ?></td>
-          <td valign="top"><? echo $wpInfo->description ?>&nbsp;</td>
+          <td valign="top" colspan="2"><? echo $wpInfo->description ?>&nbsp;</td>
         </tr>
 		<? } ?>
       </table>    
