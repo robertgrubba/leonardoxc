@@ -68,7 +68,6 @@
 		'TEMPLATE_REL_PATH'=>$moduleRelPath."/templates/".$PREFS->themeName ,
 		'LANG'=>$currentlang,
 	));
-echo "AAAAA";
    	$Ltemplate->pparse('body');
 ?>
 	<div style="text-align: right"><?
