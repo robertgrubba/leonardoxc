@@ -23,7 +23,7 @@ function htmlDecode($encoded) {
 }
 
 function displayWeatherLegend(){
-	return "Szanse na warun wg prognoz: &#9730; - brak, &#9729; - niewielkie, &#9728; - duże";   
+	return _CHANCES_TO_FLY." &#9730; - "._NONE." &#9729; - "._LOW." &#9728; - "._HIGH;   
 }
 
 

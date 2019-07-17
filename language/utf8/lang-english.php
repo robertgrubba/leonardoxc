@@ -1035,4 +1035,9 @@ define("_map_of_visited_takeoffs","Map of visited takeoffs");
 
 define("_AREA","Area");
 define("_TAKEOFFS","Takeoffs");
+define("_CHANCES_TO_FLY","Chances to fly according to forecasts:");
+define("_NONE","none");
+define("_LOW","low");
+define("_HIGH","high");
+
 ?>

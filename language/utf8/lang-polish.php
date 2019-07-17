@@ -958,4 +958,9 @@ define("_Breakdown_Per_Glider","Z podziałem na skrzydła");
 define("_map_of_visited_takeoffs","Mapa oblatanych startowisk");
 define("_AREA","Rejon");
 define("_TAKEOFFS","Startowiska");
+define("_CHANCES_TO_FLY","Szanse na warun wg prognoz:");
+define("_NONE","brak");
+define("_LOW","niewielkie");
+define("_HIGH","duże");
+
 ?>
