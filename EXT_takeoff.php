@@ -100,7 +100,9 @@
 		$i=0;
 		while ($row = mysql_fetch_assoc($dbres)) { 
 			if ($i>0)$res.=" ,\n";
-			$res.=' { "id":'.$row[ID].', "lat":'.$row['lat'].', "lon":'.-$row['lon'].' , "name":"'.file_get_contents($CONF['weatherapi'].'/isflyabletoday/1/'.$row['intName'])." ".showWaypointDesciptionIcon($row[ID]).' '.str_replace('"','\"',$row['intName']).'", "type":'.$row['type'].' } ';
+$intNameUrl = $row['intName'];
+$intNameUrl = str_replace(" ","%20",$intNameUrl);
+			$res.=' { "id":'.$row[ID].', "lat":'.$row['lat'].', "lon":'.-$row['lon'].' , "name":"'.file_get_contents($CONF['weatherapi'].'/isflyabletoday/1/'.$intNameUrl)." ".showWaypointDesciptionIcon($row[ID]).' '.str_replace('"','\"',$row['intName']).'", "type":'.$row['type'].' } ';
 		  $i++;	  
 		}     
 		

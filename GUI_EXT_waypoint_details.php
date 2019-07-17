@@ -100,7 +100,9 @@
 		<? } ?>
 <!-- extended description begins here -->
 <?
-$json = file_get_contents($CONF['weatherapi'].'/spot/'.$wpInfo->intName);
+$intNameUrl = $wpInfo->intName;
+$intNameUrl = str_replace(" ","%20",$intNameUrl);
+$json = file_get_contents($CONF['weatherapi'].'/spot/'.$intNameUrl);
 $obj = json_decode($json);
 $weatherResponse= $obj->status;
 if ($weatherResponse==200){
@@ -119,7 +121,7 @@ if ($weatherResponse==200){
         $windForSpotGraphics=$CONF['images']['directions']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";
 
         if (!is_file($windForSpotGraphics.".txt")) {
-                $response = file_get_contents($CONF['weatherapi']."/windrose/".$wpInfo->intName);
+                $response = file_get_contents($CONF['weatherapi']."/windrose/".$intNameUrl);
                 file_put_contents($windForSpotGraphics,$response);
                 file_put_contents($windForSpotGraphics.".txt","ok");
         }
@@ -153,11 +155,11 @@ if ($weatherResponse==200){
         </tr>
         <tr bgcolor="#F2ECDB">
           <td width=180 class="col3_in">Czy dziś jest szansa na warun?</td>
-          <td valign="top" ><? print_r(file_get_contents($CONF['weatherapi']."/isflyabletoday/".$wpInfo->intName)) ?>&nbsp;</td>
+          <td valign="top" ><? print_r(file_get_contents($CONF['weatherapi']."/isflyabletoday/".$intNameUrl)) ?>&nbsp;</td>
         </tr>
         <tr  bgcolor="#F2ECDB">
           <td width=180 class="col3_in">Najbliższa szansa na warun</td>
-          <td valign="top" ><? print_r(file_get_contents($CONF['weatherapi']."/flyabledays/".$wpInfo->intName)) ?>&nbsp;</td>
+          <td valign="top" ><? print_r(file_get_contents($CONF['weatherapi']."/flyabledays/".$intNameUrl)) ?>&nbsp;</td>
         </tr>
         <? if ($obj->links!="None"){ ?>
                 <tr bgcolor="#F2ECDB">
