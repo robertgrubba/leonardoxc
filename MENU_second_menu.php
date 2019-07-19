@@ -620,7 +620,6 @@ if ($op=='list_flights'  ) { // photos and comments filter
 </li>
 </ul>
 </div>
-
 <?
 } // end of photos and comments filter
 
@@ -650,10 +649,12 @@ if (! $dontShowCountriesSelection ) {
     </div>
 <? } ?>
 
-<?	if ($showNacClubSelection || (count($clubsList) && $op!='comp')  ) { ?>
-    <div id='clubMenuID' class="menuButton"><a href="#" onClick="toogleMenu('club');return false;">
-   <?=leoHtml::img("icon_club.gif",0,0,'absmiddle',$nacClubLegend,'icons1')?><?=' '._Club.' '.$arrDownImg; ?></a>
-    </div>
+<? if (! $dontShowClubsSelection ) { ?>
+	<?	if ($showNacClubSelection || (count($clubsList) && $op!='comp')  ) { ?>
+	    <div id='clubMenuID' class="menuButton"><a href="#" onClick="toogleMenu('club');return false;">
+	   <?=leoHtml::img("icon_club.gif",0,0,'absmiddle',$nacClubLegend,'icons1')?><?=' '._Club.' '.$arrDownImg; ?></a>
+	    </div>
+	<? } ?>
 <? } ?>
 
 
