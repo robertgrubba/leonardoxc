@@ -14,6 +14,7 @@
 require_once dirname(__FILE__)."/config.php";
 require_once dirname(__FILE__)."/CL_brands.php";
 require_once dirname(__FILE__)."/CL_html.php";
+require_once dirname(__FILE__)."/CL_user.php";
 require_once dirname(__FILE__)."/FN_functions.php";
 require_once dirname(__FILE__)."/FN_waypoint.php";
 
@@ -22,6 +23,11 @@ $dontShowClubsSelection=1;
 $dontShowManufacturers=1;
 $dontShowCatSelection=1;
  
+if(!isset($_SESSION[userID])){
+	echo "<H1> Login first </h1>";
+	die();
+}
+
   $sortOrder=makeSane($_REQUEST["sortOrder"]);
   if ( $sortOrder=="")  $sortOrder="CountryCode";
 
