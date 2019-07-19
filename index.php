@@ -661,7 +661,7 @@ if ($op=="area_show"){
     $board_config['meta_author']='https://leonardo.pgxc.pl';
     $board_config['meta_ogTitle'] =  $page_title;
     $board_config['meta_ogDescription']= $areaName." - ".$numberOfTakeoffs. " startowisk wraz z informacjami o dzisiejszym warunie";
-    $board_config['meta_ogUrl'] = 'https://leonardo.pgxc.pl/';
+    $board_config['meta_ogUrl'] = 'https://leonardo.pgxc.pl/rejon/'.$areaID;
     $board_config['meta_ogType'] = 'sport';
     $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
     $dstUserMap=$CONF['mapUsersDir'].'/rejon_'.$areaID.'.jpg';
