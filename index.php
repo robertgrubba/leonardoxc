@@ -899,6 +899,8 @@ if ($op=="index_full") {
     require $LeoCodeBase."/GUI_comp.php";
 } else if ($op=="list_takeoffs") {
 	require $LeoCodeBase."/GUI_list_takeoffs.php";
+} else if ($op=="list_forecasts") {
+	require $LeoCodeBase."/GUI_list_forecasts.php";
 } else if ($op=="sites") {
 	require $LeoCodeBase."/GUI_sites.php";
 } else if ($op=="list_areas") {
