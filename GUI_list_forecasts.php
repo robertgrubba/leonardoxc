@@ -41,27 +41,27 @@ if(!isset($_SESSION[userID])){
   $legend=_MENU_TAKEOFFS;
   
   // SEASON MOD
-  $where_clause.= dates::makeWhereClause(0,$season,$year,$month,0 );
+  //$where_clause.= dates::makeWhereClause(0,$season,$year,$month,0 );
 
   // BRANDS MOD  
-  $where_clause.= brands::makeWhereClause($brandID);
+//  $where_clause.= brands::makeWhereClause($brandID);
 
 	// take care of exluding flights
 	// 1-> first bit -> means flight will not be counted anywhere!!!
 	$bitMask=1 & ~( $includeMask & 0x01 );
 	$where_clause.= " AND ( excludeFrom & $bitMask ) = 0 ";
-
+/*
 	if ($pilotID!=0) {
 		$where_clause.=" AND userID='".$pilotID."'  AND userServerID=$serverID ";		
 	} else {  // 0 means all flights BUT not test ones 
 		$where_clause.=" AND userID>0 ";		
 	}
-	
+*/	
   if ($country) {
 		$where_clause_country.=" AND  ".$waypointsTable.".countryCode='".$country."' ";
 		//$legend.=" (".$countries[$country].") | ";
   }    
-  
+ /* 
   	if ($class) {
 		$where_clause.=" AND  $flightsTable.category='".$class."' ";
 	}
@@ -69,8 +69,9 @@ if(!isset($_SESSION[userID])){
 	if ($xctype) {
 		$where_clause.=" AND  $flightsTable.BEST_FLIGHT_TYPE='".$CONF_xc_types_db[$xctype]."' ";
 	}
-
+*/
   # Martin Jursa 23.05.2007: support for NacClub Filtering
+/*
   if (!empty($CONF_use_NAC)) {
 	  if ($nacid && $nacclubid) {
 	  		$where_clause.=" AND $flightsTable.NACid=$nacid AND $flightsTable.NACclubID=$nacclubid";
@@ -80,7 +81,7 @@ if(!isset($_SESSION[userID])){
   if ($clubID)   {
    require dirname(__FILE__)."/INC_club_where_clause.php";
   } 
-  
+  */
   /* not needed -->  is included by default in this list
   if ($countryCodeQuery || $country)   {
 	 $where_clause.=" AND $flightsTable.takeoffID=$waypointsTable.ID ";
@@ -249,14 +250,7 @@ if ( $countries[$row["countryCode"]] != $currCountry || $sortOrder!='CountryCode
 			
 			echo "</div></TD>";
 			
-			echo "<TD>".file_get_contents('http://weather/isflyabletoday/1/'.$intNameUrl)."</TD>";
-			echo "<TD>".file_get_contents('http://weather/isflyabletoday/2/'.$intNameUrl)."</TD>";
-			echo "<TD>".file_get_contents('http://weather/isflyabletoday/3/'.$intNameUrl)."</TD>";
-			echo "<TD>".file_get_contents('http://weather/isflyabletoday/4/'.$intNameUrl)."</TD>";
-			echo "<TD>".file_get_contents('http://weather/isflyabletoday/5/'.$intNameUrl)."</TD>";
-			echo "<TD>".file_get_contents('http://weather/isflyabletoday/6/'.$intNameUrl)."</TD>";
-//			echo "<TD>".file_get_contents('http://weather/isflyabletoday/7/'.$intNameUrl)."</TD>";
-//			echo "<TD>".file_get_contents('http://weather/isflyabletoday/8/'.$intNameUrl)."</TD>";
+			echo file_get_contents('http://weather/forecastforfivedays/'.$intNameUrl);
 			echo "<TD>".file_get_contents('http://weather/forecastlinks/'.$intNameUrl)."</TD>";
 			echo "</TR>";
 	}
