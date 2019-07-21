@@ -24,7 +24,8 @@ $dontShowManufacturers=1;
 $dontShowCatSelection=1;
  
 if(!isset($_SESSION[userID])){
-	echo "<H1> Login first </h1>";
+	echo "<br><br><br><center><H2>Dostęp tylko dla zalogowanych użytkowników</h2></center>";
+	echo "<br><br><br><center><h3>Strona z długoterminowymi informacjami o warunie dostępna jest jedynie dla zalogowanych użytkowników, proszę zalogować się i spróbować ponownie.</h3></center>";
 	die();
 }
 
