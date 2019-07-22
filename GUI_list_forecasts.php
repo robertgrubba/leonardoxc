@@ -50,7 +50,7 @@ if(!isset($_SESSION[userID])){
 	// take care of exluding flights
 	// 1-> first bit -> means flight will not be counted anywhere!!!
 	$bitMask=1 & ~( $includeMask & 0x01 );
-	$where_clause.= " AND ( excludeFrom & $bitMask ) = 0 ";
+//	$where_clause.= " AND ( excludeFrom & $bitMask ) = 0 ";
 /*
 	if ($pilotID!=0) {
 		$where_clause.=" AND userID='".$pilotID."'  AND userServerID=$serverID ";		
@@ -116,12 +116,11 @@ if(!isset($_SESSION[userID])){
  $where_clause.=$where_clause_country;
 //-----------------------------------------------------------------------------------------------------------
 
-  	$query="SELECT DISTINCT takeoffID, name, intName, ".$waypointsTable.".countryCode, count(*) as FlightsNum, max(LINEAR_DISTANCE) as max_distance 
-  			FROM $flightsTable,$waypointsTable $extra_table_str
-  			WHERE $flightsTable.takeoffID=$waypointsTable.ID  
-			AND $flightsTable.userID<>0 ".$where_clause." 
+	$query="SELECT DISTINCT ID, name, intName, countryCode, lon as FlightsNum, lat as max_distance 
+  			FROM $waypointsTable $extra_table_str
+  			WHERE countryCode in ('PL','DK','NL','PT','DE','CZ','FR','ES','SL','IT','HR','SK') ".$where_clause." 
 			GROUP BY intName ORDER BY $sortOrderFinal ".$ord.",max_distance DESC";	
-   // echo $query;
+//    echo $query;
 	$res= $db->sql_query($query);		
     if($res <= 0){
 		echo "no takeoffs found<br>";
@@ -134,6 +133,7 @@ if(!isset($_SESSION[userID])){
    </div>" ;
 	require_once dirname(__FILE__)."/MENU_second_menu.php";
 
+//	echo "<center><div class='loader'></div></center>";
    echo "<div class='list_header'>
 				<div class='list_header_r'></div>
 				<div class='list_header_l'></div>

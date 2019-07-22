@@ -390,6 +390,28 @@ if ($op=="list_takeoffs"){
 	 $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/templates/pgxc/tpl/leonardo_logo.gif';
          $board_config['meta_ogImageType'] = 'image/gif';
 }
+if ($op=="list_forecasts"){
+	 $page_title = 'Prognozy dla startowisk paralotniowych';
+	 $page_keywords = "paralotnie, paragliding, flights, logs, track, igc, parapente, loty, startowiska, opisy, przewodnik";
+	 $page_description = "Strona zawierajaca informację o lotnych dniach w kolejnych pięciu dniach z podziałem na kraje i rejony.";
+
+         $board_config['meta_keywords']=$page_keywords;
+         $board_config['meta_description']=$page_description; 
+	 $board_config['meta_author']='https://leonardo.pgxc.pl';
+
+	 $board_config['meta_ogTitle'] =  $page_title;
+	 $board_config['meta_ogDescription'] = $page_description;
+	 $board_config['meta_ogUrl'] = 'https://leonardo.pgxc.pl/prognozy/world/alltimes/brand:all,cat:0,club:all,pilot:0_0';
+//	 $board_config['meta_ogUpdatedTime'] = $og_flightDate;
+//	 $board_config['meta_ogLatitude'] = $flight->firstLat;
+//	 $board_config['meta_ogLongtitude'] = $flight->firstLon;
+	 $board_config['meta_ogType'] = 'sport';
+//	 $board_config['meta_ogPublished'] = $og_flightDate;
+//	 $board_config['meta_ogModified'] = $og_flightSubmission;
+	 $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+	 $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/templates/pgxc/tpl/leonardo_logo.gif';
+         $board_config['meta_ogImageType'] = 'image/gif';
+}
 if ($op=="list_flights") $page_title = 'lista zgłoszonych lotów';
 if ($op=="pilot_profile_stats"){
 // user total airtime
@@ -900,7 +922,8 @@ if ($op=="index_full") {
 } else if ($op=="list_takeoffs") {
 	require $LeoCodeBase."/GUI_list_takeoffs.php";
 } else if ($op=="list_forecasts") {
-	require $LeoCodeBase."/GUI_list_forecasts.php";
+	if ($userID>0 ) require $LeoCodeBase."/GUI_list_forecasts.php";
+	else echo "<center><br><BR><span class='note'>"._You_are_not_login."</span><BR><BR></center>";
 } else if ($op=="sites") {
 	require $LeoCodeBase."/GUI_sites.php";
 } else if ($op=="list_areas") {
@@ -988,7 +1011,7 @@ if ($op=="index_full") {
 	require $LeoCodeBase."/GUI_pilot_find.php";
 } else if ($op=="pilot_profile") {
 	if ($userID>0 || $CONF_showProfilesToGuests ) require $LeoCodeBase."/GUI_pilot_profile.php";
-	else echo "<center><br><BR><span class='note'>"._You_are_not_login."<br><br>Please login<BR></span><BR><BR></center>";
+	else echo "<center><br><BR><span class='note'>"._You_are_not_login."</span><BR><BR></center>";
 } else if ($op=="pilot_profile_edit") {
 	require $LeoCodeBase."/GUI_pilot_profile_edit.php";
 } else if ($op=="pilot_olc_profile_edit") {

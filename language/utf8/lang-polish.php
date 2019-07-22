@@ -748,7 +748,7 @@ define("_PASSWORD_RECOVERY_TOOL_MESSAGE","Baza danych serwera zostanie przeszuka
 //define("_PASSWORD_RECOVERY_TOOL_MESSAGE","The Server will search in his entire database for the inserted text in the textbox, if and when the server find the user, email, or civlid, A mail will be sended for the registered email address with a new password and activation link.<br><br> note: only after activation of the new password through activation link inside mail body, the new password will be valid.<br><br>"); 
 define("_username_civlid_email","Proszę podaj: CIVLID, nazwę użytkownika lub adres email");//Please fill with: CIVLID or User Name or Email Address"); 
 define("_Recover_my_pass","Przywróć moje hasło");//Recover my Password"); 
-define("_You_are_not_login","<BR><BR><center><br>Nie jesteś zalogowany. <br><br>Proszę zaloguj się<br><br></center>");//<BR><BR><center><br>You are not logged in. <br><br>Please Login<BR><BR></center>"); 
+define("_You_are_not_login","<BR><BR><center><br>Strona dostępna tylko dla zalogowanych użytkowników, a Ty nie jesteś zalogowany. <br><br>Proszę zaloguj się i spróbuj ponownie.<br><br></center>");//<BR><BR><center><br>You are not logged in. <br><br>Please Login<BR><BR></center>"); 
 define("_Requirements","Wymagania");//Requirements"); 
 define("_Mandatory_CIVLID","Należy mieć poprawne <b>CIVLID</b>");//Is mandatory tho have an valid <b>CIVLID</b>"); 
 define("_Mandatory_valid_EMAIL","Należy podać poprawny <b>adres email</b> w celu aktywacji konta");//Is mandatory to provide a <b>Valid Email</b> for further comunications with admin server"); 
@@ -962,5 +962,6 @@ define("_CHANCES_TO_FLY","Szanse na warun wg prognoz:");
 define("_NONE","brak");
 define("_LOW","niewielkie");
 define("_HIGH","duże");
+define("_MENU_FORECASTS","Prognozy");
 
 ?>

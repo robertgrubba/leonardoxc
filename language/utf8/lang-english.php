@@ -1039,5 +1039,6 @@ define("_CHANCES_TO_FLY","Chances to fly according to forecasts:");
 define("_NONE","none");
 define("_LOW","low");
 define("_HIGH","high");
+define("_MENU_FORECASTS","Forecasts");
 
 ?>
