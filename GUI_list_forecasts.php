@@ -116,7 +116,7 @@ if(!isset($_SESSION[userID])){
  $where_clause.=$where_clause_country;
 //-----------------------------------------------------------------------------------------------------------
 
-	$query="SELECT DISTINCT ID, name, intName, countryCode, lon as FlightsNum, lat as max_distance 
+	$query="SELECT DISTINCT ID, ID as takeoffID, name, intName, countryCode, lon as FlightsNum, lat as max_distance 
   			FROM $waypointsTable $extra_table_str
   			WHERE countryCode in ('PL','DK','NL','PT','DE','CZ','FR','ES','SL','IT','HR','SK') ".$where_clause." 
 			GROUP BY intName ORDER BY $sortOrderFinal ".$ord.",max_distance DESC";	
