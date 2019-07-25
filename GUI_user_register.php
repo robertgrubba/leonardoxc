@@ -102,6 +102,7 @@ if( isset($_GET['rkey']) && !($_POST) ){
 
 </table>
 <?		
+         error_log("User ".$user['user_firstname']." ".$user['user_lastname']." ".$user['user_email']." has confirmed registration",1,"rgrubba@gmail.com","From: root@leonardo.pgxc.pl");
 
 	closeMain();return;	
 }  // $_GET['rkey'];
