@@ -102,7 +102,7 @@ if(isset($_POST['uce'])){
 									$res['username'],$_SERVER['SERVER_NAME'],
 									$res['username'],$res['user_civlid'],
 									$newpass,
-									str_replace('//','/',$_SERVER['SERVER_NAME'].getRelMainDir().'/'.$CONF_mainfile),
+									getRelMainDir().'/'.$CONF_mainfile,
 									$actkey
 									);		
 																						
