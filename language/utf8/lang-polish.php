@@ -803,6 +803,7 @@ Jeśli nie rejestrowałeś się w naszym portalu zignoruj tę wiadomość.
 
 Z pozdrowieniami,
 Zespół pgxc.pl
+https://www.facebook.com/pgxcpl/
 
 --------
 Note: Mail został wysłany automatyznie. Nie odpowiadaj na niego!
@@ -821,6 +822,7 @@ Aby dokończyć proces zmiany adresu email kliknij w odnośnik poniżej:
 
 Z pozdrowieniami,
 Zespół pgxc.pl
+https://www.facebook.com/pgxcpl/
 
 --------
 Note: Mail został wysłany automatycznie. Nie odpowiadaj na niego!
@@ -850,6 +852,7 @@ kliknij odnośnik \"edytuj profil\", podaj nowe hasło i zatwierdź je przyciski
 
 Z pozdrowieniami,
 Zespół pgxc.pl
+https://www.facebook.com/pgxcpl/
 
 --------
 Note: Mail został wysłany automatycznie. Nie odpowiadaj na niego!
