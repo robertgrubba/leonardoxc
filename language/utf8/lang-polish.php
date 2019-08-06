@@ -174,6 +174,7 @@ define("_MENU_SUBMIT_FLIGHT","Dodaj lot");
 define("_MENU_SUBMIT_FROM_ZIP","Dodaj loty z pliku zip");
 define("_MENU_SHOW_PILOTS","Piloci");
 define("_MENU_SHOW_LAST_ADDED","Pokaż ostatnio dodane");
+define("_MENU_SHOW_LATEST_FLIGHTS","Pokaż najnowsze loty");
 define("_FLIGHTS_STATS","Statystyki lotów");
 
 define("_SELECT_YEAR","Wybierz rok");
@@ -802,7 +803,7 @@ Aby dokończyć proces tworzenia konta, kliknij w poniższy odnośnik aby potwie
 Jeśli nie rejestrowałeś się w naszym portalu zignoruj tę wiadomość.
 
 Z pozdrowieniami,
-Zespół pgxc.pl
+Administrator pgxc.pl
 https://www.facebook.com/pgxcpl/
 
 --------
@@ -821,7 +822,7 @@ Aby dokończyć proces zmiany adresu email kliknij w odnośnik poniżej:
 %s?op=chem&rkey=%s
 
 Z pozdrowieniami,
-Zespół pgxc.pl
+Administrator pgxc.pl
 https://www.facebook.com/pgxcpl/
 
 --------
@@ -851,7 +852,7 @@ Po zalogowaniu się z hasłem tymczasowym z głównego menu wybierz pozycję \"M
 kliknij odnośnik \"edytuj profil\", podaj nowe hasło i zatwierdź je przyciskiem \"Prześlij - zmień dane\".
 
 Z pozdrowieniami,
-Zespół pgxc.pl
+Administrator pgxc.pl
 https://www.facebook.com/pgxcpl/
 
 --------

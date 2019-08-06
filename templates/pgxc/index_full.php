@@ -202,7 +202,7 @@ div#b_nav ul li.header a.on {
   <div id="b_nav" align=center>
         <ul >
 		  <li><a href="{LINK_SITES_GUIDE}">{#_MENU_SITES_GUIDE}</a></li>
-		  <li><a href="{LINK_SHOW_LAST_ADDED}">{#_MENU_SHOW_LAST_ADDED}</a></li>
+		  <li><a href="{LINK_SHOW_LAST_ADDED}">{#_MENU_SHOW_LATEST_FLIGHTS}</a></li>
 		  <li><a href="{LINK_SHOW_PILOTS}">{#_MENU_SHOW_PILOTS}</a></li>
 		  <li><a href="{LINK_SUBMIT_FLIGHT}">{#_MENU_SUBMIT_FLIGHT}</a></li>
         </ul>
