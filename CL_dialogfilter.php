@@ -169,7 +169,7 @@ class dialogfilter {
 				break;
 
 			case 'area':
-				$this->data=$this->getCountriesList($in_string);
+				$this->data=$this->getAreasList($in_string);
 				break;
 
 			case 'nationality':

@@ -143,6 +143,46 @@ function getCountriesList($year=0,$month=0,$clubID=0,$pilotID=0) {
 	return array($countriesCodes,$countriesNames,$countriesFlightsNum);
 }
 
+function getAreasList($year=0,$month=0,$clubID=0,$pilotID=0) {
+	global $db;
+	global $lightsTable,$waypointsTable,$countries;
+
+	$where_clause="";
+		
+/*	
+  	$query="SELECT DISTINCT countryCode, count(*) as FlightsNum 
+			FROM $flightsTable,$waypointsTable $extra_table_str  
+			WHERE 
+				$flightsTable.takeoffID=$waypointsTable.ID  ".
+			//	"AND $flightsTable.userID<>0 ".
+				" $where_clause
+				GROUP BY countryCode ORDER BY countryCode ASC";	
+	// echo $query;
+*/
+	$query = "SELECT ID,name FROM leonardo_areas $where_clause";
+
+	$res= $db->sql_query($query);		
+    if($res <= 0){
+		return array( array (),array () );
+    }
+
+	$areasCodes=array();
+	$areasNames=array();
+	while ($row = @mysql_fetch_array($res)) { 
+		$areasN[$row["ID"]]= $areas[$row["ID"]];
+	}
+	if (!empty($areasN) ){
+		asort($areasN);
+		foreach($areasN as $areaCode=>$areaName) {
+				 array_push($areasNames,$areaName );
+				 array_push($areasCodes,$areaCode );
+				// echo $countriesFNum[$countryCode] ."->".$countryCode."<br>";
+		}
+	}
+	
+	return array($areasCodes,$areasNames);
+}
+
 function getWaypoints($tm=0,$onlyTakeoffs=0,$utf=0) {
 	global $db,$waypointsTable;
 	set_time_limit(200);

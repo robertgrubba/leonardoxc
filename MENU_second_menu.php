@@ -653,8 +653,13 @@ if (! $dontShowCountriesSelection ) {
 <? } ?>
 <?
 if ($op=="list_forecasts" ) {
-	list($areasCodes,$areasNames,$areasFlightsNum)=getAreasList(0,0,$clubID);
+	//list($areasCodes,$areasNames,$areasFlightsNum)=getAreasList(0,0,$clubID);
+	list($areasCodes,$areasNames)=getAreasList(0,0,$clubID);
 	$areasNum=count($areasNames);
+	print_r($areasCodes);
+	echo "blablabla";
+	print_r($areasNames);
+	die();
 	if ($areasNum==1)  {
 		$area=$areasCodes[0];
 		$areaLegend=$areas[$area];
@@ -665,7 +670,6 @@ if ($op=="list_forecasts" ) {
 	    $areaFlagImg=leoHtml::img("icon_globe.gif",0,0,'absmiddle',_MENU_COUNTRY,'icons1');
 	}
 }
-
 ?>
 
 <? if ($op=="list_forecasts") { ?>
