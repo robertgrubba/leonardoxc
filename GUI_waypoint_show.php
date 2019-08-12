@@ -82,7 +82,29 @@
 		$flightNum=mysql_num_rows($res);
 		$row = mysql_fetch_assoc($res);
 		echo "<a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$og_siteChampionID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0'))."'>".$og_siteChampion." </a></td><td><a href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$og_siteChampionFlightID))."'>".$og_siteRecord."</a></td></tr>";
-	 } 
+	 }
+
+if($flightNum==0){
+
+		$og_siteRecord="brak zgłoszonych lotów";
+		$og_siteMaxGain="brak zgłoszonych lotów";
+		$og_siteMaxTotalAirtime="brak zgłoszonych lotów";
+		$og_siteMaxLaunches="brak zgłoszonych lotów";
+		$flightNum="brak zgłoszonych lotów";
+		$og_siteTotalAirtime="brak zgłoszonych lotów";
+?>
+
+<tr><td>
+<strong><? echo _Altitude_gain_Record." </td><td></td><td> ".$og_siteMaxGain."</td></tr>"; ?></strong>
+<tr><td>
+<strong><? echo _Maximum_Total_Airtime."</td><td></td><td> ".$og_siteMaxTotalAirtime." </td></tr>"; ?></strong>
+<tr><td>
+<strong><? echo _Maximum_Number_Launches."</td><td></td><td> ".$og_siteMaxLaunches."</td></tr>"; ?></strong>
+<tr><td>
+<strong><? echo _All_flights_near_this_point."</td><td></td><td>".$flightNum." </td></tr>"; ?></strong>
+<tr><td>
+<strong><? echo _Total_Site_Airtime."</strong></td><td></td><td> ".$og_siteTotalAirtime; ?></td></tr>
+<? } else {
 
 ?>
 <tr><td>
@@ -94,7 +116,10 @@
 <tr><td>
 <strong><? echo _All_flights_near_this_point."</td><td></td><td><a href='".getLeonardoLink(array('op'=>'list_flights','takeoffID'=>$waypointIDview, 'year'=>'0','month'=>'0','country'=>'0','cat'=>'0'))."'>[ ".$flightNum." ]</a></td></tr>"; ?></strong>
 <tr><td>
-<strong><? echo _Total_Site_Airtime."</strong></td><td></td><td> ".$og_siteTotalAirtime; ?></td></tr></table>
+<strong><? echo _Total_Site_Airtime."</strong></td><td></td><td> ".$og_siteTotalAirtime; ?></td></tr>
+
+<? } ?>
+</table>
 <!-- end of stats section -->
 
 			</td>
