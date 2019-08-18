@@ -363,7 +363,7 @@ $(document).ready(function(){
   $allAreasDisplay=0;
   if ($area) $areaLegend=$areas[$area];
   else {
-  	$areaLegend=_WORLD_WIDE;
+  	$areaLegend=_ALL_AREAS;
   	$allAreasDisplay=1;
   }
 
@@ -656,18 +656,14 @@ if ($op=="list_forecasts" ) {
 	//list($areasCodes,$areasNames,$areasFlightsNum)=getAreasList(0,0,$clubID);
 	list($areasCodes,$areasNames)=getAreasList(0,0,$clubID);
 	$areasNum=count($areasNames);
-	print_r($areasCodes);
-	echo "blablabla";
-	print_r($areasNames);
-	die();
 	if ($areasNum==1)  {
 		$area=$areasCodes[0];
 		$areaLegend=$areas[$area];
 	}
 	if ($area) {
-		$areaFlagImg=leoHtml::img(strtolower($area).".gif",0,0,'absmiddle',_MENU_COUNTRY,'fl mb4');		
+		$areaFlagImg=leoHtml::img(strtolower($area).".gif",0,0,'absmiddle',_MENU_AREA,'fl mb4');		
 	} else {
-	    $areaFlagImg=leoHtml::img("icon_globe.gif",0,0,'absmiddle',_MENU_COUNTRY,'icons1');
+	    $areaFlagImg=leoHtml::img("icon_globe.gif",0,0,'absmiddle',_MENU_AREA,'icons1');
 	}
 }
 ?>

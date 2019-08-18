@@ -155,6 +155,7 @@ define("_PROJECT_INFO","Informacja o projekcie");
 define("_MENU_MAIN_MENU","Menu główne");
 define("_MENU_DATE","Wybierz datę");
 define("_MENU_COUNTRY","Wybierz kraj");
+define("_MENU_AREA","Wybierz rejon");
 define("_MENU_XCLEAGUE","Liga XC");
 define("_MENU_ADMIN","Admin");
 
@@ -507,6 +508,7 @@ define("_M_PER_SEC","m/s");
 //--------------------------------------------
 
 define("_WORLD_WIDE","Cały świat");
+define("_ALL_AREAS","Wszystkie rejony");
 define("_National_XC_Leagues_for","Ligi narodowe");
 define("_Flights_per_Country","Loty według krajów");
 define("_Takeoffs_per_Country","Startowiska według krajów");

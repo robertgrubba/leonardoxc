@@ -159,8 +159,7 @@ function getAreasList($year=0,$month=0,$clubID=0,$pilotID=0) {
 				GROUP BY countryCode ORDER BY countryCode ASC";	
 	// echo $query;
 */
-	$query = "SELECT ID,name FROM leonardo_areas $where_clause";
-
+	$query = "SELECT ID,name FROM leonardo_areas $where_clause order by id desc";
 	$res= $db->sql_query($query);		
     if($res <= 0){
 		return array( array (),array () );
@@ -169,14 +168,13 @@ function getAreasList($year=0,$month=0,$clubID=0,$pilotID=0) {
 	$areasCodes=array();
 	$areasNames=array();
 	while ($row = @mysql_fetch_array($res)) { 
-		$areasN[$row["ID"]]= $areas[$row["ID"]];
+		$areasN[$row["ID"]]= $row["name"];
 	}
 	if (!empty($areasN) ){
 		asort($areasN);
 		foreach($areasN as $areaCode=>$areaName) {
 				 array_push($areasNames,$areaName );
 				 array_push($areasCodes,$areaCode );
-				// echo $countriesFNum[$countryCode] ."->".$countryCode."<br>";
 		}
 	}
 	

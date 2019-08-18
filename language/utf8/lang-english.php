@@ -154,6 +154,7 @@ define("_PROJECT_INFO","Project Info");
 define("_MENU_MAIN_MENU","Main Menu");
 define("_MENU_DATE","Select Date");
 define("_MENU_COUNTRY","Select Country");
+define("_MENU_AREA","Select Area");
 define("_MENU_XCLEAGUE","XC League");
 define("_MENU_ADMIN","Admin");
 
@@ -531,6 +532,7 @@ define("_M_PER_SEC","m/sec");
 //--------------------------------------------
 
 define("_WORLD_WIDE","World Wide");
+define("_ALL_AREAS", "All Areas");
 define("_National_XC_Leagues_for","National XC Leagues for");
 define("_Flights_per_Country","Flights per Country");
 define("_Takeoffs_per_Country","Takeoffs per Country");
