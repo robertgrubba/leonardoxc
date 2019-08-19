@@ -252,6 +252,7 @@ define("_SELECT_TAKEOFF","Wybierz miejsce startu");
 define("_THE_COUNTRY","Kraj");
 define("_COUNTRY","Kraj");
 define("_SELECT_COUNTRY","Wybierz kraj");
+define("_SELECT_AREA","Wybierz rejon");
 define("_OTHER_FILTERS","Inne filtry");
 define("_LINEAR_DISTANCE_SHOULD_BE","Odległość po prostej ma wynosić");
 define("_OLC_DISTANCE_SHOULD_BE","Dystans OLC ma wynosić");

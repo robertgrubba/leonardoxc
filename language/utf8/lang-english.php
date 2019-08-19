@@ -251,6 +251,7 @@ define("_SELECT_TAKEOFF","Select Takeoff");
 define("_THE_COUNTRY","The country");
 define("_COUNTRY","Country");
 define("_SELECT_COUNTRY","Select Country");
+define("_SELECT_AREA","Select Area");
 define("_OTHER_FILTERS","Other Filters");
 define("_LINEAR_DISTANCE_SHOULD_BE","The linear distance should be");
 define("_OLC_DISTANCE_SHOULD_BE","The XC distance should be");

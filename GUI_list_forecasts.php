@@ -38,6 +38,9 @@ if(!isset($_SESSION[userID])){
   if ($cat==0) $where_clause="";
   else $where_clause=" AND cat=$cat ";
 
+  $area=makeSane($_REQUEST["area"]);
+  if ( $sortOrder=="")  $sortOrder="0";
+
   $queryExtraArray=array();
   $legend=_MENU_TAKEOFFS;
   
@@ -62,6 +65,10 @@ if(!isset($_SESSION[userID])){
 		$where_clause_country.=" AND  ".$waypointsTable.".countryCode='".$country."' ";
 		//$legend.=" (".$countries[$country].") | ";
   }    
+
+  if ($area) {
+		$where_clause_country.=" AND ".$waypointsTable.".ID IN (select takeoffID from leonardo_areas_takeoffs where areaID = ".$area.") ";
+  }
  /* 
   	if ($class) {
 		$where_clause.=" AND  $flightsTable.category='".$class."' ";

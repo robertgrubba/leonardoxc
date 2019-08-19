@@ -26,7 +26,7 @@ if ( $areasNum > 30 &&0 ) {
 <tr>
 	<td  height=25 class="main_text" bgcolor="#40798C">
 		<div align="center" class="style1">
-			<strong><?=_SELECT_COUNTRY?> <?=_OR?></strong>
+			<strong><?=_SELECT_AREA?> <?=_OR?></strong>
 			<a href='<?=getLeonardoLink(array('op'=>'useCurrent','area'=>'0'))?>'><?=_Display_ALL?></a>
 		</div>	
 	</td>
@@ -36,7 +36,7 @@ if ( $areasNum > 30 &&0 ) {
 <div align="center" style="display:block; z-index:1000; height:180px; ">
 <?
 	echo "<select name='selectCountry' id='selectCountry' onchange='changeCountry(this)'>";
-		echo "<option value=0>---- "._SELECT_COUNTRY." ----</option>";
+		echo "<option value=0>---- "._SELECT_AREA." ----</option>";
 //		echo "	<option value=0>"._Display_ALL."</option>";
 	foreach($areasCodes as $i=>$cCode) {
 		$areaName=$areasNames[$i];
@@ -72,6 +72,7 @@ if ( $areasNum > 30 &&0 ) {
 	$i=0;
 	foreach($areasNames as $areaName) {	
 		$continentNum=$areas2continent[$areasCodes[$i]];	
+//		$continentNum=$areas2continent[0];	
 		$continentArray[$continentNum][]=$i;
 		$i++;
 	}		
@@ -82,7 +83,7 @@ if ( $areasNum > 30 &&0 ) {
 <table  cellpadding="1" cellspacing="0"  >
 <tr>
 	<td height=25 colspan=<?=$num_of_cols ?> class="main_text">
-		<strong><?=_SELECT_COUNTRY?> <?=_OR?>
+		<strong><?=_SELECT_AREA?> <?=_OR?>
 		</strong>
 		<div class="buttonLink">
 			<a  href='<?=getLeonardoLink(array('op'=>'useCurrent','area'=>'0'))?>'><?=_Display_ALL?></a>
@@ -97,7 +98,6 @@ if ( $areasNum > 30 &&0 ) {
 
 
 <? 
-
 if ($areasNum) {
 	$percent=floor(100/$num_of_cols);
 	$sortRowClass=($ii%2)?"l_row1":"l_row2"; 	
