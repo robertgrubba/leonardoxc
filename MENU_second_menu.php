@@ -653,7 +653,6 @@ if (! $dontShowCountriesSelection ) {
 <? } ?>
 <?
 if ($op=="list_forecasts" ) {
-	//list($areasCodes,$areasNames,$areasFlightsNum)=getAreasList(0,0,$clubID);
 	list($areasCodes,$areasNames)=getAreasList(0,0,$clubID);
 	$areasNum=count($areasNames);
 	if ($areasNum==1)  {
@@ -661,15 +660,17 @@ if ($op=="list_forecasts" ) {
 		$areaLegend=$areas[$area];
 	}
 	if ($area) {
-		$areaFlagImg=leoHtml::img(strtolower($area).".gif",0,0,'absmiddle',_MENU_AREA,'fl mb4');		
+	    	$areaFlagImg=leoHtml::img("icon_globe.gif",0,0,'absmiddle',_MENU_AREA,'icons1');
+		$areaName=$areasNames[array_search($area,$areasCodes)];
 	} else {
 	    $areaFlagImg=leoHtml::img("icon_globe.gif",0,0,'absmiddle',_MENU_AREA,'icons1');
+	    $country=0;
 	}
 }
 ?>
 
 <? if ($op=="list_forecasts") { ?>
-    <div id='areaMenuID' class="menuButton"><a href="#" onClick="toogleMenu('area');return false;"><?=$areaFlagImg?> <? echo "$areaLegend" ?> <? if ($areasNum>1 ) echo $arrDownImg; ?></a>
+    <div id='areaMenuID' class="menuButton"><a href="#" onClick="toogleMenu('area');return false;"><?=$areaFlagImg ?><? echo "$areaName" ?> <? echo "$areaLegend" ?> <? if ($areasNum>1 ) echo $arrDownImg; ?></a>
     </div>
 <? } ?>
 
