@@ -118,7 +118,12 @@ padding:5px;
       <td ><div id='takeoffHeader'><b><?=$area->name?></b></td>
     </tr>
     <tr>
-      <td colspan="2"><?=$area->desc?></td>
+      <td ><?=$area->desc?></td>
+	<td align="right">
+	<? require_once "FN_functions.php";?>
+        <a target="_parent" href="<? echo getLeonardoLink(array('op'=>'list_forecasts','area'=>$areaID))?>"><button><? echo _LONG_TERM_FORECASTS ?></button></a>
+</td>
+
       </tr>
 	 <tr>
       <td colspan=2>&nbsp;</td>

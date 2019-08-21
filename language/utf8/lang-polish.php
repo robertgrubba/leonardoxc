@@ -967,4 +967,5 @@ define("_LOW","niewielkie");
 define("_HIGH","duże");
 define("_MENU_FORECASTS","Prognozy");
 
+define("_LONG_TERM_FORECASTS","Prognozy długoterminowe dla tego rejonu");
 ?>
