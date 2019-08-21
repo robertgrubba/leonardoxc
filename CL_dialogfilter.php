@@ -75,6 +75,11 @@ class dialogfilter {
 					$this->dialog_width=340;
 					break;
 
+				case 'area':
+					$this->numeric=false;
+					$this->dialog_width=340;
+					break;
+
 				case 'nationality':
 					$this->numeric=false;
 					$this->dialog_width=340;
@@ -163,6 +168,10 @@ class dialogfilter {
 				$this->data=$this->getCountriesList($in_string);
 				break;
 
+			case 'area':
+				$this->data=$this->getAreasList($in_string);
+				break;
+
 			case 'nationality':
 				$this->data=$this->getNationalitiesList($in_string);
 				break;
@@ -226,6 +235,10 @@ class dialogfilter {
 
 					case 'country':
 						$clause='countryCode';
+						break;
+
+					case 'area':
+						$clause='ID';
 						break;
 
 					case 'nationality':
@@ -629,6 +642,32 @@ WHERE
 		}
 
 		return $countriesList;
+	}
+
+	function getAreasList($in_string='') {
+		global $db;
+		global $flightsTable, $waypointsTable, $countries;
+
+		$areasList=array();
+
+		$where_clause='';
+		if ($in_string!='') $where_clause.=' AND ID IN ('.$in_string.')';
+
+	  //	$sql="SELECT DISTINCT countryCode FROM 	$flightsTable f INNER JOIN $waypointsTable w ON f.takeoffID=w.ID WHERE f.userID<>0 $where_clause";
+
+	  	$sql="SELECT ID FROM leonardo_areas $where_clause";
+	  	$res= $db->sql_query($sql);
+	    if($res){
+			while (false!==$row=$db->sql_fetchrow($res)) {
+				$cCode=$row['ID'];
+				$areasList[$cCode]=$areas[$cCode];
+			}
+	    }
+		if (!empty($areasList) ){
+			asort($areasList);
+		}
+
+		return $areasList;
 	}
 
 	function getNationalitiesList($in_string='') {

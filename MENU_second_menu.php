@@ -359,6 +359,14 @@ $(document).ready(function(){
   	$allCountriesDisplay=1;
   }
 
+  $areaLegend="";
+  $allAreasDisplay=0;
+  if ($area) $areaLegend=$areas[$area];
+  else {
+  	$areaLegend=_ALL_AREAS;
+  	$allAreasDisplay=1;
+  }
+
 
   $pilotLegend="";
   $allPilotsDisplay=0;
@@ -643,6 +651,28 @@ if (! $dontShowCountriesSelection ) {
     <div id='countryMenuID' class="menuButton"><a href="#" onClick="toogleMenu('country');return false;"><?=$countryFlagImg?> <? echo "$countryLegend" ?> <? if ($countriesNum>1 ) echo $arrDownImg; ?></a>
     </div>
 <? } ?>
+<?
+if ($op=="list_forecasts" ) {
+	list($areasCodes,$areasNames)=getAreasList(0,0,$clubID);
+	$areasNum=count($areasNames);
+	if ($areasNum==1)  {
+		$area=$areasCodes[0];
+		$areaLegend=$areas[$area];
+	}
+	if ($area) {
+	    	$areaFlagImg=leoHtml::img("icon_globe.gif",0,0,'absmiddle',_MENU_AREA,'icons1');
+		$areaName=$areasNames[array_search($area,$areasCodes)];
+	} else {
+	    $areaFlagImg=leoHtml::img("icon_globe.gif",0,0,'absmiddle',_MENU_AREA,'icons1');
+	    $country=0;
+	}
+}
+?>
+
+<? if ($op=="list_forecasts") { ?>
+    <div id='areaMenuID' class="menuButton"><a href="#" onClick="toogleMenu('area');return false;"><?=$areaFlagImg ?><? echo "$areaName" ?> <? echo "$areaLegend" ?> <? if ($areasNum>1 ) echo $arrDownImg; ?></a>
+    </div>
+<? } ?>
 
 <? if (! $dontShowDatesSelection ) { ?>
     <div id='dateMenuID' class="menuButton"><a href="#" onClick="toogleMenu('date');return false;"><?=leoHtml::img("icon_date.gif",0,0,'absmiddle',_MENU_DATE,'icons1')?> <? echo "$dateLegend";?> <? echo $arrDownImg; ?></a>
@@ -860,6 +890,9 @@ require_once  dirname(__FILE__).'/MENU_clubs.php';
 
 if ($countriesNum>1)
 	require_once  dirname(__FILE__).'/MENU_countries.php';
+
+if ($areasNum>1)
+	require_once  dirname(__FILE__).'/MENU_areas.php';
 
 require dirname(__FILE__)."/MENU_dates.php";
 

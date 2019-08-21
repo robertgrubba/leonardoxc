@@ -155,6 +155,7 @@ define("_PROJECT_INFO","Informacja o projekcie");
 define("_MENU_MAIN_MENU","Menu główne");
 define("_MENU_DATE","Wybierz datę");
 define("_MENU_COUNTRY","Wybierz kraj");
+define("_MENU_AREA","Wybierz rejon");
 define("_MENU_XCLEAGUE","Liga XC");
 define("_MENU_ADMIN","Admin");
 
@@ -252,6 +253,7 @@ define("_SELECT_TAKEOFF","Wybierz miejsce startu");
 define("_THE_COUNTRY","Kraj");
 define("_COUNTRY","Kraj");
 define("_SELECT_COUNTRY","Wybierz kraj");
+define("_SELECT_AREA","Wybierz rejon");
 define("_OTHER_FILTERS","Inne filtry");
 define("_LINEAR_DISTANCE_SHOULD_BE","Odległość po prostej ma wynosić");
 define("_OLC_DISTANCE_SHOULD_BE","Dystans OLC ma wynosić");
@@ -508,6 +510,7 @@ define("_M_PER_SEC","m/s");
 //--------------------------------------------
 
 define("_WORLD_WIDE","Cały świat");
+define("_ALL_AREAS","Wszystkie rejony");
 define("_National_XC_Leagues_for","Ligi narodowe");
 define("_Flights_per_Country","Loty według krajów");
 define("_Takeoffs_per_Country","Startowiska według krajów");
@@ -968,4 +971,5 @@ define("_LOW","niewielkie");
 define("_HIGH","duże");
 define("_MENU_FORECASTS","Prognozy");
 
+define("_LONG_TERM_FORECASTS","Prognozy długoterminowe dla tego rejonu");
 ?>

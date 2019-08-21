@@ -154,6 +154,7 @@ define("_PROJECT_INFO","Project Info");
 define("_MENU_MAIN_MENU","Main Menu");
 define("_MENU_DATE","Select Date");
 define("_MENU_COUNTRY","Select Country");
+define("_MENU_AREA","Select Area");
 define("_MENU_XCLEAGUE","XC League");
 define("_MENU_ADMIN","Admin");
 
@@ -250,6 +251,7 @@ define("_SELECT_TAKEOFF","Select Takeoff");
 define("_THE_COUNTRY","The country");
 define("_COUNTRY","Country");
 define("_SELECT_COUNTRY","Select Country");
+define("_SELECT_AREA","Select Area");
 define("_OTHER_FILTERS","Other Filters");
 define("_LINEAR_DISTANCE_SHOULD_BE","The linear distance should be");
 define("_OLC_DISTANCE_SHOULD_BE","The XC distance should be");
@@ -531,6 +533,7 @@ define("_M_PER_SEC","m/sec");
 //--------------------------------------------
 
 define("_WORLD_WIDE","World Wide");
+define("_ALL_AREAS", "All Areas");
 define("_National_XC_Leagues_for","National XC Leagues for");
 define("_Flights_per_Country","Flights per Country");
 define("_Takeoffs_per_Country","Takeoffs per Country");
@@ -1040,5 +1043,7 @@ define("_NONE","none");
 define("_LOW","low");
 define("_HIGH","high");
 define("_MENU_FORECASTS","Forecasts");
+
+define("_LONG_TERM_FORECASTS","Long term forecasts for this area");
 
 ?>
