@@ -43,7 +43,7 @@
 <?
  // open_inner_table("<table class=main_text width=100% cellpadding=0 cellspacing=0><tr><td>".$titleString."</td><td align=right width=50><div align=right>".$opString."</div></td></tr></table>",760,"icon_pin.png");
 
- $imgStr="<img src='$moduleRelPath/img/icon_pin.png' align='absmiddle'> ";
+ $imgStr="<img src='$moduleRelPath/img/icon_pin.png' align='absmiddle' align='Ikonka pinezki'> ";
 
  openMain("<div style='width:90%;font-size:12px;clear:none;display:block;float:left'>$imgStr$titleString</div><div align='right' style='width:10%; text-align:right;clear:none;display:block;float:right' bgcolor='#eeeeee'>$opString</div>",0,'');
 
@@ -134,7 +134,7 @@ if($flightNum==0){
           <td class="col3_in"><div align="center"><strong><? echo "<a href='".getDownloadLink(array('type'=>'kml_wpt','wptID'=>$waypointIDview))."'>"._Navigate_with_Google_Earth."</a>"; ?></strong></div></td>
         </tr>
         <tr align="center" class="col3_in">
-          <td><strong><? echo "<a href='https://maps.google.com/maps?q=".$wpName."&ll=". $wpInfo->lat.",".-$wpInfo->lon."&spn=1.535440,2.885834&t=h&hl=en' target='_blank'>"._See_it_in_Google_Maps."</a>"; ?></strong></td>
+          <td><strong><? echo "<a href='https://maps.google.com/maps?ll=". $wpInfo->lat.",".-$wpInfo->lon."&t=h&hl=en' target='_blank'>"._See_it_in_Google_Maps."</a>"; ?></strong></td>
         </tr>
         <tr align="center" class="col3_in">
           <td><strong><? echo "<a href='https://www.mapquest.com/maps/map.adp?searchtype=address&formtype=address&latlongtype=decimal&latitude=".$wpInfo->lat."&longitude=".-$wpInfo->lon."' target='_blank'>"._See_it_in_MapQuest."</a>"; ?></strong></td>
@@ -161,7 +161,7 @@ $obj = json_decode($json);
 $weatherResponse= $obj->status;
 if ($weatherResponse==200){
 			$windForSpotGraphicsURL=$CONF['links']['baseURL'].$CONF['images']['directionsRel']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";?>
-			<td rowspan=7 width="150"><img height="150" src="<? echo $windForSpotGraphicsURL ?>"> </td>
+			<td rowspan=7 width="150"><img height="150" alt="Użyteczne kierunki wiatru dla startowiska <? echo $wpInfo->intName ?>" src="<? echo $windForSpotGraphicsURL ?>"> </td>
 <? } ?>
         </tr>
 		<? } ?>
