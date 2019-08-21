@@ -56,8 +56,10 @@ if ( $areasNum > 30 &&0 ) {
 } else {
 			
 	$num_of_cols=ceil(($areasNum+6)/17);
+	$num_of_cols=1;
 	// $num_of_cols=5;
-	$num_of_rows=ceil(($areasNum+6)/$num_of_cols);
+	$num_of_rows=ceil(($areasNum)/$num_of_cols);
+	$num_of_rows=$areasNum;
 
 	$areasDivWidth=100;
 	$areasDivWidthTot=$areasDivWidth*$num_of_cols;
@@ -71,9 +73,10 @@ if ( $areasNum > 30 &&0 ) {
 	require_once dirname(__FILE__)."/FN_areas.php";
 	$i=0;
 	foreach($areasNames as $areaName) {	
-		$continentNum=$areas2continent[$areasCodes[$i]];	
+//		$continentNum=$areas2continent[$areasCodes[1]];	
 //		$continentNum=$areas2continent[0];	
-		$continentArray[$continentNum][]=$i;
+//		$continentNum=$areas2continent[0];	
+//		$continentArray[$continentNum][]=0;
 		$i++;
 	}		
 	
@@ -82,7 +85,7 @@ if ( $areasNum > 30 &&0 ) {
 <div align='left'>
 <table  cellpadding="1" cellspacing="0"  >
 <tr>
-	<td height=25 colspan=<?=$num_of_cols ?> class="main_text">
+	<td height=5 colspan=<?=$num_of_cols ?> class="main_text">
 		<strong><?=_SELECT_AREA?> <?=_OR?>
 		</strong>
 		<div class="buttonLink">
@@ -98,38 +101,22 @@ if ( $areasNum > 30 &&0 ) {
 
 
 <? 
+	/*wyswietlanie tabeli z rejonami w dodatkowym menu */
 if ($areasNum) {
 	$percent=floor(100/$num_of_cols);
 	$sortRowClass=($ii%2)?"l_row1":"l_row2"; 	
 	$ii=0; 
-	echo "\n\n<tr><td class='areaContinent areaContinent1'  valign='top' width='$percent%'>";
+//	echo "\n\n<tr><td class='areaContinent areaContinent1'  valign='top' width='$percent%'>";
 	
-	for($c=1;$c<=6;$c++) {
-		if (!count($continentArray[$c])) { 
-			continue;
-		}
-		if ($ii>=$num_of_rows-1) {
-				echo "</td><td class='areaContinent areaContinent1' valign='top' width='$percent%'>";
-				$ii=0;
-		}
-		echo "<div class='datesColumnHeader ContinentHeader ContinentHeader$c'><strong>".$continents[$c]."</strong></div>";
-		$ii++;
-		if (count($continentArray[$c])>0) {
-			foreach($continentArray[$c] as $i) {
-				
-				if ($ii>=$num_of_rows) {
-					echo "</td><td class='areaContinent areaContinent1' valign='top' width='$percent%'>";
-					$ii=0;
-				}
-				//$i=$continentArray[$c][$ii];	
-				$areaName=$areasNames[$i];
+	//for($c=1;$c<=6;$c++) {
+	//
+		echo "<div class='datesColumnHeader ContinentHeader ContinentHeader1'><strong>"._MENU_AREA_GUIDE."</strong></div>";
+	for($iii=0; $iii<=$areasNum;$iii++){
+				$areaName=$areasNames[$iii];
 				$areaName=trimText($areaName,20);
-				$linkTmp=getLeonardoLink(array('op'=>'useCurrent','area'=>$areasCodes[$i]));
+				$linkTmp=getLeonardoLink(array('op'=>'useCurrent','area'=>$areasCodes[$iii]));
 						
-				echo "<div class='areaContinentLink ContinentHeader$c'><a class='areaContinent1' href='$linkTmp'>$areaName</a></div>\n";
-				$ii++; 
-			}	
-		}	
+				echo "<div class='areaContinentLink ContinentHeader1'><a class='areaContinent1' href='$linkTmp'>$areaName</a></div>\n";
 	}
 	echo "</tr>";
 }	
@@ -173,6 +160,7 @@ if ($areasNum && 0) {
 		echo '</tr>';
 	}
 } 
+
 //echo "</ul></div>";
 //echo "</td></tr>";
 ?>
