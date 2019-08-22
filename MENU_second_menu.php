@@ -660,10 +660,10 @@ if ($op=="list_forecasts" ) {
 		$areaLegend=$areas[$area];
 	}
 	if ($area) {
-	    	$areaFlagImg=leoHtml::img("icon_globe.gif",0,0,'absmiddle',_MENU_AREA,'icons1');
+	    	$areaFlagImg=leoHtml::img('icon_takeoff.gif',0,0,'absmiddle',_MENU_AREA,'','',0);
 		$areaName=$areasNames[array_search($area,$areasCodes)];
 	} else {
-	    $areaFlagImg=leoHtml::img("icon_globe.gif",0,0,'absmiddle',_MENU_AREA,'icons1');
+	    $areaFlagImg=leoHtml::img('icon_takeoff.gif',0,0,'absmiddle',_MENU_AREA,'','',0);
 	    $country=0;
 	}
 }
