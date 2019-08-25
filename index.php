@@ -577,9 +577,17 @@ if ($op=="show_flight"){
  $og_flightDuration = gmdate("H:i:s",$flight->DURATION);
  $og_flightMeanSpeed = $flight->MEAN_SPEED;
  $og_flightMaxHeight = $flight->MAX_ALT;
- $page_title = 'lot paralotnią ze startowiska '.$og_takeoffName; //.' do '.getWaypointName($flight->landingID);
- $page_description = $gliderCatList[$flight->cat].". Dnia ".$og_flightDate." ".$og_pilotName." w czasie ".$og_flightDuration." wykonał lot na dystansie ".$og_flightDistance."KM (OLC) ze startowiska ".$og_takeoffName." - strona zawiera statystyki i wizualizację tego lotu.";
- $page_keywords = $gliderCatList[$flight->cat].", paragliding, flight, log, track, igc, parapente, ".$og_takeoffName.", ".$og_pilotName;
+
+ if ($flight->category=="3"){
+	 $page_title = $og_takeoffName.' - Lot widokowy paralotnią'; //.' do '.getWaypointName($flight->landingID);
+ 	 $page_description = $gliderCatList[$flight->cat].". Dnia ".$og_flightDate." ".$og_pilotName." w czasie ".$og_flightDuration." wykonał lot widokowy z pasażerem na dystansie ".$og_flightDistance."KM (OLC) ze startowiska ".$og_takeoffName." - strona zawiera statystyki i wizualizację tego lotu.";
+ 	$page_keywords = $gliderCatList[$flight->cat].",loty widokowe, loty widokowe paralotnią, tandem, log, track, ".$og_takeoffName.", ".$og_pilotName;
+ }else{
+
+ 	$page_title = 'Lot paralotnią ze startowiska '.$og_takeoffName; //.' do '.getWaypointName($flight->landingID);
+ 	$page_description = $gliderCatList[$flight->cat].". Dnia ".$og_flightDate." ".$og_pilotName." w czasie ".$og_flightDuration." wykonał lot na dystansie ".$og_flightDistance."KM (OLC) ze startowiska ".$og_takeoffName." - strona zawiera statystyki i wizualizację tego lotu.";
+ 	$page_keywords = $gliderCatList[$flight->cat].", paragliding, flight, log, track, igc, parapente, ".$og_takeoffName.", ".$og_pilotName;
+ }
 
  $board_config['meta_description']=$page_description;
  $board_config['meta_keywords']=$page_keywords;
