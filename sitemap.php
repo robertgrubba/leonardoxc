@@ -89,3 +89,23 @@ while ($row = mysql_fetch_assoc($result)) {
 mysql_free_result($result);
 
 
+//for areas
+
+$query="select areaID as id from leonardo_areas_takeoffs group by id";
+$result=mysql_query($query);
+while ($row = mysql_fetch_assoc($result)) {
+    $id= $row['id'];
+
+    $priority = 0.5;
+
+    $url="https://leonardo.pgxc.pl/rejon/".$id;
+    if(filter_var($url,FILTER_VALIDATE_URL)){
+	    echo "<url> \n";
+	    echo "	<loc>".$url."</loc>\n";
+	    echo "	<changefreq>monthly</changefreq>\n";
+	    echo "	<priority>$priority</priority>\n";
+	    echo "</url>\n";
+    }
+}
+mysql_free_result($result);
+
