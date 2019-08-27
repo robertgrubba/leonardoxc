@@ -386,7 +386,7 @@ if ($op=="list_takeoffs"){
 	 $board_config['meta_ogType'] = 'sport';
 //	 $board_config['meta_ogPublished'] = $og_flightDate;
 //	 $board_config['meta_ogModified'] = $og_flightSubmission;
-	 $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+	 $board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';
 	 $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/templates/pgxc/tpl/leonardo_logo.gif';
          $board_config['meta_ogImageType'] = 'image/gif';
 }
@@ -408,7 +408,7 @@ if ($op=="list_forecasts"){
 	 $board_config['meta_ogType'] = 'sport';
 //	 $board_config['meta_ogPublished'] = $og_flightDate;
 //	 $board_config['meta_ogModified'] = $og_flightSubmission;
-	 $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+	 $board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';
 	 $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/templates/pgxc/tpl/leonardo_logo.gif';
          $board_config['meta_ogImageType'] = 'image/gif';
 }
@@ -460,7 +460,7 @@ if ($op=="pilot_profile_stats"){
          $board_config['meta_ogType'] = 'sport';
 //       $board_config['meta_ogPublished'] = $og_flightDate;
 //       $board_config['meta_ogModified'] = $og_flightSubmission;
-         $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+         $board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';
 	$dstUserMap=$CONF['mapUsersDir'].'/'.$pilotID.'.jpg';
         $board_config['meta_ogImage'] = 'https://files.leonardo.pgxc.pl/'.$dstUserMap;
         $board_config['meta_ogImageType'] = 'image/jpeg';
@@ -554,7 +554,7 @@ if ($op=="show_waypoint"){
  	$board_config['meta_ogType'] = 'sport';
  	$board_config['meta_ogPublished'] = $wpInfo->modifyDate;
 	$board_config['meta_ogModified'] = $wpInfo->modifyDate;
- 	$board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+ 	$board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';
         $board_config['meta_ogImage'] = 'https://files.leonardo.pgxc.pl/'.$dst;
         $board_config['meta_ogImageType'] = 'image/jpeg';
 }
@@ -605,7 +605,7 @@ if ($op=="show_flight"){
  $board_config['meta_ogType'] = 'sport';
  $board_config['meta_ogPublished'] = $og_flightDate;
  $board_config['meta_ogModified'] = $og_flightSubmission;
- $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+ $board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';
 
 
 $dst=$CONF['flightMapThumbsDir'].'/'.$flightID.'.jpg';
@@ -693,7 +693,7 @@ if ($op=="area_show"){
     $board_config['meta_ogDescription']= $areaName." - ".$numberOfTakeoffs. " startowisk wraz z informacjami o dzisiejszym warunie";
     $board_config['meta_ogUrl'] = 'https://leonardo.pgxc.pl/rejon/'.$areaID;
     $board_config['meta_ogType'] = 'sport';
-    $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+    $board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';
     $dstUserMap=$CONF['mapUsersDir'].'/rejon_'.$areaID.'.jpg';
     $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/'.$dstUserMap;
     $board_config['meta_ogImageType'] = 'image/jpeg';
@@ -749,7 +749,7 @@ if ($op=="index_full"){
 
     //   $realName = getPilotRealName($pilotIDview,$serverIDview);
     $userRecordName = getPilotRealName($og_userRecordID,$serverIDview);
-    $page_title = 'Polski Serwer Leonardo' ;
+    $page_title = 'Polski Serwer LeonardoXC' ;
     $page_keywords = "księga lotów, paralotnie, loty, statystyki";
     $page_description = "Książka lotów online";
     $board_config['meta_keywords']=$page_keywords;
@@ -760,7 +760,7 @@ if ($op=="index_full"){
     $board_config['meta_ogDescription']= "Małe podsumowanie: &#8759; &#8721; ".$og_userTotalLaunches." zgłoszonych lotów &#8759; &#10710; (".$og_userTotalAirtime.") (h:m) &#8759; &#9812 ".$userRecordName.' - '.$og_userRecordTakeoff;
     $board_config['meta_ogUrl'] = 'https://leonardo.pgxc.pl/';
     $board_config['meta_ogType'] = 'sport';
-    $board_config['meta_ogSiteName'] = 'Polski Serwer Leonardo';
+    $board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';
     $dstUserMap=$CONF['mapUsersDir'].'/all.jpg';
     $board_config['meta_ogImage'] = 'https://files.leonardo.pgxc.pl/'.$dstUserMap;
     $board_config['meta_ogImageType'] = 'image/jpeg';
