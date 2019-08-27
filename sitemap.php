@@ -16,9 +16,9 @@ error_reporting(E_ERROR);
  
 //for takeoffs
 
-$query="select takeoffID, LENGTH(w.description) as opis, count(*) as number, MAX(dateAdded) as date from leonardo_flights, leonardo_waypoints w where w.id=takeoffID group by takeoffID order by number,opis";
+$query="select takeoffID, LENGTH(w.description) as opis, count(*) as number, MAX(dateAdded) as date from ".$flightsTable.", ".$waypointsTable." w where w.id=takeoffID group by takeoffID order by number,opis";
 $result=mysql_query($query);
-$querymax="select MAX(opis) as opis, MAX(number) as number from (select takeoffID, LENGTH(w.description) as opis, count(*) as number from leonardo_flights, leonardo_waypoints w where w.id=takeoffID group by takeoffID order by number,opis) as new;";
+$querymax="select MAX(opis) as opis, MAX(number) as number from (select takeoffID, LENGTH(w.description) as opis, count(*) as number from ".$flightsTable.", ".$waypointsTable." w where w.id=takeoffID group by takeoffID order by number,opis) as new;";
 $resultmax=mysql_query($querymax);
 while ($row = mysql_fetch_assoc($resultmax)){
 	$maxflights=intval($row['number']);
@@ -48,9 +48,9 @@ mysql_free_result($result);
 
 //for flights
 
-$query="select id,takeoffID, dateAdded as date,FLIGHT_POINTS from leonardo_flights where private!=1 and validated=1";
+$query="select id,takeoffID, dateAdded as date,FLIGHT_POINTS from ".$flightsTable." where private!=1 and validated=1";
 $result=mysql_query($query);
-$querymax="select MAX(FLIGHT_POINTS) as maxpoints from leonardo_flights where private!=1 and validated=1";
+$querymax="select MAX(FLIGHT_POINTS) as maxpoints from ".$flightsTable." where private!=1 and validated=1";
 $resultmax=mysql_query($querymax);
 
 while ($row = mysql_fetch_assoc($resultmax)){
@@ -65,7 +65,7 @@ while ($row = mysql_fetch_assoc($result)) {
     $points= intval($row['FLIGHT_POINTS']);
     $date=str_replace(' ','T',$row['date'])."+00:00";
 
-    $querysite="select MAX(FLIGHT_POINTS) as sitemax from leonardo_flights where private=!1 and validated=1 and takeoffID=".$takeoffID;
+    $querysite="select MAX(FLIGHT_POINTS) as sitemax from ".$flightsTable." where private=!1 and validated=1 and takeoffID=".$takeoffID;
     $resultsite=mysql_query($querysite);
     while ($row = mysql_fetch_assoc($resultsite)){
 	$sitemax = intval($row['sitemax']);
@@ -91,7 +91,7 @@ mysql_free_result($result);
 
 //for areas
 
-$query="select areaID as id from leonardo_areas_takeoffs group by id";
+$query="select areaID as id from ".$areasTakeoffsTable." group by id";
 $result=mysql_query($query);
 while ($row = mysql_fetch_assoc($result)) {
     $id= $row['id'];
