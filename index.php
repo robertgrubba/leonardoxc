@@ -751,7 +751,7 @@ if ($op=="index_full"){
     $userRecordName = getPilotRealName($og_userRecordID,$serverIDview);
     $page_title = 'Polski Serwer LeonardoXC' ;
     $page_keywords = "księga lotów, paralotnie, loty, statystyki";
-    $page_description = "Książka lotów online";
+    $page_description = "Książka lotów online dobrymi opisami startowisk, rankingami, mechanizmem raportów do IPPI oraz paralotniowymi prognozami pogody.";
     $board_config['meta_keywords']=$page_keywords;
     $board_config['meta_description']=$page_description;
     $board_config['meta_author']='https://leonardo.pgxc.pl';
