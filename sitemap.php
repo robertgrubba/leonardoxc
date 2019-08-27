@@ -13,11 +13,6 @@ error_reporting(E_ERROR);
         require_once "FN_flight.php";
         require_once dirname(__FILE__)."/templates/".$PREFS->themeName."/theme.php";
 
-	function validateDate($date, $format = 'Y-m-d'){
-		    $d = DateTime::createFromFormat($format, $date);
-		        // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
-		    return $d && $d->format($format) === $date;
-	}
  
 //for takeoffs
 
