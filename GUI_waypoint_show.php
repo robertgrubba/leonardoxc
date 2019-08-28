@@ -206,7 +206,7 @@ if ($weatherResponse==200){
         </tr>
         <tr bgcolor="white">
           <td width=180 class="col3_in">Prognozy pogody</td>
-          <td valign="top" ><? echo "<a target='_blank' href='https://www.windguru.cz/".$obj->windguruID."'>Windguru</a> <a target='_blank' href='https://www.windy.com/".$obj->lat."/".$obj->lon."'>Windy</a>" ?>&nbsp;</td>
+          <td valign="top" ><? echo "<a target='_blank' rel='nofollow' href='https://www.windguru.cz/".$obj->windguruID."'>Windguru</a> <a target='_blank' rel='nofollow' href='https://www.windy.com/".$obj->lat."/".$obj->lon."'>Windy</a>" ?>&nbsp;</td>
         </tr>
         <tr bgcolor="white">
           <td width=180 class="col3_in">Czy dziś jest szansa na warun?</td>
