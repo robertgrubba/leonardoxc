@@ -1045,5 +1045,6 @@ define("_HIGH","high");
 define("_MENU_FORECASTS","Forecasts");
 
 define("_LONG_TERM_FORECASTS","Long term forecasts for this area");
+define("_FLIGHT","Flight");
 
 ?>

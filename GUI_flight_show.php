@@ -500,7 +500,7 @@ if ($flight->linkURL) {
 	
 
 
-	$gliderCat = " [ ".leoHtml::img("icon_cat_".$flight->cat.".png",0,0,'absmiddle','','icons1')." <span itemprop='exerciseType'>".$gliderCatList[$flight->cat]."</span> ]";
+	$gliderCat = " [ ".leoHtml::img("icon_cat_".$flight->cat.".png",0,0,'absmiddle','','icons1')." <span itemprop='exerciseType'>"._FLIGHT." - ".$gliderCatList[$flight->cat]."</span> ]";
  
  // now loaded dynamically via ajax on request
  
