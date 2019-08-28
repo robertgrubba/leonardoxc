@@ -230,7 +230,7 @@ if ($weatherResponse==200){
 				$thumbnail = preg_replace("/\./",'',$domain);
 				$pageURL=$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/startowisko/".$waypointIDview;
 				if ($domain!=$_SERVER['SERVER_NAME'] and $domain!=""){
-					print "<a href='$value' target='_blank'><img alt='Informacje o $wpName na $domain' width='32' height='32' src='".$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/img/ext/$thumbnail.png'></a> ";
+					print "<a rel='nofollow' href='$value' target='_blank'><img alt='Informacje o $wpName na $domain' width='32' height='32' src='".$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/img/ext/$thumbnail.png'></a> ";
 				}
 			}  ?>&nbsp;</td>
 		</tr>
