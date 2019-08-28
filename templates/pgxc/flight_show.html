@@ -295,216 +295,222 @@ jQuery(document).ready(function() {
 
 
 
+<div itemscope itemtype='https://schema.org/ExerciseAction'>
+	<div class='flightShowBoxHeader' style='width:99%'>
+		<div id='pilot_pos' class='titleDiv'>{legend}</div>
+		<div class='pagesDivSimple'>{legendRight}</div>
+	</div>
+	<!-- BEGIN EXT_FLIGHT -->
+	<div class='flightShowBoxHeader' style="background-color:#BED59D">
+		<div id='pilot_pos' class='titleDiv'>{extFlightLegend}</div>
+		<div class='pagesDivSimple'></div>
+	</div>
+	<!-- END EXT_FLIGHT -->
+	<table align="center"  cellpadding="0" cellspacing="0" class="tableBlocks" width="100%">
+	  <tbody>
+	    <tr>
+	      <td align="left" valign="top">
+	      <div class="firstFlightDataBox">
+	       <table width="100%" border="0" align="left" cellpadding="0">
+		<tr>
+		  <td width="40%"  valign="top"><table  class="main_text flightShadowBox col1" border="0" cellpadding="0">
+		    <tr>
+		      <th colspan="2">{#_Takeoff_Info}</th>
+		    </tr>
+		    <tr>
+		      <td width="66%"><div align="left">{#_TAKEOFF_LOCATION}</div></td>
+		      <td width="33%"><div align="right">{TAKEOFF_TIME}</div></td>
+		    </tr>
+		    <tr>
+		      <td colspan="2" height='18'><div align="left">{TAKEOFF_LOCATION}</div></td>
+		    </tr>
+		    <tr>
+		      <td class='borderTop'>{#_LANDING_LOCATION}</td>
+		      <td class='borderTop'><div align="right">{LANDING_TIME}</div></td>
+		    </tr>
+		    <tr>
+		      <td colspan="2"  height='18'><div align="left">{LANDING_LOCATION}</div></td>
+		    </tr>
+		  </table>            <table class="main_text flightShadowBox col1" border="0" cellpadding="0" style="margin-top:8px;">
+		      <tr>
+			<th colspan="2">{#_XC_Info}</th>
+		      </tr>
+		      <tr>
+			<td width="50%"><div id='info1Pos' align="left" class='helpTooltips' onmouseover="docTips.show('openDistance')"
+	 onmouseout="docTips.hide()" >{#_OPEN_DISTANCE}</div></td>
+			<td width="50%"><div align="right">{LINEAR_DISTANCE}</div></td>
+		      </tr>
+		      <tr>
+			<td><div id='info2Pos' align="left" class='helpTooltips' onmouseover="docTips.show('maxDistance')"
+	 onmouseout="docTips.hide()" >{#_MAX_DISTANCE}</div></td>
+			<td><div align="right">{MAX_DISTANCE}</div></td>
+		      </tr>
+		      <tr>
+			<td><div id='info3Pos' align="left" class='helpTooltips' onmouseover="docTips.show('xcDistance')"
+	 onmouseout="docTips.hide()" >{#_OLC_DISTANCE}</div></td>
+			<td><div align="right">{OLC_KM}</div></td>
+		      </tr>
+		      <tr>
+			<td><div align="left">{#_OLC_SCORING}</div></td>
+			<td><div align="right"><strong>{OLC_SCORE}</strong>{VALI}</div></td>
+		      </tr>
+		      <tr>
+			<td><div align="left">{#_OLC_SCORE_TYPE}</div></td>
+			<td><div align="right">{OLC_TYPE}</div></td>
+		      </tr>
+		      <tr>
+			<td colspan="2" height='19' id="scoreInfoPos"><div align="right">{SCORE_INFO_LINK}</div></td>
+		      </tr>
+		    </table></td>
+		</tr>
+	       </table>
+	      </div>
+	      <div class="flightDataBox">
+	       <table width="100%" border="0" align="left" cellpadding="0">
+		    <tr>
+		  <td width="30%" valign="top" align="center">
+				<table align=center class="main_text flightShadowBox col2" border="0" cellpadding="0" style='clear:left;'>
+		    <tr>
+		      <th height=22>{gliderCat} </th>
+		    </tr>
+		    <tr>
+		      <td><div align="left" style='height:28px;'>
+			<div align="center">{glider}</div>
+		      </div></td>
+		    </tr>
+		  </table>
+				<table class="main_text flightShadowBox col2" border="0" cellpadding="0" style="margin-top:8px;">
+		    <tr>
+		      <th colspan="2">{#_Flight_Info}</th>
+		    </tr>
 
-<div class='flightShowBoxHeader' style='width:99%'>
-	<div id='pilot_pos' class='titleDiv'>{legend}</div>
-	<div class='pagesDivSimple'>{legendRight}</div>
-</div>
-<!-- BEGIN EXT_FLIGHT -->
-<div class='flightShowBoxHeader' style="background-color:#BED59D">
-	<div id='pilot_pos' class='titleDiv'>{extFlightLegend}</div>
-	<div class='pagesDivSimple'></div>
-</div>
-<!-- END EXT_FLIGHT -->
-<table align="center"  cellpadding="0" cellspacing="0" class="tableBlocks" width="100%">
-  <tbody>
-    <tr>
-      <td align="left" valign="top">
-      <div class="firstFlightDataBox">
-       <table width="100%" border="0" align="left" cellpadding="0">
-        <tr>
-          <td width="40%"  valign="top"><table  class="main_text flightShadowBox col1" border="0" cellpadding="0">
-            <tr>
-              <th colspan="2">{#_Takeoff_Info}</th>
-            </tr>
-            <tr>
-              <td width="66%"><div align="left">{#_TAKEOFF_LOCATION}</div></td>
-              <td width="33%"><div align="right">{TAKEOFF_TIME}</div></td>
-            </tr>
-            <tr>
-              <td colspan="2" height='18'><div align="left">{TAKEOFF_LOCATION}</div></td>
-            </tr>
-            <tr>
-              <td class='borderTop'>{#_LANDING_LOCATION}</td>
-              <td class='borderTop'><div align="right">{LANDING_TIME}</div></td>
-            </tr>
-            <tr>
-              <td colspan="2"  height='18'><div align="left">{LANDING_LOCATION}</div></td>
-            </tr>
-          </table>            <table class="main_text flightShadowBox col1" border="0" cellpadding="0" style="margin-top:8px;">
-              <tr>
-                <th colspan="2">{#_XC_Info}</th>
-              </tr>
-              <tr>
-                <td width="50%"><div id='info1Pos' align="left" class='helpTooltips' onmouseover="docTips.show('openDistance')"
- onmouseout="docTips.hide()" >{#_OPEN_DISTANCE}</div></td>
-                <td width="50%"><div align="right">{LINEAR_DISTANCE}</div></td>
-              </tr>
-              <tr>
-                <td><div id='info2Pos' align="left" class='helpTooltips' onmouseover="docTips.show('maxDistance')"
- onmouseout="docTips.hide()" >{#_MAX_DISTANCE}</div></td>
-                <td><div align="right">{MAX_DISTANCE}</div></td>
-              </tr>
-              <tr>
-                <td><div id='info3Pos' align="left" class='helpTooltips' onmouseover="docTips.show('xcDistance')"
- onmouseout="docTips.hide()" >{#_OLC_DISTANCE}</div></td>
-                <td><div align="right">{OLC_KM}</div></td>
-              </tr>
-              <tr>
-                <td><div align="left">{#_OLC_SCORING}</div></td>
-                <td><div align="right"><strong>{OLC_SCORE}</strong>{VALI}</div></td>
-              </tr>
-              <tr>
-                <td><div align="left">{#_OLC_SCORE_TYPE}</div></td>
-                <td><div align="right">{OLC_TYPE}</div></td>
-              </tr>
-              <tr>
-                <td colspan="2" height='19' id="scoreInfoPos"><div align="right">{SCORE_INFO_LINK}</div></td>
-              </tr>
-            </table></td>
-        </tr>
-       </table>
-      </div>
-      <div class="flightDataBox">
-       <table width="100%" border="0" align="left" cellpadding="0">
-            <tr>
-          <td width="30%" valign="top" align="center">
-			<table align=center class="main_text flightShadowBox col2" border="0" cellpadding="0" style='clear:left;'>
-            <tr>
-              <th height=22>{gliderCat} </th>
-            </tr>
-            <tr>
-              <td><div align="left" style='height:28px;'>
-                <div align="center">{glider}</div>
-              </div></td>
-            </tr>
-          </table>
-			<table class="main_text flightShadowBox col2" border="0" cellpadding="0" style="margin-top:8px;">
-            <tr>
-              <th colspan="2">{#_Flight_Info}</th>
-            </tr>
-
-            <tr>
-              <td >{#_DURATION}</td>
-              <td width="70"><div align="right">{DURATION}</div></td>
-            </tr>
-            <tr>
-              <td class='borderTop'><div align="left">{#_MAX_VARIO}</div></td>
-              <td class='borderTop'><div align="right">{MAX_VARIO}</div></td>
-            </tr>
-            <tr>
-              <td><div align="left">{#_MIN_VARIO}</div></td>
-              <td><div align="right">{MIN_VARIO}</div></td>
-            </tr>
-            <tr>
-              <td class='borderTop'>{#_MAX_ALTITUDE}</td>
-              <td class='borderTop'><div align="right">{MAX_ALT}</div></td>
-            </tr>
-            <tr>
-              <td>{#_MIN_ALTITUDE}</td>
-              <td><div align="right">{MIN_ALT}</div></td>
-            </tr>
-            <tr>
-              <td>{#_TAKEOFF_ALTITUDE}</td>
-              <td><div align="right">{TAKEOFF_ALT}</div></td>
-            </tr>
-            <tr>
-              <td>{#_ALTITUDE_GAIN}</td>
-              <td><div align="right">{ALTITUDE_GAIN}</div></td>
-            </tr>
-            <tr>
-              <td class='borderTop'>{#_MAX_SPEED}</td>
-              <td class='borderTop'><div align="right">{MAX_SPEED}</div></td>
-            </tr>
-            <tr>
-              <td>{#_MEAN_SPEED}</td>
-              <td><div align="right">{MEAN_SPEED}</div></td>
-            </tr>
-          </table>
-          </td>
-        </tr>
-    </table>
-      </div>
-      <div class="flightDataBox">
-       <table width="100%" border="0" align="left" cellpadding="0">  
-            <tr>
-          <td align="right" valign="top">
-			<table  class="main_text flightShadowBox col3" border="0" cellpadding="0">
-            <tr>
-              <th height="22"><div align="center">{#_FLIGHT_FILE}</div></th>
-            </tr>
-            <tr>
-              <td><div align=center  style="height:28px; text-align:center">
-                    {igcLink} 
-					<a href="#" onClick="toggleDiv('geOptionsID','geOptionsPos',14,-305);return false;">Google
-                    Earth&nbsp;<img id="geOptionsPos" src="{M_PATH}/img/icon_arrow_down.gif" alt="a1" border="0"></a></div></td>
-            </tr>
-			</table>
-			<table class="main_text flightShadowBox col3 {relevantClass}"  border="0" cellpadding="3" style='margin-top:8px;'>
-            <tr>
-              <th >{#_RELEVANT_PAGE}</th>
-            </tr>
-            <tr>
-              <td height=19><div align="right">{visuGpsLink} <br> {linkURL}</div></td>
-            </tr>
-          </table>
-	<table class="main_text flightShadowBox col3" border="0" cellpadding="3" style="margin-top:8px;">
-            <tr>
-              <th>{#_FLYING_AREA_INFO}</th>
-            </tr>
-            <tr>
-              <td valign="middle">
-                <div align="center" class="externalLinks"><a href="javascript:nop()" 
-				onClick="toggleTakeoffInfo();return false; "><img src="{M_PATH}/img/paraglidingearth_logo.gif" alt="Informacje o miejscu w portalu Paragliding Earth" border="0"><br>
-              </a></div>
-                <div  align="center"  class="externalLinks"><a href="javascript:nop()" 
-				onClick="toggleTakeoffInfo();return false; "><img src="{M_PATH}/img/paraglider365logo.gif" alt="Informacje o miejscu w portalu Paragliding 365"  border="0" id="takeoffArea1Pos"><br>
-              </a></div>
-              </td>
-            </tr>
-          </table>
-          <table class="main_text flightShadowBox col3" border="0" cellpadding="3" style="margin-top:8px;">
-              <tr>
-                  <th>{#_SOCIAL_LINKS}</th>
-              </tr>     
-              <tr>
-                  <td>
-                      <div align="center">
-                      <a href="https://www.facebook.com/sharer.php?u={pageURL}" target="_blank"><img class="shareButton" src="https://leonardo.pgxc.pl/img/social/facebook.png" alt="Facebook" /></a>
-                      
-                      <a href="https://twitter.com/share?url={pageURL}&amp;text=Co%20to%20był%20za%20lot!&amp;hashtags=pgxc,paralotnie,{takeoffName}" target="_blank"><img class="shareButton" src="https://leonardo.pgxc.pl/img/social/twitter.png" alt="Twitter" /></a>
-                      <a href="mailto:?Subject={takeoffName}%20-%20znowu%20pięknie%20zadziałał&amp;Body=Co%20to%20był%20za%20lot%20z%20{takeoffName}!%20 {pageURL}"><img class="shareButton" src="https://leonardo.pgxc.pl/img/social/email.png" alt="Email" /></a>
-                      </div>
-                  </td>
-              </tr>
-          </table>
-		</td>
-        </tr>
-      </table>
-      </div>
-       </td>
-    </tr>
-<!-- BEGIN COMMENTS -->
-    <tr>
-      <td >
-		<fieldset class="legendBox"><legend>{#_COMMENTS}</legend>{comments}</fieldset>
-	  </td>
-    </tr>
-<!-- END COMMENTS -->
-<!-- BEGIN ADMIN_PANEL -->
-    <tr>
-      <td ><fieldset class="legendBox"><legend>{#_MORE_INFO}</legend><div align="center">{ADMIN_PANEL}</div></fieldset></td>
-    </tr>
-<!-- END ADMIN_PANEL -->
-    <tr>
-      <td align="center" >
-		<div align=center class="mapDiv{2col}">
-			{MAP_IMG}
+		    <tr>
+		      <td >{#_DURATION}</td>
+		      <td width="70"><div align="right">{DURATION}</div></td>
+		    </tr>
+		    <tr>
+		      <td class='borderTop'><div align="left">{#_MAX_VARIO}</div></td>
+		      <td class='borderTop'><div align="right">{MAX_VARIO}</div></td>
+		    </tr>
+		    <tr>
+		      <td><div align="left">{#_MIN_VARIO}</div></td>
+		      <td><div align="right">{MIN_VARIO}</div></td>
+		    </tr>
+		    <tr>
+		      <td class='borderTop'>{#_MAX_ALTITUDE}</td>
+		      <td class='borderTop'><div align="right">{MAX_ALT}</div></td>
+		    </tr>
+		    <tr>
+		      <td>{#_MIN_ALTITUDE}</td>
+		      <td><div align="right">{MIN_ALT}</div></td>
+		    </tr>
+		    <tr>
+		      <td>{#_TAKEOFF_ALTITUDE}</td>
+		      <td><div align="right">{TAKEOFF_ALT}</div></td>
+		    </tr>
+		    <tr>
+		      <td>{#_ALTITUDE_GAIN}</td>
+		      <td><div align="right">{ALTITUDE_GAIN}</div></td>
+		    </tr>
+		    <tr>
+		      <td class='borderTop'>{#_MAX_SPEED}</td>
+		      <td class='borderTop'><div align="right">{MAX_SPEED}</div></td>
+		    </tr>
+		    <tr>
+		      <td>{#_MEAN_SPEED}</td>
+		      <td><div align="right">{MEAN_SPEED}</div></td>
+		    </tr>
+		  </table>
+		  </td>
+		</tr>
+	    </table>
+	      </div>
+	      <div class="flightDataBox">
+	       <table width="100%" border="0" align="left" cellpadding="0">  
+		    <tr>
+		  <td align="right" valign="top">
+				<table  class="main_text flightShadowBox col3" border="0" cellpadding="0">
+		    <tr>
+		      <th height="22"><div align="center">{#_FLIGHT_FILE}</div></th>
+		    </tr>
+		    <tr>
+		      <td><div align=center  style="height:28px; text-align:center">
+			    {igcLink} 
+						<a href="#" onClick="toggleDiv('geOptionsID','geOptionsPos',14,-305);return false;">Google
+			    Earth&nbsp;<img id="geOptionsPos" src="{M_PATH}/img/icon_arrow_down.gif" alt="a1" border="0"></a></div></td>
+		    </tr>
+				</table>
+				<table class="main_text flightShadowBox col3 {relevantClass}"  border="0" cellpadding="3" style='margin-top:8px;'>
+		    <tr>
+		      <th >{#_RELEVANT_PAGE}</th>
+		    </tr>
+		    <tr>
+		      <td height=19><div align="right">{visuGpsLink} <br> {linkURL}</div></td>
+		    </tr>
+		  </table>
+		<table class="main_text flightShadowBox col3" border="0" cellpadding="3" style="margin-top:8px;">
+		    <tr>
+		      <th>{#_FLYING_AREA_INFO}</th>
+		    </tr>
+		    <tr>
+		      <td valign="middle">
+			<div align="center" class="externalLinks"><a href="javascript:nop()" 
+					onClick="toggleTakeoffInfo();return false; "><img src="{M_PATH}/img/paraglidingearth_logo.gif" alt="Informacje o miejscu w portalu Paragliding Earth" border="0"><br>
+		      </a></div>
+			<div  align="center"  class="externalLinks"><a href="javascript:nop()" 
+					onClick="toggleTakeoffInfo();return false; "><img src="{M_PATH}/img/paraglider365logo.gif" alt="Informacje o miejscu w portalu Paragliding 365"  border="0" id="takeoffArea1Pos"><br>
+		      </a></div>
+		      </td>
+		    </tr>
+		  </table>
+		  <table class="main_text flightShadowBox col3" border="0" cellpadding="3" style="margin-top:8px;">
+		      <tr>
+			  <th>{#_SOCIAL_LINKS}</th>
+		      </tr>     
+		      <tr>
+			  <td>
+			      <div align="center">
+			      <a href="https://www.facebook.com/sharer.php?u={pageURL}" target="_blank"><img class="shareButton" src="https://leonardo.pgxc.pl/img/social/facebook.png" alt="Facebook" /></a>
+			      
+			      <a href="https://twitter.com/share?url={pageURL}&amp;text=Co%20to%20był%20za%20lot!&amp;hashtags=pgxc,paralotnie,{takeoffName}" target="_blank"><img class="shareButton" src="https://leonardo.pgxc.pl/img/social/twitter.png" alt="Twitter" /></a>
+			      <a href="mailto:?Subject={takeoffName}%20-%20znowu%20pięknie%20zadziałał&amp;Body=Co%20to%20był%20za%20lot%20z%20{takeoffName}!%20 {pageURL}"><img class="shareButton" src="https://leonardo.pgxc.pl/img/social/email.png" alt="Email" /></a>
+			      </div>
+			  </td>
+		      </tr>
+		  </table>
+			</td>
+		</tr>
+	      </table>
+	      </div>
+	       </td>
+	    </tr>
+	<!-- BEGIN COMMENTS -->
+	    <tr>
+	      <td >
+			<fieldset class="legendBox"><legend>{#_COMMENTS}</legend>{comments}</fieldset>
+		  </td>
+	    </tr>
+	<!-- END COMMENTS -->
+	<!-- BEGIN ADMIN_PANEL -->
+	    <tr>
+	      <td ><fieldset class="legendBox"><legend>{#_MORE_INFO}</legend><div align="center">{ADMIN_PANEL}</div></fieldset></td>
+	    </tr>
+	<!-- END ADMIN_PANEL -->
+	    <tr>
+	      <td align="center" >
+			<div align=center class="mapDiv{2col}">
+				{MAP_IMG}
+			</div>
+			<div align=center class="mapDiv{2col}" id='chartsDiv' style='display:block'>
+					  {CHART_IMG1}{CHART_IMG2}{CHART_IMG3}{CHART_IMG4}
 		</div>
-		<div align=center class="mapDiv{2col}" id='chartsDiv' style='display:block'>
-				  {CHART_IMG1}{CHART_IMG2}{CHART_IMG3}{CHART_IMG4}
-        </div>
-		</td>
-    </tr>
-  </tbody>
-</table>
+			</td>
+	    </tr>
+	  </tbody>
+	</table>
+	<meta itemprop="actionStatus" content="CompletedActionStatus">
+	<meta itemprop="instrument" content="{GLIDER_NAME}">
+	<meta itemprop="image" content="{FLIGHT_THUMBNAIL}">
+	<meta itemprop="url" content="{FLIGHT_URL}">
+
+</div>

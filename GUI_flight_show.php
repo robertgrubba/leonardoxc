@@ -301,10 +301,10 @@ $flightAge = DateTime::createFromFormat('Y-m-d G:i:s', $flight->dateAdded, $tz)-
 	}
 	
 	
-	$legend=leoHtml::img("icon_cat_".$flight->cat.".png",0,0,'absmiddle','','icons1')." ".
+	$legend=leoHtml::img("icon_cat_".$flight->cat.".png",0,0,'absmiddle','','icons1')."<span itemprop='agent' itemscope itemtype='http://schema.org/Person'> ".
 			_PILOT.": <a href=\"javascript:pilotTip.newTip('inline', 60, 19, 'pilot_pos', 200, '".
-			$flight->userServerID."_".$flight->userID."','".addslashes(prepare_for_js($flight->userName))."' )\"  onmouseout=\"pilotTip.hide()\">".
-			$flight->userName."</a>&nbsp;&nbsp; "._DATE_SORT.": ".formatDate($flight->DATE);
+			$flight->userServerID."_".$flight->userID."','".addslashes(prepare_for_js($flight->userName))."' )\"  onmouseout=\"pilotTip.hide()\"><span itemprop='name'>".
+			$flight->userName."</a></span></span>&nbsp;&nbsp; "._DATE_SORT.": ".formatDate($flight->DATE);
 	
 	$Ltemplate->assign_vars(array(
 		'legend'=>$legend,
@@ -338,7 +338,7 @@ $flightAge = DateTime::createFromFormat('Y-m-d G:i:s', $flight->dateAdded, $tz)-
   $flight->checkDirs(); //Added 27.11.2011 for localhost installations P.Wild
   $flight->updateAll(0);
   //echo "START<br>";
-  $location=formatLocation(file_get_contents($CONF['weatherapi']."/isflyabletoday/1/".getWaypointIntName($flight->takeoffID))." ".showWaypointDesciptionIcon($flight->takeoffID)." ".getWaypointName($flight->takeoffID),$flight->takeoffVinicity,$takeoffRadious);
+  $location=formatLocation(file_get_contents($CONF['weatherapi']."/isflyabletoday/1/".getWaypointIntName($flight->takeoffID))." ".showWaypointDesciptionIcon($flight->takeoffID)." <span itemprop='fromLocation' itemscope itemtype='http://schema.org/Place'><span itemprop='name'>".getWaypointName($flight->takeoffID),$flight->takeoffVinicity,$takeoffRadious)."</span></span>";
 
 
   // $firstPoint=new gpsPoint($flight->FIRST_POINT,$flight->timezone);						
@@ -419,9 +419,9 @@ $flightAge = DateTime::createFromFormat('Y-m-d G:i:s', $flight->dateAdded, $tz)-
 
 $Ltemplate->assign_vars(array(
 	'TAKEOFF_LOCATION'=>$takeoffLink,
-	'TAKEOFF_TIME'=>sec2Time($flight->START_TIME),
-	'LANDING_LOCATION'=>formatLocation(getWaypointName($flight->landingID),$flight->landingVinicity,$landingRadious),
-	'LANDING_TIME'=>sec2Time($flight->END_TIME),
+	'TAKEOFF_TIME'=>"<span itemprop='startTime'>".sec2Time($flight->START_TIME)."</span>",
+	'LANDING_LOCATION'=>"<span itemprop='toLocation' itemscope itemtype='http://schema.org/Place'><span itemprop='name'>".formatLocation(getWaypointName($flight->landingID),$flight->landingVinicity,$landingRadious)."</span></span>",
+	'LANDING_TIME'=>"<span itemprop='endTime'>".sec2Time($flight->END_TIME)."</span>",
 	'LINEAR_DISTANCE'=>formatDistanceOpen($flight->LINEAR_DISTANCE)." ($openDistanceSpeed)",
 	'DURATION'=>sec2Time($flight->DURATION),
 	'VALI'=>$valiStr,
@@ -441,7 +441,7 @@ if ( $scoringServerActive ) {
 	$Ltemplate->assign_vars(array(
 		'MAX_DISTANCE'=>formatDistanceOpen($flight->MAX_LINEAR_DISTANCE)." ($maxDistanceSpeed)",		
 		'OLC_TYPE'=>formatOLCScoreType($flight->BEST_FLIGHT_TYPE)." ".leoHtml::img($olcScoreTypeImg,0,0,'absmiddle','','icons1'),
-		'OLC_KM'=>formatDistanceOpen($flight->FLIGHT_KM)." ($olcDistanceSpeed)",
+		'OLC_KM'=>"<span itemprop='distance'>".formatDistanceOpen($flight->FLIGHT_KM)."</span> ($olcDistanceSpeed)",
 		'OLC_SCORE'=>formatOLCScore($flight->FLIGHT_POINTS),
 		'SCORE_INFO_LINK'=>$showScoreInfo,
 	));
@@ -496,9 +496,11 @@ if ($flight->linkURL) {
 	$gliderBrandImg=brands::getBrandImg($flight->gliderBrandID,$flight->glider,$flight->cat);
 	
 	$glider=$gliderBrandImg.' '.$flight->glider;
+	$gliderName=brands::getBrandText($flight->gliderBrandID,$flight->glider,$flight->cat);
+	
 
 
-	$gliderCat = " [ ".leoHtml::img("icon_cat_".$flight->cat.".png",0,0,'absmiddle','','icons1')." ".$gliderCatList[$flight->cat]." ]";
+	$gliderCat = " [ ".leoHtml::img("icon_cat_".$flight->cat.".png",0,0,'absmiddle','','icons1')." <span itemprop='exerciseType'>".$gliderCatList[$flight->cat]."</span> ]";
  
  // now loaded dynamically via ajax on request
  
@@ -836,8 +838,11 @@ $Ltemplate->assign_vars(array(
 	'visuGpsLink'=> $visuGpsLink,
 	'flightID'=>$flight->flightID,
 	'relevantClass'=> $relevantClass,
-	'pageURL'=> $pageURL,
+	'pageURL'=>$pageURL,
 	'takeoffName'=> $takeoffName,
+	'GLIDER_NAME'=> $gliderName,
+	'FLIGHT_THUMBNAIL'=>$board_config['meta_ogImage'],
+	'FLIGHT_URL'=>$board_config['meta_ogUrl'],
 ));
 
 if ($flight->externalFlightType &&  ! $CONF['servers']['list'][$flight->serverID]['treat_flights_as_local']) {
