@@ -40,6 +40,13 @@
 -->
 </style>
 
+<div itemtype="http://schema.org/TouristDestination" itemscope>
+<meta itemprop="name" content="<?=$og_takeoffName?>"/>
+<meta itemprop="isicV4" content="9241"/>
+<div itemprop="touristType" itemtype="http://schema.org/Audience" itemscope>
+          <meta itemprop="audienceType" content="Paragliding Pilots" />
+	  <meta itemprop="audienceType" content="Paragliding Passengers" />
+</div>
 <?
  // open_inner_table("<table class=main_text width=100% cellpadding=0 cellspacing=0><tr><td>".$titleString."</td><td align=right width=50><div align=right>".$opString."</div></td></tr></table>",760,"icon_pin.png");
 
@@ -123,14 +130,16 @@ if($flightNum==0){
 <!-- end of stats section -->
 
 			</td>
-          <td rowspan="3" class="col2_in"><p><strong>lat/lon (WGS84):</strong><br>
-		  <? 	echo $wpInfo->lat." , ".-$wpInfo->lon ;
+	  <td rowspan="3" class="col2_in"><p><strong>lat/lon (WGS84):</strong><br>
+	  <span itemprop="geo" itemtype="http://schema.org/GeoCoordinates" itemscope>
+      <span itemprop="latitude"> 
+		  <? 	echo $wpInfo->lat."</span> , <span itemprop='longitude'>".-$wpInfo->lon."</span>" ;
 				echo "<br>".$wpInfo->getLatMinDec()." , ".$wpInfo->getLonMinDec();
 				echo "<br>".$wpInfo->getLatDMS()." , ".$wpInfo->getLonDMS();
 				echo "<p>";
 				list($UTM_X,$UTM_Y,$UTMzone,$UTMlatZone)=$wpInfo->getUTM();
 				echo "<b>UTM:</b> $UTMzone$UTMlatZone X: ".floor($UTM_X)." Y: ".floor($UTM_Y);
-		 ?></td>
+		 ?></span></td>
           <td class="col3_in"><div align="center"><strong><? echo "<a href='".getDownloadLink(array('type'=>'kml_wpt','wptID'=>$waypointIDview))."'>"._Navigate_with_Google_Earth."</a>"; ?></strong></div></td>
         </tr>
         <tr align="center" class="col3_in">
@@ -162,6 +171,7 @@ $weatherResponse= $obj->status;
 if ($weatherResponse==200){
 			$windForSpotGraphicsURL=$CONF['links']['baseURL'].$CONF['images']['directionsRel']."/kierunki_".str_replace(" ","",$wpInfo->intName).".png";?>
 			<td rowspan=7 width="150"><img height="150" alt="Użyteczne kierunki wiatru dla startowiska <? echo $wpInfo->intName ?>" src="<? echo $windForSpotGraphicsURL ?>"> </td>
+				<meta itemprop="image" content="<? echo $windForSpotGraphicsURL ?>">
 <? } ?>
         </tr>
 		<? } ?>
@@ -261,8 +271,8 @@ if (is_user($user) || $userID>0) {
           </div></td>
         </tr>
         <tr>
-          <td colspan=3 valign="top"><? echo $wpInfo->description ?>&nbsp;</td>
-        </tr>
+          <td colspan=3 valign="top"><span itemprop="description"><? echo $wpInfo->description ?></span>&nbsp;</td>
+	</tr>
 		<? } ?>
       </table>    
 	  <?// } ?>  
