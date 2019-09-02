@@ -530,11 +530,11 @@ if ($op=="show_waypoint"){
 	$weatherResponse= $obj->status;
 	print_r($weatherResponse);
 	if ($weatherResponse==200){
-		$extraDescription="kierunki, najbliższy warun, przydatne linki,";
+		$extraDescription="prognozy, kierunki, najbliższy warun, przydatne linki,";
 	}
          $page_title = $og_takeoffName.' - opis startowiska ';
 	 $page_keywords = "paralotnie, paragliding, flights, logs, track, igc, parapente, loty, opis, przewodnik, ".$og_takeoffName.", guide";
-	 $page_description = "Startowisko paralotniowe ".$og_takeoffName.": ".$extraDescription." koordynaty GPS, ".$og_flightNum." zgłoszonych lotów i mapa ułatwiająca odnalezienie miejsca.";
+	 $page_description = "Startowisko paralotniowe ".$og_takeoffName.": ".$extraDescription." koordynaty GPS, mapa i ".$og_flightNum." zgłoszonych lotów.";
 	 $board_config['meta_keywords']=$page_keywords;
 	 $board_config['meta_description']=$page_description;
  	 $board_config['meta_geo']=$wpInfo->lat.", ".(-1*$wpInfo->lon);
