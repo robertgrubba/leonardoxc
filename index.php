@@ -528,7 +528,6 @@ if ($op=="show_waypoint"){
 	$json = file_get_contents($CONF['weatherapi']."/spot/".$intName);
 	$obj = json_decode($json);
 	$weatherResponse= $obj->status;
-	print_r($weatherResponse);
 	if ($weatherResponse==200){
 		$extraDescription="prognozy, kierunki, najbliższy warun, przydatne linki,";
 	}
