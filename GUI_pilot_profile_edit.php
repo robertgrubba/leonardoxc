@@ -117,25 +117,40 @@
 	$BirthdateHideMask=($hideDay?'xx':'##').'.'.($hideMonth?'xx':'##').'.'.
 			($hideYear?'xxx':'###').($hideYearLastDigit?'x':'#');
 
+	if(strlen($_POST['FirstName'])>3 && strlen($_POST['LastName'])>3){
+	   $query="UPDATE $pilotsTable SET
+			`FirstNameEn` = '".prep_for_DB($_POST['FirstNameEn'])."',
+			`LastNameEn` = '".prep_for_DB($_POST['LastNameEn'])."',
+			`FirstName` = '".prep_for_DB($_POST['FirstName'])."',
+			`LastName` = '".prep_for_DB($_POST['LastName'])."',
+			`countryCode` = '".prep_for_DB($_POST['countriesList'])."',
+			`NACid` = $NACid,
+			`NACmemberID` = $NACmemberID,
+			`NACclubID` = $NACclubID,		
+			`CIVL_ID` = '".prep_for_DB($_POST['CIVL_ID'])."',
+			`Birthdate` = '".prep_for_DB($_POST['Birthdate'])."',
+			`BirthdateHideMask` = '$BirthdateHideMask',
+			`Sex` = '".prep_for_DB($_POST['Sex'])."',
+			`PilotPhoto` = '".$PilotPhoto."',
+			`FirstOlcYear` = $FirstOlcYear
 
-   $query="UPDATE $pilotsTable SET
-   		`FirstNameEn` = '".prep_for_DB($_POST['FirstNameEn'])."',
-		`LastNameEn` = '".prep_for_DB($_POST['LastNameEn'])."',
-		`FirstName` = '".prep_for_DB($_POST['FirstName'])."',
-		`LastName` = '".prep_for_DB($_POST['LastName'])."',
-		`countryCode` = '".prep_for_DB($_POST['countriesList'])."',
-		`NACid` = $NACid,
-		`NACmemberID` = $NACmemberID,
-		`NACclubID` = $NACclubID,		
-		`CIVL_ID` = '".prep_for_DB($_POST['CIVL_ID'])."',
-		`Birthdate` = '".prep_for_DB($_POST['Birthdate'])."',
-		`BirthdateHideMask` = '$BirthdateHideMask',
-		`Sex` = '".prep_for_DB($_POST['Sex'])."',
-		`PilotPhoto` = '".$PilotPhoto."',
-		`FirstOlcYear` = $FirstOlcYear
+			 WHERE `pilotID` = '$pilotIDview'  AND serverID='$serverIDview' ";
+	}else{
+	   $query="UPDATE $pilotsTable SET
+			`countryCode` = '".prep_for_DB($_POST['countriesList'])."',
+			`NACid` = $NACid,
+			`NACmemberID` = $NACmemberID,
+			`NACclubID` = $NACclubID,		
+			`CIVL_ID` = '".prep_for_DB($_POST['CIVL_ID'])."',
+			`Birthdate` = '".prep_for_DB($_POST['Birthdate'])."',
+			`BirthdateHideMask` = '$BirthdateHideMask',
+			`Sex` = '".prep_for_DB($_POST['Sex'])."',
+			`PilotPhoto` = '".$PilotPhoto."',
+			`FirstOlcYear` = $FirstOlcYear
 
-		 WHERE `pilotID` = '$pilotIDview'  AND serverID='$serverIDview' ";
+			 WHERE `pilotID` = '$pilotIDview'  AND serverID='$serverIDview' ";
 
+	}
     $res= $db->sql_query( $query );
     if($res <= 0){
       echo("<H3>Error in update query:  $query</H3>\n");
@@ -353,7 +368,7 @@
 				if ( in_array('FirstName', $readonly_fields) && 
 					!L_auth::isAdmin($userID) && !L_auth::isModerator($userID)	) $firstNameReadOnly='';
 			?> 
-			<input name="FirstName" type="text" value="<? echo $pilot['FirstName'] ?>" size="25" maxlength="120" <?=$firstNameReadOnly ?> >
+			<input name="FirstName" minlength="3" type="text" value="<? echo $pilot['FirstName'] ?>" size="25" maxlength="120" <?=$firstNameReadOnly ?> required>
 	  </td>
       <td width =3>&nbsp;</td>
       <td colspan="2" rowspan="3" valign="top" bgcolor="#E8EBDE"><div align="left">
@@ -495,7 +510,7 @@
 				if ( in_array('LastName', $readonly_fields) && 
 					!L_auth::isAdmin($userID) && !L_auth::isModerator($userID) ) $lastNameReadOnly='';
 			?>
-			<input name="LastName" type="text" value="<? echo $pilot['LastName'] ?>" size="25" maxlength="120" <?=$lastNameReadOnly?> >
+			<input name="LastName" minlength="3" type="text" value="<? echo $pilot['LastName'] ?>" size="25" maxlength="120" <?=$lastNameReadOnly?> required>
 		</td>
       <td>&nbsp;</td>
     </tr>
