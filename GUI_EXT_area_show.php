@@ -115,13 +115,13 @@ padding:5px;
   <td colspan="2"><table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td width="100"><div id='takeoffHeader'><? echo _AREA ?></div></td>
-      <td ><div id='takeoffHeader'><b><?=$area->name?></b></td>
+      <td width="150"><div id='takeoffHeader'><b><?=$area->name?></b></td>
     </tr>
     <tr>
       <td ><?=$area->desc?></td>
-	<td align="right">
+	<td align="right" valign="bottom">
 	<? require_once "FN_functions.php";?>
-        <a target="_parent" href="<? echo getLeonardoLink(array('op'=>'list_forecasts','area'=>$areaID))?>"><button><? echo _LONG_TERM_FORECASTS ?></button></a>
+        <a target="_parent" href="<? echo getLeonardoLink(array('op'=>'list_forecasts','area'=>$areaID))?>"><button style="width:150px"><? echo _LONG_TERM_FORECASTS ?></button></a>
 </td>
 
       </tr>
