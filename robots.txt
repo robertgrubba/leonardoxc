@@ -1,7 +1,9 @@
 User-agent: *
+sitemap: https://leonardo.pgxc.pl/sitemap.xml
 Disallow: /data/pdf/
 Disallow: /js/
 Disallow: /data/*
 Disallow: *.pdf
 Disallow: *.igc
 Disallow: *.kml
+Disallow: /GUI_EXT*.php
