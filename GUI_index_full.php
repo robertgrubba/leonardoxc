@@ -143,6 +143,6 @@ $tkStr.='
 	));
 
    	$Ltemplate->pparse('body');
-	$noFooterMenu=1;
+	$noFooterMenu=0;
 	
 ?>
