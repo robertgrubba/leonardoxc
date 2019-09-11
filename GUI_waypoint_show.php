@@ -194,12 +194,12 @@ if ($weatherResponse==200){
 	?>
   <? if(!is_array($obj->dirMin)) { ?>
         <tr bgcolor="white">
-          <td width=180 class="col3_in">Użyteczne kierunki wiatru</td>
+          <td width=180 class="col3_in"><? echo _SI_winddir ?></td>
           <td valign="top" ><? echo $obj->dirMin."&deg - ".$obj->dirMax."&deg;" ?>&nbsp;</td>
 	</tr>
   <? } else { ?>
         <tr bgcolor="white">
-          <td width=180 class="col3_in">Użyteczne kierunki wiatru</td>
+          <td width=180 class="col3_in"><? echo _SI_winddir ?> </td>
 	  <td valign="top" ><? 
 		$numberOfRanges=sizeOf($obj->dirMin);	
 		for($x=0; $x<$numberOfRanges; $x++){
@@ -211,24 +211,24 @@ if ($weatherResponse==200){
 	</tr>
   <? } ?>	
         <tr bgcolor="white">
-          <td width=180 class="col3_in">Użyteczna siła wiatru</td>
+          <td width=180 class="col3_in"><? echo _SI_windspd  ?></td>
           <td valign="top" ><? echo (($obj->spdMin)/2)." - ".(($obj->spdMax)/2)."m/s" ?>&nbsp;</td>
         </tr>
         <tr bgcolor="white">
-          <td width=180 class="col3_in">Prognozy pogody</td>
+          <td width=180 class="col3_in"><? echo _SI_forecasts ?></td>
           <td valign="top" ><? echo "<a target='_blank' rel='nofollow' href='https://www.windguru.cz/".$obj->windguruID."'>Windguru</a> <a target='_blank' rel='nofollow' href='https://www.windy.com/".$obj->lat."/".$obj->lon."'>Windy</a>" ?>&nbsp;</td>
         </tr>
         <tr bgcolor="white">
-          <td width=180 class="col3_in">Czy dziś jest szansa na warun?</td>
+          <td width=180 class="col3_in"><? echo _SI_flyable_today ?></td>
           <td valign="top" ><? print_r(file_get_contents($CONF['weatherapi']."/isflyabletoday/".$intNameUrl)) ?>&nbsp;</td>
         </tr>
         <tr bgcolor="white">
-          <td width=180 class="col3_in">Najbliższa szansa na warun</td>
+          <td width=180 class="col3_in"><? echo _SI_next_flyable_days ?></td>
           <td valign="top" ><? print_r(file_get_contents($CONF['weatherapi']."/flyabledays/".$intNameUrl)) ?>&nbsp;</td>
         </tr>
 	<? if ($obj->links!="None"){ ?>
 		<tr bgcolor="white">
-		  <td  width=200 class="col3_in">Przydatne linki</td>
+		  <td  width=200 class="col3_in"><? echo _SI_useful_links ?></td>
 		  <td colspan=2 valign="top" ><? 
 			$links=$obj->links; 
 			foreach($links as $key=>$value){
@@ -255,10 +255,10 @@ if (is_user($user) || $userID>0) {
 	$email = LeoUser::getEmail($userID);
 	if ($weatherResponse==200){
 				?>
-	  <a href='http://trac.pgxc.pl/newticket?summary=Zmiana informacji o startowisku <? echo $wpName ?> (<?echo $waypointIDview ?>)&description=Proszę napisz tutaj co powinno zostać zmienione w obecnym opisie bazując na własnym doświadczeniu&component=Treści&priority=minor&cc=<? echo $email ?>&type=ulepszenie'><button>Zaproponuj zmianę danych o startowisku</button></a>
+	  <a href='http://trac.pgxc.pl/newticket?summary=Zmiana informacji o startowisku <? echo $wpName ?> (<?echo $waypointIDview ?>)&description=Proszę napisz tutaj co powinno zostać zmienione w obecnym opisie bazując na własnym doświadczeniu&component=Treści&priority=minor&cc=<? echo $email ?>&type=ulepszenie'><button><? echo _SI_suggest_changes ?></button></a>
 <? 	}else{
 	?>
-	 <center> <a href='http://trac.pgxc.pl/newticket?summary=Dodanie informacji o startowisku <? echo $wpName ?> (<?echo $waypointIDview ?>)&description=Proszę napisz dla jakich kierunków jest to startowisko (zakresy w stopniach), podaj dokładne koordynaty lub pinezkę do google maps, link do prognozy windguru dla tego startowiska, przydatne odnośniki oraz jeśli to możliwe opis startowiska i lądowiska&component=Treści&priority=minor&cc=<? echo $email ?>&type=ulepszenie'><button>Dodaj informacje o startowisku</button></a></center>
+	 <center> <a href='http://trac.pgxc.pl/newticket?summary=Dodanie informacji o startowisku <? echo $wpName ?> (<?echo $waypointIDview ?>)&description=Proszę napisz dla jakich kierunków jest to startowisko (zakresy w stopniach), podaj dokładne koordynaty lub pinezkę do google maps, link do prognozy windguru dla tego startowiska, przydatne odnośniki oraz jeśli to możliwe opis startowiska i lądowiska&component=Treści&priority=minor&cc=<? echo $email ?>&type=ulepszenie'><button><? echo _SI_add_takeoff_info ?></button></a></center>
 <?
 	}
 } 

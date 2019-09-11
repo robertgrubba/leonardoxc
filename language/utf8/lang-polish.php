@@ -973,4 +973,15 @@ define("_MENU_FORECASTS","Prognozy");
 
 define("_LONG_TERM_FORECASTS","Prognozy długoterminowe dla tego rejonu");
 define("_FLIGHT","Lot");
+
+define("_SI_Region","Region");
+define("_SI_winddir","Użyteczne kierunki wiatru");
+define("_SI_windspd","Użyteczna siła wiatru");
+define("_SI_forecasts","Prognozy pogody");
+define("_SI_flyable_today","Czy dziś jest szansa na warun?");
+define("_SI_next_flyable_days","Najbliższa szansa na warun");
+define("_SI_useful_links","Przydatne linki");
+define("_SI_suggest_changes","Zaproponuj zmianę danych o startowisku");
+define("_SI_add_takeoff_info","Dodaj informacje o startowisku");
+
 ?>

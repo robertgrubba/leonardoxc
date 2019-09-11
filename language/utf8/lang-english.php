@@ -1047,4 +1047,16 @@ define("_MENU_FORECASTS","Forecasts");
 define("_LONG_TERM_FORECASTS","Long term forecasts for this area");
 define("_FLIGHT","Flight");
 
+define("_MENU_SHOW_LATEST_FLIGHTS","Show latest flights");
+//site information on waypoint details
+define("_SI_Region","Area");
+define("_SI_winddir","Flyable wind directions");
+define("_SI_windspd","Flyable wind speed");
+define("_SI_forecasts","Weather forecasts");
+define("_SI_flyable_today","Is it flyable today?");
+define("_SI_next_flyable_days","Next flyable days");
+define("_SI_useful_links","Useful links");
+define("_SI_suggest_changes","Suggest changes in site description");
+define("_SI_add_takeoff_info","Provide extended takeoff information");
+
 ?>

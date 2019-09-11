@@ -129,12 +129,12 @@ if ($weatherResponse==200){
         ?>
   <? if(!is_array($obj->dirMin)) { ?>
         <tr  bgcolor="#F2ECDB">
-          <td width=180 class="col3_in">Użyteczne kierunki wiatru</td>
+          <td width=180 class="col3_in"><? echo _SI_winddir ?></td>
           <td valign="top" ><? echo $obj->dirMin."&deg - ".$obj->dirMax."&deg;" ?>&nbsp;</td>
         </tr>
   <? } else { ?>
         <tr bgcolor="white">
-          <td width=180 class="col3_in">Użyteczne kierunki wiatru</td>
+          <td width=180 class="col3_in"><? echo _SI_winddir ?></td>
           <td valign="top" ><?
                 $numberOfRanges=sizeOf($obj->dirMin);
                 for($x=0; $x<$numberOfRanges; $x++){
@@ -146,24 +146,24 @@ if ($weatherResponse==200){
         </tr>
   <? } ?>
         <tr bgcolor="#F2ECDB">
-          <td width=180 class="col3_in">Użyteczna siła wiatru</td>
+          <td width=180 class="col3_in"><? echo _SI_windspd ?></td>
           <td valign="top" ><? echo (($obj->spdMin)/2)." - ".(($obj->spdMax)/2)."m/s" ?>&nbsp;</td>
         </tr>
         <tr  bgcolor="#F2ECDB">
-          <td width=180 class="col3_in">Prognozy pogody</td>
+          <td width=180 class="col3_in"><? echo _SI_forecasts  ?></td>
           <td valign="top" ><? echo "<a target='_blank' href='https://www.windguru.cz/".$obj->windguruID."'>Windguru</a> <a target='_blank' href='https://www.windy.com/".$obj->lat."/".$obj->lon."'>Windy</a>" ?>&nbsp;</td>
         </tr>
         <tr bgcolor="#F2ECDB">
-          <td width=180 class="col3_in">Czy dziś jest szansa na warun?</td>
+          <td width=180 class="col3_in"><? echo _SI_flyable_today ?></td>
           <td valign="top" ><? print_r(file_get_contents($CONF['weatherapi']."/isflyabletoday/".$intNameUrl)) ?>&nbsp;</td>
         </tr>
         <tr  bgcolor="#F2ECDB">
-          <td width=180 class="col3_in">Najbliższa szansa na warun</td>
+          <td width=180 class="col3_in"><? echo _SI_next_flyable_days ?></td>
           <td valign="top" ><? print_r(file_get_contents($CONF['weatherapi']."/flyabledays/".$intNameUrl)) ?>&nbsp;</td>
         </tr>
         <? if ($obj->links!="None"){ ?>
                 <tr bgcolor="#F2ECDB">
-                  <td  width=200 class="col3_in">Przydatne linki</td>
+                  <td  width=200 class="col3_in"><? echo _SI_useful_links ?></td>
                   <td colspan=2 valign="top" ><?
                         $links=$obj->links;
                         foreach($links as $key=>$value){
