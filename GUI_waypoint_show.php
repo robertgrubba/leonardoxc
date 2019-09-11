@@ -143,10 +143,10 @@ if($flightNum==0){
           <td class="col3_in"><div align="center"><strong><? echo "<a href='".getDownloadLink(array('type'=>'kml_wpt','wptID'=>$waypointIDview))."'>"._Navigate_with_Google_Earth."</a>"; ?></strong></div></td>
         </tr>
         <tr align="center" class="col3_in">
-          <td><strong><? echo "<a href='https://maps.google.com/maps?ll=". $wpInfo->lat.",".-$wpInfo->lon."&t=h&hl=en' target='_blank'>"._See_it_in_Google_Maps."</a>"; ?></strong></td>
+          <td><strong><? echo "<a rel='nofollow' href='https://maps.google.com/maps?ll=". $wpInfo->lat.",".-$wpInfo->lon."&t=h&hl=en' target='_blank'>"._See_it_in_Google_Maps."</a>"; ?></strong></td>
         </tr>
         <tr align="center" class="col3_in">
-          <td><strong><? echo "<a href='https://www.mapquest.com/maps/map.adp?searchtype=address&formtype=address&latlongtype=decimal&latitude=".$wpInfo->lat."&longitude=".-$wpInfo->lon."' target='_blank'>"._See_it_in_MapQuest."</a>"; ?></strong></td>
+          <td><strong><? echo "<a rel='nofollow' href='https://www.mapquest.com/maps/map.adp?searchtype=address&formtype=address&latlongtype=decimal&latitude=".$wpInfo->lat."&longitude=".-$wpInfo->lon."' target='_blank'>"._See_it_in_MapQuest."</a>"; ?></strong></td>
         </tr>
       </table>
 <? if ($wpLocation || $wpInfo->description || $wpInfo->link) { ?>
@@ -178,7 +178,7 @@ if ($weatherResponse==200){
 		<? if ($wpInfo->link) { ?>
         <tr bgcolor="white">
           <td width=180 class="col3_in"><? echo _SITE_LINK ?></td>
-          <td valign="top"><a href='<? echo formatURL($wpInfo->link) ?>' target="_blank"><? echo formatURL($wpInfo->link) ?></a>&nbsp;</td>
+          <td valign="top"><a rel="nofollow" href='<? echo formatURL($wpInfo->link) ?>' target="_blank"><? echo formatURL($wpInfo->link) ?></a>&nbsp;</td>
         </tr>
 		<? } ?>
 

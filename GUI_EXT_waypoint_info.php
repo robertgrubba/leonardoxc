@@ -77,10 +77,10 @@
           <td width="34%"><strong><? echo "<a href='".getDownloadLink(array('type'=>'kml_wpt','wptID'=>$waypointIDview))."'>"._Navigate_with_Google_Earth."</a>"; ?>
             </strong>
           <div align="center"></div></td>
-          <td width="33%"><strong><? echo "<a href='http://maps.google.com/maps?q=".$wpName."&ll=". $wpInfo->lat.",".-$wpInfo->lon."&spn=1.535440,2.885834&t=h&hl=en' target='_blank'>"._See_it_in_Google_Maps."</a>"; ?>
+          <td width="33%"><strong><? echo "<a rel='nofollow' href='http://maps.google.com/maps?q=".$wpName."&ll=". $wpInfo->lat.",".-$wpInfo->lon."&spn=1.535440,2.885834&t=h&hl=en' target='_blank'>"._See_it_in_Google_Maps."</a>"; ?>
             </strong>
           <div align="center"></div></td>
-          <td width="33%"><strong><? echo "<a href='http://www.mapquest.com/maps/map.adp?searchtype=address&formtype=address&latlongtype=decimal&latitude=".$wpInfo->lat."&longitude=".-$wpInfo->lon."' target='_blank'>"._See_it_in_MapQuest."</a>"; ?>
+          <td width="33%"><strong><? echo "<a rel='nofollow' href='http://www.mapquest.com/maps/map.adp?searchtype=address&formtype=address&latlongtype=decimal&latitude=".$wpInfo->lat."&longitude=".-$wpInfo->lon."' target='_blank'>"._See_it_in_MapQuest."</a>"; ?>
             </strong>
           <div align="center"></div></td>
         </tr>
@@ -113,7 +113,7 @@ if ($weatherResponse==200){
                 <? if ($wpInfo->link) { ?>
         <tr  bgcolor="#F2ECDB">
           <td width=180 class="col3_in"><? echo _SITE_LINK ?></td>
-          <td valign="top"><a href='<? echo formatURL($wpInfo->link) ?>' target="_blank"><? echo formatURL($wpInfo->link) ?></a>&nbsp;</td>
+          <td valign="top"><a rel="nofollow" href='<? echo formatURL($wpInfo->link) ?>' target="_blank"><? echo formatURL($wpInfo->link) ?></a>&nbsp;</td>
         </tr>
                 <? } ?>
 
