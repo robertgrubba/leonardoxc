@@ -59,6 +59,10 @@ class dates {
 			
 			if 	($seasonValid) {
 				$where_clause=" AND DATE >='$thisSeasonStart' AND DATE <= '$thisSeasonEnd' "; 
+				//print_r($flightsTable);
+				if($season>=2019){
+					$where_clause.=" AND STR_TO_DATE(dateAdded, '%Y-%m-%d') <= DATE_ADD(STR_TO_DATE(\"$thisSeasonEnd\",'%Y-%m-%d'), INTERVAL 2 WEEK) "	;
+				}
 				$legend.=" :: ".SEASON." ".$season;
 			}	
 			
