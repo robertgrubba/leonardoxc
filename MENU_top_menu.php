@@ -433,7 +433,7 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
 
 <li class="long"><a href="#"><?=_MENU_XCLEAGUE." ".$arrDownImg?></a>
 	<ul class="long">
-		<li><a href="<?=getLeonardoLink(array('op'=>'competition') )?>"><?=_MENU_XCLEAGUE ?></a></li>
+		<li><a href="<?=getLeonardoLink(array('op'=>'competition','season'=>$thisSeason) )?>"><?=_MENU_XCLEAGUE ?></a></li>
 		<? 
 			if ( count($ranksList) ) {
 				echo "<li class='li_h1 long_li_h1'>.:: "._National_Rankings." ::.</li>";
