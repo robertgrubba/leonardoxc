@@ -341,7 +341,7 @@ setVarFromRequest("nacid", 0, 1);
 // The filter for displaying only flights with photos
 setVarFromRequest("filter01", 0, 1);
 
-
+$board_config['meta_refresh']=600;
 $serverID=0;
 $serverIDview=0;
 if ( count($pilotPartsArray=split('_',$pilotIDview)) > 1 ) {
@@ -452,7 +452,7 @@ if ($op=="pilot_profile_stats"){
          $board_config['meta_author']='https://leonardo.pgxc.pl';
 
          $board_config['meta_ogTitle'] =  $page_title;
-	 $board_config['meta_ogDescription']= $realName." &#8759; &#8721; ".$og_userTotalLaunches." (".$og_userTotalAirtime.") &#8759; &#9812 ".$og_userRecord.' - '.$og_userRecordTakeoff;
+	 $board_config['meta_ogDescription']= $realName." &#8759; &#8721; ".$og_userTotalLaunches." (".$og_userTotalAirtime.") &#8759; &#9812; ".$og_userRecord.' - '.$og_userRecordTakeoff;
          $board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'pilot_profile_stats','pilotIDview'=>$serverIDview.'_'.$pilotIDview)).'&pilotIDview=0_'.$pilotID;
 //       $board_config['meta_ogUpdatedTime'] = $og_flightDate;
 //       $board_config['meta_ogLatitude'] = $flight->firstLat;
@@ -552,7 +552,7 @@ if ($op=="show_waypoint"){
 	}
 
 	$board_config['meta_ogTitle'] = $page_title;
-	$board_config['meta_ogDescription']=  "&#9872; ".$og_takeoffName." &#8759; &#8721; ".$og_flightNum." (".$og_siteTotalAirtime.") &#8759; &#9812 ".$og_siteChampion." - ".$og_siteRecord;
+	$board_config['meta_ogDescription']=  "&#9872; ".$og_takeoffName." &#8759; &#8721; ".$og_flightNum." (".$og_siteTotalAirtime.") &#8759; &#9812; ".$og_siteChampion." - ".$og_siteRecord;
  	$board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$waypointIDview));
  	$board_config['meta_ogUpdatedTime'] = $wpInfo->modifyDate;
  	$board_config['meta_ogLatitude'] = $wpInfo->lat (-1*$wpInfo->lon);
@@ -763,7 +763,7 @@ if ($op=="index_full"){
     $board_config['meta_author']='https://leonardo.pgxc.pl';
 
     $board_config['meta_ogTitle'] =  $page_title;
-    $board_config['meta_ogDescription']= "Małe podsumowanie: &#8759; &#8721; ".$og_userTotalLaunches." zgłoszonych lotów &#8759; &#10710; (".$og_userTotalAirtime.") (h:m) &#8759; &#9812 ".$userRecordName.' - '.$og_userRecordTakeoff;
+    $board_config['meta_ogDescription']= "Małe podsumowanie: &#8759; &#8721; ".$og_userTotalLaunches." zgłoszonych lotów &#8759; &#10710; (".$og_userTotalAirtime.") (h:m) &#8759; &#9812; ".$userRecordName.' - '.$og_userRecordTakeoff;
     $board_config['meta_ogUrl'] = 'https://leonardo.pgxc.pl/';
     $board_config['meta_ogType'] = 'sport';
     $board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';

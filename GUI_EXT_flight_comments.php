@@ -59,8 +59,9 @@ if (! $flightID) {
 		 	
   ?>
 <?php  if (!$print) { ?>
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-	<html>
+<!DOCTYPE html>
+<!--  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> -->
+	<html lang="PL">
 	<head>
   <meta http-equiv="Content-Type" content="text/html; charset=<?=$CONF_ENCODING?>">
   
@@ -305,8 +306,8 @@ img.icons1 {   background: url(<?=$moduleRelPath?>/img/sprite_icons1.png) no-rep
 
 -->
 </style>
-<link rel="stylesheet" type="text/css" href="<?=moduleRelPath()?>/templates/<?=$PREFS->themeName?>/sprites.css">
-<link rel="stylesheet" type="text/css" href="<?=moduleRelPath()?>/js/bookmark/jquery.bookmark.css">
+<link rel="stylesheet" type="text/css" href="<?=moduleRelPath()?>/templates/<?=$PREFS->themeName?>/sprites.css"/>
+<link rel="stylesheet" type="text/css" href="<?=moduleRelPath()?>/js/bookmark/jquery.bookmark.css"/>
 
 <script type="text/javascript" src="<?=moduleRelPath()?>/js/jquery.js"></script>
 <script type="text/javascript" src="<?=moduleRelPath()?>/js/ckeditor/ckeditor.js"></script>
