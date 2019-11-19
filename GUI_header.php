@@ -109,18 +109,18 @@ if (!is_array($board_config) ) {
 
 if ($op=="show_flight" || $op=="show_waypoint" || $op=="list_takeoffs" || $op=="pilot_profile_stats" || $op=="index_full" || $op=="area_show" || $op=="list_forecasts"){
 	$og_metadata='
-	<meta property="og:site_name" content="'.$board_config['meta_ogSiteName'] .'">
-	<meta property="og:type" content="'.$board_config['meta_ogType'].'">
-	<meta property="og:url" content="'.$board_config['meta_ogUrl'].'">
-	<meta property="og:title" content="'.$board_config['meta_ogTitle'].'">
-	<meta property="og:description" content="'.$board_config['meta_ogDescription'].'">
-	<meta property="og:updated_time" content="'.$board_config['meta_ogUpdatedTime'].'">
-	<meta property="og:image:type" content="'.$board_config['meta_ogImageType'].'">
-	<meta property="og:image" content="'.$board_config['meta_ogImage'].'">
-	<meta property="og:latitude" content="'.$board_config['meta_ogLatitude'].'">
-	<meta property="og:longitude" content="'.$board_config['meta_ogLongtitude'].'">
-	<meta property="article:published_time" content="'.$board_config['meta_ogPublished'].'">
-	<meta property="article:modified_time" content="'.$board_config['meta_ogModified'].'">
+	<meta property="og:site_name" content="'.$board_config['meta_ogSiteName'] .'"/>
+	<meta property="og:type" content="'.$board_config['meta_ogType'].'"/>
+	<meta property="og:url" content="'.$board_config['meta_ogUrl'].'"/>
+	<meta property="og:title" content="'.$board_config['meta_ogTitle'].'"/>
+	<meta property="og:description" content="'.$board_config['meta_ogDescription'].'"/>
+	<meta property="og:updated_time" content="'.$board_config['meta_ogUpdatedTime'].'"/>
+	<meta property="og:image:type" content="'.$board_config['meta_ogImageType'].'"/>
+	<meta property="og:image" content="'.$board_config['meta_ogImage'].'"/>
+	<meta property="og:latitude" content="'.$board_config['meta_ogLatitude'].'"/>
+	<meta property="og:longitude" content="'.$board_config['meta_ogLongtitude'].'"/>
+	<meta property="article:published_time" content="'.$board_config['meta_ogPublished'].'"/>
+	<meta property="article:modified_time" content="'.$board_config['meta_ogModified'].'"/>
 	';
 }else{
 	$og_metadata='';
@@ -134,27 +134,27 @@ $Ltemplate->assign_vars(array(
 	'SITENAME' => $board_config['sitename'],
 	'SITE_DESCRIPTION' => $board_config['site_desc'],
 'META_HTTP_EQUIV_TAGS' => '
-<meta http-equiv="refresh" content="' . $board_config['meta_redirect_url_time'] . '; URL=' . $board_config['meta_redirect_url_adress'] . '">
-<meta http-equiv="refresh" content="' . $board_config['meta_refresh'] .'">
-<meta http-equiv="pragma" content="' . $board_config['meta_pragma'] .'">
-<meta http-equiv="content-language" content="' . $board_config['meta_language'] .'">',
+<meta http-equiv="refresh" content="' . $board_config['meta_redirect_url_time'] . '; URL=' . $board_config['meta_redirect_url_adress'] . '"/>
+<meta http-equiv="refresh" content="' . $board_config['meta_refresh'] .'"/>
+<meta http-equiv="pragma" content="' . $board_config['meta_pragma'] .'"/>
+<meta http-equiv="content-language" content="' . $board_config['meta_language'] .'"/>',
 'META_TAGS' => '
-<meta name="keywords" content="' . $board_config['meta_keywords'] .'">
-<meta name="description" content="' . $board_config['meta_description'] .'">
-<meta name="author" content="' . $board_config['meta_author'] .'">
-<meta name="identifier-url" content="' . $board_config['meta_identifier_url'] .'">
-<meta name="reply-to" content="' . $board_config['meta_reply_to'] .'">
-<meta name="revisit-after" content="' . $board_config['meta_revisit_after'] .'">
-<meta name="category" content="' . $board_config['meta_category'] .'">
-<meta name="copyright" content="' . $board_config['meta_copyright'] .'">
-<meta name="generator" content="' . $board_config['meta_generator'] .'">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="' . $board_config['meta_robots'] .'">
-<meta name="distribution" content="' . $board_config['meta_distribution'] .'">
-<meta name="date-creation-yyyymmdd" content="' . $board_config['meta_date_creation'] . '">
-<meta name="date-revision-yyyymmdd" content="' . $board_config['meta_date_revision'] . '">
-<meta name="geo.position" content="'. $board_config['meta_geo']. '">
-<meta name="ICBM" content="'. $board_config['meta_geo']. '">
+<meta name="keywords" content="' . $board_config['meta_keywords'] .'"/>
+<meta name="description" content="' . $board_config['meta_description'] .'"/>
+<meta name="author" content="' . $board_config['meta_author'] .'"/>
+<meta name="identifier-url" content="' . $board_config['meta_identifier_url'] .'"/>
+<meta name="reply-to" content="' . $board_config['meta_reply_to'] .'"/>
+<meta name="revisit-after" content="' . $board_config['meta_revisit_after'] .'"/>
+<meta name="category" content="' . $board_config['meta_category'] .'"/>
+<meta name="copyright" content="' . $board_config['meta_copyright'] .'"/>
+<meta name="generator" content="' . $board_config['meta_generator'] .'"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="' . $board_config['meta_robots'] .'"/>
+<meta name="distribution" content="' . $board_config['meta_distribution'] .'"/>
+<meta name="date-creation-yyyymmdd" content="' . $board_config['meta_date_creation'] . '"/>
+<meta name="date-revision-yyyymmdd" content="' . $board_config['meta_date_revision'] . '"/>
+<meta name="geo.position" content="'. $board_config['meta_geo']. '"/>
+<meta name="ICBM" content="'. $board_config['meta_geo']. '"/>
 
 '.$og_metadata.$metaFlight,
 
