@@ -649,7 +649,7 @@ if (!file_exists($dst.".txt")){
 
         $result=file_put_contents($dst, file_get_contents($src));
         if ($result !== FALSE && $size>0){
-            file_put_contents($dst.".txt","$size"." $src ".$flight->getJsonRelPath());
+            file_put_contents($dst.".txt","1");
         }
 }
 
