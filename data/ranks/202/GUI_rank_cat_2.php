@@ -30,8 +30,8 @@
 //  error_log("YEAR: "+$y);
 
 	
-#	$where_clause.=" AND category=2 AND takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) AND DATE<'".$nextY."'-01-01' AND DATE >'".$y."'-01-01' ";
-	$where_clause.=" AND category in (1,2,3)  AND takeoffID in ('17005', '17009', '17006', '12477', '12478', '17010', '17011', '17015') AND DATE<'".$nextY."'-01-01' AND DATE >'".$y."'-01-01' ";
+//	$where_clause.=" AND category=2 AND takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) AND DATE<'".$nextY."'-01-01' AND DATE >'".$y."'-01-01' ";
+	$where_clause.=" AND category in (1,2,3)  AND takeoffID in ('17005', '17009', '17006', '12477', '12478', '17010', '17011', '17015') AND DATE<'".$nextY."'-01-01' AND DATE >'".$y."'-01-01' AND takeoffID>12476 AND takeoffID<17016 ";
 	require_once dirname(__FILE__)."/common_pre.php";
 
 	$sub_query = "SELECT $flightsTable.ID, userID, takeoffID , userServerID,
@@ -43,13 +43,42 @@
 		." $where_clause ";
 
 
-#	$query = 'select ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE from '.$flightsTable.' where FLIGHT_KM in (select max(FLIGHT_KM) as userRecord from (SELECT '.$flightsTable.'.ID, userID, takeoffID , userServerID, gliderBrandID, '.$flightsTable.'.glider as glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE FROM '.$flightsTable.','.$pilotsTable.' WHERE (userID!=0 AND private=0) AND takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) AND '.$flightsTable.'.userID='.$pilotsTable.'.pilotID  AND (cat=1) AND validated=1 AND DATE<\''.$nextY.'-01-01\' AND DATE >\''.$y.'-01-01\') z group by userID, takeoffID) and takeoffID!=9716 order by takeoffID ';
 
-	$query = 'select ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE from '.$flightsTable.' where FLIGHT_KM in (select max(FLIGHT_KM) as userRecord from (SELECT '.$flightsTable.'.ID, userID, takeoffID , userServerID, gliderBrandID, '.$flightsTable.'.glider as glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE FROM '.$flightsTable.','.$pilotsTable.' WHERE (userID!=0 AND private=0) AND takeoffID in ("17005", "17009", "17006", "12477", "12478", "17010", "17011", "17015") AND '.$flightsTable.'.userID='.$pilotsTable.'.pilotID  AND (cat=1) AND validated=1 AND DATE<\''.$nextY.'-01-01\' AND DATE >\''.$y.'-01-01\') z group by userID, takeoffID) and takeoffID not in ("9716","15") order by takeoffID ';
 
-//var_dump($query);
 
-//print_r($query);
+// do tabeli trafiaja loty wgrane nie pozniej niz tydzien po zakonczeniu sezonu
+if($season>=2019){
+        $flight_deadline ="AND STR_TO_DATE(dateAdded, '%Y-%m-%d') <= DATE_ADD(STR_TO_DATE('".$nextY."-01-01','%Y-%m-%d'), INTERVAL 1 WEEK) ";
+}
+
+// do tabeli trafiaja loty wgrane nie pozniej niz tydzien po wykonaniu lotu
+if($season>2019){
+        $flight_deadline.="AND STR_TO_DATE(dateAdded, '%Y-%m-%d') <= DATE_ADD(STR_TO_DATE(DATE,'%Y-%m-%d'), INTERVAL 1 WEEK) ";
+}
+
+//print_r($flight_deadline);
+	$query = 'SELECT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM) as FLIGHT_KM, BEST_FLIGHT_TYPE '
+                 .'FROM leonardo_flights '
+		 .'WHERE 1=1 '
+		 .'AND FLIGHT_KM in ('
+			 .'SELECT MAX(FLIGHT_KM) '
+			 .'FROM leonardo_flights '
+			 .'WHERE 1=1 '
+				 .'AND validated=1 '
+				 .'AND cat=1 '
+				 .'AND private=0 '
+				 .'AND DATE<\''.$nextY.'-01-01\' '
+				 .'AND DATE >\''.$y.'-01-01\' '
+				 .'AND  takeoffID IN (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) '
+				 .$flight_deadline.' '
+			 .'GROUP BY userID,takeoffID '
+			.') '
+                 .'AND takeoffID>12476 '
+                 .'AND takeoffID<17016 '
+		 .'AND takeoffID NOT IN (9093,9716,9133,13478) '
+                 .'GROUP BY userID,takeoffID '
+                 .'ORDER BY takeoffID;';
+
 
 require_once dirname(__FILE__)."/common.php";
 
