@@ -557,7 +557,7 @@ if ($op=="show_waypoint"){
         $takeoffAreas='';
         if($res > 0){
                 while ($row = mysql_fetch_assoc($res)){
-			$takeoffAreas.=" | <a href='https://leonardo.pgxc.pl/rejon/".$row['areaID']."'>".$row['name']."</a>";
+			$takeoffAreas.=" | <a href='".getLeonardoLink(array('op'=>'area_show','areaID'=>$row['areaID']))."'>".$row['name']."</a>";
         	}
 	}
 
