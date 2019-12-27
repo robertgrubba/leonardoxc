@@ -52,7 +52,7 @@
 
  $imgStr="<img src='$moduleRelPath/img/icon_pin.png' align='absmiddle' align='Ikonka pinezki'> ";
 
- openMain("<div style='width:90%;font-size:12px;clear:none;display:block;float:left'>$imgStr$titleString</div><div align='right' style='width:10%; text-align:right;clear:none;display:block;float:right' bgcolor='#eeeeee'>$opString</div>",0,'');
+ openMain("<div style='width:90%;font-size:12px;clear:none;display:block;float:left'>$imgStr$titleString$takeoffAreas</div><div align='right' style='width:10%; text-align:right;clear:none;display:block;float:right' bgcolor='#eeeeee'>$opString</div>",0,'');
 
 
 ?> 

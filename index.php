@@ -551,6 +551,17 @@ if ($op=="show_waypoint"){
 		}
 	}
 
+//get information about takeoff areas for the takeoff
+	$query="SELECT name, areaID FROM leonardo_areas AS areas INNER JOIN leonardo_areas_takeoffs AS takeoffs ON areas.id=takeoffs.areaID WHERE takeoffID=".$waypointIDview."";
+        $res= $db->sql_query($query);
+        $takeoffAreas='';
+        if($res > 0){
+                while ($row = mysql_fetch_assoc($res)){
+			$takeoffAreas.=" | <a href='https://leonardo.pgxc.pl/rejon/".$row['areaID']."'>".$row['name']."</a>";
+        	}
+	}
+
+
 	$board_config['meta_ogTitle'] = $page_title;
 	$board_config['meta_ogDescription']=  "&#9872; ".$og_takeoffName." &#8759; &#8721; ".$og_flightNum." (".$og_siteTotalAirtime.") &#8759; &#9812; ".$og_siteChampion." - ".$og_siteRecord;
  	$board_config['meta_ogUrl'] = getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$waypointIDview));
