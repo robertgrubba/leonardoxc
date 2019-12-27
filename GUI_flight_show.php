@@ -743,8 +743,8 @@ $videosHtml="<div class='video-container'>";
   if(preg_match("#([\/|\?|&]vi?[\/|=]|youtu\.be\/|embed\/)([a-zA-Z0-9_-]+)#", $flight->linkURL, $matches)){
 	$videosHtml.="<iframe width='560' height='315' src='https://www.youtube.com/embed/".end($matches)."?controls=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
   }
-  if(preg_match("vimeo\.com\/([0-9]{1,10})",$flight->linkURL, $matches)){
-	$videosHtml.="<iframe src='https://player.vimeo.com/video/".$end($matches)." width='640' height='360' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
+  if(preg_match("#vimeo\.com(/video)?/(\d+)#",$flight->linkURL, $matchesv)){
+	$videosHtml.="<iframe src='https://player.vimeo.com/video/".end($matchesv)."' width='640' height='360' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
   }
   if(preg_match("facebook\.com",$flight->linkURL)){
     if (preg_match("~(?:t\.\d+/)?(\d+)~i", $flight->linkURL, $matches)){
