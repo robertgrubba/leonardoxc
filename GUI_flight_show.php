@@ -731,11 +731,34 @@ if ($googleMap) {
 	$mapImg0.='<li id="tabgmapli"><a href="#tabgmap">Google Map</a></li>';
 }	
 
-$mapImg0.='<li id="tabcommentsli"><a href="#tabcomments">'._COMMENTS.' ('.$flight->commentsNum.')</a></li>';
 	
 if ($imagesHtml) {
 	$mapImg0.='<li id="tabphotosli"><a href="#tabphotos">'._PHOTOS.'</a></li>';
 }	
+
+//videos section
+
+if ($flight->linkURL){
+$videosHtml="<div class='video-container'>";
+  if(preg_match("#([\/|\?|&]vi?[\/|=]|youtu\.be\/|embed\/)([a-zA-Z0-9_-]+)#", $flight->linkURL, $matches)){
+	$videosHtml.="<iframe width='560' height='315' src='https://www.youtube.com/embed/".end($matches)."?controls=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
+  }
+  if(preg_match("vimeo\.com\/([0-9]{1,10})",$flight->linkURL, $matches)){
+	$videosHtml.="<iframe src='https://player.vimeo.com/video/".$end($matches)." width='640' height='360' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
+  }
+  if(preg_match("facebook\.com",$flight->linkURL)){
+    if (preg_match("~(?:t\.\d+/)?(\d+)~i", $flight->linkURL, $matches)){
+//       $videosHtml.="<div id='fb-root'></div><script async defer crossorigin='anonymous' src='https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v5.0'></script>";
+//       $videosHtml.="<div class='fb-video' data-href='https://www.facebook.com/user/videos/videoid/' data-width='500' data-show-text='false'><blockquote cite='https://developers.facebook.com/user/videos/videoid/' class='fb-xfbml-parse-ignore'><a href='https://developers.facebook.com/user/videos/videoID/'></a></blockquote></div>";
+    }
+  }
+$videosHtml.="</div>";
+}
+//$videosHtml=$flight->linkURL;
+if ($videosHtml) {
+	$mapImg0.='<li id="tabvideosli"><a href="#tabvideos">'._VIDEOS.'</a></li>';
+}	
+$mapImg0.='<li id="tabcommentsli"><a href="#tabcomments">'._COMMENTS.' ('.$flight->commentsNum.')</a></li>';
 $mapImg0.='</ul>';
 
 
@@ -756,6 +779,9 @@ $mapImg0.='</ul>';
 	}		
 	if ($imagesHtml) {
 		$mapImg.="<div id='tabphotos' class='tab_content'>$imagesHtml</div>";
+	}		  
+	if ($videosHtml) {
+		$mapImg.="<div id='tabvideos' class='tab_content'>$videosHtml</div>";
 	}		  
 
 	// always include the comments tab
