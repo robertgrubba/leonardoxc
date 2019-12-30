@@ -32,11 +32,8 @@
 		." $where_clause ";
 
 
-	$query = 'select ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE from '.$flightsTable.' where FLIGHT_KM in (select max(FLIGHT_KM) as userRecord from (SELECT '.$flightsTable.'.ID, userID, takeoffID , userServerID, gliderBrandID, '.$flightsTable.'.glider as glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE FROM '.$flightsTable.','.$pilotsTable.' WHERE (userID!=0 AND private=0) AND takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) AND '.$flightsTable.'.userID='.$pilotsTable.'.pilotID  AND (cat=1) AND validated=1) z group by userID, takeoffID) and takeoffID not in (9716,9193) group by userID,takeoffID order by takeoffID ';
 
-$query = 'select ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM) as FLIGHT_KM, BEST_FLIGHT_TYPE from '.$flightsTable.' where validated=1 and cat=1 and private=0 and takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) group by userID,takeoffID order by takeoffID';
 
-$query = 'select ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM)as FLIGHT_KM, BEST_FLIGHT_TYPE from leonardo_flights where FLIGHT_KM in (select MAX(FLIGHT_KM) as FLIGHT_KM from leonardo_flights where validated=1 and cat=1 and private=0 and  takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) AND takeoffID>12476 AND takeoffID<17016  group by userID,takeoffID) and takeoffID not in (9133,13478,9093,9193)  group by userID,takeoffID order by takeoffID;';
 
 
 	$query = 'SELECT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM) as FLIGHT_KM, BEST_FLIGHT_TYPE '
@@ -45,17 +42,16 @@ $query = 'select ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat
 			 .'SELECT MAX(FLIGHT_KM) '
 			 .'FROM leonardo_flights '
 			 .'WHERE 1=1 '
-				 .'AND validated=1 '
 				 .'AND cat=1 '
+				 .'AND validated=1 '
+				 .'AND startType=1 '
 				 .'AND private=0 '
-				 .'AND  takeoffID IN (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) '
+				 .'AND  takeoffID IN (SELECT ID FROM leonardo_waypoints where location="Kujawsko-Pomorskie") '
 			 .'GROUP BY userID,takeoffID '
 			.') '
-                 .'AND takeoffID>12476 '
-                 .'AND takeoffID<17016 '
-		 .'AND takeoffID NOT IN (9093,9716,9133,13478) '
+                 .'AND takeoffID>17003 '
                  .'GROUP BY userID, takeoffID '
-                 .'ORDER BY FLIGHT_KM ';
+                 .'ORDER BY FLIGHT_KM DESC';
 
 
 //var_dump($query);

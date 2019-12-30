@@ -68,7 +68,7 @@ while ($row = $db->sql_fetchrow($res)) {
 
 
 //	$countHowMany= $CONF_countHowManyFlightsInComp;
-	$countHowMany= 8; // german rule
+	$countHowMany= 6; // german rule
 
 	foreach ($pilots as $pilotID=>$pilotArray) {
 		$flightsArray=&$pilots[$pilotID]['flights'];
