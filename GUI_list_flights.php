@@ -215,6 +215,7 @@ if (0) {
 			$flightsTable.glider as flight_glider, 
 			$flightsTable.takeoffID as flight_takeoffID , 
 			$flightsTable.ID as ID ,
+                        $flightsTable.linkURL as linkURL,
 			$scoreSpeedSql AS SCORE_SPEED
 		FROM $flightsTable $extra_table_str $extra_table_str2
 		WHERE (1=1) $where_clause $where_clause2
@@ -433,8 +434,9 @@ TR .newDate {
 <script type="text/javascript">
 
 
-//$(document).ready(function(){
-//});
+$(document).ready(function(){
+if (document.getElementById("movieOnListing")) document.getElementById('linkscolumn').style.width = "70px";
+});
 	
 
 var BT_base_urls=[];
@@ -781,7 +783,7 @@ function removeClubFlight(clubID,flightID) {
 		}
 
 		$isExternalFlight=$row['externalFlightType'];
-		echo "<TD $airspaceProblem align=left valign='top'>";
+		echo "<TD $airspaceProblem align=left valign='top' id='linkscolumn'>";
 		echo "<div class='smallInfo'>";
 
 	    if ( $isExternalFlight == 0 || 
@@ -835,7 +837,14 @@ function removeClubFlight(clubID,flightID) {
 		if ($hasComments ) 
 				echo "<a class='betterTip' id='tpa2_$flightID' href='javascript:nop();'>".
 						leoHtml::img($commentsImgName,0,0,'',$row["commentsNum"].' '._COMMENTS,'icons1 commentDiv','',1)."</a>";
-		
+
+// display tv icon in case of videolink		
+		if (strlen($row['linkURL'])>5){
+			if(preg_match("(youtu|vimeo|facebook)",$row['linkURL'])){
+			  echo "<a id='movieOnListing' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$row["ID"]) )."'>".
+                                "<span style='float: right; height:16px;margin-top:3px;'>&#128250</span></a>";
+			}
+		}
 
 		if ($isExternalFlight && ! $CONF['servers']['list'][$row['serverID']]['treat_flights_as_local'] ) {
  			 $extServerStr=$CONF['servers']['list'][$row['serverID']]['name'];

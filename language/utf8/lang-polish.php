@@ -76,7 +76,7 @@ define("_MIN_ALTITUDE","Wysokość min (n.p.m.)");
 define("_ALTITUDE_GAIN","Przewyższenie");
 define("_FLIGHT_FILE","Plik lotu");
 define("_COMMENTS","Komentarz");
-define("_RELEVANT_PAGE","Powiązane strony");
+define("_RELEVANT_PAGE","Powiązane strony, filmy itp.");
 define("_GLIDER","Skrzydło");
 define("_PHOTOS","Zdjęcia");
 define("_MORE_INFO","Dodatkowe informacje");
@@ -984,4 +984,5 @@ define("_SI_useful_links","Przydatne linki");
 define("_SI_suggest_changes","Zaproponuj zmianę danych o startowisku");
 define("_SI_add_takeoff_info","Dodaj informacje o startowisku");
 
+define("_VIDEOS","Film");
 ?>

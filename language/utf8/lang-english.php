@@ -1059,4 +1059,5 @@ define("_SI_useful_links","Useful links");
 define("_SI_suggest_changes","Suggest changes in site description");
 define("_SI_add_takeoff_info","Provide extended takeoff information");
 
+define("_VIDEOS","Video");
 ?>
