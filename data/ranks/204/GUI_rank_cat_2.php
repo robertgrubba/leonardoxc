@@ -20,7 +20,7 @@
 	$dontShowDatesSelection=1;
 	$dontShowSecondMenu=1;
 	
-	$where_clause.=" AND category=2 AND takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) AND takeoffID>12476 AND takeoffID<17016 ";
+	$where_clause.=" AND category=2 AND takeoffID in (SELECT ID FROM leonardo_waypoints where location='Kujawsko-Pomorskie') ";
 	require_once dirname(__FILE__)."/common_pre.php";
 
 	$sub_query = "SELECT $flightsTable.ID, userID, takeoffID , userServerID,
@@ -38,6 +38,7 @@
 
 	$query = 'SELECT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM) as FLIGHT_KM, BEST_FLIGHT_TYPE '
                  .'FROM leonardo_flights WHERE 1=1 '
+		 .'AND takeoffID IN (SELECT ID FROM leonardo_waypoints where location="Kujawsko-Pomorskie") '
 		 .'AND FLIGHT_KM in ('
 			 .'SELECT MAX(FLIGHT_KM) '
 			 .'FROM leonardo_flights '
@@ -46,7 +47,8 @@
 				 .'AND validated=1 '
 				 .'AND startType=1 '
 				 .'AND private=0 '
-				 .'AND  takeoffID IN (SELECT ID FROM leonardo_waypoints where location="Kujawsko-Pomorskie") '
+				 .'AND takeoffID!=17030 '
+				 .'AND takeoffID IN (SELECT ID FROM leonardo_waypoints where location="Kujawsko-Pomorskie") '
 			 .'GROUP BY userID,takeoffID '
 			.') '
                  .'AND takeoffID>17003 '
