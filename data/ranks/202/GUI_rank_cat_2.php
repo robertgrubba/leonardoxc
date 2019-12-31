@@ -58,8 +58,10 @@ if($season>2019){
 
 //print_r($flight_deadline);
 	$query = 'SELECT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM) as FLIGHT_KM, BEST_FLIGHT_TYPE '
-                 .'FROM leonardo_flights '
-		 .'WHERE 1=1 '
+                 .'FROM leonardo_flights WHERE 1=1 '
+		 .'AND  takeoffID IN (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) '
+		 .'AND DATE<\''.$nextY.'-01-01\' '
+		 .'AND DATE >\''.$y.'-01-01\' '
 		 .'AND FLIGHT_KM in ('
 			 .'SELECT MAX(FLIGHT_KM) '
 			 .'FROM leonardo_flights '
