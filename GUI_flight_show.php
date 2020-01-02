@@ -742,9 +742,11 @@ if (preg_match("(vimeo|youtu|facebook)",$flight->linkURL)){
 $videosHtml="<div class='video-container'>";
   if(preg_match("#([\/|\?|&]vi?[\/|=]|youtu\.be\/|embed\/)([a-zA-Z0-9_-]+)#", $flight->linkURL, $matches)){
 	$videosHtml.="<iframe width='560' height='315' src='https://www.youtube.com/embed/".end($matches)."?controls=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>";
+        $videosHtml.="</div>";
   }
   if(preg_match("#vimeo\.com(/video)?/(\d+)#",$flight->linkURL, $matchesv)){
 	$videosHtml.="<iframe src='https://player.vimeo.com/video/".end($matchesv)."' width='640' height='360' frameborder='0' allow='autoplay; fullscreen' allowfullscreen></iframe>";
+        $videosHtml.="</div>";
   }
   if(preg_match("#facebook\.com#",$flight->linkURL)){
    // if (preg_match("~(?:t\.\d+/)?(\d+)~i", $flight->linkURL, $matches)){
@@ -753,9 +755,11 @@ $videosHtml="<div class='video-container'>";
 	$fb_vid  = $matches[2];
        $videosHtml.="<div id='fb-root'></div><script async defer crossorigin='anonymous' src='https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v5.0'></script>";
        $videosHtml.="<div class='fb-video' data-href='https://www.facebook.com/".$fb_user."/videos/".$fb_vid."/' data-show-text='false'><blockquote cite='https://developers.facebook.com/".$fb_user."/videos/".$fb_vid."/' class='fb-xfbml-parse-ignore'><a href='https://developers.facebook.com/".$fb_user."/videos/".$fb_vid."/'></a></blockquote></div>";
+       $videosHtml.="</div>";
+    }else{
+	$videosHtml="";
     }
   }
-$videosHtml.="</div>";
 }
 //$videosHtml=$flight->linkURL;
 if ($videosHtml) {

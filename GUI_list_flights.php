@@ -841,8 +841,14 @@ function removeClubFlight(clubID,flightID) {
 // display tv icon in case of videolink		
 		if (strlen($row['linkURL'])>5){
 			if(preg_match("(youtu|vimeo|facebook)",$row['linkURL'])){
-			  echo "<a id='movieOnListing' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$row["ID"]) )."'>".
-                                "<span style='float: right; height:16px;margin-top:3px;'>&#128250</span></a>";
+				if(preg_match("(youtu|vimeo)",$row['linkURL'])){
+				  echo "<a id='movieOnListing' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$row["ID"]) )."'>".
+                                  "<span style='float: right; height:16px;margin-top:3px;'>&#128250</span></a>";
+				}elseif (preg_match("#\/([a-z.A-Z0-9_-]+)\/videos\/(\d+)\/#", $flight->linkURL, $matches)){
+				  echo "<a id='movieOnListing' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$row["ID"]) )."'>".
+                                  "<span style='float: right; height:16px;margin-top:3px;'>&#128250</span></a>";
+		
+				}
 			}
 		}
 
