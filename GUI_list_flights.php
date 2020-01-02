@@ -844,7 +844,7 @@ function removeClubFlight(clubID,flightID) {
 				if(preg_match("(youtu|vimeo)",$row['linkURL'])){
 				  echo "<a id='movieOnListing' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$row["ID"]) )."'>".
                                   "<span style='float: right; height:16px;margin-top:3px;'>&#128250</span></a>";
-				}elseif (preg_match("#\/([a-z.A-Z0-9_-]+)\/videos\/(\d+)\/#", $flight->linkURL, $matches)){
+				}elseif (preg_match("#\/([a-z.A-Z0-9_-]+)\/videos\/(\d+)\/#", $row['linkURL'])){
 				  echo "<a id='movieOnListing' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$row["ID"]) )."'>".
                                   "<span style='float: right; height:16px;margin-top:3px;'>&#128250</span></a>";
 		
