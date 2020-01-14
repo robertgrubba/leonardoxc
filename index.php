@@ -341,7 +341,7 @@ setVarFromRequest("nacid", 0, 1);
 // The filter for displaying only flights with photos
 setVarFromRequest("filter01", 0, 1);
 
-$board_config['meta_refresh']=600;
+$board_config['meta_refresh']=3600;
 $serverID=0;
 $serverIDview=0;
 if ( count($pilotPartsArray=split('_',$pilotIDview)) > 1 ) {
