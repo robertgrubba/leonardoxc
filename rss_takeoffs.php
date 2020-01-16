@@ -16,9 +16,14 @@
 		$flightID = $_GET['flightID']+0;
 		if ($flightID) $flightWhereClause=" AND $commentsTable.flightID=$flightID ";
 		else $flightWhereClause='';
+
+		$countryID = makeSane($_GET['country']);
+                if ($countryID) $countryWhereClause=" AND $waypointsTable.countryCode='$countryID' ";
+                else $countryWhereClause='';
 		
 		$query="SELECT * FROM $waypointsTable
 				WHERE LENGTH(description)>100
+				$countryWhereClause
 				ORDER BY $waypointsTable.modifyDate DESC LIMIT $count";
 		$res= $db->sql_query($query);
 		if ( $_GET['debug'] ) exit($query);

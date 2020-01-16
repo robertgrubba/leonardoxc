@@ -28,14 +28,16 @@ function updateRssURL() {
 	var	a3="&c=".concat($("#item_num_select").val());
 
 	var base='<?=$rss_url_base?>?';
-	var rss_url= base.concat(a1,a2,a3,a4);
+	var rss_url= base.concat(a1,a2,a3);
 	var rss_url_comments= base.concat('op=comments',a3);
-	var rss_url_takeoffs= base.concat('op=comments',a4);
+	var rss_url_takeoffs= base.concat('op=takeoffs',a3,'&',a1);
 	var rss_link="<a href='"+rss_url+"' target='_blank'>"+rss_url+"</a>";
 	var rss_link_comments="<a href='"+rss_url_comments+"' target='_blank'>"+rss_url_comments+"</a>";
+	var rss_link_takeoffs="<a href='"+rss_url_takeoffs+"' target='_blank'>"+rss_url_takeoffs+"</a>";
 
    $("#rss_url").html(rss_link);
    $("#rss_url_comments").html(rss_link_comments);
+   $("#rss_url_takeoffs").html(rss_link_takeoffs);
 }
 
 </script>
@@ -111,7 +113,7 @@ function updateRssURL() {
           <?=leoHtml::img("rss.gif",0,0,'','','icons1')?> <?=_RSS_feed_for_takeoffs ?>
           (copy paste this url to your RSS reader) 
       </div>
-	<div align="center" id='rss_url_comments'><a href='<?= $rss_url_base_takeoffs ?>' target='_blank'><?= $rss_url_base_takeoffs ?></a></div></p></td>
+	<div align="center" id='rss_url_takeoffs'><a href='<?= $rss_url_base_takeoffs ?>' target='_blank'><?= $rss_url_base_takeoffs ?></a></div></p></td>
     </tr>
       <td colspan="2"><div align="center"> 
         </div></td>
