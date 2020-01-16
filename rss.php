@@ -352,9 +352,12 @@ if ( ( $row['externalFlightType'] == 1 ) && ($CONF['servers']['list'][$row['user
 	$localMap = substr($originalURL,0,strpos($originalURL,"leonardo.php"))."modules/leonardo/".$row['userID']."/flights/maps/$gyear/$filename.jpg";
 }
 */
+//https://files.leonardo.pgxc.pl/data/cache/map_thumbs/flights/6035.jpg
 
+$localMap = "data/cache/map_thumbs/flights/".$row['flightID'].".jpg";
+$imageMap = "<a href=\"".$CONF['cdnURL']."/".$localMap."\"><img src=\"".$CONF['cdnURL']."/".$localMap."\"></a>";	
 
-if ( !file_exists($localMap) )
+if ( !file_exists($localMap.".txt") )
 {
 	$desc .=  "Map not created yet or no access.";
 	$enclosure = "";
