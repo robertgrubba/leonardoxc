@@ -38,7 +38,7 @@ $RSS_str="<?xml version=\"1.0\" encoding=\"$encoding\" ?>
 <rss version=\"0.92\">
 <channel>
 	<docs>http://leonardo.pgxc.pl</docs>
-	<title>Leonardo at ".$_SERVER['SERVER_NAME']." :: Latest takeoffs</title>
+	<title>Opisy startowisk na ".$_SERVER['SERVER_NAME']."</title>
 	<link>".str_replace("&","&amp;",getLeonardoLink(array('op'=>'list_takeoffs')))."</link>
 	<language>pl</language>
 	<description>Leonardo at ".$_SERVER['SERVER_NAME']." :: Latest takeoffs</description>

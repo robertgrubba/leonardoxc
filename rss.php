@@ -36,6 +36,10 @@
 		exit;
 	}
 
+	if ( $_GET['op']=='takeoffs' ) {
+		require_once dirname(__FILE__).'/rss_takeoffs.php';
+		exit;
+	}
 	// GUS begin
 	$category = ( isset($_GET['cat']) ) ? intval($_GET['cat']) : 0;
 	
@@ -180,7 +184,7 @@ $RSS_str="<?xml version=\"1.0\" encoding=\"$encoding\" ?>
 <rss version=\"0.92\">
 <channel>
 	<docs>http://www.leonardoxc.net</docs>
-	<title>Leonardo at ".$_SERVER['SERVER_NAME']." :: Latest flights</title>
+	<title>Ostatnie loty na ".$_SERVER['SERVER_NAME']."</title>
 	<link>".str_replace("&","&amp;",
 		getLeonardoLink(array('op'=>'list_flights',
 						'year'=>'0','month'=>'0','pilotID'=>'0','takeoffID'=>'0',

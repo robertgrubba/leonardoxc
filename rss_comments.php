@@ -41,7 +41,7 @@ $RSS_str="<?xml version=\"1.0\" encoding=\"$encoding\" ?>
 <rss version=\"0.92\">
 <channel>
 	<docs>http://www.leonardoxc.net</docs>
-	<title>Leonardo at ".$_SERVER['SERVER_NAME']." :: Latest comments</title>
+	<title>Ostatnie komentarze ".$_SERVER['SERVER_NAME']."</title>
 	<link>".str_replace("&","&amp;",getLeonardoLink(array('op'=>'list_flights',
 						'year'=>'0','month'=>'0','pilotID'=>'0','takeoffID'=>'0',
 						'xctype'=>'all','class'=>'all',
