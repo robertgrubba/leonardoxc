@@ -15,6 +15,7 @@
  list($countriesCodes,$countriesNames)=getCountriesList();
  $rss_url_base=getRelMainDir()."rss.php";
  $rss_url_base_comments.= $rss_url_base."?op=comments";
+ $rss_url_base_takeoffs.= $rss_url_base."?op=takeoffs";
  
  openMain("Configure RSS Feed",0,"icons1/rss.gif"); 
  
@@ -27,8 +28,9 @@ function updateRssURL() {
 	var	a3="&c=".concat($("#item_num_select").val());
 
 	var base='<?=$rss_url_base?>?';
-	var rss_url= base.concat(a1,a2,a3);
+	var rss_url= base.concat(a1,a2,a3,a4);
 	var rss_url_comments= base.concat('op=comments',a3);
+	var rss_url_takeoffs= base.concat('op=comments',a4);
 	var rss_link="<a href='"+rss_url+"' target='_blank'>"+rss_url+"</a>";
 	var rss_link_comments="<a href='"+rss_url_comments+"' target='_blank'>"+rss_url_comments+"</a>";
 
@@ -99,6 +101,17 @@ function updateRssURL() {
           (copy paste this url to your RSS reader) 
       </div>
 	<div align="center" id='rss_url_comments'><a href='<?= $rss_url_base_comments ?>' target='_blank'><?= $rss_url_base_comments ?></a></div></p></td>
+    </tr>
+      <td colspan="2"><div align="center"> 
+        </div></td>
+    </tr>
+	 <tr> 
+      <td colspan=2><div align="right">
+        <p align="center"><br>
+          <?=leoHtml::img("rss.gif",0,0,'','','icons1')?> <?=_RSS_feed_for_takeoffs ?>
+          (copy paste this url to your RSS reader) 
+      </div>
+	<div align="center" id='rss_url_comments'><a href='<?= $rss_url_base_takeoffs ?>' target='_blank'><?= $rss_url_base_takeoffs ?></a></div></p></td>
     </tr>
       <td colspan="2"><div align="center"> 
         </div></td>

@@ -980,6 +980,7 @@ define("_Are_you_sure_you_want_to_delete_this_comment","Are you sure you want to
 
 define("_RSS_feed_for_comments","RSS feed for comments");
 define("_RSS_feed_for_flights","RSS feed for flights");
+define("_RSS_feed_for_takeoffs","RSS feed for takeoffs");
 define("_RSS_of_pilots_flights","RSS of pilot\'s flights");
 
 

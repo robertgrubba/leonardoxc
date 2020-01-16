@@ -910,6 +910,7 @@ define("_Cancel","Anuluj");
 define("_Are_you_sure_you_want_to_delete_this_comment","Czy jesteś pewien że chcesz usunąć ten komentarz?"); 
 define("_RSS_feed_for_comments","kanał RSS komentarzy"); 
 define("_RSS_feed_for_flights","kanał RSS lotów"); 
+define("_RSS_feed_for_takeoffs","kanał RSS startowisk"); 
 define("_RSS_of_pilots_flights","kanał RSS lotów pilota"); 
 define("_You_have_a_new_comment","Masz nowy komentarz dot. %s"); 
 define("_New_comment_email_body","Masz nowy komentarz dot. %s<BR><BR><a href='%s'>Kliknij aby przeczytać wszystkie komentarze</a><hr>%s"); 
