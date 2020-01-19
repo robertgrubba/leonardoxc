@@ -606,6 +606,17 @@ if ($op=="show_flight"){
  	$page_keywords = $gliderCatList[$flight->cat].", paragliding, flight, log, track, igc, parapente, ".$og_takeoffName.", ".$og_pilotName;
  }
 
+//get information about takeoff areas for the takeoff
+	$query="SELECT name, areaID FROM leonardo_areas AS areas INNER JOIN leonardo_areas_takeoffs AS takeoffs ON areas.id=takeoffs.areaID WHERE takeoffID=".$flight->takeoffID."";
+        $res= $db->sql_query($query);
+        $takeoffAreas='';
+        if($res > 0){
+                while ($row = mysql_fetch_assoc($res)){
+			$takeoffAreas.="  <a href='".getLeonardoLink(array('op'=>'area_show','areaID'=>$row['areaID']))."'>".$row['name']."</a>";
+        	}
+	}
+
+
  $board_config['meta_description']=$page_description;
  $board_config['meta_keywords']=$page_keywords;
  $board_config['meta_author']=$og_pilotName;

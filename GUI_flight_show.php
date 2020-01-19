@@ -420,6 +420,7 @@ $flightAge = DateTime::createFromFormat('Y-m-d G:i:s', $flight->dateAdded, $tz)-
 $Ltemplate->assign_vars(array(
 	'TAKEOFF_LOCATION'=>$takeoffLink,
 	'TAKEOFF_TIME'=>"<span itemprop='startTime'>".sec2Time($flight->START_TIME)."</span>",
+	'takeoffAreas'=>$takeoffAreas,
 	'LANDING_LOCATION'=>"<span itemprop='toLocation' itemscope itemtype='http://schema.org/Place'><span itemprop='name'>".formatLocation(getWaypointName($flight->landingID),$flight->landingVinicity,$landingRadious)."</span></span>",
 	'LANDING_TIME'=>"<span itemprop='endTime'>".sec2Time($flight->END_TIME)."</span>",
 	'LINEAR_DISTANCE'=>formatDistanceOpen($flight->LINEAR_DISTANCE)." ($openDistanceSpeed)",
