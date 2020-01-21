@@ -23,9 +23,10 @@ if ($i < 3) { // parse only 3 items
 
 $i++;
 }
+
 $i=4;
-$url = "http://apache-leonardo-1/rss.php?op=takeoffs"; // url of news feed
-$rss = simplexml_load_file($url); // XML parser
+$url = file_get_contents("http://localhost/rss.php?op=takeoffs"); // url of news feed
+$rss = simplexml_load_string($url); // XML parser
 foreach($rss->channel->item as $item) {
 if ($i < 7) { // parse only 3 items
     $dto = DateTime::createFromFormat(DateTime::RSS, $item->pubDate);
@@ -41,5 +42,6 @@ if ($i < 7) { // parse only 3 items
 
 $i++;
 }
+
 echo ');';
 ?>

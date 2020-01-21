@@ -52,7 +52,7 @@ $RSS_str="<?xml version=\"1.0\" encoding=\"$encoding\" ?>
 	while ($row = mysql_fetch_assoc($res)) { 
 		$link=htmlspecialchars(getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$row['ID'])) );
 		$RSS_str.="<item>
-<title><![CDATA[$name".$row['countryCode']." - ".$row['intName']."]]></title>
+<title>Startowisko ".$row['intName']." (".$row['countryConde'].")</title>
 <guid isPermaLink=\"false\">".$row['ID']."</guid>
 <pubDate>". gmdate('D, d M Y H:i:s', strtotime($row['modifyDate']) ) . " GMT</pubDate>
 <link>$link</link>
