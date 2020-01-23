@@ -412,6 +412,28 @@ if ($op=="list_forecasts"){
 	 $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/templates/pgxc/tpl/leonardo_logo.gif';
          $board_config['meta_ogImageType'] = 'image/gif';
 }
+if ($op=="list_detailed_forecasts"){
+	 $page_title = 'Prognozy szczegółowe na najbliższe dni startowisk paralotniowych';
+	 $page_keywords = "paralotnie, paragliding, flights, logs, track, igc, parapente, loty, startowiska, opisy, przewodnik";
+	 $page_description = "Strona zawierajaca szczegółowe dane na temat lotnych dni z podziałem na kraje i rejony.";
+
+         $board_config['meta_keywords']=$page_keywords;
+         $board_config['meta_description']=$page_description; 
+	 $board_config['meta_author']='https://leonardo.pgxc.pl';
+
+	 $board_config['meta_ogTitle'] =  $page_title;
+	 $board_config['meta_ogDescription'] = $page_description;
+	 $board_config['meta_ogUrl'] = 'https://leonardo.pgxc.pl/prognozyszczegolwe/world/alltimes/brand:all,cat:0,club:all,pilot:0_0';
+//	 $board_config['meta_ogUpdatedTime'] = $og_flightDate;
+//	 $board_config['meta_ogLatitude'] = $flight->firstLat;
+//	 $board_config['meta_ogLongtitude'] = $flight->firstLon;
+	 $board_config['meta_ogType'] = 'sport';
+//	 $board_config['meta_ogPublished'] = $og_flightDate;
+//	 $board_config['meta_ogModified'] = $og_flightSubmission;
+	 $board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';
+	 $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/templates/pgxc/tpl/leonardo_logo.gif';
+         $board_config['meta_ogImageType'] = 'image/gif';
+}
 if ($op=="list_flights") $page_title = 'lista zgłoszonych lotów';
 if ($op=="pilot_profile_stats"){
 // user total airtime
@@ -959,6 +981,9 @@ if ($op=="index_full") {
 	require $LeoCodeBase."/GUI_list_takeoffs.php";
 } else if ($op=="list_forecasts") {
 	if ($userID>0 ) require $LeoCodeBase."/GUI_list_forecasts.php";
+	else echo "<center><br><BR><span class='note'>"._You_are_not_login."</span><BR><BR></center>";
+} else if ($op=="list_detailed_forecasts") {
+	if ($userID>0 ) require $LeoCodeBase."/GUI_list_detailed_forecasts.php";
 	else echo "<center><br><BR><span class='note'>"._You_are_not_login."</span><BR><BR></center>";
 } else if ($op=="sites") {
 	require $LeoCodeBase."/GUI_sites.php";
