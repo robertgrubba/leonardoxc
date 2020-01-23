@@ -7,7 +7,7 @@ Options -Indexes
 
 ServerSignature Off
 
-php_value upload_max_filesize 10M
+php_value upload_max_filesize 50M
 php_value post_max_size 200M
 php_value max_execution_time 300
 php_value max_input_time 180
@@ -74,7 +74,9 @@ RewriteRule ^startowiska/(.*)/(.*)/(.*)$  /index.php?name=leonardo&op=list_takeo
 RewriteRule ^ranks/(\d*)\.(\d*)/(.*)/(.*)$  /index.php?name=leonardo&op=comp&rank=$1&subrank=$2&l_date=$3&leoSeo=$4 [L,NC]
 RewriteRule ^rankingi/(\d*)\.(\d*)/(.*)/(.*)$  /index.php?name=leonardo&op=comp&rank=$1&subrank=$2&l_date=$3&leoSeo=$4 [L,NC]
 
-RewriteRule ^rejon/(\d*)$  /index.php?name=leonardo&op=area_show&areaID=$1 [L,NC]
+RewriteRule ^rejon/(\d*)(.*)$  /index.php?name=leonardo&op=area_show&areaID=$1$2 [L,NC]
+RewriteRule ^prognozy/(.*)/(.*)/(.*)$  /index.php?name=leonardo&op=list_forecasts&country=$1&l_date=$2&leoSeo=$3 [L,NC]
+RewriteRule ^prognozy_szczegolowe/(.*)/(.*)/(.*)$  /index.php?name=leonardo&op=list_detailed_forecasts&country=$1&l_date=$2&leoSeo=$3 [L,NC]
 
 RewriteRule ^page/(.*)$ /index.php?name=leonardo&op=$1 [L,NC]
 RewriteRule ^strona/(.*)$ /index.php?name=leonardo&op=$1 [L,NC]

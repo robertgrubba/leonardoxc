@@ -652,7 +652,7 @@ if (! $dontShowCountriesSelection ) {
     </div>
 <? } ?>
 <?
-if ($op=="list_forecasts" ) {
+if ($op=="list_forecasts" || $op=="list_detailed_forecasts" ) {
 	list($areasCodes,$areasNames)=getAreasList(0,0,$clubID);
 	$areasNum=count($areasNames);
 	if ($areasNum==1)  {
@@ -669,7 +669,7 @@ if ($op=="list_forecasts" ) {
 }
 ?>
 
-<? if ($op=="list_forecasts") { ?>
+<? if ($op=="list_forecasts" || $op=="list_detailed_forecasts") { ?>
     <div id='areaMenuID' class="menuButton"><a href="#" onClick="toogleMenu('area');return false;"><?=$areaFlagImg ?><? echo "$areaName" ?> <? echo "$areaLegend" ?> <? if ($areasNum>1 ) echo $arrDownImg; ?></a>
     </div>
 <? } ?>

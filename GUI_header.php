@@ -107,7 +107,7 @@ if (!is_array($board_config) ) {
 //
 
 
-if ($op=="show_flight" || $op=="show_waypoint" || $op=="list_takeoffs" || $op=="pilot_profile_stats" || $op=="index_full" || $op=="area_show" || $op=="list_forecasts"){
+if ($op=="show_flight" || $op=="show_waypoint" || $op=="list_takeoffs" || $op=="pilot_profile_stats" || $op=="index_full" || $op=="area_show" || $op=="list_forecasts" || $op=="list_detailed_forecasts"){
 	$og_metadata='
 	<meta property="og:site_name" content="'.$board_config['meta_ogSiteName'] .'"/>
 	<meta property="og:type" content="'.$board_config['meta_ogType'].'"/>

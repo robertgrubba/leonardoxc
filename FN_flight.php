@@ -128,7 +128,8 @@ function addFlightFromFile($filename,$calledFromForm,$userIDstr,
 	}
 
 	// now is the time to remove bad chars from the filename!
-	$newFilename=str_replace("'"," ",$filename);
+	$newFilename=str_replace("'","_",$filename);
+	$newFilename=str_replace('&',"_",$filename);
 	$newFilename=toLatin1($newFilename);
 
 	if ($newFilename!=$filename) {

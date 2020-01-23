@@ -1007,7 +1007,7 @@ function getLeonardoLink($argArray,$forcedLinkType=0) {
 	// echo "#".$_SESSION['fltr'];
 	$filterArg='';
 	if ($_SESSION['fltr'] && !in_array("fltr",$argArray,true )) {
-		if ( in_array($argArray['op'],array('comp','competition','list_takeoffs','list_forecasts','list_flights','list_pilots','pilot_profile_stats','explore_ge'))  ) {
+		if ( in_array($argArray['op'],array('comp','competition','list_takeoffs','list_forecasts','list_detailed_forecasts','list_flights','list_pilots','pilot_profile_stats','explore_ge'))  ) {
 			$filterArg.="&fltr=".$_SESSION['fltr'];				
 		}
 	}
@@ -1101,6 +1101,8 @@ function getLeonardoLink($argArray,$forcedLinkType=0) {
 			$args.='startowiska/';
 		} else if ($opTmp=='list_forecasts') {
 			$args.='prognozy/';
+		} else if ($opTmp=='list_detailed_forecasts') {
+			$args.='prognozy_szczegolowe/';
 		} else if ($opTmp=='compare') {
 //			$args.='compare/';
 			$args.='porownanie/';
@@ -1150,7 +1152,7 @@ function getLeonardoLink($argArray,$forcedLinkType=0) {
 		}
 		
 		
-		$listings=array('list_flights','list_takeoffs','list_forecasts','list_pilots','competition','comp','pilot_profile_stats');
+		$listings=array('list_flights','list_takeoffs','list_forecasts','list_detailed_forecasts','list_pilots','competition','comp','pilot_profile_stats');
 		$args2process=array('year','month','day','season','country','rank','subrank','cat','class','xctype','brandID',
 							'clubID','nacclubid','nacid','pilotID','takeoffID');
 		$args2Array=array();
@@ -1218,7 +1220,7 @@ function getLeonardoLink($argArray,$forcedLinkType=0) {
 				$args.='cat:'.$args2Array['cat'].',';
 			}
 			
-			if ($opTmp!='list_takeoffs' && $opTmp!='comp' && $opTmp!='list_forecasts') {
+			if ($opTmp!='list_takeoffs' && $opTmp!='comp' && $opTmp!='list_forecasts' && $opTmp!='list_detailed_forecasts') {
 				$args.='class:'.($args2Array['class']?$args2Array['class']:'all').',';
 				$args.='xctype:'.($args2Array['xctype']?$args2Array['xctype']:'all').',';
 			}
@@ -1233,7 +1235,7 @@ function getLeonardoLink($argArray,$forcedLinkType=0) {
 				
 				if ($opTmp!='list_pilots' )
 					$args.=',pilot:'.($args2Array['pilotID']?$args2Array['pilotID']:'all');			
-				if ( $opTmp!='list_takeoffs' && $opTmp!='list_forecasts' )	
+				if ( $opTmp!='list_takeoffs' && $opTmp!='list_forecasts' && $opTmp!='list_detailed_forecasts' )	
 					$args.=',takeoff:'.($args2Array['takeoffID']?$args2Array['takeoffID']:'all');
 			}
 						
