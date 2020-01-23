@@ -970,9 +970,11 @@ define("_CHANCES_TO_FLY","Szanse na warun wg prognoz:");
 define("_NONE","brak");
 define("_LOW","niewielkie");
 define("_HIGH","duże");
-define("_MENU_FORECASTS","Prognozy");
+define("_MENU_FORECASTS","Prognozy na 5 dni");
+define("_MENU_SHORT_TERM_FORECASTS","Prognozy na 3 dni");
 
 define("_LONG_TERM_FORECASTS","Prognozy długoterminowe dla tego rejonu");
+define("_SHORT_TERM_FORECASTS","Prognozy krótkoterminowe dla tego rejonu");
 define("_FLIGHT","Lot");
 
 define("_SI_Region","Region");

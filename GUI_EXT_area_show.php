@@ -122,6 +122,7 @@ padding:5px;
 	<td align="right" valign="bottom">
 	<? require_once "FN_functions.php";?>
         <a target="_parent" href="<? echo getLeonardoLink(array('op'=>'list_forecasts','area'=>$areaID))?>"><button style="width:150px"><? echo _LONG_TERM_FORECASTS ?></button></a>
+        <a target="_parent" href="<? echo getLeonardoLink(array('op'=>'list_detailed_forecasts','area'=>$areaID))?>"><button style="width:150px"><? echo _SHORT_TERM_FORECASTS ?></button></a>
 </td>
 
       </tr>

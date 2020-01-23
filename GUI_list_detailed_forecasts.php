@@ -204,9 +204,16 @@ function listTakeoffs($res,$legend, $queryExtraArray=array(),$sortOrder="Country
 		printHeaderTakeoffs(0,$sortOrder,"CountryCode",_COUNTRY,$queryExtraArray,1,2) ;
 		printHeaderTakeoffs(0,$sortOrder,"intName",_TAKEOFF,$queryExtraArray,1,2) ;
 //		printHeaderTakeoffs(0,$sortOrder,"FlightsNum",_NUMBER_OF_FLIGHTS,$queryExtraArray,0) ;
-		printHeaderTakeoffs(0,"none","today",date('d/m'),$queryExtraArray,3,1) ;
-		printHeaderTakeoffs(0,"none","tomorrow",date('d/m',strtotime(' +1 day')),$queryExtraArray,3,1) ;
-		printHeaderTakeoffs(0,"none","+2 days",date('d/m',strtotime(' +2 day')),$queryExtraArray,3,1) ;
+		$currentHour=date('H');
+		if ($currentHour<17){
+				printHeaderTakeoffs(0,"none","today",date('d/m'),$queryExtraArray,3,1) ;
+				printHeaderTakeoffs(0,"none","tomorrow",date('d/m',strtotime(' +1 day')),$queryExtraArray,3,1) ;
+				printHeaderTakeoffs(0,"none","+2 days",date('d/m',strtotime(' +2 day')),$queryExtraArray,3,1) ;
+		}else{	
+				printHeaderTakeoffs(0,"none","tomorrow",date('d/m',strtotime(' +1 day')),$queryExtraArray,3,1) ;
+				printHeaderTakeoffs(0,"none","+2 days",date('d/m',strtotime(' +2 day')),$queryExtraArray,3,1) ;
+				printHeaderTakeoffs(0,"none","+3 days",date('d/m',strtotime(' +3 day')),$queryExtraArray,3,1) ;
+		}
 		printHeaderTakeoffs(0,"none","forecast links","Prognozy",$queryExtraArray,1,2) ;
 	?>
 	</tr>

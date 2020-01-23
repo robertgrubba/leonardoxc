@@ -415,7 +415,8 @@ $arrDownImg=leoHtml::img("icon_arrow_left.gif",0,0,'','','icons1');
         <? } ?>
 		<li><a href="<?=getLeonardoLink(array('op'=>'list_areas') )?>"><?=_MENU_AREA_GUIDE?></a></li>
 		<li><a href="<?=getLeonardoLink(array('op'=>'list_takeoffs') )?>"><?=_MENU_TAKEOFFS ?></a></li>
-		<li><a href="<?=getLeonardoLink(array('op'=>'list_forecasts') )?>"><?=_MENU_FORECASTS ?></a></li>
+		<li><a href="<?=getLeonardoLink(array('op'=>'list_detailed_forecasts','country'=>'PL') )?>"><?=_MENU_SHORT_TERM_FORECASTS ?></a></li>
+		<li><a href="<?=getLeonardoLink(array('op'=>'list_forecasts','country'=>'PL') )?>"><?=_MENU_FORECASTS ?></a></li>
 	</ul>
 </li>
 
