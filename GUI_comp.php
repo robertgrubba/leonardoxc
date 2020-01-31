@@ -17,6 +17,7 @@
 //-----------------------------------------------------------------------
 //print_r($rank);
 
+
   if($rank==203 and $season==0){
 	$season=2019;
   }
@@ -240,6 +241,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
    global $sort_funcs_pilots;
    global $CONF;
    global $dateLegend;
+   global $takeoffsOrder;
 
    uasort($pilots,$sort_funcs_pilots[$category]);
    $legendRight=""; // show all pilots up to  $CONF_compItemsPerPage
@@ -319,57 +321,168 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 
 		unset($pilotBrands);
 		$pilotBrands=array();
-		if ($countHowMany>0) {
-			foreach ($pilot[$category]['flights'] as $flightID) {
-				$val=$pilot['flights'][$flightID][$key];
-				//print_r($category.' '.$flightID.' '.$val.' ');
-	
-				$glider=$pilot['flights'][$flightID]['glider'];
-				$country=$countries[$pilot['flights'][$flightID]['country']];
-	
-				$thisFlightBrandID=$pilot['flights'][$flightID]['brandID'];
-				if ($thisFlightBrandID) $pilotBrands[$thisFlightBrandID]++;
-	
-				$flightComment=$pilot['flights'][$flightID]['comment'];
-				
-				if (!$val)  $outVal="-";
-				else if ($formatFunction) $outVal=$formatFunction($val);
-				else $outVal=$val;
-				// $descr=_GLIDER.": $glider, "._COUNTRY.": $country";
-				if ($val) {
-					if ($flightComment) $flightCommentStr="<br>($flightComment)";
-					else $flightCommentStr='';
-					echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."' alt='$descr' title='$descr'>".$outVal.$flightCommentStr."</a>";
+
+		if (!isset($takeoffsOrder)){
+//unordered table
+			if ($countHowMany>0) {
+				foreach ($pilot[$category]['flights'] as $flightID) {
+					$val=$pilot['flights'][$flightID][$key];
+//					print_r($category.' '.$key.' '.$flightID.' '.$val.' ');
+		
+					$glider=$pilot['flights'][$flightID]['glider'];
+					$country=$countries[$pilot['flights'][$flightID]['country']];
+		
+					$thisFlightBrandID=$pilot['flights'][$flightID]['brandID'];
+					if ($thisFlightBrandID) $pilotBrands[$thisFlightBrandID]++;
+		
+					$flightComment=$pilot['flights'][$flightID]['comment'];
 					
-					//echo " <a class='betterTip' id='tpa2_$flightID' href='".$moduleRelPath."/GUI_EXT_flight_info.php?op=info_short&flightID=".$flightID."' title='$descr'>?</a>";
-					echo "</TD>"; 	 		  
-				} else echo "<TD>".$outVal."</TD>"; 	 		  
-				$k++;
-				if ($k>=$countHowMany) break;
-			}
-	
-			if ($k!=$countHowMany) {
-				for($j=$k;$j<$countHowMany;$j++) {
-					echo "<TD>-</TD>"; 	 		  
+					if (!$val)  $outVal="-";
+					else if ($formatFunction) $outVal=$formatFunction($val);
+					else $outVal=$val;
+					// $descr=_GLIDER.": $glider, "._COUNTRY.": $country";
+					$thisFlightTakeoff=$pilot['flights'][$flightID]['takeoff'];
+					
+					if ($val) {
+						if ($flightComment) $flightCommentStr="<br>($flightComment)";
+						else $flightCommentStr='';
+						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."' alt='$descr' title='$descr'>".$outVal.$flightCommentStr."</a>";
+						
+						//echo " <a class='betterTip' id='tpa2_$flightID' href='".$moduleRelPath."/GUI_EXT_flight_info.php?op=info_short&flightID=".$flightID."' title='$descr'>?</a>";
+						echo "</TD>"; 	 		  
+					} else echo "<TD>".$outVal."</TD>"; 	 		  
+					$k++;
+					if ($k>=$countHowMany) break;
 				}
+		
+				if ($k!=$countHowMany) {
+					for($j=$k;$j<$countHowMany;$j++) {
+						echo "<TD>-</TD>"; 	 		  
+					}
+				}
+			} else {
+				//only detect most used glider brand
+				foreach ($pilot[$category]['flights'] as $flightID) {				
+					$thisFlightBrandID=$pilot['flights'][$flightID]['brandID'];
+					if ($thisFlightBrandID) $pilotBrands[$thisFlightBrandID]++;
+				}	
+			
 			}
-		} else {
-			//only detect most used glider brand
-			foreach ($pilot[$category]['flights'] as $flightID) {				
-				$thisFlightBrandID=$pilot['flights'][$flightID]['brandID'];
-				if ($thisFlightBrandID) $pilotBrands[$thisFlightBrandID]++;
-			}	
-		
+			
+			arsort($pilotBrands);
+			$flightBrandID=array_shift(array_keys($pilotBrands));
+
+			$gliderBrandImg=brands::getBrandImg($flightBrandID,'',$cat);	
+
+			echo "<td align='center' class='hideOnSmall hideOnExtraSmall class_gliderBrand'>$gliderBrandImg</td>";
+		}else{
+//20200130
+//ordered table
+			foreach($takeoffsOrder as $takeoff){
+				if (!in_array($takeoff, $pilot['score']['takeoffs'])){
+					$pilot['flights'][$takeoff]['takeoff']=$takeoff;
+					$pilot['flights'][$takeoff]['score']="-";
+					$pilot['flights'][$takeoff]['cat']=1;
+					$pilot['flights'][$takeoff]['glider']="";
+					$pilot['flights'][$takeoff]['brandID']="";
+					$pilot['flights'][$takeoff]['type']="";
+					$pilot['flights'][$takeoff]['country']="PL";
+					$pilot['flights'][$takeoff]['continent']="1";
+					array_push($pilot[$category]['flights'],$takeoff);
+					array_push($pilot['score']['takeoffs'],$takeoff);
+				} 
+		       }
+//^^^^dodaje brakujace wpisy, dziwny wynik dla byka^^^^
+//znalezienie pozycji poszczegolnych lotow
+			foreach ($pilot[$category]['flights'] as $flightID) {
+				if(in_array($pilot['flights'][$flightID]['takeoff'],$takeoffsOrder)){	
+					$pos = array_search($pilot['flights'][$flightID]['takeoff'],$takeoffsOrder);
+					$pilot['score']['tempFlights'][$pos]=$flightID;
+				}else{
+				//remove if somehow from different takeoff
+					$pilot['score']['sum']=$pilot['score']['sum']-$pilot['flights'][$flightID]['score'];
+					unset($pilot['flights'][$flightID]);
+				}
+		       }
+
+		// recreate flights array
+		$numberOfTakeoffs=sizeof($takeoffsOrder);
+		for($i=0; $i<$numberOfTakeoffs;$i++){
+			$pilot['score']['flights'][$i]=$pilot['score']['tempFlights'][$i];
 		}
+		//remove extra flights if from different takeoffs
+		$numberOfFlights=sizeof($pilot['score']['flights']);
+		print_r($numberOfTakeoffs." ".$numberOfFlights.'<br>');
+		while($numberOfTakeoffs<$numberOfFlights){
+			unset($pilot['score']['flights'][$numberOfFlights-1]);
+			unset($pilot['score']['takeoffs'][$numberOfFlights-1]);
+			$numberOfFlights--;
+		}
+		//recount sum
+//		for($i=0; $i<$numberOfTakeoffs;$i++){
+//			$pilot['score']['flights'][$i]=$pilot['score']['tempFlights'][$i];
+//		}
+
+		print "<pre>";
+		print_r($pilot);
+		print "</pre>";
+				foreach ($pilot[$category]['flights'] as $flightID) {
+					$val=$pilot['flights'][$flightID][$key];
+			//		print_r($category.' '.$key.' '.$flightID.' '.$key.' - '.$val.'<br> ');
 		
-		arsort($pilotBrands);
-		$flightBrandID=array_shift(array_keys($pilotBrands));
+					$glider=$pilot['flights'][$flightID]['glider'];
+					$country=$countries[$pilot['flights'][$flightID]['country']];
+		
+					$thisFlightBrandID=$pilot['flights'][$flightID]['brandID'];
+					if ($thisFlightBrandID) $pilotBrands[$thisFlightBrandID]++;
+		
+					$flightComment=$pilot['flights'][$flightID]['comment'];
+					
+					if ($val=="-")  $outVal="-";
+					else if ($formatFunction) $outVal=$formatFunction($val);
+					else $outVal=$val;
+					// $descr=_GLIDER.": $glider, "._COUNTRY.": $country";
+					
+					if ($val!="-" and $key!=$pilot['flights'][$flightID]['takeoff']) {
+						if ($flightComment) $flightCommentStr="<br>($flightComment)";
+						else $flightCommentStr='';
+						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."' alt='$descr' title='$descr'>".$outVal.$flightCommentStr."</a>";
+						
+						//echo " <a class='betterTip' id='tpa2_$flightID' href='".$moduleRelPath."/GUI_EXT_flight_info.php?op=info_short&flightID=".$flightID."' title='$descr'>?</a>";
+						echo "</TD>"; 	 		  
+					} else echo "<TD>".$outVal."</TD>"; 	 		  
+					$k++;
+//					if ($k>=$countHowMany) break;
+				}
+		
+//				if ($k!=$countHowMany) {
+//					for($j=$k;$j<$countHowMany;$j++) {
+//						echo "<TD>-</TD>"; 	 		  
+//					}
+//				}
+// forreach takeoff			} 
+//else {
+//				//only detect most used glider brand
+				foreach ($pilot[$category]['flights'] as $flightID) {				
+					$thisFlightBrandID=$pilot['flights'][$flightID]['brandID'];
+					if ($thisFlightBrandID) $pilotBrands[$thisFlightBrandID]++;
+				}	
+//			
+//			}
 
-		$gliderBrandImg=brands::getBrandImg($flightBrandID,'',$cat);	
 
-		echo "<td align='center' class='hideOnSmall hideOnExtraSmall class_gliderBrand'>$gliderBrandImg</td>";
-   	}	// next pilot
+			arsort($pilotBrands);
+			$flightBrandID=array_shift(array_keys($pilotBrands));
 
+			$gliderBrandImg=brands::getBrandImg($flightBrandID,'',$cat);	
+
+			echo "<td align='center' class='hideOnSmall hideOnExtraSmall class_gliderBrand'>$gliderBrandImg</td>";
+//end of ordered table		
+		}	
+	
+		// next pilot
+
+	}
 	echo "</table>"; 
 	echo '</div>';
 } //end function
@@ -462,6 +575,7 @@ function listClubs($legend,$header, $category, $key, $formatFunction="") {
 				// $descr=_PILOT.": $pilotName, "._GLIDER.": $glider, "._COUNTRY.": $country";
 				$descr=_GLIDER.": $glider, "._COUNTRY.": $country";
 				$descr='';
+				
 				if ($val) {
 					echo "<TD width='33%'><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."' alt='$descr'  title='$descr'>".$outVal."</a></TD>"; 	 		  
 				} else { 
