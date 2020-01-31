@@ -62,6 +62,7 @@ if($season>2019){
 		 .'AND  takeoffID IN (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) '
 		 .'AND DATE<\''.$nextY.'-01-01\' '
 		 .'AND DATE >\''.$y.'-01-01\' '
+		 .$flight_deadline.' '
 		 .'AND FLIGHT_KM in ('
 			 .'SELECT MAX(FLIGHT_KM) '
 			 .'FROM leonardo_flights '

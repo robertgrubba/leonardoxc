@@ -49,6 +49,7 @@ while ($row = $db->sql_fetchrow($res)) {
 	 $pilots[$uID]['flights'][$flightID]['country']=$countryCode;
 	 $pilots[$uID]['flights'][$flightID]['continent']=$continentCode;
 	 $pilots[$uID]['flights'][$flightID]['score']=$row["FLIGHT_KM"]/1000;
+	 $pilots[$uID]['flights'][$flightID]['takeoff']=$row["takeoffID"];
      $i++;
 }
 
@@ -90,6 +91,11 @@ while ($row = $db->sql_fetchrow($res)) {
 			//var_dump($flight['country']);
 			if ($flight['country']=='PL') $nationalFlights++;
 			$pilots[$pilotID][$category]['flights'][$i]=$flightID;
+//20200130 do we really need this ?
+			$resTO= $db->sql_query("SELECT takeoffID FROM leonardo_flights WHERE ID='".$flightID."' limit 1");
+			$rowTO = $db->sql_fetchrow($resTO);
+			$pilots[$pilotID][$category]['takeoffs'][$i]=$rowTO["takeoffID"];
+
 			$lastVal=$flight[$key];
 			$bestSUM+=$flight[$key];
 			$i++;
@@ -121,5 +127,4 @@ while ($row = $db->sql_fetchrow($res)) {
 
 
 	}
-//	 print_r($pilots);
 ?>

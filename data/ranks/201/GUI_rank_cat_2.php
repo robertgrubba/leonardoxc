@@ -20,7 +20,7 @@
 	$dontShowDatesSelection=1;
 	$dontShowSecondMenu=1;
 	
-	$where_clause.=" AND category=2 AND takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) ";
+	$where_clause.=" AND category=2 AND takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) AND takeoffID>12476 AND takeoffID<17016 ";
 	require_once dirname(__FILE__)."/common_pre.php";
 
 	$sub_query = "SELECT $flightsTable.ID, userID, takeoffID , userServerID,
@@ -32,10 +32,19 @@
 		." $where_clause ";
 
 
-	$query = 'select ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE from '.$flightsTable.' where FLIGHT_KM in (select max(FLIGHT_KM) as userRecord from (SELECT '.$flightsTable.'.ID, userID, takeoffID , userServerID, gliderBrandID, '.$flightsTable.'.glider as glider, cat, FLIGHT_POINTS, FLIGHT_KM, BEST_FLIGHT_TYPE FROM '.$flightsTable.','.$pilotsTable.' WHERE (userID!=0 AND private=0) AND takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) AND '.$flightsTable.'.userID='.$pilotsTable.'.pilotID  AND (cat=1) AND validated=1) z group by userID, takeoffID) and takeoffID!=9716 order by takeoffID ';
-
-
-//var_dump($query);
+$query = 'SELECT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM)as FLIGHT_KM, BEST_FLIGHT_TYPE
+	FROM leonardo_flights WHERE 
+		FLIGHT_KM IN (select MAX(FLIGHT_KM) AS FLIGHT_KM 
+				FROM leonardo_flights WHERE validated=1 
+					AND cat=1 
+					AND private=0 
+					and takeoffID in (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) 
+					AND takeoffID>12476 
+					AND takeoffID<17016  
+				GROUP BY userID,takeoffID) 
+		AND takeoffID NOT IN (9133,13478,9093,9193,9191) 
+		GROUP BY userID,takeoffID 
+	ORDER BY takeoffID;';
 
 
 require_once dirname(__FILE__)."/common.php";

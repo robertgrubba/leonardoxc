@@ -270,8 +270,20 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
    <td class="SortHeader hideOnExtraSmall class_flightNo"><? echo _NUM ?></td>
    <td class="SortHeader"><div align=left><? echo _PILOT ?></div></td>
    <td class="SortHeader" width="70"><? echo $header ?></td>
-   <? for ($ii=1;$ii<=$countHowMany;$ii++) { ?>
-   <td class="SortHeader" width="55">#<? echo $ii?></td>
+   <? for ($ii=1;$ii<=$countHowMany;$ii++) { 
+// in case of defined takeoffs display names instead of flight number
+		if (!isset($takeoffsOrder)){
+			$headerName="#".$ii;
+		}else{
+			//$headerName="##".$ii;
+			$headerName=getWaypointName($takeoffsOrder[$ii-1]);
+			$pattern = '/ - \w+/i';
+			$headerName=preg_replace($pattern,'',$headerName);
+			$headerName="<a  href='".getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$takeoffsOrder[$ii-1]))."'>".$headerName."</a>";
+			
+		}
+	?>
+   <td class="SortHeader" width="55"><? echo $headerName?></td>
    <? } ?>
    <td class="SortHeader hideOnSmall hideOnExtraSmall class_gliderBrand">&nbsp;</td>
    </tr>
@@ -311,6 +323,15 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 			echo "&nbsp;<a class='betterTip' id='tpa1_$pilotIDinfo' href=\"javascript:nop();\"><img src='$moduleRelPath/img/icon_nac_member.gif' align='absmiddle' border=0></a>";
 		}	
 		 echo "</div></TD>";
+		//jesli trafi cos z poza zdefiniowanej listy trzeba przekalkulowac wynik koncowy
+		if (isset($takeoffsOrder)){
+			$pilot[$category]["sum"]=0;
+			 foreach ($pilot[$category]['flights'] as $flightID){
+				if (in_array($pilot['flights'][$flightID]['takeoff'],$takeoffsOrder)){
+					$pilot[$category]["sum"]=$pilot[$category]["sum"]+$pilot['flights'][$flightID]['score'];
+				}
+			}
+		}
 		 if ($formatFunction) $outVal=$formatFunction($pilot[$category]["sum"]);
 		 else $outVal=$pilot[$category]["sum"];
    	     echo "<TD>".$outVal."</TD>"; 	 
@@ -376,8 +397,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 
 			echo "<td align='center' class='hideOnSmall hideOnExtraSmall class_gliderBrand'>$gliderBrandImg</td>";
 		}else{
-//20200130
-//ordered table
+//ordered table with defined takeoffs list
 			foreach($takeoffsOrder as $takeoff){
 				if (!in_array($takeoff, $pilot['score']['takeoffs'])){
 					$pilot['flights'][$takeoff]['takeoff']=$takeoff;
@@ -392,40 +412,31 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 					array_push($pilot['score']['takeoffs'],$takeoff);
 				} 
 		       }
-//^^^^dodaje brakujace wpisy, dziwny wynik dla byka^^^^
-//znalezienie pozycji poszczegolnych lotow
+//find position of each flight
 			foreach ($pilot[$category]['flights'] as $flightID) {
 				if(in_array($pilot['flights'][$flightID]['takeoff'],$takeoffsOrder)){	
 					$pos = array_search($pilot['flights'][$flightID]['takeoff'],$takeoffsOrder);
 					$pilot['score']['tempFlights'][$pos]=$flightID;
 				}else{
 				//remove if somehow from different takeoff
-					$pilot['score']['sum']=$pilot['score']['sum']-$pilot['flights'][$flightID]['score'];
+			        //	$pilot['score']['sum']=$pilot['score']['sum']-$pilot['flights'][$flightID]['score'];
 					unset($pilot['flights'][$flightID]);
 				}
 		       }
 
-		// recreate flights array
+// recreate flights array
 		$numberOfTakeoffs=sizeof($takeoffsOrder);
-		for($i=0; $i<$numberOfTakeoffs;$i++){
-			$pilot['score']['flights'][$i]=$pilot['score']['tempFlights'][$i];
+		for($it=0; $it<$numberOfTakeoffs;$it++){
+			$pilot['score']['flights'][$it]=$pilot['score']['tempFlights'][$it];
 		}
-		//remove extra flights if from different takeoffs
+//remove extra flights if from takeoffs out of the list
 		$numberOfFlights=sizeof($pilot['score']['flights']);
-		print_r($numberOfTakeoffs." ".$numberOfFlights.'<br>');
 		while($numberOfTakeoffs<$numberOfFlights){
 			unset($pilot['score']['flights'][$numberOfFlights-1]);
 			unset($pilot['score']['takeoffs'][$numberOfFlights-1]);
 			$numberOfFlights--;
 		}
-		//recount sum
-//		for($i=0; $i<$numberOfTakeoffs;$i++){
-//			$pilot['score']['flights'][$i]=$pilot['score']['tempFlights'][$i];
-//		}
 
-		print "<pre>";
-		print_r($pilot);
-		print "</pre>";
 				foreach ($pilot[$category]['flights'] as $flightID) {
 					$val=$pilot['flights'][$flightID][$key];
 			//		print_r($category.' '.$key.' '.$flightID.' '.$key.' - '.$val.'<br> ');
@@ -451,24 +462,12 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 						//echo " <a class='betterTip' id='tpa2_$flightID' href='".$moduleRelPath."/GUI_EXT_flight_info.php?op=info_short&flightID=".$flightID."' title='$descr'>?</a>";
 						echo "</TD>"; 	 		  
 					} else echo "<TD>".$outVal."</TD>"; 	 		  
-					$k++;
-//					if ($k>=$countHowMany) break;
 				}
 		
-//				if ($k!=$countHowMany) {
-//					for($j=$k;$j<$countHowMany;$j++) {
-//						echo "<TD>-</TD>"; 	 		  
-//					}
-//				}
-// forreach takeoff			} 
-//else {
-//				//only detect most used glider brand
 				foreach ($pilot[$category]['flights'] as $flightID) {				
 					$thisFlightBrandID=$pilot['flights'][$flightID]['brandID'];
 					if ($thisFlightBrandID) $pilotBrands[$thisFlightBrandID]++;
 				}	
-//			
-//			}
 
 
 			arsort($pilotBrands);
@@ -481,7 +480,6 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 		}	
 	
 		// next pilot
-
 	}
 	echo "</table>"; 
 	echo '</div>';

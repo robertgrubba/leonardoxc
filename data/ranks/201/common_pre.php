@@ -42,5 +42,5 @@
 
 
 $customRankHeader="Suma km OLC";
-
+$takeoffsOrder = array(17005,17009,17006,12477,12478,17010,17011,17015);
 ?>
