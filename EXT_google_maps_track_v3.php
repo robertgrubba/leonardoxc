@@ -190,6 +190,7 @@ img.icons1 {   background: url(<?=$moduleRelPath?>/img/sprite_icons1.png) no-rep
  
 <? if ( $is3D ) { ?> 
 <script src="https://www.google.com/jsapi<?php echo $googleApiKeyStr ?>"></script>
+<script src="https://www.google.com/jsapi"></script>
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry<?php echo $googleApiKeyStr ?>" type="text/JavaScript"></script>
 <script src="<?=$moduleRelPath?>/js/google_maps/extensions.pack.js" type="text/javascript"></script>
 <? } else { ?>
@@ -227,7 +228,6 @@ img.icons1 {   background: url(<?=$moduleRelPath?>/img/sprite_icons1.png) no-rep
 	<div id='control3d' class='controlButton'>
 		<div class='controlButtonInner'>3D View</div>
 	</div>
-	
 	<div id='controlSkyways' class='controlButton skywaysButton'>
 		<div class='controlButtonInner'>Skyways</div>
 	</div>
