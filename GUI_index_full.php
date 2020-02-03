@@ -32,11 +32,11 @@
 		
 
 
-		
+	if($i<25){	
 		$ctStrings[$continentNum].="<li><a href='javascript:jumpToFlights(\"".$countriesCodes[$i]."\") '>$countryName </a></li>\n";
 
 		$tkStrings[$continentNum].="<li><a href='javascript:jumpToTakeoffs(\"".$countriesCodes[$i]."\") '>$countryName </a></li>\n";
-
+	}
 		$Ltemplate->assign_block_vars('lg', array(	 	
 			'link'=> "javascript:jumpToLeague('".$countriesCodes[$i]."')",
 			'name'=>$countryName
