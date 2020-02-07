@@ -1047,7 +1047,7 @@ define("_MENU_FORECASTS","Forecasts for 5 days");
 define("_MENU_SHORT_TERM_FORECASTS","Forecasts for 3 days");
 
 define("_LONG_TERM_FORECASTS","Long term forecasts for this area");
-define("_SHORD_TERM_FORECASTS","Short term forecasts for this area");
+define("_SHORT_TERM_FORECASTS","Short term forecasts for this area");
 define("_FLIGHT","Flight");
 
 define("_MENU_SHOW_LATEST_FLIGHTS","Show latest flights");
