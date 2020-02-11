@@ -11,6 +11,9 @@
 // $Id: rss_takeoffs.php,v 0.1 2020/01/16 12:46:40 Robert G                                                                 
 //
 //************************************************************************
+function truncate($string, $length, $dots = "...") {
+    return (strlen($string) > $length) ? substr($string, 0, $length - strlen($dots)) . $dots : $string;
+}
 	if (!defined("IN_RSS") ) exit;
 
 		$flightID = $_GET['flightID']+0;
@@ -56,7 +59,7 @@ $RSS_str="<?xml version=\"1.0\" encoding=\"$encoding\" ?>
 <guid isPermaLink=\"false\">".$row['ID']."</guid>
 <pubDate>". gmdate('D, d M Y H:i:s', strtotime($row['modifyDate']) ) . " GMT</pubDate>
 <link>$link</link>
-<description><![CDATA[". $row['description']."]]></description>
+<description><![CDATA[". truncate($row['description'],400,"...")."]]></description>
 </item>
 ";
 	
