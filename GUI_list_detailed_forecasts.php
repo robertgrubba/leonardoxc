@@ -41,26 +41,14 @@ if(!isset($_SESSION[userID])){
   $area=makeSane($_REQUEST["area"]);
   if ( $sortOrder=="")  $sortOrder="0";
 
+  $takeoff=makeSane($_REQUEST["takeoff"]);
+
   $queryExtraArray=array();
   $legend=_MENU_TAKEOFFS;
   
-  // SEASON MOD
-  //$where_clause.= dates::makeWhereClause(0,$season,$year,$month,0 );
-
-  // BRANDS MOD  
-//  $where_clause.= brands::makeWhereClause($brandID);
-
 	// take care of exluding flights
 	// 1-> first bit -> means flight will not be counted anywhere!!!
 	$bitMask=1 & ~( $includeMask & 0x01 );
-//	$where_clause.= " AND ( excludeFrom & $bitMask ) = 0 ";
-/*
-	if ($pilotID!=0) {
-		$where_clause.=" AND userID='".$pilotID."'  AND userServerID=$serverID ";		
-	} else {  // 0 means all flights BUT not test ones 
-		$where_clause.=" AND userID>0 ";		
-	}
-*/	
   if ($country) {
 		$where_clause_country.=" AND  ".$waypointsTable.".countryCode='".$country."' ";
 		//$legend.=" (".$countries[$country].") | ";
@@ -69,34 +57,10 @@ if(!isset($_SESSION[userID])){
   if ($area) {
 		$where_clause_country.=" AND ".$waypointsTable.".ID IN (select takeoffID from leonardo_areas_takeoffs where areaID = ".$area.") ";
   }
- /* 
-  	if ($class) {
-		$where_clause.=" AND  $flightsTable.category='".$class."' ";
-	}
-
-	if ($xctype) {
-		$where_clause.=" AND  $flightsTable.BEST_FLIGHT_TYPE='".$CONF_xc_types_db[$xctype]."' ";
-	}
-*/
-  # Martin Jursa 23.05.2007: support for NacClub Filtering
-/*
-  if (!empty($CONF_use_NAC)) {
-	  if ($nacid && $nacclubid) {
-	  		$where_clause.=" AND $flightsTable.NACid=$nacid AND $flightsTable.NACclubID=$nacclubid";
-	  }
+  
+  if ($takeoff) {
+		$where_clause_country.=" AND ".$waypointsTable.".ID = ".$takeoff." ";
   }
-  
-  if ($clubID)   {
-   require dirname(__FILE__)."/INC_club_where_clause.php";
-  } 
-  */
-  /* not needed -->  is included by default in this list
-  if ($countryCodeQuery || $country)   {
-	 $where_clause.=" AND $flightsTable.takeoffID=$waypointsTable.ID ";
-	 $extra_table_str.=",".$waypointsTable;
-  } else $extra_table_str.="";
-*/
-  
   $sortDescArray=array("countryCode"=>_DATE_SORT, "FlightsNum"=>_NUMBER_OF_FLIGHTS, "max_distance"=>_SITE_RECORD_OPEN_DISTANCE  );
  
   $sortDesc=$sortDescArray[ $sortOrder];
@@ -203,7 +167,6 @@ function listTakeoffs($res,$legend, $queryExtraArray=array(),$sortOrder="Country
  	<?
 		printHeaderTakeoffs(0,$sortOrder,"CountryCode",_COUNTRY,$queryExtraArray,1,2) ;
 		printHeaderTakeoffs(0,$sortOrder,"intName",_TAKEOFF,$queryExtraArray,1,2) ;
-//		printHeaderTakeoffs(0,$sortOrder,"FlightsNum",_NUMBER_OF_FLIGHTS,$queryExtraArray,0) ;
 		$currentHour=date('H');
 		if ($currentHour<17){
 				printHeaderTakeoffs(0,"none","today",date('d/m'),$queryExtraArray,3,1) ;
@@ -238,19 +201,6 @@ function listTakeoffs($res,$legend, $queryExtraArray=array(),$sortOrder="Country
 	while ($row = $db->sql_fetchrow($res)) {  
 		$takeoffName=selectWaypointName($row["name"],$row["intName"],$row["countryCode"]);	
 		$sortRowClass="l_row1";
-/*
-		if ( $countries[$row["countryCode"]] != $currCountry || $sortOrder!='CountryCode' ) {
-			$currCountry=$countries[$row["countryCode"]] ;
-			$country_str= "<a href='".getLeonardoLink(
-					array('op'=>'list_flights','country'=>$row["countryCode"],'takeoffID'=>'0') )
-					."'>".$currCountry."</a>";
-
-			if ($sortOrder=='CountryCode') $sortRowClass="l_row2";
-			else $sortRowClass=($i%2)?"l_row1":"l_row2"; 
-		} else {
-			$country_str="&nbsp;";
-		}
-*/
 		$i++;
 		$intNameUrl = $row["intName"];
 		$intNameUrl = str_replace(" ","%20",$intNameUrl);

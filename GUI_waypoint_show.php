@@ -242,23 +242,29 @@ if ($weatherResponse==200){
 				if ($domain!=$_SERVER['SERVER_NAME'] and $domain!=""){
 					print "<a rel='nofollow' href='$value' target='_blank'><img alt='Informacje o $wpName na $domain' width='32' height='32' src='".$CONF['protocol']."://".$_SERVER['SERVER_NAME']."/img/ext/$thumbnail.png'></a> ";
 				}
-			}  ?>&nbsp;</td>
+			}  ?>&nbsp; </td>
 		</tr>
 	<? } ?>
 <? } ?>
         <tr>
-	  <td  valign="top" width="180">
+	  <td  valign="top" colspan=2>
 <? }
+if ($weatherResponse==200) {
+?>
+	<a href="<? echo getLeonardoLink(array('op'=>'list_detailed_forecasts','takeoff'=>$waypointIDview))?>"><button style="width:180px;height:32px"><? echo _SHORT_TERM_SPOT_FORECASTS ?></button></a>
+	<a href="<? echo getLeonardoLink(array('op'=>'list_forecasts','takeoff'=>$waypointIDview))?>"><button style="width:180px;height:32px"><? echo _LONG_TERM_SPOT_FORECASTS ?></button></a> 
+<?
+}
 if (is_user($user) || $userID>0) {
 	require_once dirname(__FILE__)."/CL_user.php";
 
 	$email = LeoUser::getEmail($userID);
 	if ($weatherResponse==200){
 				?>
-	  <a href='http://trac.pgxc.pl/newticket?summary=Zmiana informacji o startowisku <? echo $wpName ?> (<?echo $waypointIDview ?>)&description=Proszę napisz tutaj co powinno zostać zmienione w obecnym opisie bazując na własnym doświadczeniu&component=Treści&priority=minor&cc=<? echo $email ?>&type=ulepszenie'><button><? echo _SI_suggest_changes ?></button></a>
+	  <a href='http://trac.pgxc.pl/newticket?summary=Zmiana informacji o startowisku <? echo $wpName ?> (<?echo $waypointIDview ?>)&description=Proszę napisz tutaj co powinno zostać zmienione w obecnym opisie bazując na własnym doświadczeniu&component=Treści&priority=minor&cc=<? echo $email ?>&type=ulepszenie'><button style="width:260px;height:32px"><? echo _SI_suggest_changes ?></button></a>
 <? 	}else{
 	?>
-	 <center> <a href='http://trac.pgxc.pl/newticket?summary=Dodanie informacji o startowisku <? echo $wpName ?> (<?echo $waypointIDview ?>)&description=Proszę napisz dla jakich kierunków jest to startowisko (zakresy w stopniach), podaj dokładne koordynaty lub pinezkę do google maps, link do prognozy windguru dla tego startowiska, przydatne odnośniki oraz jeśli to możliwe opis startowiska i lądowiska&component=Treści&priority=minor&cc=<? echo $email ?>&type=ulepszenie'><button><? echo _SI_add_takeoff_info ?></button></a></center>
+	 <center> <a href='http://trac.pgxc.pl/newticket?summary=Dodanie informacji o startowisku <? echo $wpName ?> (<?echo $waypointIDview ?>)&description=Proszę napisz dla jakich kierunków jest to startowisko (zakresy w stopniach), podaj dokładne koordynaty lub pinezkę do google maps, link do prognozy windguru dla tego startowiska, przydatne odnośniki oraz jeśli to możliwe opis startowiska i lądowiska&component=Treści&priority=minor&cc=<? echo $email ?>&type=ulepszenie'><button style="width:180px;height:32px"><? echo _SI_add_takeoff_info ?></button></a></center>
 <?
 	}
 } 
