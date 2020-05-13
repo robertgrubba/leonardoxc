@@ -1050,6 +1050,9 @@ define("_LONG_TERM_FORECASTS","Long term forecasts for this area");
 define("_SHORT_TERM_FORECASTS","Short term forecasts for this area");
 define("_LONG_TERM_SPOT_FORECASTS","Long term forecasts");
 define("_SHORT_TERM_SPOT_FORECASTS","Short term forecasts");
+define("_LONG_TERM","Long term");
+define("_SHORT_TERM","Short term");
+define("_FLYABLE_ESTIMATIONS","Flyable weather assesments");
 define("_FLIGHT","Flight");
 
 define("_MENU_SHOW_LATEST_FLIGHTS","Show latest flights");

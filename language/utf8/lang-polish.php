@@ -977,6 +977,9 @@ define("_LONG_TERM_FORECASTS","Prognozy długoterminowe dla tego rejonu");
 define("_SHORT_TERM_FORECASTS","Prognozy krótkoterminowe dla tego rejonu");
 define("_LONG_TERM_SPOT_FORECASTS","Prognozy długoterminowe");
 define("_SHORT_TERM_SPOT_FORECASTS","Prognozy krótkoterminowe");
+define("_LONG_TERM","Długoterminowe");
+define("_SHORT_TERM","Krótkoterminowe");
+define("_FLYABLE_ESTIMATIONS","Szacowania warunowe");
 define("_FLIGHT","Lot");
 
 define("_SI_Region","Region");

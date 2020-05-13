@@ -180,6 +180,17 @@ if ($weatherResponse==200){
                         }  ?>&nbsp;</td>
                 </tr>
         <? } ?>
+   <? if ($weatherResponse==200) { ?>
+	<tr bgcolor="#F2ECDB">
+		  <td></td>
+                  <td  width=200 class="col3_in"><? echo _FLYABLE_ESTIMATIONS ?></td>
+		  <td colspan=2 valign="top">
+			 <a target="_blank" href="<? echo getLeonardoLink(array('op'=>'list_detailed_forecasts','takeoff'=>$waypointIDview))?>"><button style="width:120px;height:32px"><? echo _SHORT_TERM ?></button></a>
+	        <a target="_blank" href="<? echo getLeonardoLink(array('op'=>'list_forecasts','takeoff'=>$waypointIDview))?>"><button style="width:120px;height:32px"><? echo _LONG_TERM ?></button></a>
+		  </td>
+
+	</tr>
+   <? } ?>
 <? } ?>
 
 
