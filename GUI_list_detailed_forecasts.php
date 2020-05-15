@@ -60,6 +60,12 @@ if(!isset($_SESSION[userID])){
   
   if ($takeoff) {
 		$where_clause_country.=" AND ".$waypointsTable.".ID = ".$takeoff." ";
+		$queryGPS = "SELECT lat,lon FROM $waypointsTable WHERE ID=$takeoff";
+		$resGPS = $db->sql_query($queryGPS);		
+		$GPS = $db->sql_fetchrow($resGPS);
+		$windy='<iframe width="100%" height="450" src="https://embed.windy.com/embed2.html?lat='.$GPS["lat"].'&lon='.-$GPS["lon"].'&zoom=10&level=surface&overlay=wind&menu=&message=&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=true&detailLat='.$GPS["lat"].'&detailLon='.-$GPS["lon"].'&metricWind=m%2Fs&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>';
+
+   		$db->sql_freeresult($resGPS);
   }
   $sortDescArray=array("countryCode"=>_DATE_SORT, "FlightsNum"=>_NUMBER_OF_FLIGHTS, "max_distance"=>_SITE_RECORD_OPEN_DISTANCE  );
  
@@ -112,7 +118,8 @@ if(!isset($_SESSION[userID])){
 				<div class='pagesDiv'>$legendRight</div>
 			</div>";
 			
-  listTakeoffs($res,$legend,$queryExtraArray,$sortOrder);
+  listTakeoffs($res,$legend,$queryExtraArray,$sortOrder,$takeoff,$windy);
+
 ?>
 <script type="text/javascript" src="<?=$moduleRelPath ?>/js/tipster.js"></script>
 <? echo makeTakeoffPopup(); ?>
@@ -151,7 +158,7 @@ function printHeaderTakeoffs($width,$sortOrder,$fieldName,$fieldDesc,$queryExtra
    } 
 }
 
-function listTakeoffs($res,$legend, $queryExtraArray=array(),$sortOrder="CountryCode") {
+function listTakeoffs($res,$legend, $queryExtraArray=array(),$sortOrder="CountryCode",$takeoff,$windy) {
    global $db,$Theme, $takeoffRadious, $userID, $moduleRelPath;
    global $PREFS;
    global $page_num,$pagesNum,$startNum,$itemsNum;
@@ -236,7 +243,13 @@ if ( $countries[$row["countryCode"]] != $currCountry || $sortOrder!='CountryCode
 			echo "<TD>".file_get_contents($CONF["weatherapi"].'/forecastlinks/'.$intNameUrl)."</TD>";
 			echo "</TR>";
 	}
+
+  if ($takeoff){
+	echo "<tr><th colspan=13>Prognoza z windy.com</th></tr>";
+	echo "<tr><td colspan=13>$windy</td></tr>";
+  }
    }     
+
 	echo "</table>";
 ?>
            <div style="text-align: right"><?
