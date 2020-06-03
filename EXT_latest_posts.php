@@ -20,8 +20,12 @@
                 echo '<tr>';
                 echo '<td width="20%" valign="bottom" bgcolor="#D7EDD3" class="catHeader">';
                 //echo ''.$date.'<em style="font-size: 11px;font-family: Verdana, Arial, Helvetica, sans-serif; line-height: 110%;font-style:regular;">:</em>';
+		if($replys>0){
                 echo '<ul style="font-size: 10px;font-family: Verdana, Arial, Helvetica, sans-serif; line-height: 110%;font-style: italic;" >'.$content.'</ul>';
                 echo '<div align="right" style="font-size: 10px;font-family: Verdana, Arial, Helvetica, sans-serif; line-height: 110%;font-style: italic;" >(ostatnia aktywność w wątku:<br>'.$date.', <br><a href="https://www.facebook.com/groups/1478007302478465/" target="_blank">liczba komentarzy: '.$replys.'</a>) </div>';
+		}else{
+                echo '<ul style="font-size: 10px;font-family: Verdana, Arial, Helvetica, sans-serif; line-height: 110%;font-style: italic;" ><strong><a href="https://www.facebook.com/groups/1478007302478465/" target="_blank">'.$date.'</a></strong>:'.$content.'</ul>';
+		}	
                 echo '<hr>';
                 echo '</td></tr></table>';
 
