@@ -108,9 +108,6 @@ if( isset($HTTP_POST_VARS['login']) || isset($HTTP_GET_VARS['login']) || isset($
 					{
 					    $passedCaptcha = 1;
 					}
-					else
-					{
-					}
 				   }
 				
 				if( $passwdIsOK && $row['user_active'] && $passedCaptcha )
