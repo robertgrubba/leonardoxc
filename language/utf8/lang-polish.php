@@ -588,7 +588,7 @@ define("_In_English","Po angielsku");//In English");
 // New on 2007/02/20 - login screen
 define("_ENTER_PASSWORD","Aby zalogować się podaj nazwę użytkownika i hasło");//Please enter your username and password to log in.");
 define("_SEND_PASSWORD","Zapomnialem hasła");//I forgot my password");
-define("_ERROR_LOGIN","Niepoprawna nazwa użytkownika lub błędne hasło");//You have specified an incorrect or inactive username, or an invalid password.");
+define("_ERROR_LOGIN","Niepoprawna nazwa użytkownika, błędne hasło lub nieudana pułapka na roboty");//You have specified an incorrect or inactive username, or an invalid password.");
 define("_AUTO_LOGIN","Zapamiętaj mnie i loguj automatycznie przy każdej wizycie");//Log me on automatically each visit");
 define("_USERNAME","Nazwa użytkownika");//Username");
 define("_PASSWORD","Hasło");//Password");

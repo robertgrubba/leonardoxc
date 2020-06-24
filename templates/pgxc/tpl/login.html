@@ -47,7 +47,7 @@ text-align:center;
 -->
 </style>
 
-
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
 <form  id="loginform" name="loginform" action="{S_LOGIN_ACTION}" method="post" >
 
 
@@ -84,10 +84,15 @@ text-align:center;
 		<td colspan="2" class="smalltext">{#_AUTO_LOGIN}: <input type="checkbox" name="autologin" /></td>
 		</tr>
 	  <tr>
+		<td colspan="2">{CAPTCHA}</td>
+		</tr>
+	  <tr>
 		<td class="smalltext"><div align="center">{S_HIDDEN_FIELDS}
 		      
 		  </div></td>
-		<td class="smalltext"><div align="right">
+		</tr>
+	  <tr>
+		<td colspan="2" class="smalltext"><div align="center">
 		  <input name="login" value="{#_MENU_LOGIN}" class="submitButton" type="submit">
 		  </div></td>
 	  </tr>

@@ -611,7 +611,7 @@ define("_In_English","In English");
 // New on 2007/02/20 - login screen
 define("_ENTER_PASSWORD","Please enter your username and password to log in.");
 define("_SEND_PASSWORD","I forgot my password");
-define("_ERROR_LOGIN","You have specified an incorrect or inactive username, or an invalid password.");
+define("_ERROR_LOGIN","You have specified an incorrect or inactive username, an invalid password, or didn't pass the captcha.");
 define("_AUTO_LOGIN","Log me on automatically each visit");
 define("_USERNAME","Username");
 define("_PASSWORD","Password");

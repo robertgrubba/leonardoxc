@@ -99,8 +99,21 @@ if( isset($HTTP_POST_VARS['login']) || isset($HTTP_GET_VARS['login']) || isset($
 					else $passwdIsOK=0;					
 				}
 				
+				  if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
+				  {
+					$secret = $CONF['recaptcha_secret_key'];
+					$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+					$responseData = json_decode($verifyResponse);
+					if($responseData->success)
+					{
+					    $passedCaptcha = 1;
+					}
+					else
+					{
+					}
+				   }
 				
-				if( $passwdIsOK && $row['user_active'] )
+				if( $passwdIsOK && $row['user_active'] && $passedCaptcha )
 				{
 					$autologin = ( isset($HTTP_POST_VARS['autologin']) ) ? TRUE : 0;
 
@@ -275,6 +288,7 @@ else
 			'L_SEND_PASSWORD' => _Forgotten_password,
 
 			'U_SEND_PASSWORD' => $sendPassUrl,
+			'CAPTCHA' => "<div class=\"g-recaptcha\" data-sitekey=\"".$CONF['recaptcha_site_key']."\">",
 
 			'S_HIDDEN_FIELDS' => $s_hidden_fields)
 		);
