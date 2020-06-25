@@ -614,7 +614,7 @@ if ($op=="show_flight"){
  $og_flightSubmission = $flight->dateAdded;
  $og_flightDistance = round(($flight->FLIGHT_KM)/1000,1);
  $og_flightDuration = gmdate("H:i:s",$flight->DURATION);
- $og_flightMeanSpeed = $flight->MEAN_SPEED;
+ $og_flightMeanSpeed = substr($flight->MEAN_SPEED,0,4);
  $og_flightMaxHeight = $flight->MAX_ALT;
 
  if ($flight->category=="3"){
