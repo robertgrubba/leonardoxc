@@ -930,6 +930,7 @@ define("_Close","Zamknij");
 define("_ACCEPT_STATUTE","Akceptuję regulamin");
 define("_MANDATORY_STATUTE","Musisz zaakceptować regulamin");
 define("_Accept_statute","Rejestrując się w portalu musisz zaakceptować regulamin");
+define("_username_requirements","Nazwa użytkownika nie powinna zawierać innych znaków niż cyfry i litery");
 
 define("_SHOW_NEWS","Pokazuj aktualności");
 define("_TIME_TO_DELETE_PASSED","Nie możesz usunąć tego lotu. W przypadku wątpliwości skontaktuj się z administratorem pod adresem root@leonardo.pgxc.pl");

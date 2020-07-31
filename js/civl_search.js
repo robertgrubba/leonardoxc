@@ -45,6 +45,13 @@ function Submit_Form(force_civl_id){
     	msg=_MANDATORY_USERNAME;
     	document.registrationForm.name.focus();
     }
+// test if username does not contain special characters
+
+    if(msg.length==0 && /[^a-zA-Z0-9\-\/]/.test(trim(document.registrationForm.username.value))){
+    	msg=_username_requirements;
+    	document.registrationForm.name.focus();
+    }
+   
 //  msg=document.registrationForm.statute.1.value;
     if(msg.length==0 && !document.registrationForm.statute.checked){
 	msg=_MANDATORY_STATUTE;

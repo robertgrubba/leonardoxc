@@ -1003,6 +1003,8 @@ define("_Close","Close");
 define("_ACCEPT_STATUTE","I'm accepting privacy policy");
 define("_MANDATORY_STATUTE","You need to accept privacy policy");
 define("_Accept_statute","I'm accepting privacy policy");
+define("_username_requirements","Username should contain only letters and numbers");
+
 define("_TIME_TO_DELETE_PASSED","You are not allowed to delete this flight. In case of doubts feel free to contact site administrator at root@leonardo.pgxc.pl");
 define("_MENU_SUBMIT_FLYME","Upload directly from FlyMe");
 define("_SUBMITTED_FLIGHTS","Number of submitted flights");
