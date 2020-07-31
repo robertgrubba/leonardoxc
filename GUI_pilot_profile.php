@@ -175,7 +175,7 @@ function getPilotInfo(serverID,pilotID,update) {
     <td valign="top" bgcolor="#F9F9F9"><? echo $pilot['sponsor'] ?>	</td>
     <td>&nbsp;</td>
   </tr>
-  <tr> 
+  <tr style="display:none;visibility:collapse;"> 
     <td valign="top" bgcolor="#E9EDF5"> <div align="right"> <? echo _Birthdate ?> 
         (<? echo _dd_mm_yy ?>) </div></td>
     <td valign="top" bgcolor="#F9F9F9"><? 

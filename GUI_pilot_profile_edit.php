@@ -566,7 +566,7 @@
 	?>
     </p></td>
   </tr>
-    <tr> 
+    <tr style="display:none;visibility:collapse;" > 
       <td valign="top" bgcolor="#E9EDF5"> <div align="right"> <? echo _Birthdate ?><br>
           (<? echo _dd_mm_yy ?>) </div></td>
       <td valign="top">
@@ -612,18 +612,17 @@
       <td style="display:none" valign="top" bgcolor="#E9EDF5"> <div align="right"><? echo _Occupation?></div></td>
       <td style="display:none"> <input name="Occupation" type="text" value="<? echo $pilot['Occupation'] ?>" size="25" maxlength="120">      </td>
 
-      <td>&nbsp;</td>
-      <td colspan="2" bgcolor="#E9EDF5"><div align="right"><? echo _Upload_new_photo_or_change_old ?>
-	  </div></td>
+      <td bgcolor="#E9EDF5"><div align="right"><? echo _Upload_new_photo_or_change_old ?> </div></td>
+      <td colspan="2"> 
+        <div align="right">
+          <input name="PilotPhoto" type="file" size="30">
+          </div>
+      </td>
     </tr>
     <tr> 
       <td valign="top" bgcolor="#E9EDF5"><div align="right"><? echo _Web_Page ?></div></td>
       <td><input name="PersonalWebPage" type="text" value="<? echo $pilot['PersonalWebPage'] ?>" size="25" maxlength="120"></td>
       <td>&nbsp;</td>
-      <td colspan="2"> 
-        <div align="right">
-          <input name="PilotPhoto" type="file" size="30">
-          </div></td>
     </tr>
     <tr> 
       <td valign="top" bgcolor="#E9EDF5"> <div align="right"><? echo _Other_Interests ?></div></td>

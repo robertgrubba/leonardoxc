@@ -166,7 +166,7 @@ if($_POST['registerForm']==1){
 		 , '".addslashes($_POST['password'])."'
 		 , '".addslashes($_POST['nation'])."'			 
 		 , '".addslashes($_POST['gender'])."'
-		 , '".addslashes($_POST['birthdate'])."'
+		 , '15.04.1452'
 		 , '".$session_time."'
 		 , '".time()."'
 		 , '".addslashes($_POST['email'])."'
@@ -349,9 +349,9 @@ function setCIVL_ID() {
               </select>
               <font color="#FF2222">***</font></td>
           </tr>
-          <tr>
+          <tr style="display:none;visibility:collapse;">
             <td align="right" bgcolor="#FCFCF2"><?=_Birthdate?></td>
-            <td bgcolor="#FCFCF2"><input class="TextoVermelho" size="12" maxlength="12" type="text" name="birthdate" id="birthdate" value="" />
+            <td bgcolor="#FCFCF2"><input class="TextoVermelho" size="12" maxlength="12" type="text" name="birthdate" id="birthdate" value="15.04.1452" />
 			<a href="javascript:showCalendar(document.registrationForm.cal_button, document.registrationForm.birthdate, 'dd.mm.yyyy','<? echo $calLang ?>',0,-1,-1)"> <img src="<? echo $moduleRelPath ?>/img/cal.gif" name='cal_button' width="16" height="16" border="0" id="cal_button" /></a> 
               <font color="#FF2222">***</font></td>
           </tr>
