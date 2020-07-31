@@ -66,7 +66,7 @@
     </tr>
     <tr> 
       <td><div align="right"><? echo _VERSION ?>: </div></td>
-      <td><? echo "$CONF_version (released $CONF_releaseDate)"; ?> </td>
+      <td><? echo "<a href='$CONF_release_notes'>$CONF_version (released $CONF_releaseDate)</a>"; ?> </td>
     </tr>
     <tr> 
       <td><div align="right"><? echo _LICENCE ?>: </div></td>
