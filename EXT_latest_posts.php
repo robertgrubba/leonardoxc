@@ -9,7 +9,11 @@
 <body>
 <?php
 	$obj = json_decode(file_get_contents('http://weather:8080/lastposts/'));
-	//print_r($obj);
+	if($obj==null){
+		echo '<ul style="font-size: 10px;font-family: Verdana, Arial, Helvetica, sans-serif; line-height: 110%;font-style: italic;" >';
+		echo "Podgląd chwilowo niedostępny, zapraszam na <a target='_blank' href='https://www.facebook.com/groups/1478007302478465/'>Grupę Informowania o Warunie</a>";
+		echo '</ul>';
+	}
 
 	
 	foreach($obj as $post){
