@@ -73,6 +73,64 @@ class dates {
 			return $where_clause;
 	} // end of makeWhereClause
 	
+	function makeWhereClauseStats($rankID,$season,$year,$month,$day,$returnLegend=0) {
+		global $CONF;
+		$where_clause='';
+		$legend='';
+		
+		if (!$season) {
+		  if ($year && $month && $day  ) {
+				$where_clause=" AND DATE_FORMAT(DATE,'%Y%m%d') = ".sprintf("%04d%02d%02d",$year,$month,$day)." ";
+				$legend.=" :: $year/$month/$day";
+		  } else {
+			  if ($year && !$month ) {
+					$where_clause=" AND DATE_FORMAT(DATE,'%Y') = ".$year." ";
+					$legend.=" :: ".$year." ";
+			  }
+			  if ($year && $month ) {
+					$where_clause=" AND DATE_FORMAT(DATE,'%Y%m') = ".sprintf("%04d%02d",$year,$month)." ";
+					$legend.=" :: ".$monthList[$month-1]." ".$year." ";
+			  }
+			  if (! $year ) {
+					$legend.=" :: "._ALL_TIMES." ";
+		  	  }
+		  }		
+		}  else {
+			if ($CONF['seasons']['use_defined_seasons']) {
+				if ( $CONF['seasons']['seasons'][$season] ) {
+					$thisSeasonStart=$CONF['seasons']['seasons'][$season]['start'];
+					$thisSeasonEnd	=$CONF['seasons']['seasons'][$season]['end'];
+					$seasonValid=1;
+				} else {
+					$seasonValid=0;
+				}
+			} else {
+				if ( $season>=$CONF['seasons']['start_season'] && $season<=$CONF['seasons']['end_season'] ) {
+					
+					$thisSeasonStart=($season+$CONF['seasons']['season_start_year_diff'])."-".$CONF['seasons']['season_default_start'];
+					$thisSeasonEnd	=($season+$CONF['seasons']['season_end_year_diff']  )."-".$CONF['seasons']['season_default_end']; 						
+					$seasonValid=1;
+				} else {
+					$seasonValid=0;
+				}	  
+			}	
+			
+			if 	($seasonValid) {
+				$where_clause=" AND DATE >='$thisSeasonStart' AND DATE <= '$thisSeasonEnd' "; 
+				//print_r($flightsTable);
+				//if($season>=2019){
+				//	$where_clause.=" AND STR_TO_DATE(dateAdded, '%Y-%m-%d') <= DATE_ADD(STR_TO_DATE(\"$thisSeasonEnd\",'%Y-%m-%d'), INTERVAL 2 WEEK) "	;
+				//}
+				$legend.=" :: ".SEASON." ".$season;
+			}	
+			
+		}
+		if ($returnLegend) 
+			return array($where_clause,$legend);
+		else
+			return $where_clause;
+	} // end of makeWhereClauseStats
+	
 	function getCurrentSeason($rankID,$clubID=0) {
 		global $ranksList,$clubsList,$CONF;
 		$thisSeason=0;

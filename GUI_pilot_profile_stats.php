@@ -68,7 +68,7 @@
 	<?php  
 		
 	
-		require_once dirname(__FILE__).'/SQL_list_flights.php';	
+		require_once dirname(__FILE__).'/SQL_list_flights_stats.php';	
 		$pilotIDview=$pilotID;
 		$serverIDview=$serverID;
 		
