@@ -1070,4 +1070,6 @@ define("_SI_suggest_changes","Suggest changes in site description");
 define("_SI_add_takeoff_info","Provide extended takeoff information");
 
 define("_VIDEOS","Video");
+
+define("_recaptcha","You need to pass recaptcha check");
 ?>

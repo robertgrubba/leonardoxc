@@ -109,13 +109,41 @@ if( isset($_GET['rkey']) && !($_POST) ){
 
 if($_POST['registerForm']==1){
 	$civlid=$_POST['civlid']+0;
-	$username=makeSane($_POST['username']);
+//weryfikacja nazwy konta uzytkownika
+	if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-\.]+/', $_POST['username'])){
+                $msg= "<p align ='center'>".sprintf(_username_requirements, $r['username'])."</p>";
+                echo $msg; closeMain(); return;
+		
+	}else{
+		$username=makeSane($_POST['username']);
+	}
 	
 //trzeba zaakceptowac regulamin
         if($r=_search($_POST['statute']!=1)){
                 $msg= "<p align ='center'>".sprintf(_Accept_statute, $r['statute'])."</p>";
                 echo $msg; closeMain(); return;
         }
+//google recaptcha check
+	  if(isset($_POST['g-recaptcha-response']) && !empty($_POST['g-recaptcha-response']))
+	  {
+		$secret = $CONF['recaptcha_secret_key'];
+		$verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
+		$responseData = json_decode($verifyResponse);
+		if($responseData->success)
+		{
+		    $passedCaptcha = 1;
+		}else{
+			error_log("User ".$_POST['firstname']." ".$_POST['lastname']." ".$_POST['email']." has problem with recaptcha",1,"rgrubba@gmail.com","From: root@leonardo.pgxc.pl");
+                	$msg= "<p align ='center'>".sprintf(_recaptcha, $r['statute'])."</p>";
+                	echo $msg; closeMain(); return;
+		}
+	   }else{
+			error_log("User ".$_POST['firstname']." ".$_POST['lastname']." ".$_POST['email']." didnt try to fill recaptcha",1,"rgrubba@gmail.com","From: root@leonardo.pgxc.pl");
+                	$msg= "<p align ='center'>".sprintf(_recaptcha, $r['statute'])."</p>";
+                	echo $msg; closeMain(); return;
+	   }
+
+
 
 	// various queries in order of searching civlid, email through all database to avoid doubles;
 	if($r=_search($_POST['email'],$civlid,$username,'temp')) { 
@@ -192,7 +220,7 @@ if($_POST['registerForm']==1){
 }
 
 
-
+//display clear login form
 if( !isset($_POST['registerForm'])&& !isset($_GET['rkey'])){
 
 $calLang=$lang2iso[$currentlang];
@@ -202,6 +230,7 @@ $calLang=$lang2iso[$currentlang];
 var passwordMinLength='<?=$passwordMinLength?>';
 var _PwdTooShort='<?=_PwdTooShort?>';
 var _PwdAndConfDontMatch='<?=_PwdAndConfDontMatch?>';
+var _username_requirements='<?=_username_requirements?>';
 var _MANDATORY_NAME='<?=_MANDATORY_NAME?>';
 var _MANDATORY_FIRSTNAME='<?=_MANDATORY_NAME?>';
 var _MANDATORY_LASTNAME='<?=_MANDATORY_NAME?>';
@@ -240,6 +269,8 @@ function setCIVL_ID() {
 </script>
 <script language="javascript" src='https://leonardo.pgxc.pl/js/civl_search.js'></script>
 <script language='javascript' src='https://leonardo.pgxc.pl/js/cal/popcalendar.js'></script>
+<script language="javascript" src='https://www.google.com/recaptcha/api.js' async defer></script>
+
 
 <table id="registerTable">
   <tr>
@@ -315,7 +346,7 @@ function setCIVL_ID() {
           </tr>
           <tr>
             <td width="250" align="right"><?=_USERNAME;?></td>
-            <td width="350"><input class="TextoVermelho" maxlength="50" type="text" name="username" value=""/>
+            <td width="350"><input class="TextoVermelho" maxlength="50" type="text" name="username" pattern="[a-zA-Z0-9]*" value="" required/>
               <font color="#FF2222">***</font></td>
           </tr>
           <tr>
@@ -386,6 +417,13 @@ function setCIVL_ID() {
 		<font color="#FF2222">***</font>
             </td>
           </tr>
+	  <tr>
+		<td colspan="2">
+			<center>
+				<div class="g-recaptcha" data-sitekey="<?=$CONF['recaptcha_site_key']?>">
+			</center>
+		</td>
+	  </tr>
 
           <tr>
             <td width="250">&nbsp;</td>

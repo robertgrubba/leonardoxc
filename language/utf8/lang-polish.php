@@ -994,4 +994,6 @@ define("_SI_suggest_changes","Zaproponuj zmianę danych o startowisku");
 define("_SI_add_takeoff_info","Dodaj informacje o startowisku");
 
 define("_VIDEOS","Film");
+
+define("_recaptcha","Nie udało Ci się przejść weryfikacji google captcha, spróbuj ponownie");
 ?>
