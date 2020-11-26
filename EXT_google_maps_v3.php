@@ -2,13 +2,13 @@
 //************************************************************************
 // Leonardo XC Server, http://www.leonardoxc.net
 //
-// Copyright (c) 2004-2010 by Andreadakis Manolis
+// Copyright (c) 2020 by Robert Grubba
 //
 // This program is free software. You can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License.
 //
-// $Id: EXT_google_maps_track_v3.php,v 1.7 2012/10/17 09:45:24 manolis Exp $                                                                 
+// $Id: EXT_google_maps_v3.php,v 1.7 2020/11/18 09:45:24 rgrubba Exp $                                                                 
 //
 //************************************************************************
 
@@ -84,7 +84,7 @@
     TERRAIN displays physical relief tiles for displaying elevation and water features (mountains, rivers, etc.).
 	*/	
 	# martin jursa 22.06.2008: enable configuration of map type
-	$GMapType='SATELLITE';
+	$GMapType='HYBRID';
 /*	if ( in_array( $CONF['google_maps']['default_maptype'],
 			 array('ROADMAP', 'SATELLITE', 'HYBRID', 'TERRAIN','G_SATELLITE_3D_MAP'))) {
 		$GMapType= $CONF['google_maps']['default_maptype'];
