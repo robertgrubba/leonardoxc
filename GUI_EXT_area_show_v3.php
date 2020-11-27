@@ -8,7 +8,7 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License.
 //
-// $Id: GUI_EXT_area_show.php,v 1.3 2010/03/14 20:56:10 manolis Exp $                                                                 
+// $Id: GUI_EXT_area_show_v3.php,v 0.1 2020/11/27 20:56:10 rgrubba Exp $                                                                 
 //
 //************************************************************************
 	
@@ -33,7 +33,7 @@
 <script src="<?=$moduleRelPath?>/js/google_maps/polyline_v3.js" type="text/javascript"></script>
 <script src="<?=$moduleRelPath?>/js/google_maps/markerclusterer_v3.js" type="text/javascript"></script>
 <script src="<?=$moduleRelPath?>/js/google_maps/thermals_v3.js" type="text/javascript"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=<?=$CONF_google_maps_api_key ?>&callback=initMap&libraries=&v=weekly" type="text/javascript"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=<?=$CONF_google_maps_api_key ?>&libraries=&v=weekly" type="text/javascript"></script>
 	<script src="<?=$moduleRelPath?>/js/AJAX_functions.js" type="text/javascript"></script>
 	
 	
@@ -164,22 +164,35 @@ print_r(displayWeatherLegend());
 <script type="text/javascript">
 //var id = <?php echo $areaID?>;
 var currMarker;
-	var wpID=0;	
-	var site_list_html = "";
+var wpID=0;	
+var site_list_html = "";
+var takeoffPoint= new google.maps.LatLng(40, 22) ;
+var iconUrl		= "https://maps.google.com/mapfiles/kml/pal2/icon13.png";
+var shadowUrl	= "https://maps.google.com/mapfiles/kml/pal2/icon13s.png";		
+var waypointid;	
+var id;
+var setTitle;
+		
+var takeoffMarkers=[];
+var bounds = new google.maps.LatLngBounds();
+
 
 function openMarkerInfoWindow(jsonString) {
 	var results= eval("(" + jsonString + ")");			
 	var i=results.takeoffID;
 	var html=results.html;
-
+	var position;
 	infowindow.setContent(html); 
+	$.getJSON('EXT_takeoff.php?op=get_takeoff_coordinates&wpID='+i, function(data) {
+		position = new google.maps.LatLng(data.lat, data.lon) ;
+		infowindow.setPosition(position);
+	});	
     	infowindow.open(map,currMarker);
 }
 
 	
 function openSite(id)	{
 		getAjax('EXT_takeoff.php?op=get_info&inPageLink=1&wpID='+id,null,openMarkerInfoWindow);
-		// gmarkers[i].openInfoWindowHtml(htmls[i]);
 }
 	
 function initialize() {
@@ -199,8 +212,6 @@ function initialize() {
           };
 
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    //map.mapTypes.set('Relief', reliefMapType);
-    // map.setMapTypeId('Relief');
 
 
  //infowindow - po kliknieciu w element wyswietla info  
@@ -235,65 +246,64 @@ function getZoomByBounds( map, bounds ){
   return 0;
 }
 
-var takeoffPoint= new google.maps.LatLng(40, 22) ;
-//map.setCenter(takeoffPoint , 8);
+function createMarker(point,name,html,iconName) {    
+	var iconUrl='';
+	if (iconName=='start') {
+		iconUrl= "https://maps.google.com/mapfiles/kml/pal4/icon61.png";
+	} else {
+		iconUrl		= "https://maps.google.com/mapfiles/kml/pal2/icon13.png";
+	}			
+	var marker = new google.maps.Marker({
+		position: point,       
+		map: map,
+		icon: iconUrl,
+		title: "",
+	});
+
+	gmarkers[markers_num] = marker;
+	htmls[markers_num] = html;
+
+	google.maps.event.addListener(marker, 'click', function(){
+		wpID=name;
+	  	getAjax('EXT_takeoff.php?op=get_info&inPageLink=1&wpID='+name,null,openMarkerInfoWindow);
+	});
+	  
+	markers_num++;
 	
-var iconUrl		= "https://maps.google.com/mapfiles/kml/pal2/icon5.png";
-var shadowUrl	= "https://maps.google.com/mapfiles/kml/pal2/icon5s.png";	
-		
-	
-var takeoffMarkers=[];
-var bounds = new google.maps.LatLngBounds();
+	return marker;
+}
 
 function drawTakeoffs(jsonString){
 	var results= eval("(" + jsonString + ")");		
 	//$("#resDiv").html(results.waypoints.length);
 	site_list_html = '';
+	description='';
 	for(i=0;i<results.waypoints.length;i++) {	
 		var takeoffPoint= new google.maps.LatLng(results.waypoints[i].lat, results.waypoints[i].lon) ;
 		
-		//$("#resDiv").append('#'+results.waypoints[i].lat+'#'+ results.waypoints[i].lon+'#'+results.waypoints[i].id+'#'+
-		 //results.waypoints[i].name+'$');
-		if (results.waypoints[i].id ==wpID ) {
-			var iconUrl		= "https://maps.google.com/mapfiles/kml/pal2/icon5.png";
-			var shadowUrl	= "https://maps.google.com/mapfiles/kml/pal2/icon5s.png";
-		} else if (results.waypoints[i].type<1000) {
-			var iconUrl		= "https://maps.google.com/mapfiles/kml/pal3/icon21.png";
-			var shadowUrl	= "https://maps.google.com/mapfiles/kml/pal3/icon21s.png";
-		} else {
-			var iconUrl		= "https://maps.google.com/mapfiles/kml/pal2/icon13.png";
-			var shadowUrl	= "https://maps.google.com/mapfiles/kml/pal2/icon13s.png";		
-		}
-		
-		var takeoffMarker= createMarker(takeoffPoint,results.waypoints[i].id, results.waypoints[i].name,iconUrl,shadowUrl);
+		var iconUrl		= "https://maps.google.com/mapfiles/kml/pal2/icon13.png";
+		var shadowUrl	= "https://maps.google.com/mapfiles/kml/pal2/icon13s.png";		
+		waypointid = results.waypoints[i].id;	
+		var takeoffMarker= createMarker(takeoffPoint,results.waypoints[i].id, results.waypoints[i].name,iconUrl);
 		takeoffMarkers[takeoffPoint,results.waypoints[i].id] = takeoffMarker;		
 
-	    google.maps.event.addListener(takeoffMarker, "click", function() {
-		  currMarker = takeoffMarker;
-	  	  getAjax('EXT_takeoff.php?op=get_info&inPageLink=1&wpID='+results.waypoints[i].id,null,openMarkerInfoWindow);
-		/*$.get('EXT_takeoff.php?op=get_info&wpID='+id, function(data) {
-			openMarkerInfoWindow(data);
-		});*/
-	    });
+	        google.maps.event.addListener(takeoffMarker, "click", function() {
+			  currMarker = takeoffMarker;
+			  wpID = waypointid;
+			  getAjax('EXT_takeoff.php?op=get_info&inPageLink=1&wpID='+wpID,null,openMarkerInfoWindow);
+		});
 
-		//map.addOverlay(takeoffMarker);
 		takeoffMarker.setMap(map);
 		bounds.extend(takeoffPoint);
 		site_list_html += '<a href="javascript:openSite(' + results.waypoints[i].id + ')">' + results.waypoints[i].name + '</a><br>';
 	}	
-	//map.setZoom(map.getBoundsZoomLevel(bounds));
 	map.setZoom(getZoomByBounds(map,bounds));
 	map.setCenter(bounds.getCenter());
-
-	//minimap.setZoom(minimap.getBoundsZoomLevel(bounds));
-	//minimap.setCenter(bounds.getCenter());
 
 	$("#sidebar").html(site_list_html);
 }
 function addOverlays(){
 		getAjax('EXT_takeoff.php?op=getTakeoffsForArea&areaID=<?=$areaID?>',null,drawTakeoffs);
-//		site_list_html += '<a href="javascript:openSite(' + id + ')">' + description + '</a><br>';
-	//	$("#sidebar").html(site_list_html);
 }
 $(document).ready(function(){
 	initialize();
