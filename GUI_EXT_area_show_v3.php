@@ -172,10 +172,17 @@ var shadowUrl	= "https://maps.google.com/mapfiles/kml/pal2/icon13s.png";
 var waypointid;	
 var id;
 var setTitle;
-		
 var takeoffMarkers=[];
-var bounds = new google.maps.LatLngBounds();
 
+function show_waypoint(id) {
+                 jQuery.facebox(
+                        function() {
+                          jQuery.get("GUI_EXT_waypoint_info.php?wID="+id, function(data) {
+                                  jQuery.facebox (data )
+                                        }
+                                )
+                })
+}
 
 function openMarkerInfoWindow(jsonString) {
 	var results= eval("(" + jsonString + ")");			
@@ -201,7 +208,7 @@ function initialize() {
     const uluru = { lat: -25.344, lng: 131.036 };
 
     var mapOptions= {
-            zoom: 2,
+            zoom: 7,
             zoomControl: true,
             zoomControlOptions: {
                 position: google.maps.ControlPosition.RIGHT_TOP
@@ -219,7 +226,7 @@ function initialize() {
     google.maps.event.addListener(map, 'click', function() {
         infowindow.close();
     });	
-	map.setCenter (new google.maps.LatLng(0,0) );
+    map.setCenter (new google.maps.LatLng(0,0) );
 
     addOverlays();    
 
@@ -276,30 +283,22 @@ function createMarker(point,name,html,iconName) {
 function drawTakeoffs(jsonString){
 	var results= eval("(" + jsonString + ")");		
 	//$("#resDiv").html(results.waypoints.length);
+	var bounds = new google.maps.LatLngBounds();
 	site_list_html = '';
 	description='';
 	for(i=0;i<results.waypoints.length;i++) {	
 		var takeoffPoint= new google.maps.LatLng(results.waypoints[i].lat, results.waypoints[i].lon) ;
-		
 		var iconUrl		= "https://maps.google.com/mapfiles/kml/pal2/icon13.png";
 		var shadowUrl	= "https://maps.google.com/mapfiles/kml/pal2/icon13s.png";		
 		waypointid = results.waypoints[i].id;	
 		var takeoffMarker= createMarker(takeoffPoint,results.waypoints[i].id, results.waypoints[i].name,iconUrl);
 		takeoffMarkers[takeoffPoint,results.waypoints[i].id] = takeoffMarker;		
-
-	        google.maps.event.addListener(takeoffMarker, "click", function() {
-			  currMarker = takeoffMarker;
-			  wpID = waypointid;
-			  getAjax('EXT_takeoff.php?op=get_info&inPageLink=1&wpID='+wpID,null,openMarkerInfoWindow);
-		});
-
 		takeoffMarker.setMap(map);
 		bounds.extend(takeoffPoint);
 		site_list_html += '<a href="javascript:openSite(' + results.waypoints[i].id + ')">' + results.waypoints[i].name + '</a><br>';
 	}	
 	map.setZoom(getZoomByBounds(map,bounds));
 	map.setCenter(bounds.getCenter());
-
 	$("#sidebar").html(site_list_html);
 }
 function addOverlays(){

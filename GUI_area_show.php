@@ -17,7 +17,7 @@
 $areaID=makeSane($_GET['areaID']);
 if ( $CONF_google_maps_api_key  ) { ?> 
 	<iframe align="center"
-	  SRC="<? echo getRelMainDir()."GUI_EXT_area_show.php?areaID=$areaID" ?>"
+	  SRC="<? echo getRelMainDir()."GUI_EXT_area_show_v3.php?areaID=$areaID" ?>"
 	  TITLE="Area Guide" width="100%" height="700px"
 	  scrolling="yes" frameborder="0">
 	Sorry. If you're seeing this, your browser doesn't support IFRAMEs.
