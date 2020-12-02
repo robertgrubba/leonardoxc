@@ -67,7 +67,6 @@
 	
 	<?php  
 		
-	
 		require_once dirname(__FILE__).'/SQL_list_flights_stats.php';	
 		$pilotIDview=$pilotID;
 		$serverIDview=$serverID;
@@ -133,7 +132,7 @@
     }
 echo "<h1> "._map_of_visited_takeoffs."</h1>";
 ?>
-<iframe align="center" width="100%" class="flownPlacesMapIF" src="https://leonardo.pgxc.pl/GUI_EXT_user_map.php?userID=<?php echo $pilotID ?>" frameborder="no" scrolling="no" name="visitedPlaces" id="visitedPlaces"> </iframe>
+<iframe align="center" width="100%" class="flownPlacesMapIF" src="https://leonardo.pgxc.pl/GUI_EXT_user_map_v3.php?userID=<?php echo $pilotID ?>" frameborder="no" scrolling="no" name="visitedPlaces" id="visitedPlaces"> </iframe>
 <?
     echo "<h1> "._Breakdown_Per_Takeoff." </h1>";
   /*
