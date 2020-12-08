@@ -484,7 +484,7 @@ if ($op=="pilot_profile_stats"){
 //       $board_config['meta_ogModified'] = $og_flightSubmission;
          $board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';
 	$dstUserMap=$CONF['mapUsersDir'].'/'.$pilotID.'.jpg';
-        $board_config['meta_ogImage'] = 'https://files.leonardo.pgxc.pl/'.$dstUserMap;
+        $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/'.$dstUserMap;
         $board_config['meta_ogImageType'] = 'image/jpeg';
 }
 
@@ -594,9 +594,11 @@ if ($op=="show_waypoint"){
  	$board_config['meta_ogPublished'] = $wpInfo->modifyDate;
 	$board_config['meta_ogModified'] = $wpInfo->modifyDate;
  	$board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';
-        $board_config['meta_ogImage'] = 'https://files.leonardo.pgxc.pl/'.$dst;
+        $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/'.$dst;
         $board_config['meta_ogImageType'] = 'image/jpeg';
 }
+
+
 if ($op=="pilot_profile"){
 	$page_title = 'profil pilota  - '.getPilotRealName($pilotIDview,0,0);
 }
@@ -623,7 +625,7 @@ if ($op=="show_flight"){
  	$page_keywords = $gliderCatList[$flight->cat].",loty widokowe, loty widokowe paralotnią, tandem, log, track, ".$og_takeoffName.", ".$og_pilotName;
  }else{
 
- 	$page_title = 'Lot paralotnią ze startowiska '.$og_takeoffName; //.' do '.getWaypointName($flight->landingID);
+ 	$page_title = 'Lot '.$gliderCatList[$flight->cat].' ze startowiska '.$og_takeoffName; //.' do '.getWaypointName($flight->landingID);
  	$page_description = "Dnia ".$og_flightDate." ".$og_pilotName." w ".$og_takeoffName." wykonał lot ".$gliderCatList[$flight->cat]." na dystansie ".$og_flightDistance."KM (OLC) - strona zawiera statystyki i wizualizację tego lotu.";
  	$page_keywords = $gliderCatList[$flight->cat].", paragliding, flight, log, track, igc, parapente, ".$og_takeoffName.", ".$og_pilotName;
  }
@@ -812,7 +814,7 @@ if ($op=="index_full"){
     $board_config['meta_ogType'] = 'sport';
     $board_config['meta_ogSiteName'] = 'Polski Serwer LeonardoXC';
     $dstUserMap=$CONF['mapUsersDir'].'/all.jpg';
-    $board_config['meta_ogImage'] = 'https://files.leonardo.pgxc.pl/'.$dstUserMap;
+    $board_config['meta_ogImage'] = 'https://leonardo.pgxc.pl/'.$dstUserMap;
     $board_config['meta_ogImageType'] = 'image/jpeg';
 
     $dst=$CONF['mapUsersDir'].'/all.jpg';
