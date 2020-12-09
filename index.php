@@ -912,15 +912,15 @@ if ($clubID) {
 } else {
 	$clubName=_No_Club;
 }
-
+//echo "<header>";
 require_once dirname(__FILE__)."/MENU_menu.php";
-
+//echo "</header>";
 
 //---------------------------------------------
 // MAIN SWITCH
 //---------------------------------------------
 $LeoCodeBase=dirname(__FILE__);
-
+echo "<main>";
 if ( $RUN['view']=='print' && $RUN['view0']!='print0'  ) {
 	if ($op=="competition" || $op=="comp" || $op=="stat_flights" || $op=='pilot_profile_stats') {
 		
@@ -1134,6 +1134,7 @@ if ($op=="index_full") {
 	require $LeoCodeBase."/GUI_program_info.php";
 }
 
+echo "</main>";
 exitPage(0);
 
 // END OF OUTPUT to the browser
@@ -1153,7 +1154,7 @@ function exitPage($exitNow=1){
 		}else{
 			$dateto=date("Y")." - ";
 		}
-	 	echo "<br><center><font size='1'>Copyright © 2018 - ".$dateto." leonardo.pgxc.pl - <a target='_blank' href='https://leonardo.pgxc.pl/regulamin.pdf'>regulamin</a></font></center>";
+	 	echo "<br><footer><center><font size='1'>Copyright © 2018 - ".$dateto." leonardo.pgxc.pl - <a target='_blank' href='https://leonardo.pgxc.pl/regulamin.pdf'>regulamin</a></font></center></footer>";
    	 }
    }
    echo "</div>";
