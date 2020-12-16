@@ -138,7 +138,7 @@ if($_POST['registerForm']==1){
                 	echo $msg; closeMain(); return;
 		}
 	   }else{
-			error_log("User ".$_POST['firstname']." ".$_POST['lastname']." ".$_POST['email']." didnt try to fill recaptcha",1,"rgrubba@gmail.com","From: root@leonardo.pgxc.pl");
+			error_log("User ".$_POST['firstname']." ".$_POST['lastname']." ".$_POST['email']." didnt try to fill recaptcha \n",3,"register-recaptcha-missing-321.log");
                 	$msg= "<p align ='center'>".sprintf(_recaptcha, $r['statute'])."</p>";
                 	echo $msg; closeMain(); return;
 	   }
@@ -346,18 +346,21 @@ function setCIVL_ID() {
           </tr>
           <tr>
             <td width="250" align="right"><?=_USERNAME;?></td>
-            <td width="350"><input class="TextoVermelho" maxlength="50" type="text" name="username" pattern="[a-zA-Z0-9]*" value="" required/>
+            <td width="350"><input class="TextoVermelho" maxlength="50" type="text" name="username" pattern="[A-Za-z0-9]{3,}"
+  title="Nazwa użytkownika może zawierać cyfrę, duże i małe litery oraz musi mieć co najmniej 3 znaki" value="" required/>
               <font color="#FF2222">***</font></td>
           </tr>
           <tr>
           <tr>
             <td width="250" align="right" bgcolor="#FCFCF2" class="TextoP"><?=_LOCAL_PWD;?></td>
-            <td width="350" bgcolor="#FCFCF2" class="TextoP"><input class="TextoVermelho" maxlength="50" type="password" name="password" value="">
+            <td width="350" bgcolor="#FCFCF2" class="TextoP"><input class="TextoVermelho" maxlength="50" type="password" name="password" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  title="Hasło musi zawierać cyfrę, duże i małe litery oraz mieć co najmniej 8 znaków" required>
               <font color="#FF2222">***</font></td>
           </tr>
           <tr>
             <td width="250" align="right"><?=_LOCAL_PWD_2;?></td>
-            <td width="350"><input class="TextoVermelho" maxlength="50" type="password" name="password2" value="">
+            <td width="350"><input class="TextoVermelho" maxlength="50" type="password" name="password2" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  title="Hasło musi zawierać cyfrę, duże i małe litery oraz mieć co najmniej 8 znaków" required>
               <font color="#FF2222">***</font></td>
           </tr>
 		  <tr>
@@ -430,7 +433,8 @@ function setCIVL_ID() {
             <td width="350">&nbsp;</td>
           </tr>
           <td width="600" colspan="2"><div align="center">
-                <input class="submit_button" type="button" name="Submit" value=" Wyślij " onclick="Submit_Form(<?=$CONF['profile']['edit']['force_civl_id']+0?>);"/>
+                <input class="submit_button" type="submit" name="Submit" value=" Wyślij ">
+
               </div></td>
           </tr>
           <tr>
