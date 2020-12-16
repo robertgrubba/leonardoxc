@@ -347,20 +347,20 @@ function setCIVL_ID() {
           <tr>
             <td width="250" align="right"><?=_USERNAME;?></td>
             <td width="350"><input class="TextoVermelho" maxlength="50" type="text" name="username" pattern="[A-Za-z0-9]{3,}"
-  title="Nazwa użytkownika może zawierać cyfrę, duże i małe litery oraz musi mieć co najmniej 3 znaki" value="" required/>
+  title="Nazwa użytkownika może zawierać cyfrę, wielkie i małe litery oraz musi mieć co najmniej 3 znaki" value="" required/>
               <font color="#FF2222">***</font></td>
           </tr>
           <tr>
           <tr>
             <td width="250" align="right" bgcolor="#FCFCF2" class="TextoP"><?=_LOCAL_PWD;?></td>
             <td width="350" bgcolor="#FCFCF2" class="TextoP"><input class="TextoVermelho" maxlength="50" type="password" name="password" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-  title="Hasło musi zawierać cyfrę, duże i małe litery oraz mieć co najmniej 8 znaków" required>
+  title="Hasło musi zawierać cyfrę, wielkie i małe litery oraz mieć co najmniej 8 znaków" required>
               <font color="#FF2222">***</font></td>
           </tr>
           <tr>
             <td width="250" align="right"><?=_LOCAL_PWD_2;?></td>
             <td width="350"><input class="TextoVermelho" maxlength="50" type="password" name="password2" value="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-  title="Hasło musi zawierać cyfrę, duże i małe litery oraz mieć co najmniej 8 znaków" required>
+  title="Hasło musi zawierać cyfrę, wielkie i małe litery oraz mieć co najmniej 8 znaków" required>
               <font color="#FF2222">***</font></td>
           </tr>
 		  <tr>

@@ -659,10 +659,12 @@
 	</tr>
 	<tr>
 		<td valign="top" bgcolor="#E9EDF5"> <div align="right">'._PASSWORD.'</div></td>
-		<td><input name="pwd1" type="password" value="" size="25" maxlength="32"></td>
+		<td><input name="pwd1" type="password" value="" size="25" maxlength="32" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  title="Hasło musi zawierać cyfrę, wielką i małą literę oraz mieć długość co najmniej 8 znaków"></td>
 		<td>&nbsp;</td>
 		<td valign="top" bgcolor="#E9EDF5"> <div align="right">'._PASSWORD_CONFIRMATION.'</div></td>
-		<td><input name="pwd2" type="password" value="" size="25" maxlength="32"></td>
+		<td><input name="pwd2" type="password" value="" size="25" maxlength="32" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+  title="Hasło musi zawierać cyfrę, wielką i małą literę oraz mieć długość co najmniej 8 znaków"></td>
 	</tr>
 ';
 	}
