@@ -21,7 +21,7 @@ openMain(_Flying_Areas,0,'icon_takeoff.gif');
   
 ?>
 
-  <table class=main_text width="564"  border="0" align="center" cellpadding="3" cellspacing="1">
+  <table class=main_text width="100%"  border="0" align="center" cellpadding="3" cellspacing="1">
     <tr> 
       <td><?=_Name_of_Area?></td>
 	  <td>&nbsp;</td>
@@ -36,11 +36,9 @@ openMain(_Flying_Areas,0,'icon_takeoff.gif');
 	}
 	
 	while ($row = $db->sql_fetchrow($res)) { 
-		echo "<tr> 
-      <td>".$row['name']."</td>
-	  <td> ";	  
-	  echo "<a href='".	getLeonardoLink(array('op'=>'area_show','areaID'=>$row['ID']))."'>"._See_area_details."</a>";	
-	  echo "</td></tr> \n";
+	  echo "<tr><td><a href='".	getLeonardoLink(array('op'=>'area_show','areaID'=>$row['ID']))."'>".$row['name']."</a>";	
+	  echo "<td></td>";
+	  echo "</tr> \n";
 
 	}
 	
