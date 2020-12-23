@@ -21,11 +21,9 @@ openMain(_Flying_Areas,0,'icon_takeoff.gif');
   
 ?>
 
-  <table class=main_text width="100%"  border="0" align="center" cellpadding="3" cellspacing="1">
-    <tr> 
-      <td><?=_Name_of_Area?></td>
-	  <td>&nbsp;</td>
-   </tr>
+  <div class=main_text width="100%"  border="0" >
+    <h2><?=_Name_of_Area?></h2>
+	<ul>
 <? 
 	$query="SELECT * FROM $areasTable WHERE areaType=0 ORDER BY name";
 	// $query="SELECT * FROM $areasTable ORDER BY name";
@@ -36,13 +34,10 @@ openMain(_Flying_Areas,0,'icon_takeoff.gif');
 	}
 	
 	while ($row = $db->sql_fetchrow($res)) { 
-	  echo "<tr><td><a href='".	getLeonardoLink(array('op'=>'area_show','areaID'=>$row['ID']))."'>".$row['name']."</a>";	
-	  echo "<td></td>";
-	  echo "</tr> \n";
-
+	  echo "<li><a href='".	getLeonardoLink(array('op'=>'area_show','areaID'=>$row['ID']))."'>".$row['name']."</a></li>\n";	
 	}
-	
-	echo "</table>";
+	echo "</ul>";
+	echo "</div>";
 	closeMain();  
 	return;
 
