@@ -368,6 +368,7 @@ if ($op=="sites") $page_title = 'przewodnik po startowiskach paralotniowych';
 if ($op=="list_pilots") $page_title = 'lista pilotów paralotni portalu';
 if ($op=="pilot_search") $page_title = 'wyszukiwarka pilotów paralotni portalu';
 if ($op=="list_areas") $page_title = 'lista rejonów do latania paralotnią';
+if ($op=="comp") $page_title = "Tabela Rankingowa na Polskim Serwerze LeonardoXC";
 if ($op=="list_takeoffs"){
 	 $page_title = 'Lista startowisk paralotniowych';
 	 $page_keywords = "paralotnie, paragliding, flights, logs, track, igc, parapente, loty, startowiska, opisy, przewodnik";
