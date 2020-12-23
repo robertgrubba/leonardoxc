@@ -16,12 +16,13 @@ require_once dirname(__FILE__).'/CL_area.php';
   
 $areaID=makeSane($_GET['areaID'],1);
 
-
 openMain(_Flying_Areas,0,'icon_takeoff.gif'); 
   
 ?>
 
-  <div class=main_text width="100%"  border="0" >
+
+  <div class=main_text width="100%"  border="0" style="display:flex;" >
+    <div id="areaslist" class="areaslist">
     <h2><?=_Name_of_Area?></h2>
 	<ul>
 <? 
@@ -34,10 +35,14 @@ openMain(_Flying_Areas,0,'icon_takeoff.gif');
 	}
 	
 	while ($row = $db->sql_fetchrow($res)) { 
-	  echo "<li><a href='".	getLeonardoLink(array('op'=>'area_show','areaID'=>$row['ID']))."'>".$row['name']."</a></li>\n";	
+	  echo "<li id=".$row['ID']."><a href='".	getLeonardoLink(array('op'=>'area_show','areaID'=>$row['ID']))."'>".$row['name']."</a></li>\n";	
 	}
 	echo "</ul>";
-	echo "</div>";
+     echo "</div>";
+     echo "<div class=\"mapka\" id=\"mapka\" style='margin-left: 2em; '></div>";
+   echo "</div>";
+
+ echo '<script> arh = $(areaslist).height(); $("#areaslist").on("hover","a",function(){ idr=$(this).parent().attr("id"); $( mapka ).html(\'<img height="\'+arh+\'" src="'.$CONF['links']['baseURL'].'/data/cache/map_thumbs/users/rejon_\'+idr+\'.jpg">\'); });</script>';
 	closeMain();  
 	return;
 
