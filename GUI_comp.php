@@ -174,10 +174,10 @@ if (!empty($custom_ranks_menu)) {
 <link rel="stylesheet" href="<?=$moduleRelPath ?>/js/bettertip/jquery.bettertip.css" type="text/css" />
 
 
-<script type="text/javascript" src="<?=$moduleRelPath ?>/js/bettertip/jquery.bettertip.js"></script>
-<script type="text/javascript" src="<?=$moduleRelPath ?>/js/tipster.js"></script>
+<script src="<?=$moduleRelPath ?>/js/bettertip/jquery.bettertip.js"></script>
+<script src="<?=$moduleRelPath ?>/js/tipster.js"></script>
 
-<script type="text/javascript">
+<script >
 var BT_base_urls=[];
 BT_base_urls[0]='<?=$moduleRelPath?>/GUI_EXT_pilot_info.php?op=info_short&pilotID=';
 BT_base_urls[1]='<?=$moduleRelPath?>/GUI_EXT_pilot_info.php?op=info_nac&pilotID=';
@@ -367,7 +367,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 					if ($val) {
 						if ($flightComment) $flightCommentStr="<br>($flightComment)";
 						else $flightCommentStr='';
-						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."' alt='$descr' title='$descr'>".$outVal.$flightCommentStr."</a>";
+						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>".$outVal.$flightCommentStr."</a>";
 						
 						//echo " <a class='betterTip' id='tpa2_$flightID' href='".$moduleRelPath."/GUI_EXT_flight_info.php?op=info_short&flightID=".$flightID."' title='$descr'>?</a>";
 						echo "</TD>"; 	 		  
@@ -457,7 +457,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 					if ($val!="-" and $key!=$pilot['flights'][$flightID]['takeoff']) {
 						if ($flightComment) $flightCommentStr="<br>($flightComment)";
 						else $flightCommentStr='';
-						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."' alt='$descr' title='$descr'>".$outVal.$flightCommentStr."</a>";
+						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>".$outVal.$flightCommentStr."</a>";
 						
 						//echo " <a class='betterTip' id='tpa2_$flightID' href='".$moduleRelPath."/GUI_EXT_flight_info.php?op=info_short&flightID=".$flightID."' title='$descr'>?</a>";
 						echo "</TD>"; 	 		  

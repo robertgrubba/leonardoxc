@@ -866,7 +866,7 @@ if ($opMode==1) include("header.php");
 
 <link href="<?=$moduleRelPath."/templates/".$PREFS->themeName."/style.css"; ?>" rel="stylesheet" type="text/css">
 <link href="<?=$moduleRelPath."/templates/".$PREFS->themeName."/width.css"; ?>" rel="stylesheet" type="text/css">
-<style type="text/css">
+<style>
 <?php  if ( $print ||  $RUN['view']=='print'  ) {?>
 
 

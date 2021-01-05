@@ -1,4 +1,4 @@
-<style type="text/css">
+<style>
 <!--
 	#vnav, #vnav ul { /* all lists */
 		padding: 0;
@@ -152,7 +152,7 @@ div#b_nav ul li.header a.on {
 -->
 </style>
 
-<script language="javascript">
+<script>
     function jumpToLeague(countryCode) {
 	  var leagueYear = document.navForm.leagueYear.value;
 	  var leagueCat  = document.navForm.leagueCat.value;

@@ -32,7 +32,7 @@
 
 
 <link rel="stylesheet" href="/templates/pgxc/tpl/style.css" type="text/css">
-<style type="text/css">
+<style>
 <!--
 body {
 	background-color:#a1a1a1;
@@ -92,7 +92,7 @@ window.cookieconsent.initialise({
 -->
 <link href="/templates/pgxc/style.css" rel="stylesheet" type="text/css">
 <link href="/templates/pgxc/width.css" rel="stylesheet" type="text/css">
-<style type="text/css">
+<style>
 .mainBodyTable {  
 	border:0;
 	border-left-color:#000000; border-left-style:solid; border-left-width:2px; 
@@ -102,18 +102,18 @@ window.cookieconsent.initialise({
 
 </style>
 
-<script type="text/javascript" src="/js/google_maps/jquery.js"></script>
-<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+<script src="/js/google_maps/jquery.js"></script>
+<script src="/js/jquery.cookie.js"></script>
 
-<script type="text/javascript" src="/js/jqModal.js"></script>
-<script type="text/javascript" src="/js/DHTML_functions.js"></script>
+<script src="/js/jqModal.js"></script>
+<script src="/js/DHTML_functions.js"></script>
 
 <link rel="stylesheet" type="text/css" href="/templates/pgxc/style_second_menu.css">
 <link rel="stylesheet" type="text/css" href="/templates/pgxc/style_top_menu.css">
 <link rel="stylesheet" type="text/css" href="/js/jqModal.css">
 
 <!-- sprites-->
-<style type="text/css">
+<style>
 <!--
 img.brands { background: url(/img/sprite_brands.png) no-repeat left top; }
 img.fl {   background: url(/img/sprite_flags.png) no-repeat left top ; }
@@ -131,7 +131,7 @@ img.icons1 {   background: url(/img/sprite_icons1.png) no-repeat left  top ; }
 </style>
 <![endif]-->
 
-<script type="text/javascript"><!--//--><![CDATA[//><!--
+<script ><!--//--><![CDATA[//><!--
 
 $('#dialogWindow').jqm({modal:true,toTop: true});
 
@@ -400,7 +400,7 @@ if ($CONF_use_utf) {
 // echo  "<div class='tableTitle shadowBox'><div class='titleDiv'>$legend</div>";
  // if (!$listClubs) echo "<div class='pagesDivSimple'>$legendRight</div>";
   
-  echo "</div>" ;
+//  echo "</div>" ;
 
 
 
@@ -444,10 +444,10 @@ if (!empty($custom_ranks_menu)) {
 <link rel="stylesheet" href="<?=$moduleRelPath ?>/js/bettertip/jquery.bettertip.css" type="text/css" />
 
 
-<script type="text/javascript" src="<?=$moduleRelPath ?>/js/bettertip/jquery.bettertip.js"></script>
-<script type="text/javascript" src="<?=$moduleRelPath ?>/js/tipster.js"></script>
+<script src="<?=$moduleRelPath ?>/js/bettertip/jquery.bettertip.js"></script>
+<script src="<?=$moduleRelPath ?>/js/tipster.js"></script>
 
-<script type="text/javascript">
+<script >
 var BT_base_urls=[];
 BT_base_urls[0]='<?=$moduleRelPath?>/GUI_EXT_pilot_info.php?op=info_short&pilotID=';
 BT_base_urls[1]='<?=$moduleRelPath?>/GUI_EXT_pilot_info.php?op=info_nac&pilotID=';
@@ -637,7 +637,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 					if ($val) {
 						if ($flightComment) $flightCommentStr="<br>($flightComment)";
 						else $flightCommentStr='';
-						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."' alt='$descr' title='$descr'>".$outVal.$flightCommentStr."</a>";
+						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>".$outVal.$flightCommentStr."</a>";
 						
 						//echo " <a class='betterTip' id='tpa2_$flightID' href='".$moduleRelPath."/GUI_EXT_flight_info.php?op=info_short&flightID=".$flightID."' title='$descr'>?</a>";
 						echo "</TD>"; 	 		  
@@ -727,7 +727,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 					if ($val!="-" and $key!=$pilot['flights'][$flightID]['takeoff']) {
 						if ($flightComment) $flightCommentStr="<br>($flightComment)";
 						else $flightCommentStr='';
-						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."' alt='$descr' title='$descr'>".$outVal.$flightCommentStr."</a>";
+						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>".$outVal.$flightCommentStr."</a>";
 						
 						//echo " <a class='betterTip' id='tpa2_$flightID' href='".$moduleRelPath."/GUI_EXT_flight_info.php?op=info_short&flightID=".$flightID."' title='$descr'>?</a>";
 						echo "</TD>"; 	 		  
