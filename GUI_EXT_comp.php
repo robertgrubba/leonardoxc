@@ -1,18 +1,12 @@
 <!DOCTYPE html>
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">-->
-
-<html dir="">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="Content-Style-Type" content="text/css">
 
-<meta http-equiv="refresh" content="; URL="/>
-<meta http-equiv="refresh" content="3600"/>
-<meta http-equiv="pragma" content=""/>
-<meta http-equiv="content-language" content=""/>
+<meta http-equiv="content-language" content="PL"/>
 <title>leonardo.pgxc.pl - Tabela Rankingowa na Polskim Serwerze LeonardoXC</title>
-<meta name="keywords" content=""/>
-<meta name="description" content=""/>
+<meta name="keywords" content="tabela, rankingowa, leoanrdoXC"/>
+<meta name="description" content="Tabela Rankingowa LeonardoXC"/>
 <meta name="author" content=""/>
 <meta name="identifier-url" content=""/>
 <meta name="reply-to" content=""/>
@@ -282,9 +276,9 @@ if ($CONF_use_utf) {
 		$db->sql_query("SET NAMES utf8");
 }
 
-  $rank=$_GET['rank'];
-  $subrank=$_GET['subrank'];
-  $season=$_GET['season'];
+  $rank=makeSane($_GET['rank'],1);
+  $subrank=makeSane($_GET['subrank'],1);
+  $season=makeSane($_GET['season'],1);
 
 
   if($rank==203 and $season==0){
