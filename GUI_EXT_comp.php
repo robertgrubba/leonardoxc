@@ -487,7 +487,11 @@ var BT_default_width=500;
 	if ($listClubs) {			
 		listClubs($subrankTitle, $rankHeader,"score","score",$formatFunction);
 	} else {
-	 	listCategory($legend.' '.$season.' # '.$subrankTitle, $rankHeader,"score","score",$formatFunction);
+		if ($season!=1){
+			listCategory($legend.' '.$season.' # '.$subrankTitle, $rankHeader,"score","score",$formatFunction);
+		}else{
+			listCategory($legend.' Best of The Best # '.$subrankTitle, $rankHeader,"score","score",$formatFunction);
+		}
 	}
 	
 	?>
