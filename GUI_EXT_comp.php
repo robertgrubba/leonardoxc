@@ -279,7 +279,7 @@ if ($CONF_use_utf) {
   $rank=makeSane($_GET['rank'],1);
   $subrank=makeSane($_GET['subrank'],1);
   $season=makeSane($_GET['season'],1);
-
+  $CONF_compItemsPerPage=100;
 
   if($rank==203 and $season==0){
 	$season=2019;
@@ -454,8 +454,8 @@ BT_displayOnSide[2]='auto';
 
 var BT_widths=[];
 BT_widths[0]=500;
-BT_widths[1]=400;
-BT_widths[2]=400;
+BT_widths[1]=300;
+BT_widths[2]=300;
 
 var BT_default_width=500;
 </script>
@@ -576,14 +576,9 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 		 echo "<TD class='hideOnExtraSmall class_flightNo' >".($i)."</TD>"; 	
 	     echo "<TD nowrap ><div align=left id='$arrayName"."_$i' class='pilotLink'>";
 
-	     if (!isPrint()) {
-			 echo "<a class='betterTip' id='tpa0_$pilotIDinfo' href=\"javascript:pilotTip.newTip('inline', 0, 13, '$arrayName"."_$i', 200, '".$pilotID."','".
-					addslashes($pilot['name'])."' )\"  onmouseout=\"pilotTip.hide()\">".$pilot['name']."</a>";
-	     } else {
-	     	 echo "<a class='betterTip' id='tpa0_$pilotIDinfo' href='".
-	     	 getLeonardoLink(array('op'=>'pilot_profile','pilotID'=>$pilotID)).
+	     	 echo "<a id='tpa0_$pilotIDinfo' href='".
+	     	 getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>$pilotID,'season'=>0,'takeoffID'=>0)).
 	     	  "'  >".$pilot['name']."</a>";
-	     }
 	     			
 		if ($pilot['NACid'] && $pilot['NACmemberID'] && $pilot['NACclubID'] &&
 				 $CONF['NAC']['display_club_details_on_pilot_list']
@@ -635,9 +630,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 					if ($val) {
 						if ($flightComment) $flightCommentStr="<br>($flightComment)";
 						else $flightCommentStr='';
-						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>".$outVal.$flightCommentStr."</a>";
-						
-						//echo " <a class='betterTip' id='tpa2_$flightID' href='".$moduleRelPath."/GUI_EXT_flight_info.php?op=info_short&flightID=".$flightID."' title='$descr'>?</a>";
+						echo "<TD><a id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>".$outVal.$flightCommentStr."</a>";
 						echo "</TD>"; 	 		  
 					} else echo "<TD>".$outVal."</TD>"; 	 		  
 					$k++;
@@ -725,7 +718,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 					if ($val!="-" and $key!=$pilot['flights'][$flightID]['takeoff']) {
 						if ($flightComment) $flightCommentStr="<br>($flightComment)";
 						else $flightCommentStr='';
-						echo "<TD><a class='betterTip' id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>".$outVal.$flightCommentStr."</a>";
+						echo "<TD><a id='tpa2_$flightID' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>".$outVal.$flightCommentStr."</a>";
 						
 						//echo " <a class='betterTip' id='tpa2_$flightID' href='".$moduleRelPath."/GUI_EXT_flight_info.php?op=info_short&flightID=".$flightID."' title='$descr'>?</a>";
 						echo "</TD>"; 	 		  
