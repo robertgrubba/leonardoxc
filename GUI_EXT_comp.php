@@ -281,6 +281,7 @@ if ($CONF_use_utf) {
   $season=makeSane($_GET['season'],1);
   $CONF_compItemsPerPage=100;
 
+  $sourceRankLink="https://leonardo.pgxc.pl/rankingi/$rank.$subrank/season$season/brand:all,club:all";
   if($rank==203 and $season==0){
 	$season=2019;
   }
@@ -488,16 +489,16 @@ var BT_default_width=500;
 		listClubs($subrankTitle, $rankHeader,"score","score",$formatFunction);
 	} else {
 		if ($season!=1){
-			listCategory($legend.' '.$season.' # '.$subrankTitle, $rankHeader,"score","score",$formatFunction);
+			listCategory($legend.' '.$season.' # '.$subrankTitle, $rankHeader,"score","score",$formatFunction,$sourceRankLink);
 		}else{
-			listCategory($legend.' Best of The Best # '.$subrankTitle, $rankHeader,"score","score",$formatFunction);
+			listCategory($legend.' Best of The Best # '.$subrankTitle, $rankHeader,"score","score",$formatFunction,$sourceRankLink);
 		}
 	}
 	
 	?>
 </div>
 <?	
-function listCategory($legend,$header, $category, $key, $formatFunction="") {
+function listCategory($legend,$header, $category, $key, $formatFunction="",$sourceRankLink="") {
    global $pilots;
    global $Theme,$countries;
    global $moduleRelPath;
@@ -531,7 +532,7 @@ function listCategory($legend,$header, $category, $key, $formatFunction="") {
 	$rules='<a href="'.RULESURL.'" target="_blank">'._PROJECT_RULES.'</a>';
    }
    echo "<table class='listTable listTableTabber' cellpadding='2' cellspacing='0'>
-   			<tr><th class='tableTitleExtra' colspan='".($countHowMany+4)."'>$legend  $rules</th></tr>";
+   			<tr><th class='tableTitleExtra' colspan='".($countHowMany+4)."'>$legend <a href='$sourceRankLink'>Źródło</a> $rules</th></tr>";
    
    ?>
    <tr>
