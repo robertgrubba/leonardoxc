@@ -151,6 +151,9 @@ foreach($ranksList[$rank]['subranks'] as $subrankID=>$subrankArray) {
 	else $style="";
 	echo " <div class='menu1' $style ><a href='".getLeonardoLink(array('op'=>'comp','rank'=>$rank,'subrank'=>$subrankID))."'>$subrankTitle</a></div>";	
 }
+echo "<button id='embed' style='float: right; background-color: #E1E6F3; border: 1px solid #d3cfe4; color: #006699;'>&#60;\&#62;</button>";
+echo "<div id='embed' class='embed' style='display:none; float:right; margin-top:20px; margin-bottom:5px; background-color: #E1E6F3;border-radius:5px 0px 5px 5px; padding:5px;'>Jeśli chcesz osadzić tę tabelę na swojej stronie internetowej/blogu wykorzystaj poniższy kod:<p>&lt;iframe frameborder=0 width='100%' height='500'<br>  src='https://leonardo.pgxc.pl/rankingi_zewnetrzne/$rank.$subrank/$season/'<br>   title='Tabela rankingu $legend na Polskim Serwerze LeonardoXC'&gt;<br>&lt/iframe&gt;</p></div>";
+
 echo "<BR><BR>";
 
 
@@ -173,7 +176,14 @@ if (!empty($custom_ranks_menu)) {
 ?>
 <link rel="stylesheet" href="<?=$moduleRelPath ?>/js/bettertip/jquery.bettertip.css" type="text/css" />
 
+<script>
+$(document).ready(function() {
 
+            $("#embed").click(function(){
+               $(".embed").toggle( 'slow');
+            });
+         });
+</script>
 <script src="<?=$moduleRelPath ?>/js/bettertip/jquery.bettertip.js"></script>
 <script src="<?=$moduleRelPath ?>/js/tipster.js"></script>
 
