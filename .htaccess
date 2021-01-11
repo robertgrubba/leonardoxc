@@ -14,6 +14,9 @@ php_value max_input_time 180
 php_value memory_limit 128M
 #php_value max_input_vars 10000
 
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
 
 RedirectMatch 404 /\.git
 RedirectMatch 404 /\.gitignore
