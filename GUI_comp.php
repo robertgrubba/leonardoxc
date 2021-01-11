@@ -152,7 +152,7 @@ foreach($ranksList[$rank]['subranks'] as $subrankID=>$subrankArray) {
 	echo " <div class='menu1' $style ><a href='".getLeonardoLink(array('op'=>'comp','rank'=>$rank,'subrank'=>$subrankID))."'>$subrankTitle</a></div>";	
 }
 echo "<button id='embed' style='float: right; background-color: #E1E6F3; border: 1px solid #d3cfe4; color: #006699;'>&#60;\&#62;</button>";
-echo "<div id='embed' class='embed' style='display:none; float:right; margin-top:5px; margin-bottom:5px; background-color: #E1E6F3;border-radius:5px 5px 5px 5px; padding:5px;'>"._EMBEDTABLE." <p>&lt;iframe frameborder=0 width='100%' height='567'<br>  src='https://leonardo.pgxc.pl/rankingi_zewnetrzne/$rank.$subrank/$season/'<br>   title='Tabela rankingu $legend na Polskim Serwerze LeonardoXC'&gt;<br>&lt/iframe&gt;</p></div>";
+echo "<div id='embed' class='embed' style='display:none; float:right; margin-top:5px; margin-bottom:5px; background-color: #E1E6F3;border-radius:5px 5px 5px 5px; padding:5px;'>"._EMBEDTABLE." <p>&lt;iframe frameborder=0 width='100%' height='567'<br>  src='".$CONF['links']['baseURL']."/rankingi_zewnetrzne/$rank.$subrank/$season/'<br>   title='Tabela rankingu $legend na Polskim Serwerze LeonardoXC'&gt;<br>&lt/iframe&gt;</p></div>";
 
 echo "<BR><BR>";
 
