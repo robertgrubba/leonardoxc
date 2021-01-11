@@ -984,6 +984,9 @@ table#headerTable {
 	margin-right: auto;
 	border-spacing: 0px;
 	padding: 0px;
+	background-size:cover;
+	background-position: bottom;
+
 }
 	
 table#tableBlocks {
