@@ -1072,4 +1072,5 @@ define("_SI_add_takeoff_info","Provide extended takeoff information");
 define("_VIDEOS","Video");
 
 define("_recaptcha","You need to pass recaptcha check");
+define("_EMBEDTABLE","If you want to embed this table on your webpage or blog you can use this code:")
 ?>
