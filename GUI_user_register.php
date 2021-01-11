@@ -208,7 +208,7 @@ if($_POST['registerForm']==1){
 			LeonardoMail::sendMail('[Leonardo] - Confirmation email',$email_body,$_POST['email'],addslashes($_POST['firstname']));
 			
 			$msg="<p align='center'>".sprintf(_Server_send_conf_email,$_POST['email'])."</p>";
-            error_log("User ".$_POST['firstname']." ".$_POST['lastname']." ".$_POST['email']." have submitted registration form",1,"rgrubba@gmail.com","From: root@leonardo.pgxc.pl");
+            error_log("User ".$_POST['firstname']." ".$_POST['lastname']." ".$_POST['email']." have submitted registration form - ".$_POST['referer']." ",1,"rgrubba@gmail.com","From: root@leonardo.pgxc.pl");
 		 }
     } else {
 		 // var_dump($r); 
@@ -411,6 +411,11 @@ function setCIVL_ID() {
 				}
 				?>
               </select>
+            </td>
+          </tr>
+          <tr>
+            <td width="250" align="right" bgcolor="#FCFCF2"><?=_referer;?></td>
+            <td width="350" bgcolor="#FCFCF2"><input class="TextoVermelho" size="40" maxlength="255" type="text" name="referer" value=""/>
             </td>
           </tr>
                   <tr>

@@ -997,4 +997,5 @@ define("_VIDEOS","Film");
 
 define("_recaptcha","Nie udało Ci się przejść weryfikacji google captcha, spróbuj ponownie");
 define("_EMBEDTABLE","Jeśli chcesz osadzić tę tabelę na swojej stronie internetowej/blogu wykorzystaj kod:");
+define("_referer","Jak dowiedziałeś się o leonardo.pgxc.pl?");
 ?>
