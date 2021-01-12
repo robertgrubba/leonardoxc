@@ -410,8 +410,9 @@ function setClub(NACid) {
  	 flush2Browser();
 	 //while (@ob_end_flush()); 
 
+	file_get_contents("http://localhost/EXT_forum_footer.php?userid=".$userID);
 	}
-	
+
 
 	closeMain(); 
 

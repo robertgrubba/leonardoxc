@@ -509,6 +509,7 @@ This is nothing to worry about, but you can easily provide this info <br>by clic
 		<?
                 //request to generate diagrams pushed send to CDN
                 $webPageContents = file_get_contents(getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID)));
+		file_get_contents('http://localhost/EXT_forum_footer.php?userid='.$userID);
 	}
 
 
