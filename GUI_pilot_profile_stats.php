@@ -65,6 +65,15 @@
 	
 	</script>
 	
+<script>
+$(document).ready(function() {
+
+            $("#embed").click(function(){
+               $(".embed").toggle( 'slow');
+            });
+         });
+</script>
+
 	<?php  
 		
 		require_once dirname(__FILE__).'/SQL_list_flights_stats.php';	
@@ -73,9 +82,13 @@
 		
 		require_once dirname(__FILE__)."/MENU_second_menu.php"; 
 		
-	?>
 	
 	
+echo "<button id='embed' style='display:none; margin-top: -30px; float: right; background-color: #E1E6F3; border: 1px solid #d3cfe4; color: #006699;'>&#60;\&#62;</button>";
+echo "<div id='embed' class='embed' style='display:none; float:right; margin-top:5px; margin-bottom:5px; background-color: #E1E6F3;border-radius:5px 5px 5px 5px; padding:5px;'>W celu osadzenia stopki na forum możesz zastosować HTML lub tzw BBCODE <p><img src='".$CONF['links']['baseURL']."/data/pilots/$pilotID/stopka_polish_niebieska.png'><ul><li><strong>BBCODE: </strong>[url=".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>$serverIDview.'_'.$pilotIDview,'year'=>'0','country'=>''))."][img]".$CONF['links']['baseURL']."/data/pilots/$pilotID/stopka_polish_niebieska.png[/img][/url]</li><li><strong>HTML: </strong>&lt;a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>$serverIDview.'_'.$pilotIDview,'year'=>'0','country'=>''))."'&gt;&lt;img src='".$CONF['links']['baseURL']."/data/pilots/$pilotID/stopka_polish_niebieska.png' alt='Statystyki pilota na LeonardoXC'&gt;&lt;/a&gt;</li></ul></p>"
+."<p><img src='".$CONF['links']['baseURL']."/data/pilots/$pilotID/stopka_polish_zolta.png'><ul><li><strong>BBCODE: </strong>[url=".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>$serverIDview.'_'.$pilotIDview,'year'=>'0','country'=>''))."][img]".$CONF['links']['baseURL']."/data/pilots/$pilotID/stopka_polish_zolta.png[/img][/url]</li><li><strong>HTML: </strong>&lt;a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>$serverIDview.'_'.$pilotIDview,'year'=>'0','country'=>''))."'&lt;&gt;'img src='".$CONF['links']['baseURL']."/data/pilots/$pilotID/stopka_polish_zolta.png' alt='Statystyki pilota na LeonardoXC'&gt;&lt;/a&gt;</li></ul></p>"
+."<p><img src='".$CONF['links']['baseURL']."/data/pilots/$pilotID/stopka_polish_zielona.png'><ul><li><strong>BBCODE: </strong>[url=".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>$serverIDview.'_'.$pilotIDview,'year'=>'0','country'=>''))."][img]".$CONF['links']['baseURL']."/data/pilots/$pilotID/stopka_polish_zielona.png[/img][/url]</li><li><strong>HTML: </strong>&lt;a href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>$serverIDview.'_'.$pilotIDview,'year'=>'0','country'=>''))."'&gt;&lt;'img src='".$CONF['links']['baseURL']."/data/pilots/$pilotID/stopka_polish_zielona.png' alt='Statystyki pilota na LeonardoXC'&gt;&lt;/a&gt;</li></ul></p></div>";
+?>
 	<div class='pilot_stats_div'>
 	<?php 
 	// echo "#$serverIDview $pilotIDview,#";
