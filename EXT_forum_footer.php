@@ -45,29 +45,25 @@ $pierwszyLot = _ACCORDING_TO_LOGS_FLY_SINCE.": ".$row['firstFlightDate'];
 $podsumowanie = _AIRTIME.": ".str_replace(':','h',sec2Time($row['totalDuration'],1))."m "._IN." ".$row['totalFlights']." "._FLIGHTS_FROM." ".$row['takeoffsNumber']." "._SINGLE_TAKEOFF.", "._PERSONAL_BEST.": ".str_replace('&nbsp;','',formatDistance($row['bestDistance'],1));
 
 function generateForumFooter($r,$g,$b,$podsumowanie,$pierwszyLot, $color_name,$userid){
-	$my_img = imagecreate( 430, 40 );                             //width & height
+	//$my_img = imagecreate( 430, 40 );                             //width & height
+	$my_img = imagecreate( 1300, 120 );                             //width & height
 	$background  = imagecolorallocatealpha($my_img,0,0,0,127);
 	$font= './templates/pgxc/tpl/Roboto-Regular.ttf';
-	$logo = imagecreatefromgif('./templates/pgxc/tpl/leonardo_logo_40.gif');
-	//$color = imagecolorallocate( $my_img, 255, 255, 0 );
-	//$color = imagecolorallocate( $my_img, 128, 255, 0 );
-	//$color = imagecolorallocate( $my_img, 16, 82, 137 );
+	$logo = imagecreatefromgif('./templates/pgxc/tpl/leonardo_logo.gif');
 	$color = imagecolorallocate($my_img,$r,$g,$b);
 	$red = imagecolorallocate( $my_img, 255,0,0);
-	imagettftext( $my_img, 10,0, 43, 11, $color,$font, $pierwszyLot);
-	imagettftext( $my_img, 10,0, 43, 28, $color,$font, $podsumowanie);
-	imagesetthickness ( $my_img, 5 );
-
-	imagecopymerge($my_img, $logo, 0, 0, 0, 0, 40, 32, 100);
-
-	imagettftext( $my_img, 7,0, 4, 37, $red, $font, '.pgxc.pl');
+	imagettftext( $my_img, 30,0, 140, 31, $color,$font, $pierwszyLot);
+	imagettftext( $my_img, 30,0, 140, 88, $color,$font, $podsumowanie);
+	imagecopymerge($my_img, $logo, 0, 0, 0, 0, 120, 100, 100);
+	imagettftext( $my_img, 20,0, 17, 110, $red, $font, '.pgxc.pl');
 	$dest = './data/pilots/'.$userid.'/stopka_'.$color_name.'.png';
 //	header( "Content-type: image/png" );
-	imagepng( $my_img, $dest );
-	imagecolordeallocate( $line_color );
-	imagecolordeallocate( $text_color );
+	imagepng( $my_img, $dest, 0 );
+	imagecolordeallocate( $color );
+	imagecolordeallocate( $red );
 	imagecolordeallocate( $background );
 	imagedestroy( $my_img );
+	shell_exec("mogrify -resize 30% ".$dest);
 }
 generateForumFooter(16,82,137,$podsumowanie,$pierwszyLot,_BLUE,$pilotIDview);
 generateForumFooter(255,255,0,$podsumowanie,$pierwszyLot,_YELLOW,$pilotIDview);
