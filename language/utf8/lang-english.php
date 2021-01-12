@@ -1072,6 +1072,17 @@ define("_SI_add_takeoff_info","Provide extended takeoff information");
 define("_VIDEOS","Video");
 
 define("_recaptcha","You need to pass recaptcha check");
-define("_EMBEDTABLE","If you want to embed this table on your webpage or blog you can use this code:")
+define("_EMBEDTABLE","If you want to embed this table on your webpage or blog you can use this code:");
 define("_referer","How did you find leonardo.pgxc.pl?");
+
+define("_ACCORDING_TO_LOGS_FLY_SINCE","According to tracks fly since");
+define("_AIRTIME","Airtime");
+define("_IN","in");
+define("_FLIGHTS_FROM","flights from");
+define("_SINGLE_TAKEOFF","takeoffs");
+define("_PERSONAL_BEST","best");
+
+define("_BLUE","blue");
+define("_GREEN","green");
+define("_YELLOW","yellow");
 ?>

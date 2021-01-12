@@ -998,4 +998,15 @@ define("_VIDEOS","Film");
 define("_recaptcha","Nie udało Ci się przejść weryfikacji google captcha, spróbuj ponownie");
 define("_EMBEDTABLE","Jeśli chcesz osadzić tę tabelę na swojej stronie internetowej/blogu wykorzystaj kod:");
 define("_referer","Jak dowiedziałeś się o leonardo.pgxc.pl?");
+
+define("_ACCORDING_TO_LOGS_FLY_SINCE", "Według logów zdobywa przestworza od");
+define("_AIRTIME","Nalot");
+define("_IN","w");
+define("_FLIGHTS_FROM","lotach z");
+define("_SINGLE_TAKEOFF","startowisk");
+define("_PERSONAL_BEST","rekord");
+
+define("_BLUE","niebieska");
+define("_GREEN","zielona");
+define("_YELLOW","zolta");
 ?>
