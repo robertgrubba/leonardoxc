@@ -104,44 +104,87 @@ function removeClubPilot(pilotID) {
 		echo "<div id='updateDiv' style='display:block; background-color:#EBE6DA;padding:5px; font-weight:bold;'>$resText</div>";
 	}
 ?>
-<form name="clubAdmin" method="post" action="">
-<table width="100%" border="0" cellpadding="3" class="main_text">
-  <tr>
-    <td><p>
-      <label>
-        <input name="add_pilot_id" type="text" id="add_pilot_id" />
-      </label>
-      pilotID to add </p>
-      <p>
-        <label>
-        <input name="Add pilot" type="button" id="Add pilot" value="Add pilot" onclick="javascript:addClubPilot();"/>
-        </label>
-      </p>
-      <p><strong>Piloci biorący udział w rankingu </strong></p>
-      <?
-  
-	//echo "<BR>";
-	//open_inner_table("Administer CLub/League",730,"icon_home.gif"); echo "<tr><td>";
+<div style="display: flex">
+	<div>
+		<!-- formularz dodawania pilotow -->
+		<form name="clubAdmin" method="post" action="">
+		<table width="100%" border="0" cellpadding="3" class="main_text">
+		  <tr>
+		    <td><p>
+		      <label>
+			<input name="add_pilot_id" type="text" id="add_pilot_id" />
+		      </label>
+		      pilotID to add </p>
+		      <p>
+			<label>
+			<input name="Add pilot" type="button" id="Add pilot" value="Add pilot" onclick="javascript:addClubPilot();"/>
+			</label>
+		      </p>
+		      <p><strong>Piloci biorący udział w rankingu </strong></p>
+		      <?
+		  
+			//echo "<BR>";
+			//open_inner_table("Administer CLub/League",730,"icon_home.gif"); echo "<tr><td>";
 
-	list($pilots,$pilotsID)=getPilotList($clubID);
-	$i=0;
-	foreach ($pilots as $pilotName ){
-		$pilotID=$pilotsID[$i++];
-		echo "<div id='pl_$pilotID'>$pilotName ($pilotID) : <a href='javascript:removeClubPilot(\"$pilotID\");'>Remove pilot</a></div>"; 
-	}
-?></td>
-    <td><p>
-      <label></label>
-    </p>      </td>
-  </tr>
-</table>
+			list($pilots,$pilotsID)=getPilotList($clubID);
+			$i=0;
+			foreach ($pilots as $pilotName ){
+				$pilotID=$pilotsID[$i++];
+				echo "<div id='pl_$pilotID'>$pilotName ($pilotID) : <a href='javascript:removeClubPilot(\"$pilotID\");'>Remove pilot</a></div>"; 
+			}
+		?></td>
+		    <td><p>
+		      <label></label>
+		    </p>      </td>
+		  </tr>
+		</table>
 
 
 
-<input name="formPosted" type="hidden" value="1" />
-<input name="AdminAction" type="hidden" value="0" />
-<input name="pilotToRemove" type="hidden" value="0" />
+		<input name="formPosted" type="hidden" value="1" />
+		<input name="AdminAction" type="hidden" value="0" />
+		<input name="pilotToRemove" type="hidden" value="0" />
 
-</form>
+		</form>
+	</div>
+	<div>
+	<!-- formularz usuwania lotow -->
+		<form name="flightAdmin" method="post" action="">
+		<table width="100%" border="0" cellpadding="3" class="main_text">
+		  <tr>
+		    <td><p>
+		      <label>
+			<input name="add_flight_id" type="text" id="add_flight_id" />
+		      </label>
+		      flightID to add </p>
+		      <p>
+			<label>
+			<input name="Add flight" type="button" id="Add flight" value="Add flight" onclick="javascript:addClubPilot();"/>
+			</label>
+		      </p>
+		      <p><strong>Loty wykluczone z rankingu </strong></p>
+		      <?
+		  
+			//echo "<BR>";
+			//open_inner_table("Administer CLub/League",730,"icon_home.gif"); echo "<tr><td>";
 
+			list($pilots,$pilotsID)=getPilotList($clubID);
+			$i=0;
+			foreach ($pilots as $pilotName ){
+				$pilotID=$pilotsID[$i++];
+				echo "<div id='pl_$pilotID'>$pilotName ($pilotID) : <a href='javascript:removeClubPilot(\"$pilotID\");'>Remove flight</a></div>"; 
+			}
+		?></td>
+		    <td><p>
+		      <label></label>
+		    </p>      </td>
+		  </tr>
+		</table>
+
+		<input name="formPosted" type="hidden" value="1" />
+		<input name="AdminAction" type="hidden" value="0" />
+		<input name="flightToRemove" type="hidden" value="0" />
+		</form>
+	</div>
+</div>
 </div>
