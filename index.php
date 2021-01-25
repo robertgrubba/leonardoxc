@@ -960,6 +960,8 @@ if ($op=="index_full") {
 //--------------------------
 } else if ($op=="club_admin") {
 	require $LeoCodeBase."/GUI_club_admin.php";
+} else if ($op=="rank_arbiter") {
+	require $LeoCodeBase."/GUI_rank_arbiter.php";
 } else if ($op=="area_admin") {
 	require $LeoCodeBase."/GUI_area_admin.php";
 } else if ($op=="admin_sites") {
