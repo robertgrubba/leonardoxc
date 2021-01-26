@@ -42,6 +42,19 @@ class L_auth {
 		if ($clubsList[$clubID]['adminID']==$userID ) return 1;
 		else return 0;
 	}
+
+	function isRankArbiter($userID,$rankID) {
+		global $ranksList;
+		if ($userID == 0 ) return 0;
+		
+		if (is_array($ranksList[$rankID]['adminID'])) {
+			if ( @in_array($userID ,$ranksList[$rankID]['adminID']) ) return 1;
+			else return 0;			
+		} 
+		
+		if ($ranksList[$rankID]['adminID']==$userID ) return 1;
+		else return 0;
+	}
 	
 	function canDownloadIGC($ip) {
 		global $CONF;	

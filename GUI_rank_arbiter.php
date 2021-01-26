@@ -11,9 +11,9 @@
 // $Id: GUI_club_admin.php,v 1.11 2010/03/14 20:56:11 manolis Exp $                                                                 
 //
 //************************************************************************
-
-
-if ( ! L_auth::isClubAdmin($userID,$clubID) && !L_auth::isAdmin($userID) ) { echo "go away"; return; }
+$season=$_GET['season'];
+$rankID=$_GET['rank_to_arbiter_id'];
+if ( ! L_auth::isRankArbiter($userID,$rankID) && !L_auth::isAdmin($userID) ) { echo "go away"; return; }
 
 $pilotsList=array();
 $pilotsID=array();
@@ -33,22 +33,23 @@ if ($_POST['formPosted']) {
 		$pilotName=getPilotRealName($add_pilot_id,$add_pilot_server_id);
 		$resText="Pilot Name: $pilotName -> ";
 		if ($pilotName) {
-			$query="INSERT INTO $clubsPilotsTable (clubID,pilotID,pilotServerID) VALUES ($clubID,$add_pilot_id,$add_pilot_server_id )";
+			$query="INSERT INTO $bannedPilotsTable (rank,pilotID,arbiterID,season,cause) VALUES (".$_POST['rank'].",".$add_pilot_id.",".$_POST['arbiterID'].",".$_POST['season'].",\"".$_POST['cause'] ."\")";
 			$res= $db->sql_query($query);
 			if($res <= 0){   
-				$resText.="This pilot is already in the club";
-			} $resText.="Pilot added ";
+				$resText.="Ten pilot już jest wykluczony ";
+				$resText.=$query;
+			} $resText.="Pilot wykluczony ";
 		} else {
-			$resText.="No such pilot ID ";
+			$resText.="Nie ma takiego ID pilota ";
 		}
 	} else if ( $action=="remove_pilot" ) {
 		// $pilotToRemove=$_POST['pilotToRemove'];
 		list($pilotToRemoveServerID,$pilotToRemove)=splitServerPilotStr($_POST['pilotToRemove']);
-		$query="DELETE FROM $clubsPilotsTable WHERE clubID=$clubID AND pilotID=$pilotToRemove AND pilotServerID=$pilotToRemoveServerID ";
+		$query="DELETE FROM $bannedPilotsTable WHERE rank=".$_POST['rank']." AND pilotID=".$pilotToRemove." AND season=".$season." ";
 		$res= $db->sql_query($query);
 		if($res <= 0){   
-			$resText.="<H3> Error in removing pilot ! $query</H3>\n";
-		} else $resText.="Pilot removed ";
+			$resText.="<H3> Błąd przy usuwania pilota z listy! $query</H3>\n";
+		} else $resText.="Pilot usunięty z wykluczeń ";
 	}
 }
 
@@ -106,31 +107,39 @@ function removeClubPilot(pilotID) {
 ?>
 <div style="display: flex">
 	<div>
-		<!-- formularz dodawania pilotow -->
+		<!-- formularz wykluczania pilotow -->
 		<form name="clubAdmin" method="post" action="">
 		<table width="100%" border="0" cellpadding="3" class="main_text">
 		  <tr>
 		    <td><p>
-		      <label>
+		      <label> ID pilota do wykluczenia
 			<input name="add_pilot_id" type="text" id="add_pilot_id" />
 		      </label>
-		      pilotID to add </p>
+		      </p>
+		      <p>
+		      <label> Przyczyna wykluczenia
+			<input name="cause" type="text" id="cause"/>
+			</label>
+			</p>
 		      <p>
 			<label>
-			<input name="Add pilot" type="button" id="Add pilot" value="Add pilot" onclick="javascript:addClubPilot();"/>
+			<input name="Add pilot" type="button" id="Add pilot" value="Wyklucz pilota" onclick="javascript:addClubPilot();"/>
 			</label>
 		      </p>
-		      <p><strong>Piloci biorący udział w rankingu </strong></p>
+		      <p><strong>Wykluczeni Piloci</strong></p>
 		      <?
 		  
 			//echo "<BR>";
 			//open_inner_table("Administer CLub/League",730,"icon_home.gif"); echo "<tr><td>";
-
-			list($pilots,$pilotsID)=getPilotList($clubID);
+			list($pilots,$pilotsID)=getBannedPilotList($rankID,$season);
 			$i=0;
 			foreach ($pilots as $pilotName ){
 				$pilotID=$pilotsID[$i++];
-				echo "<div id='pl_$pilotID'>$pilotName ($pilotID) : <a href='javascript:removeClubPilot(\"$pilotID\");'>Remove pilot</a></div>"; 
+				list($bannedUserServerID,$pilotID)=splitServerPilotStr($pilotID);
+				$query="SELECT arbiterID,cause,created FROM $bannedPilotsTable WHERE pilotID=".$pilotID." AND season=".$season." AND rank=".$rank." ";
+				$res= $db->sql_query($query);
+				$row = mysql_fetch_assoc($res);
+				echo "<div id='pl_$pilotID'>".$row['created']." $pilotName ($pilotID) : ".$row['cause']." (przez ".getPilotRealName($row['arbiterID'],0,0,2).") <a href='javascript:removeClubPilot(\"$pilotID\");'>Remove pilot</a></div>"; 
 			}
 		?></td>
 		    <td><p>
@@ -142,6 +151,9 @@ function removeClubPilot(pilotID) {
 
 
 		<input name="formPosted" type="hidden" value="1" />
+		<input name="season" type="hidden" value="<?=$season?>" />
+		<input name="arbiterID" type="hidden" value="<?=$userID?>"/> 	
+		<input name="rank" type="hidden" value="<?=$rank?>"/> 	
 		<input name="AdminAction" type="hidden" value="0" />
 		<input name="pilotToRemove" type="hidden" value="0" />
 

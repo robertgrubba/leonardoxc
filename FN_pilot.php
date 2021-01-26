@@ -62,6 +62,47 @@ function getPilotList($clubID=0) {
 
 }
 
+function getBannedPilotList($rankID,$season) {
+	global $db;
+	global $flightsTable;
+	global	$bannedPilotsTable, $pilotsTable ;
+	global $nativeLanguage,$currentlang,$opMode;
+
+	if ($rankID) {
+		$query="SELECT *, $bannedPilotsTable.pilotID as userID 
+			FROM  $bannedPilotsTable
+  			WHERE 1 = 1
+			AND rank = $rankID
+			AND season = $season";
+	}
+
+	// echo $query;
+	$res= $db->sql_query($query);
+    if($res <= 0){
+//		echo "ERROR in selecting pilots";
+//		echo $query;
+		return array( array (),array () );
+    }
+
+	$pilots=array();
+	$pilotsID=array();
+	while ($row = $db->sql_fetchrow($res)) {
+		$name = getPilotRealName($row["userID"],0,0,2);
+		$name=strtoupper(substr($name,0,1)).substr($name,1);
+		$pnames[($row["userServerID"]+0).'_'.$row["userID"]]=$name;
+	}
+	if (!empty($pnames)) {
+		asort($pnames);
+		foreach($pnames as $userID=>$name) {
+			 array_push($pilots,$name );
+			 array_push($pilotsID,$userID);
+		}
+	}
+	return array($pilots,$pilotsID);
+
+}
+
+//
 function getUsedGliders($userID,$serverID=0) {
 	global $db;
 	global $flightsTable;
