@@ -11,8 +11,8 @@
 // $Id: GUI_club_admin.php,v 1.11 2010/03/14 20:56:11 manolis Exp $                                                                 
 //
 //************************************************************************
-$season=$_GET['season'];
-$rankID=$_GET['rank_to_arbiter_id'];
+$season=makeSane($_GET['season']);
+$rankID=makeSane($_GET['rank_to_arbiter_id']);
 if ( ! L_auth::isRankArbiter($userID,$rankID) && !L_auth::isAdmin($userID) ) { echo "go away"; return; }
 
 $pilotsList=array();
@@ -51,6 +51,31 @@ if ($_POST['formPosted']) {
 			$resText.="<H3> Błąd przy usuwania pilota z listy! $query</H3>\n";
 		} else $resText.="Pilot usunięty z wykluczeń ";
 	}
+
+
+	if ( $action=="add_flight" ) {		
+//		$pilotName=getPilotRealName($add_pilot_id,$add_pilot_server_id);
+		$flightID=makeSane($_POST['flightID']);
+		$resText="Lot: $flightID -> ";
+		if ($flightID) {
+			$query="INSERT INTO $bannedFlightsTable (rank,flightID,arbiterID,cause) VALUES (".$_POST['rank'].",".$flightID.",".$_POST['arbiterID'].",\"".$_POST['cause'] ."\")";
+			$res= $db->sql_query($query);
+			if($res <= 0){   
+				$resText.="Ten lot już jest wykluczony ";
+				$resText.=$query;
+			} $resText.="Lot wykluczony ";
+		} else {
+			$resText.="Nie podano ID lotu ";
+		}
+	} else if ( $action=="remove_flight" ) {
+		// $pilotToRemove=$_POST['pilotToRemove'];
+		$query="DELETE FROM $bannedFlightsTable WHERE rank=".$_POST['rank']." AND flightID=".$_POST['flightToRemove']." ";
+		$res= $db->sql_query($query);
+		if($res <= 0){   
+			$resText.="<H3> Błąd przy usuwania lotu z listy! $query</H3>\n";
+		} else $resText.="Lot usunięty z wykluczeń ";
+	}
+
 }
 
 ?>
@@ -93,6 +118,42 @@ function removeClubPilot(pilotID) {
 	//toggleVisible(divID,divPos);
 */
 }
+function addBannedFlight() {
+	// clubID,pilotID;
+	document.flightAdmin.AdminAction.value="add_flight";
+	document.flightAdmin.submit();
+/*
+	url='/<?=$moduleRelPath?>/EXT_club_functions.php';
+	pars='op=add_pilot&clubID='+clubID+'&flightID='+flightID;
+	
+	var myAjax = new Ajax.Updater('updateDiv', url, {method:'get',parameters:pars});
+
+	newHTML="<a href=\"#\" onclick=\"removeClubFlight("+clubID+","+flightID+");return false;\"><img src='<?=$moduleRelPath?>/img/icon_club_remove.gif' width=16 height=16 border=0 align=bottom></a>";
+	div=MWJ_findObj('fl_'+flightID);
+	div.innerHTML=newHTML;
+	
+	//toggleVisible(divID,divPos);
+*/
+}
+
+function removeBannedFlight(flightID) {
+	document.flightAdmin.flightToRemove.value=flightID;
+	document.flightAdmin.AdminAction.value="remove_flight";
+	document.flightAdmin.submit();
+	/*
+	url='/<?=$moduleRelPath?>/EXT_club_functions.php';
+	pars='op=remove_pilot&clubID='+clubID+'&pilotID='+pilotID;
+	
+//	var myAjax = new Ajax.Updater('updateDiv', url, {method:'get',parameters:pars});
+
+//	newHTML="<a href=\"#\" onclick=\"addClubFlight("+clubID+","+flightID+");return false;\"><img src='<?=$moduleRelPath?>/img/icon_club_add.gif' width=16 height=16 border=0 align=bottom></a>";
+//	div=MWJ_findObj('pl_'+pilotID);
+//	toggleVisible(div,divPos);
+	MWJ_changeDisplay('pl_'+pilotID,"none");
+//	div.innerHTML=newHTML;
+	//toggleVisible(divID,divPos);
+*/
+}
 </script>
 
 <?
@@ -113,12 +174,12 @@ function removeClubPilot(pilotID) {
 		  <tr>
 		    <td><p>
 		      <label> ID pilota do wykluczenia
-			<input name="add_pilot_id" type="text" id="add_pilot_id" />
+			<input name="add_pilot_id" type="text" id="add_pilot_id" required/>
 		      </label>
 		      </p>
 		      <p>
 		      <label> Przyczyna wykluczenia
-			<input name="cause" type="text" id="cause"/>
+			<input name="cause" type="text" id="cause" required />
 			</label>
 			</p>
 		      <p>
@@ -165,27 +226,29 @@ function removeClubPilot(pilotID) {
 		<table width="100%" border="0" cellpadding="3" class="main_text">
 		  <tr>
 		    <td><p>
-		      <label>
-			<input name="add_flight_id" type="text" id="add_flight_id" />
+		      <label>ID lotu do wykluczenia
+			<input name="flightID" type="text" id="flightID" required />
 		      </label>
-		      flightID to add </p>
+		      </p>
+		      <p>
+		      <label>Przyczyna wykluczenia
+			<input name="cause" type="text" id="cause" required />
+		      </label>
+		      </p>
 		      <p>
 			<label>
-			<input name="Add flight" type="button" id="Add flight" value="Add flight" onclick="javascript:addClubPilot();"/>
+			<input name="Add flight" type="button" id="Add flight" value="Wyklucz lot" onclick="javascript:addBannedFlight();"/>
 			</label>
 		      </p>
 		      <p><strong>Loty wykluczone z rankingu </strong></p>
 		      <?
 		  
-			//echo "<BR>";
-			//open_inner_table("Administer CLub/League",730,"icon_home.gif"); echo "<tr><td>";
-
-			list($pilots,$pilotsID)=getPilotList($clubID);
-			$i=0;
-			foreach ($pilots as $pilotName ){
-				$pilotID=$pilotsID[$i++];
-				echo "<div id='pl_$pilotID'>$pilotName ($pilotID) : <a href='javascript:removeClubPilot(\"$pilotID\");'>Remove flight</a></div>"; 
-			}
+				$query="SELECT flightID,arbiterID,cause,created FROM $bannedFlightsTable WHERE rank=".$rank." ";
+				$res= $db->sql_query($query);
+				while($row = mysql_fetch_assoc($res)){
+					$flightID=$row['flightID'];
+					echo "<div id='fl_$flightID'>$flightID : <a href='javascript:removeBannedFlight(\"$flightID\");'>Remove flight</a></div>"; 
+				}
 		?></td>
 		    <td><p>
 		      <label></label>
@@ -196,6 +259,8 @@ function removeClubPilot(pilotID) {
 		<input name="formPosted" type="hidden" value="1" />
 		<input name="AdminAction" type="hidden" value="0" />
 		<input name="flightToRemove" type="hidden" value="0" />
+		<input name="arbiterID" type="hidden" value="<?=$userID?>"/> 	
+		<input name="rank" type="hidden" value="<?=$rank?>"/> 	
 		</form>
 	</div>
 </div>
