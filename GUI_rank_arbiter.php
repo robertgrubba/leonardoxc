@@ -1,5 +1,4 @@
-<?
-//************************************************************************
+<?php
 // Leonardo XC Server, http://www.leonardoxc.net
 //
 // Copyright (c) 2004-2010 by Andreadakis Manolis
@@ -23,7 +22,7 @@ $pilotsID=array();
 
 if ($_POST['formPosted']) {
 //	$add_pilot_id=$_POST['add_pilot_id'];
-	list($add_pilot_server_id,$add_pilot_id)=splitServerPilotStr($_POST['add_pilot_id']);
+	list($add_pilot_server_id,$add_pilot_id)=splitServerPilotStr(makeSane($_POST['add_pilot_id']));
 
 	$action=$_POST['AdminAction'];
 	
@@ -33,7 +32,7 @@ if ($_POST['formPosted']) {
 		$pilotName=getPilotRealName($add_pilot_id,$add_pilot_server_id);
 		$resText="Pilot Name: $pilotName -> ";
 		if ($pilotName) {
-			$query="INSERT INTO $bannedPilotsTable (rank,pilotID,arbiterID,season,cause) VALUES (".$_POST['rank'].",".$add_pilot_id.",".$_POST['arbiterID'].",".$_POST['season'].",\"".$_POST['cause'] ."\")";
+			$query="INSERT INTO $bannedPilotsTable (rank,pilotID,arbiterID,season,cause) VALUES (".makeSane($_POST['rank']).",".$add_pilot_id.",".makeSane($_POST['arbiterID']).",".makeSane($_POST['season']).",\"".$_POST['cause'] ."\")";
 			$res= $db->sql_query($query);
 			if($res <= 0){   
 				$resText.="Ten pilot już jest wykluczony ";
@@ -44,8 +43,8 @@ if ($_POST['formPosted']) {
 		}
 	} else if ( $action=="remove_pilot" ) {
 		// $pilotToRemove=$_POST['pilotToRemove'];
-		list($pilotToRemoveServerID,$pilotToRemove)=splitServerPilotStr($_POST['pilotToRemove']);
-		$query="DELETE FROM $bannedPilotsTable WHERE rank=".$_POST['rank']." AND pilotID=".$pilotToRemove." AND season=".$season." ";
+		list($pilotToRemoveServerID,$pilotToRemove)=splitServerPilotStr(makeSane($_POST['pilotToRemove']));
+		$query="DELETE FROM $bannedPilotsTable WHERE rank=".makeSane($_POST['rank'])." AND pilotID=".$pilotToRemove." AND season=".$season." ";
 		$res= $db->sql_query($query);
 		if($res <= 0){   
 			$resText.="<H3> Błąd przy usuwania pilota z listy! $query</H3>\n";
@@ -58,7 +57,7 @@ if ($_POST['formPosted']) {
 		$flightID=makeSane($_POST['flightID']);
 		$resText="Lot: $flightID -> ";
 		if ($flightID) {
-			$query="INSERT INTO $bannedFlightsTable (rank,flightID,arbiterID,cause) VALUES (".$_POST['rank'].",".$flightID.",".$_POST['arbiterID'].",\"".$_POST['cause'] ."\")";
+			$query="INSERT INTO $bannedFlightsTable (rank,flightID,arbiterID,cause) VALUES (".makeSane($_POST['rank']).",".$flightID.",".makeSane($_POST['arbiterID']).",\"".$_POST['cause']."\")";
 			$res= $db->sql_query($query);
 			if($res <= 0){   
 				$resText.="Ten lot już jest wykluczony ";
@@ -69,7 +68,7 @@ if ($_POST['formPosted']) {
 		}
 	} else if ( $action=="remove_flight" ) {
 		// $pilotToRemove=$_POST['pilotToRemove'];
-		$query="DELETE FROM $bannedFlightsTable WHERE rank=".$_POST['rank']." AND flightID=".$_POST['flightToRemove']." ";
+		$query="DELETE FROM $bannedFlightsTable WHERE rank=".makeSane($_POST['rank'])." AND flightID=".makeSane($_POST['flightToRemove'])." ";
 		$res= $db->sql_query($query);
 		if($res <= 0){   
 			$resText.="<H3> Błąd przy usuwania lotu z listy! $query</H3>\n";
@@ -122,42 +121,17 @@ function addBannedFlight() {
 	// clubID,pilotID;
 	document.flightAdmin.AdminAction.value="add_flight";
 	document.flightAdmin.submit();
-/*
-	url='/<?=$moduleRelPath?>/EXT_club_functions.php';
-	pars='op=add_pilot&clubID='+clubID+'&flightID='+flightID;
-	
-	var myAjax = new Ajax.Updater('updateDiv', url, {method:'get',parameters:pars});
-
-	newHTML="<a href=\"#\" onclick=\"removeClubFlight("+clubID+","+flightID+");return false;\"><img src='<?=$moduleRelPath?>/img/icon_club_remove.gif' width=16 height=16 border=0 align=bottom></a>";
-	div=MWJ_findObj('fl_'+flightID);
-	div.innerHTML=newHTML;
-	
-	//toggleVisible(divID,divPos);
-*/
 }
 
 function removeBannedFlight(flightID) {
 	document.flightAdmin.flightToRemove.value=flightID;
 	document.flightAdmin.AdminAction.value="remove_flight";
 	document.flightAdmin.submit();
-	/*
-	url='/<?=$moduleRelPath?>/EXT_club_functions.php';
-	pars='op=remove_pilot&clubID='+clubID+'&pilotID='+pilotID;
-	
-//	var myAjax = new Ajax.Updater('updateDiv', url, {method:'get',parameters:pars});
-
-//	newHTML="<a href=\"#\" onclick=\"addClubFlight("+clubID+","+flightID+");return false;\"><img src='<?=$moduleRelPath?>/img/icon_club_add.gif' width=16 height=16 border=0 align=bottom></a>";
-//	div=MWJ_findObj('pl_'+pilotID);
-//	toggleVisible(div,divPos);
-	MWJ_changeDisplay('pl_'+pilotID,"none");
-//	div.innerHTML=newHTML;
-	//toggleVisible(divID,divPos);
-*/
 }
 </script>
 
 <?
-	$legend="Panel sędziego rankingu";
+	$legend="Panel sędziego rankingu $rank w sezonie $season";
 	echo  "<div class='tableTitle'>
 	<div class='titleDiv'>$legend</div>
 	<div class='pagesDivSimple'>$legendRight</div>
@@ -200,7 +174,7 @@ function removeBannedFlight(flightID) {
 				$query="SELECT arbiterID,cause,created FROM $bannedPilotsTable WHERE pilotID=".$pilotID." AND season=".$season." AND rank=".$rank." ";
 				$res= $db->sql_query($query);
 				$row = mysql_fetch_assoc($res);
-				echo "<div id='pl_$pilotID'>".$row['created']." $pilotName ($pilotID) : ".$row['cause']." (przez ".getPilotRealName($row['arbiterID'],0,0,2).") <a href='javascript:removeClubPilot(\"$pilotID\");'>Remove pilot</a></div>"; 
+				echo "<div id='pl_$pilotID'>".$row['created']." <a target='_blank' href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$pilotID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0','season'=>'0'))."'> $pilotName </a> ($pilotID) : ".$row['cause']." (przez ".getPilotRealName($row['arbiterID'],0,0,2).") <a href='javascript:removeClubPilot(\"$pilotID\");'>Przywróć pilota</a></div>"; 
 			}
 		?></td>
 		    <td><p>
@@ -247,7 +221,7 @@ function removeBannedFlight(flightID) {
 				$res= $db->sql_query($query);
 				while($row = mysql_fetch_assoc($res)){
 					$flightID=$row['flightID'];
-					echo "<div id='fl_$flightID'>$flightID : <a href='javascript:removeBannedFlight(\"$flightID\");'>Remove flight</a></div>"; 
+					echo "<div id='fl_$flightID'>".$row['created']." <a target='_blank' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>Lot nr $flightID</a> ".$row['cause']." (przez ".getPilotrealName($row['arbiterID'],0,0,2).") <a href='javascript:removeBannedFlight(\"$flightID\");'>Przywróć lot</a></div>"; 
 				}
 		?></td>
 		    <td><p>
