@@ -637,6 +637,22 @@ if (L_auth::isAdmin($userID) || $flight->belongsToUser($userID) ) {  //P. Wild 1
 	
 		$adminPanel.=get_include_contents(dirname(__FILE__)."/site/admin_takeoff_info.php");
 	}	
+
+}
+
+//20210128 check if flight is banned in any rank
+$rankBanition="";
+$bannedFlightCheck = "SELECT * from $bannedFlightsTable where flightID=$flight->flightID ";
+$res= $db->sql_query($bannedFlightCheck);
+if ($res){
+	$rankBanition.="<div>";
+	while($row = mysql_fetch_assoc($res)){
+		$rank=$row['rank'];
+		$arbiter=$row['arbiterID'];
+		$cause=$row['cause'];
+		$rankBanition.="Lot został wykluczony z rankingu nr $rank przez ".getPilotRealName($arbiter,0,0,2)." z powodu: <i> $cause </i>";	
+	}
+	$rankBanition.="</div>";
 }
 
 
@@ -856,13 +872,13 @@ $Ltemplate->assign_vars(array(
 	'T_PATH'=> $moduleRelPath.'/templates/'.$PREFS->themeName,
 	
 	'ADMIN_PANEL'=>$adminPanel,
+	'RANK_BANITION'=>$rankBanition,
 	'MAP_IMG'=>$mapImg,
 	'activeTabName'=>$activeTabName,
 	'CHART_IMG1'=>$chart1,
 	'CHART_IMG2'=>$chart2,
 	'CHART_IMG3'=>$chart3,
 	'CHART_IMG4'=>$chart4,		
-
 
 	'linkURL'=>$linkURL,
 	'glider'=>$glider,
