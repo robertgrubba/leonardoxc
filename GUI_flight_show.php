@@ -364,7 +364,7 @@ $flightAge = DateTime::createFromFormat('Y-m-d G:i:s', $flight->dateAdded, $tz)-
 		$valiStr="&nbsp;".leoHtml::img($vImg,12,12,'absmiddle',$vStr,'icons1 listIcons');
   }
 
-  if ($CONF_airspaceChecks) {
+  if ($CONF_airspaceChecks && $CONF_showAirspaceViolationsToPublic) {
 		if ($flight->airspaceCheck==0 || $flight->airspaceCheckFinal==0) $flight->checkAirspace(1);
 		
    		if ($flight->airspaceCheckFinal==-1)    { 
@@ -602,12 +602,13 @@ if (L_auth::isAdmin($userID) || $flight->belongsToUser($userID) ) {  //P. Wild 1
 			
 		$checkLines=explode("\n",$flight->airspaceCheckMsg);
 		if (strrchr($flight->airspaceCheckMsg,"Punkte")){
-			$adminPanel.="<br><strong>Deutschland Pokal</strong><BR>";		
+			$adminPanel.="<br><strong>,<br>Informacja dla Pilota i Sędziego (niewidoczna dla szerszej publiki)</strong><BR>";		
 			if ((strrchr($flight->airspaceCheckMsg,"HorDist"))) {
-				$adminPanel.="<br><strong>Airspace PROBLEM (Deutschland Pokal)</strong><BR>";
+				$adminPanel.="<br><strong>Możliwy problem ze strefą - po weryfikacji sędzia rankingu sprawdzi czy nie wykluczyć lotu z rankingu</strong><BR>";
+				$adminPanel.="<i>W przypadku faktycznego naruszenia strefy / braku zgody na lot zaleca się ustawienie lotu jako prywatny.<br><Br>";
 			}
 		} else{
-			$adminPanel.= "<br><strong>Airspace PROBLEM</strong><BR>";
+			$adminPanel.= "<br><strong>Możliwy problem ze strefą</strong><BR>";
 		}
 		for($i=1;$i<count($checkLines); $i++) {
 			$adminPanel.=$checkLines[$i]."<br>";
