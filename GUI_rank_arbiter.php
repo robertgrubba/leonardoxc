@@ -237,5 +237,29 @@ function removeBannedFlight(flightID) {
 		<input name="rank" type="hidden" value="<?=$rank?>"/> 	
 		</form>
 	</div>
+	<!-- Podejrzenie naruszenia strefy -->
+		<table width="100%" border="0" cellpadding="3" class="main_text">
+		  <tr>
+		    <td><p>
+		      <p><strong>Podejrzenie naruszenia stref</strong></p>
+		      <?
+		  
+				$query="SELECT ID,takeoffID,userID,DATE FROM $flightsTable WHERE 1=1 "
+					."AND takeoffID IN (select takeoffID from $rankTakeoffsTable where rankID=".$rank.") "
+					."AND airspaceCheck=-1 "
+					."ORDER BY ID DESC ";
+				$res= $db->sql_query($query);
+				while($row = mysql_fetch_assoc($res)){
+					$flightID=$row['ID'];
+					$takeoffID=$row['takeoffID'];
+					echo "<div id='fl_$flightID'>".$row['DATE']." <a target='_blank' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>Lot nr $flightID</a> ".$row['cause']." z <a target='_blank' href='".getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$takeoffID))."'>".getWaypointName($takeoffID)."</a> (przez ".getPilotrealName($row['userID'],0,0,2).") <a href='javascript:removeBannedFlight(\"$flightID\");'>Przywróć lot</a></div>"; 
+				}
+		?></p></td>
+		    <td><p>
+		      <label></label>
+		    </p>      </td>
+		  </tr>
+		</table>
+	</div>
 </div>
 </div>
