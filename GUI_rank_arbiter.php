@@ -74,6 +74,33 @@ if ($_POST['formPosted']) {
 			$resText.="<H3> Błąd przy usuwania lotu z listy! $query</H3>\n";
 		} else $resText.="Lot usunięty z wykluczeń ";
 	}
+  if(L_auth::isAdmin($userID)){
+	if ( $action=="add_takeoff" ) {		
+		$takeoffID=makeSane($_POST['takeoffID']);
+		$resText="Startowisko: $takeoffID -> ";
+		if ($takeoffID) {
+			$query="INSERT INTO $rankTakeoffsTable (rankID,takeoffID) VALUES (".makeSane($_POST['rank']).",".$takeoffID.")";
+			$res= $db->sql_query($query);
+			if($res <= 0){   
+				$resText.="Ten to startowiso jest już dodane ";
+				$resText.=$query;
+			} $resText.="Startowisko dodane ";
+		} else {
+			$resText.="Nie podano ID Startowiska ";
+		}
+	} else if ( $action=="remove_takeoff" ) {
+		// $pilotToRemove=$_POST['pilotToRemove'];
+		$takeoffID=makeSane($_POST['takeoffToRemove']);
+		$rankID=makeSane($_POST['rankID']);
+		$query="DELETE FROM $rankTakeoffsTable WHERE rankID=$rankID AND takeoffID=$takeoffID ";
+		$res= $db->sql_query($query);
+		if($res <= 0){   
+			$resText.="<H3> Błąd przy usuwania startowiska z listy! $query</H3>\n";
+		} else $resText.="Startowisko usunięte z rankingu ";
+	}
+  }
+
+
 
 }
 
@@ -85,37 +112,12 @@ function addClubPilot() {
 	// clubID,pilotID;
 	document.clubAdmin.AdminAction.value="add_pilot";
 	document.clubAdmin.submit();
-/*
-	url='/<?=$moduleRelPath?>/EXT_club_functions.php';
-	pars='op=add_pilot&clubID='+clubID+'&flightID='+flightID;
-	
-	var myAjax = new Ajax.Updater('updateDiv', url, {method:'get',parameters:pars});
-
-	newHTML="<a href=\"#\" onclick=\"removeClubFlight("+clubID+","+flightID+");return false;\"><img src='<?=$moduleRelPath?>/img/icon_club_remove.gif' width=16 height=16 border=0 align=bottom></a>";
-	div=MWJ_findObj('fl_'+flightID);
-	div.innerHTML=newHTML;
-	
-	//toggleVisible(divID,divPos);
-*/
 }
 
 function removeClubPilot(pilotID) {
 	document.clubAdmin.pilotToRemove.value=pilotID;
 	document.clubAdmin.AdminAction.value="remove_pilot";
 	document.clubAdmin.submit();
-	/*
-	url='/<?=$moduleRelPath?>/EXT_club_functions.php';
-	pars='op=remove_pilot&clubID='+clubID+'&pilotID='+pilotID;
-	
-//	var myAjax = new Ajax.Updater('updateDiv', url, {method:'get',parameters:pars});
-
-//	newHTML="<a href=\"#\" onclick=\"addClubFlight("+clubID+","+flightID+");return false;\"><img src='<?=$moduleRelPath?>/img/icon_club_add.gif' width=16 height=16 border=0 align=bottom></a>";
-//	div=MWJ_findObj('pl_'+pilotID);
-//	toggleVisible(div,divPos);
-	MWJ_changeDisplay('pl_'+pilotID,"none");
-//	div.innerHTML=newHTML;
-	//toggleVisible(divID,divPos);
-*/
 }
 function addBannedFlight() {
 	// clubID,pilotID;
@@ -127,6 +129,17 @@ function removeBannedFlight(flightID) {
 	document.flightAdmin.flightToRemove.value=flightID;
 	document.flightAdmin.AdminAction.value="remove_flight";
 	document.flightAdmin.submit();
+}
+function addTakeoff() {
+	// clubID,pilotID;
+	document.takeoffAdmin.AdminAction.value="add_takeoff";
+	document.takeoffAdmin.submit();
+}
+
+function removeTakeoff(takeoffID) {
+	document.takeoffAdmin.takeoffToRemove.value=takeoffID;
+	document.takeoffAdmin.AdminAction.value="remove_takeoff";
+	document.takeoffAdmin.submit();
 }
 </script>
 
@@ -141,6 +154,48 @@ function removeBannedFlight(flightID) {
 	}
 ?>
 <div style="display: flex">
+<? if(L_auth::isAdmin($userID)){
+?>
+	<div>
+		<!-- formularz zarzadania startowiskami -->
+		<form name="takeoffAdmin" method="post" action="">
+		<table width="100%" border="0" cellpadding="3" class="main_text">
+		  <tr>
+		    <td><p>
+		      <label> ID startowiska do dodania
+			<input name="takeoffID" type="text" id="takeoffID" required/>
+		      </label>
+		      </p>
+		      <p>
+			<label>
+			<input name="Add takeoff" type="button" id="Add takeoff" value="Dodaj startowisko" onclick="javascript:addTakeoff();"/>
+			</label>
+		      </p>
+		      <p><strong>Startowiska w rankingu</strong></p>
+		      <?
+		  
+				$query="SELECT rankID,takeoffID FROM $rankTakeoffsTable WHERE rankID=".$rank." ";
+				$res= $db->sql_query($query);
+				while($row = mysql_fetch_assoc($res)){
+				echo "<div id='tk_$takeoffID'>".$row['takeoffID']." <a target='_blank' href='".getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$row['takeoffID']))."'> ".getWaypointName($row['takeoffID'])."</a> <a href='javascript:removeTakeoff(\"".$row['takeoffID']."\");'>Usuń</a></div>"; 
+}
+		?></td>
+		    <td><p>
+		      <label></label>
+		    </p>      </td>
+		  </tr>
+		</table>
+
+
+
+		<input name="formPosted" type="hidden" value="1" />
+		<input name="rankID" type="hidden" value="<?=$rank?>"/> 	
+		<input name="AdminAction" type="hidden" value="0" />
+		<input name="takeoffToRemove" type="hidden" value="0" />
+
+		</form>
+	</div>
+<? } ?>
 	<div>
 		<!-- formularz wykluczania pilotow -->
 		<form name="clubAdmin" method="post" action="">
