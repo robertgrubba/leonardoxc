@@ -31,7 +31,7 @@
 //			AND $flightsTable.userServerID=$pilotsTable.serverID
 		." $where_clause ";
 
-
+/*
 $query = 'SELECT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM)as FLIGHT_KM, BEST_FLIGHT_TYPE
 	FROM leonardo_flights WHERE 
 		FLIGHT_KM IN (select MAX(FLIGHT_KM) AS FLIGHT_KM 
@@ -42,10 +42,26 @@ $query = 'SELECT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat
 					AND takeoffID>12476 
 					AND takeoffID<17016  
 				GROUP BY userID,takeoffID) 
-		AND takeoffID NOT IN (9133,13478,9093,9193,9191) 
+		AND takeoffID NOT IN (9133,13478,9093,9193,9191,17136,12137) 
 		GROUP BY userID,takeoffID 
 	ORDER BY takeoffID;';
 
+*/
+$query = 'SELECT DISTINCT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM)as FLIGHT_KM, BEST_FLIGHT_TYPE '
+	.'FROM leonardo_flights WHERE '
+		.'FLIGHT_KM IN (select MAX(FLIGHT_KM) AS FLIGHT_KM '
+				.'FROM leonardo_flights WHERE validated=1 ' 
+					.'AND cat=1 ' 
+					.'AND private=0 '
+		 			.'AND takeoffID IN (SELECT takeoffID FROM '.$rankTakeoffsTable.' WHERE rankID='.$rank.' ) '
+		 			.'AND ID NOT IN (SELECT flightID FROM '.$bannedFlightsTable.' WHERE rank='.$rank.') '
+		 			.'AND userID NOT IN (SELECT pilotID FROM '.$bannedPilotsTable.' WHERE season='.$season.') '
+				.'GROUP BY userID,takeoffID) ' 
+		 .'AND takeoffID IN (SELECT takeoffID FROM '.$rankTakeoffsTable.' WHERE rankID='.$rank.' ) '
+		 .'AND ID NOT IN (SELECT flightID FROM '.$bannedFlightsTable.' WHERE rank='.$rank.') '
+		 .'AND userID NOT IN (SELECT pilotID FROM '.$bannedPilotsTable.' WHERE season='.$season.') '
+		.'GROUP BY userID,takeoffID '
+	.'ORDER BY takeoffID; ';
 
 require_once dirname(__FILE__)."/common.php";
 

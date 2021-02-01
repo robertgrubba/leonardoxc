@@ -20,7 +20,7 @@
 	$nacid=0; # force DHV
 	$nacclubid=0;
 //define url of ranking rules
-	define('RULESURL', 'http://pgxc.pl/2018/03/ponadczasowy-ranking-klifowy/');
+	define('RULESURL', 'http://pgxc.pl/2020/10/ranking-klifow-nadwislanych-sezonowy/');
 
     // OLC km's must be > 15
 //	if ($season==2006)
@@ -42,5 +42,5 @@
 
 
 $customRankHeader="Suma km OLC";
-$takeoffsOrder = array(12477,17010,17009,17006,12478,17005,17011,17015);
+
 ?>

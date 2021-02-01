@@ -53,10 +53,11 @@ if($season>=2019){
 
 // do tabeli trafiaja loty wgrane nie pozniej niz tydzien po wykonaniu lotu
 if($season>2019){
-        $flight_deadline.="AND STR_TO_DATE(dateAdded, '%Y-%m-%d') <= DATE_ADD(STR_TO_DATE(DATE,'%Y-%m-%d'), INTERVAL 1 WEEK) ";
+        $flight_deadline.="AND STR_TO_DATE(dateAdded, '%Y-%m-%d') <= DATE_ADD(STR_TO_DATE(DATE,'%Y-%m-%d'), INTERVAL 2 WEEK) ";
 }
 
 //print_r($flight_deadline);
+/*
 	$query = 'SELECT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM) as FLIGHT_KM, BEST_FLIGHT_TYPE '
                  .'FROM leonardo_flights WHERE 1=1 '
 		 .'AND  takeoffID IN (17005, 17009, 17006, 12477, 12478, 17010, 17011, 17015) '
@@ -81,7 +82,33 @@ if($season>2019){
 		 .'AND takeoffID NOT IN (9093,9716,9133,13478) '
                  .'GROUP BY userID,takeoffID '
                  .'ORDER BY takeoffID;';
+*/
 
+	$query = 'SELECT DISTINCT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM) as FLIGHT_KM, BEST_FLIGHT_TYPE '
+                 .'FROM leonardo_flights WHERE 1=1 '
+                 .'AND takeoffID IN (SELECT takeoffID FROM '.$rankTakeoffsTable.' WHERE rankID='.$rank.' ) '
+                 .'AND ID NOT IN (SELECT flightID FROM '.$bannedFlightsTable.' WHERE rank='.$rank.') '
+                 .'AND userID NOT IN (SELECT pilotID FROM '.$bannedPilotsTable.' WHERE season='.$season.') '
+		 .'AND DATE<\''.$nextY.'-01-01\' '
+		 .'AND DATE >\''.$y.'-01-01\' '
+		 .$flight_deadline.' '
+		 .'AND FLIGHT_KM in ('
+			 .'SELECT MAX(FLIGHT_KM) '
+			 .'FROM leonardo_flights '
+			 .'WHERE 1=1 '
+				 .'AND validated=1 '
+				 .'AND cat=1 '
+				 .'AND private=0 '
+				 .'AND DATE<\''.$nextY.'-01-01\' '
+				 .'AND DATE >\''.$y.'-01-01\' '
+                                 .'AND takeoffID IN (SELECT takeoffID FROM '.$rankTakeoffsTable.' WHERE rankID='.$rank.' ) '
+                                 .'AND ID NOT IN (SELECT flightID FROM '.$bannedFlightsTable.' WHERE rank='.$rank.') '
+                                 .'AND userID NOT IN (SELECT pilotID FROM '.$bannedPilotsTable.' WHERE season='.$season.') '
+				 .$flight_deadline.' '
+			 .'GROUP BY userID,takeoffID '
+			.') '
+                 .'GROUP BY userID,takeoffID '
+                 .'ORDER BY takeoffID;';
 
 require_once dirname(__FILE__)."/common.php";
 

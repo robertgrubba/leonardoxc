@@ -17,8 +17,10 @@
 	// 	open class ,   category=2";
 	// Some config
 	$cat=1; // pg
-	$dontShowDatesSelection=1;
-	$dontShowSecondMenu=1;
+	$dontShowDatesSelection=0;
+	$dontShowSecondMenu=0;
+
+	$dates_where_clause= dates::makeWhereClause(0,$season,$year,$month,0 );
 	
 	$where_clause.=" AND category=2 AND takeoffID in (SELECT ID FROM leonardo_waypoints where location='Kujawsko-Pomorskie') ";
 	require_once dirname(__FILE__)."/common_pre.php";
@@ -34,8 +36,8 @@
 
 
 
-/*
 
+/*
 	$query = 'SELECT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM) as FLIGHT_KM, BEST_FLIGHT_TYPE '
                  .'FROM leonardo_flights WHERE 1=1 '
 		 .'AND takeoffID IN (SELECT ID FROM leonardo_waypoints where location="Kujawsko-Pomorskie") '
@@ -43,6 +45,7 @@
 			 .'SELECT MAX(FLIGHT_KM) '
 			 .'FROM leonardo_flights '
 			 .'WHERE 1=1 '
+		 		 ."$dates_where_clause "
 				 .'AND cat=1 '
 				 .'AND validated=1 '
 				 .'AND startType=1 '
@@ -55,7 +58,6 @@
                  .'GROUP BY userID, takeoffID '
                  .'ORDER BY FLIGHT_KM DESC';
 */
-
 	$query = 'SELECT DISTINCT ID, userID, takeoffID, userServerID, gliderBrandID, glider, cat, FLIGHT_POINTS, MAX(FLIGHT_KM) as FLIGHT_KM, BEST_FLIGHT_TYPE '
                  .'FROM leonardo_flights WHERE 1=1 '
 		 .'AND takeoffID IN (SELECT takeoffID FROM '.$rankTakeoffsTable.' WHERE rankID='.$rank.' ) '
@@ -65,6 +67,7 @@
 			 .'SELECT MAX(FLIGHT_KM) '
 			 .'FROM leonardo_flights '
 			 .'WHERE 1=1 '
+		 		 ."$dates_where_clause "
 				 .'AND cat=1 '
 				 .'AND validated=1 '
 				 .'AND startType=1 '
