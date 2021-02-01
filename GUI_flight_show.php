@@ -550,9 +550,8 @@ if ($flight->linkURL) {
   }
   $xmlSites2=str_replace("<","&lt;",$xmlSites);
  */
- 
 $adminPanel="";
-if (L_auth::isAdmin($userID) || $flight->belongsToUser($userID) ) {  //P. Wild 15.2.2008 extension
+if (L_auth::isAdmin($userID) || $flight->belongsToUser($userID) || (L_auth::isRankArbiter($userID,makeSane($_GET['rank'])) || L_auth::isRankArbiter($userID,$_SESSION['rank']))) {  //P. Wild 15.2.2008 extension
 	$adminPanel="<b>"._TIMES_VIEWED.":</b> ".$flight->timesViewed."  ";
 	$adminPanel.="<b>"._SUBMISION_DATE.":</b> ".$flight->dateAdded." :: ";
 

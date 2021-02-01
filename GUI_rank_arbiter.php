@@ -159,7 +159,7 @@ function removeTakeoff(takeoffID) {
 	<div>
 		<!-- formularz zarzadania startowiskami -->
 		<form name="takeoffAdmin" method="post" action="">
-		<table width="100%" border="0" cellpadding="3" class="main_text">
+		<table width="100%" border="0" cellpadding="3" class="main_text" style="width: 250px">
 		  <tr>
 		    <td><p>
 		      <label> ID startowiska do dodania
@@ -177,7 +177,7 @@ function removeTakeoff(takeoffID) {
 				$query="SELECT rankID,takeoffID FROM $rankTakeoffsTable WHERE rankID=".$rank." ";
 				$res= $db->sql_query($query);
 				while($row = mysql_fetch_assoc($res)){
-				echo "<div id='tk_$takeoffID'>".$row['takeoffID']." <a target='_blank' href='".getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$row['takeoffID']))."'> ".getWaypointName($row['takeoffID'])."</a> <a href='javascript:removeTakeoff(\"".$row['takeoffID']."\");'>Usuń</a></div>"; 
+				echo "<div id='tk_$takeoffID'>".$row['takeoffID']." <a target='_blank' href='".getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$row['takeoffID']))."'> ".getWaypointName($row['takeoffID'])."</a> <a href='javascript:removeTakeoff(\"".$row['takeoffID']."\");'>[x]</a></div>"; 
 }
 		?></td>
 		    <td><p>
@@ -199,7 +199,7 @@ function removeTakeoff(takeoffID) {
 	<div>
 		<!-- formularz wykluczania pilotow -->
 		<form name="clubAdmin" method="post" action="">
-		<table width="100%" border="0" cellpadding="3" class="main_text">
+		<table width="100%" border="0" cellpadding="3" class="main_text" style="width: 250px">
 		  <tr>
 		    <td><p>
 		      <label> ID pilota do wykluczenia
@@ -229,7 +229,7 @@ function removeTakeoff(takeoffID) {
 				$query="SELECT arbiterID,cause,created FROM $bannedPilotsTable WHERE pilotID=".$pilotID." AND season=".$season." AND rank=".$rank." ";
 				$res= $db->sql_query($query);
 				$row = mysql_fetch_assoc($res);
-				echo "<div id='pl_$pilotID'>".$row['created']." <a target='_blank' href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$pilotID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0','season'=>'0'))."'> $pilotName </a> ($pilotID) : ".$row['cause']." (przez ".getPilotRealName($row['arbiterID'],0,0,2).") <a href='javascript:removeClubPilot(\"$pilotID\");'>Przywróć pilota</a></div>"; 
+				echo "<div id='pl_$pilotID'>".$row['created']." <a target='_blank' href='".getLeonardoLink(array('op'=>'pilot_profile_stats','pilotID'=>'0_'.$pilotID, 'year'=>'0','month'=>'0','takeoffID'=>'0','country'=>'0','cat'=>'0','season'=>'0'))."'> $pilotName </a> ($pilotID) : ".$row['cause']." (przez ".getPilotRealName($row['arbiterID'],0,0,2).") <a href='javascript:removeClubPilot(\"$pilotID\");'>[x]</a></div>"; 
 			}
 		?></td>
 		    <td><p>
@@ -252,7 +252,7 @@ function removeTakeoff(takeoffID) {
 	<div>
 	<!-- formularz usuwania lotow -->
 		<form name="flightAdmin" method="post" action="">
-		<table width="100%" border="0" cellpadding="3" class="main_text">
+		<table width="100%" border="0" cellpadding="3" class="main_text" style="width: 250px">
 		  <tr>
 		    <td><p>
 		      <label>ID lotu do wykluczenia
@@ -276,7 +276,7 @@ function removeTakeoff(takeoffID) {
 				$res= $db->sql_query($query);
 				while($row = mysql_fetch_assoc($res)){
 					$flightID=$row['flightID'];
-					echo "<div id='fl_$flightID'>".$row['created']." <a target='_blank' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>Lot nr $flightID</a> ".$row['cause']." (przez ".getPilotrealName($row['arbiterID'],0,0,2).") <a href='javascript:removeBannedFlight(\"$flightID\");'>Przywróć lot</a></div>"; 
+					echo "<div id='fl_$flightID'>".$row['created']." <a target='_blank' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>Lot nr $flightID</a> ".$row['cause']." (przez ".getPilotrealName($row['arbiterID'],0,0,2).") <a href='javascript:removeBannedFlight(\"$flightID\");'>[x]</a></div>"; 
 				}
 		?></td>
 		    <td><p>
@@ -293,21 +293,24 @@ function removeTakeoff(takeoffID) {
 		</form>
 	</div>
 	<!-- Podejrzenie naruszenia strefy -->
-		<table width="100%" border="0" cellpadding="3" class="main_text">
+		<table width="100%" border="0" cellpadding="3" class="main_text" >
 		  <tr>
 		    <td><p>
 		      <p><strong>Podejrzenie naruszenia stref</strong></p>
-		      <?
-		  
+		  <?
+		 		$SEASON_START=$ranksList["$rank"]['seasons']['seasons'][$season]['start'];
+		 		$SEASON_END=$ranksList["$rank"]['seasons']['seasons'][$season]['end'];
 				$query="SELECT ID,takeoffID,userID,DATE FROM $flightsTable WHERE 1=1 "
 					."AND takeoffID IN (select takeoffID from $rankTakeoffsTable where rankID=".$rank.") "
 					."AND airspaceCheck=-1 "
+					."AND DATE <= STR_TO_DATE('".$SEASON_END."','%Y-%m-%d') "
+					."AND DATE >= STR_TO_DATE('".$SEASON_START."','%Y-%m-%d') "
 					."ORDER BY ID DESC ";
 				$res= $db->sql_query($query);
 				while($row = mysql_fetch_assoc($res)){
 					$flightID=$row['ID'];
 					$takeoffID=$row['takeoffID'];
-					echo "<div id='fl_$flightID'>".$row['DATE']." <a target='_blank' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."'>Lot nr $flightID</a> ".$row['cause']." z <a target='_blank' href='".getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$takeoffID))."'>".getWaypointName($takeoffID)."</a> (przez ".getPilotrealName($row['userID'],0,0,2).") <a href='javascript:removeBannedFlight(\"$flightID\");'>Przywróć lot</a></div>"; 
+					echo "<div id='fl_$flightID'>".$row['DATE']." <a target='_blank' href='".getLeonardoLink(array('op'=>'show_flight','flightID'=>$flightID))."&rank=$rank'>Lot nr $flightID</a> ".$row['cause']." z <a target='_blank' href='".getLeonardoLink(array('op'=>'show_waypoint','waypointIDview'=>$takeoffID))."'>".getWaypointName($takeoffID)."</a> (przez ".getPilotrealName($row['userID'],0,0,2).") </div>"; 
 				}
 		?></p></td>
 		    <td><p>
