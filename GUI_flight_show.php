@@ -150,7 +150,7 @@ function flight_db_info(id) {
 <script language="javascript">
 	function flight_scores_info(id) {
 		var url='<?=getRelMainDir(1)?>GUI_EXT_flight_scores_info.php?flightID='+id;
-		popupBox('scoreInfo',"Optimization",url,360,195,-5,18);
+		popupBox('scoreInfo',"Optimization",url,360,280,-5,18);
 	}
 
 	function set_flight_bounds(id) {
@@ -603,7 +603,7 @@ if (L_auth::isAdmin($userID) || $flight->belongsToUser($userID) || (L_auth::isRa
 		if (strrchr($flight->airspaceCheckMsg,"Punkte")){
 			$adminPanel.="<br><strong>,<br>Informacja dla Pilota i Sędziego (niewidoczna dla szerszej publiki)</strong><BR>";		
 			if ((strrchr($flight->airspaceCheckMsg,"HorDist"))) {
-				$adminPanel.="<br><strong>Możliwy problem ze strefą - po weryfikacji sędzia rankingu sprawdzi czy nie wykluczyć lotu z rankingu</strong><BR>";
+				$adminPanel.="<br><strong>Strefy na trasie przelotu - po weryfikacji sędzia może wykluczyć lot z rankingu</strong><BR>";
 				$adminPanel.="<i>W przypadku faktycznego naruszenia strefy / braku zgody na lot zaleca się ustawienie lotu jako prywatny.<br><Br>";
 			}
 		} else{
