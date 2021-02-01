@@ -7,7 +7,7 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License.
 //
-// $Id: GUI_club_admin.php,v 1.11 2010/03/14 20:56:11 manolis Exp $                                                                 
+// $Id: GUI_arbiter_admin.php,v 0.1 2021/01/30 20:56:11 rgrubba Exp $                                                                 
 //
 //************************************************************************
 $season=makeSane($_GET['season']);
