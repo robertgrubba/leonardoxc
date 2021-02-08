@@ -144,7 +144,8 @@ function removeTakeoff(takeoffID) {
 </script>
 
 <?
-	$legend="Panel sędziego rankingu $rank w sezonie $season";
+	$rname = $ranksList[$rank]['localName']; 
+	$legend="Panel sędziego rankingu: <a href='".getLeonardoLink(array('op'=>'comp','clubID'=>'0','rank'=>$rank,'subrank'=>$firstSubrank))."'>$rname, sezon $season</a>";
 	echo  "<div class='tableTitle'>
 	<div class='titleDiv'>$legend</div>
 	<div class='pagesDivSimple'>$legendRight</div>
@@ -153,10 +154,11 @@ function removeTakeoff(takeoffID) {
 		echo "<div id='updateDiv' style='display:block; background-color:#EBE6DA;padding:5px; font-weight:bold;'>$resText</div>";
 	}
 ?>
-<div style="display: flex">
+<div style="display: flex; align-items: stretch; background-color: #EFEFEF; border: 1px dotted #999; margin-top:3px;">
 <? if(L_auth::isAdmin($userID)){
 ?>
-	<div>
+	<div style="border:1px dashed #9FBC7F; padding:3px; margin:3px;">
+	<div align="center" class="titleWhite titleText" style="background: #9FBC7F; margin:3px;">Startowiska</div>
 		<!-- formularz zarzadania startowiskami -->
 		<form name="takeoffAdmin" method="post" action="">
 		<table width="100%" border="0" cellpadding="3" class="main_text" style="width: 250px">
@@ -196,7 +198,8 @@ function removeTakeoff(takeoffID) {
 		</form>
 	</div>
 <? } ?>
-	<div>
+	<div style="border:1px dashed #BE8C80; padding:3px; margin:3px">
+	<div align="center" class="titleWhite titleText" style="background: #BE8C80; margin:3px;">Piloci</div>
 		<!-- formularz wykluczania pilotow -->
 		<form name="clubAdmin" method="post" action="">
 		<table width="100%" border="0" cellpadding="3" class="main_text" style="width: 250px">
@@ -249,7 +252,8 @@ function removeTakeoff(takeoffID) {
 
 		</form>
 	</div>
-	<div>
+	<div style="border:1px dashed #7F91BF; padding:3px; margin:3px">
+	<div align="center" class="titleWhite titleText" style="background: #7F91BF; margin:3px;">Loty</div>
 	<!-- formularz usuwania lotow -->
 		<form name="flightAdmin" method="post" action="">
 		<table width="100%" border="0" cellpadding="3" class="main_text" style="width: 250px">
@@ -292,11 +296,13 @@ function removeTakeoff(takeoffID) {
 		<input name="rank" type="hidden" value="<?=$rank?>"/> 	
 		</form>
 	</div>
+	<div style="border:1px dashed #ff0000; padding:3px; margin:3px; width:-webkit-fill-available;">
+
+	<div align="center" class="titleWhite titleText" style="background: #ff0000; margin:3px;">Podejrzenia naruszenia stref</div>
 	<!-- Podejrzenie naruszenia strefy -->
 		<table width="100%" border="0" cellpadding="3" class="main_text" >
 		  <tr>
 		    <td><p>
-		      <p><strong>Podejrzenie naruszenia stref</strong></p>
 		  <?
 		 		$SEASON_START=$ranksList["$rank"]['seasons']['seasons'][$season]['start'];
 		 		$SEASON_END=$ranksList["$rank"]['seasons']['seasons'][$season]['end'];
