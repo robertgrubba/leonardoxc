@@ -179,7 +179,7 @@ function setClub(NACid) {
     </tr>
     <tr>
       <td width="205" valign="top"><div align="right" class="styleItalic"><?=_SUBMIT_THE_IGC_FILE_FOR_THE_FLIGHT?></div></td>
-      <td colspan="3" valign="top"><input name="datafile" id="datafile" type="file" size="50"></td>
+      <td colspan="3" valign="top"><input name="datafile" id="datafile" type="file" size="50" accept=".igc,.IGC"></td>
     </tr>
 	<? // common part with GUI_flight_add_from_zip.php ?>
     <tr>
