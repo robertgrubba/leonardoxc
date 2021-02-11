@@ -89,7 +89,7 @@
 		$GMapType= $CONF['google_maps']['default_maptype'];
 	}
 
-	if ( $CONF_airspaceChecks && $isAdmin) { 
+	if ( $CONF_airspaceChecks && ($isAdmin || L_auth::isRankArbiter($userID,$_SESSION['rank'])) ) { 
 		$airspaceCheck=1;	
 	} else {
 		$airspaceCheck=0;
@@ -225,8 +225,8 @@ img.icons1 {   background: url(<?=$moduleRelPath?>/img/sprite_icons1.png) no-rep
 </div>
 
 <div style='display:none;'>
-	<div id='control3d' class='controlButton'>
-		<div class='controlButtonInner'>3D View</div>
+	<div id='control3d' class='controlButton' style='display:none;'>
+		<div class='controlButtonInner' >3D View</div>
 	</div>
 	<div id='controlSkyways' class='controlButton skywaysButton'>
 		<div class='controlButtonInner'>Skyways</div>
@@ -327,7 +327,7 @@ img.icons1 {   background: url(<?=$moduleRelPath?>/img/sprite_icons1.png) no-rep
 			<label for='followGlider'><?=_Follow_Glider?></label><br>
 			<input type="checkbox" value="1" <?php echo (($flightsNum==1)?'checked':'') ?> id='showTask' name='showTask'  onClick="toggleTask(this)">
 			<label for='showTask'><?=_Show_Task?></label><br>
-			<? if ($CONF_airspaceChecks && $isAdmin ) { ?>
+			<? if ($CONF_airspaceChecks && ($isAdmin ||  L_auth::isRankArbiter($userID,$_SESSION['rank'] ))) { ?>
 				<input type="checkbox" value="1"  checked="checked" name='airspaceShow' id='airspaceShow' onClick="toggleAirspace(true)">
 				<label for='airspaceShow'><?=_Show_Airspace?></label>		
 			<?  } ?>
